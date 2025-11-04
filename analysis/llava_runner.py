@@ -6,12 +6,13 @@ import enum
 import math
 import random
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
 import torch
 from PIL import Image
 from transformers import AutoProcessor, LlavaForConditionalGeneration
+from transformers.generation.utils import GenerateDecoderOnlyOutput
 try:  # pragma: no cover - optional dependency
     from transformers import BitsAndBytesConfig
 except Exception:  # pragma: no cover - optional dependency
@@ -61,7 +62,8 @@ class LlavaRunner:
         quantization: Optional[str] = None,
     ) -> None:
         self._config = config or AnalysisConfig()
-        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        resolved_device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device(resolved_device)
         quant_cfg = None
         if quantization in {"4bit", "8bit"} and BitsAndBytesConfig is not None:
             if quantization == "4bit":
@@ -69,13 +71,15 @@ class LlavaRunner:
             else:
                 quant_cfg = BitsAndBytesConfig(load_in_8bit=True)
 
-        self.model = LlavaForConditionalGeneration.from_pretrained(
+        model = LlavaForConditionalGeneration.from_pretrained(
             model_id,
             low_cpu_mem_usage=True,
             revision="a272c74",
             quantization_config=quant_cfg,
             torch_dtype=torch.float16 if quant_cfg is not None else None,
-        ).to(self.device)
+        )
+        self.model = cast(LlavaForConditionalGeneration, model)
+        self.model.to(self.device)  # type: ignore[arg-type]
         self.model.eval()
         self.processor = AutoProcessor.from_pretrained(model_id, revision="a272c74")
         self.patch_size = getattr(self.processor, "patch_size", 14)
@@ -108,13 +112,18 @@ class LlavaRunner:
         elif mode == RunnerMode.VISUAL_DROPOUT and dropout_rate > 0.0:
             inputs["pixel_values"] = self._apply_visual_dropout(inputs["pixel_values"], dropout_rate)
 
-        generation = self.model.generate(
-            **inputs,
-            max_new_tokens=32,
-            return_dict_in_generate=True,
-            output_scores=True,
-            use_cache=True,
+        generation = cast(
+            GenerateDecoderOnlyOutput,
+            self.model.generate(
+                **inputs,
+                max_new_tokens=32,
+                return_dict_in_generate=True,
+                output_scores=True,
+                use_cache=True,
+            ),
         )
+        if generation.scores is None:
+            raise RuntimeError("Expected generation scores to be available; ensure output_scores=True")
         generated_ids = generation.sequences[0, inputs["input_ids"].shape[1] :]
         token_logits = torch.stack(generation.scores).to(torch.float32)
         token_probabilities = torch.stack([torch.nn.functional.softmax(score, dim=-1) for score in generation.scores])
