@@ -1,3 +1,20 @@
+"""Legacy batching module superseded by analysis.pipeline_runner."""
+
+from analysis.pipeline_runner import main as pipeline_main
+
+
+def main() -> None:
+    pipeline_main()
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()
+    raise SystemExit
+
+# ---------------------------------------------------------------------------
+# Legacy code retained for archival purposes below.
+# ---------------------------------------------------------------------------
+
 import torch
 import copy, math, pickle, json, os
 import bertviz, uuid

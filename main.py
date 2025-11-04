@@ -1,3 +1,23 @@
+"""Legacy module retained for reference. Use analysis.pipeline_runner instead."""
+
+from analysis.pipeline_runner import main as pipeline_main
+
+
+def main() -> None:
+    """Delegates to the modern analysis pipeline."""
+
+    pipeline_main()
+
+
+if __name__ == "__main__":  # pragma: no cover - CLI entry point
+    main()
+    raise SystemExit
+
+# ---------------------------------------------------------------------------
+# Legacy implementation preserved below for archival purposes. It is no longer
+# invoked when running `python main.py`.
+# ---------------------------------------------------------------------------
+
 import torch
 import copy, math, pickle, json, os
 import bertviz, uuid
