@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+from io import BytesIO
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, List, Optional, Sequence
@@ -69,7 +70,7 @@ def load_prompts(csv_path: Path) -> List[PromptEntry]:
 def fetch_image(url: str, timeout: float = 10.0) -> Image.Image:
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
-    return Image.open(response.raw).convert("RGB")
+    return Image.open(BytesIO(response.content)).convert("RGB")
 
 
 def build_cluster_reports(labels: np.ndarray, attention_map: np.ndarray) -> List[ClusterReport]:

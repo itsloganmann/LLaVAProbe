@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import enum
 from dataclasses import dataclass, field
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 import numpy as np
 from sklearn.cluster import DBSCAN
@@ -81,6 +81,9 @@ def attention_to_points(attention_map: np.ndarray) -> np.ndarray:
     values = attention_map.reshape(-1, 1)
     y_flipped = (h - 1) - coords[:, 1:2]
     return np.concatenate([coords[:, :1], y_flipped, values], axis=1).astype(np.float64)
+
+
+LabelArray = Union[Sequence[int], np.ndarray]
 
 
 class ClusteringPipeline:
@@ -266,7 +269,7 @@ class ClusteringPipeline:
             permuted = points.copy()
             rng.shuffle(permuted[:, 2])
             rotated = permuted.reshape(24, 24, 3)
-            rotated = np.rot90(rotated, k=rng.integers(0, 4), axes=(0, 1)).reshape(-1, 3)
+            rotated = np.rot90(rotated, k=int(rng.integers(0, 4)), axes=(0, 1)).reshape(-1, 3)
             flipped = rotated[::-1] if rng.random() < 0.5 else rotated
             result = self._run_dbscan(
                 flipped,
@@ -314,26 +317,29 @@ class ClusteringPipeline:
         return float(correlation_matrix[0, 1])
 
 
-def _cluster_stats(labels: Sequence[int]) -> Tuple[int, int]:
-    unique = set(labels)
+def _cluster_stats(labels: LabelArray) -> Tuple[int, int]:
+    array = np.asarray(labels)
+    unique = set(int(label) for label in array.tolist())
     n_clusters = len([label for label in unique if label != -1])
-    n_noise = int(np.sum(np.array(labels) == -1))
+    n_noise = int(np.sum(array == -1))
     return n_clusters, n_noise
 
 
-def _mean_cluster_size(labels: Sequence[int]) -> float:
+def _mean_cluster_size(labels: LabelArray) -> float:
     counts = _cluster_counts(labels)
     return float(np.mean(list(counts.values()))) if counts else 0.0
 
 
-def _std_cluster_size(labels: Sequence[int]) -> float:
+def _std_cluster_size(labels: LabelArray) -> float:
     counts = _cluster_counts(labels)
     return float(np.std(list(counts.values()))) if counts else 0.0
 
 
-def _cluster_counts(labels: Sequence[int]) -> Dict[int, int]:
+def _cluster_counts(labels: LabelArray) -> Dict[int, int]:
+    array = np.asarray(labels)
     counts: Dict[int, int] = {}
-    for label in labels:
+    for raw_label in array.tolist():
+        label = int(raw_label)
         if label == -1:
             continue
         counts[label] = counts.get(label, 0) + 1

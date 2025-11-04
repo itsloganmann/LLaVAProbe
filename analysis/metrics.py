@@ -183,7 +183,7 @@ def compute_confidence_metrics(
     top2_logit = _second_best_logit(logits[-1])
     logit_margin = float(top1_logit - top2_logit)
 
-    token_entropy = compute_token_entropy(probabilities[-1], entropy_cfg)
+    token_entropy = compute_token_entropy(probabilities[-1].tolist(), entropy_cfg)
     sequence_prob = float(torch.exp(torch.tensor(per_token_log_probs).sum())) if per_token_log_probs else 0.0
 
     return ConfidenceMetrics(
