@@ -8,7 +8,7 @@ import logging
 from io import BytesIO
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List, Optional, Sequence
+from typing import Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
 import requests
@@ -108,6 +108,73 @@ def is_correct(predicted: str, ground_truth: str) -> bool:
     return predicted.strip().lower() == ground_truth.strip().lower()
 
 
+def softmax(x: np.ndarray, axis: Optional[int] = None) -> np.ndarray:
+    ex = np.exp(x - np.max(x, axis=axis, keepdims=True))
+    return ex / np.sum(ex, axis=axis, keepdims=True)
+
+def combine_topk_heads(
+    per_head_maps: np.ndarray,        # shape: (n_heads, H, W) or (n_heads, N)
+    head_deltas: np.ndarray,         # shape: (n_heads,)
+    k: int = 5,
+    method: str = "weighted_avg",    # "weighted_avg" | "voting" | "max"
+    vote_pct: float = 0.8,           # percentile for voting
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Return (combined_map (H,W), topk_indices (k,), weights (k,)).
+    - per_head_maps: attention maps by head (n_heads, H, W) or (n_heads, N)
+    - head_deltas: per-head score indicating importance (n_heads,)
+    """
+    if per_head_maps.ndim == 3:
+        n_heads, H, W = per_head_maps.shape
+        per_head_flat = per_head_maps.reshape(n_heads, -1)
+    else:
+        n_heads, N = per_head_maps.shape
+        per_head_flat = per_head_maps
+
+    head_deltas = np.asarray(head_deltas)
+    if head_deltas.shape[0] != per_head_flat.shape[0]:
+        raise ValueError("head_deltas and per_head_maps have different head counts")
+
+    # top-k indices (highest deltas)
+    k = min(k, per_head_flat.shape[0])
+    topk_idx = np.argsort(head_deltas)[-k:][::-1]  # descending
+    topk_scores = head_deltas[topk_idx]
+
+    if method == "weighted_avg":
+        weights = softmax(topk_scores)
+        weighted = (weights[:, None] * per_head_flat[topk_idx]).sum(axis=0)
+        combined = weighted
+    elif method == "voting":
+        # threshold each head at vote_pct percentile
+        masks = []
+        for idx in topk_idx:
+            arr = per_head_flat[idx]
+            thr = np.percentile(arr, 100 * (1.0 - vote_pct))  # vote_pct proportion preserved
+            masks.append((arr >= thr).astype(float))
+        mask_sum = np.sum(np.stack(masks, axis=0), axis=0)  # counts [0..k]
+        combined = mask_sum  # raw vote counts
+        weights = np.ones(len(topk_idx)) / len(topk_idx)
+    elif method == "max":
+        combined = np.max(per_head_flat[topk_idx], axis=0)
+        weights = np.ones(len(topk_idx)) / len(topk_idx)
+    else:
+        raise ValueError("Unknown method: " + method)
+
+    # normalize combined to sum to 1 (avoid zero-sum)
+    if combined.sum() <= 0:
+        norm_combined = combined
+    else:
+        norm_combined = combined / float(np.sum(combined))
+
+    # reshape back to H,W if needed
+    if per_head_maps.ndim == 3:
+        combined_map = norm_combined.reshape(H, W)
+    else:
+        combined_map = norm_combined.reshape(-1)
+
+    return combined_map, topk_idx, (softmax(topk_scores) if method == "weighted_avg" else np.ones(len(topk_idx))/len(topk_idx))
+
+
 def run_pipeline(
     *,
     prompts_path: Path,
@@ -169,11 +236,50 @@ def run_pipeline(
                     logging.exception("Model run failed for %s: %s", entry.image_url, exc)
                     continue
 
+            # ---------- Top-k head analysis ----------
+            # Assumption: LlavaRunner returns per-head attention maps as `run_output.per_head_attention`
+            # with shape (n_heads, H, W) and head deltas as run_output.head_delta (n_heads,)
+            per_head_maps = getattr(run_output, "per_head_attention", None)
+            head_deltas = np.asarray(getattr(run_output, "head_delta", []))
+
+            # Default: fallback to original single map if per-head not present
+            if per_head_maps is None or per_head_maps.size == 0 or head_deltas.size == 0:
+                # old behavior
                 cluster_result = clustering.evaluate_sample(run_output.attention_map, run_output.token_confidence)
                 cluster_reports = build_cluster_reports(cluster_result.labels, run_output.attention_map)
-
                 attention_metrics = compute_attention_entropy(run_output.attention_map, config.entropy)
+                combined_topk_info = {"method": "single_head_fallback", "topk": [None], "weights": []}
+            else:
+                # choose k and method (you can tune these or make them config params)
+                TOP_K = getattr(config, "analysis_top_k", 5)
+                COMB_METHOD = getattr(config, "analysis_comb_method", "weighted_avg")  # or "voting" / "max"
+
+                combined_map, topk_idx, topk_weights = combine_topk_heads(
+                    per_head_maps=per_head_maps,
+                    head_deltas=head_deltas,
+                    k=TOP_K,
+                    method=COMB_METHOD,
+                    vote_pct=0.8,
+                )
+
+                # clustering & reports use the combined map
+                cluster_result = clustering.evaluate_sample(combined_map, run_output.token_confidence)
+                cluster_reports = build_cluster_reports(cluster_result.labels, combined_map)
+                attention_metrics = compute_attention_entropy(combined_map, config.entropy)
+
+                # also compute per-head reports for diagnostics (optional)
+                per_head_reports = []
+                for hid in topk_idx:
+                    head_map = per_head_maps[hid]
+                    hr_cluster_result = clustering.evaluate_sample(head_map, run_output.token_confidence)
+                    hr_reports = build_cluster_reports(hr_cluster_result.labels, head_map)
+                    hr_entropy = compute_attention_entropy(head_map, config.entropy)
+                    per_head_reports.append({"head": int(hid), "entropy": float(hr_entropy.normalized_entropy), "clusters": hr_reports})
+
+                combined_topk_info = {"method": COMB_METHOD, "topk": [int(h) for h in topk_idx], "weights": [float(w) for w in topk_weights], "per_head": per_head_reports}
+            # ---------- End top-k handling ----------
                 confidence = run_output.confidence_metrics
+
                 record = AnalysisRecord(
                     question_type=entry.question_type,
                     question=entry.question,
@@ -189,6 +295,7 @@ def run_pipeline(
                     top_margin=confidence.probability_margin,
                     logit_margin=confidence.logit_margin,
                     head_delta=run_output.head_delta,
+                    per_head_topk_info=combined_topk_info,
                     ground_truth_delta=run_output.ground_truth_delta,
                     ground_truth_tokens=run_output.ground_truth_tokens,
                     ablations=[
