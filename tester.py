@@ -13,7 +13,7 @@ from transformers import AutoProcessor, LlavaForConditionalGeneration
 
 # ————————————————————————————————————————————————————————————
 # 1) Configuration
-openai.api_key = #this is where the api key goes
+openai.api_key = 'api-key-here'  # replace with your OpenAI API key
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ————————————————————————————————————————————————————————————
