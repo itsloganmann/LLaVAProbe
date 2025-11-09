@@ -10,7 +10,7 @@ import numpy as np
 from sklearn.cluster import DBSCAN
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
-
+from scipy.stats import entropy
 try:  # pragma: no cover - optional dependency
     import hdbscan  # type: ignore
 except Exception:  # pragma: no cover - optional dependency
@@ -69,7 +69,8 @@ class ClusterSweepResult:
     """Aggregate of clustering results across multiple samples."""
 
     summaries: List[ClusterSweepSummary]
-    detailed_results: Mapping[Tuple[ClustererType, Optional[float], Optional[int], Optional[float]], List[ClusterResult]]
+    detailed_results: Mapping[Tuple[ClustererType, Optional[float],
+                                    Optional[int], Optional[float]], List[ClusterResult]]
     null_results: Mapping[ClustererType, List[NullModelResult]]
 
 
@@ -77,7 +78,8 @@ def attention_to_points(attention_map: np.ndarray) -> np.ndarray:
     """Convert a 24x24 attention map into (x, y, value) coordinates."""
 
     h, w = attention_map.shape
-    coords = np.stack(np.meshgrid(np.arange(w), np.arange(h)), axis=-1).reshape(-1, 2)
+    coords = np.stack(np.meshgrid(np.arange(w), np.arange(h)),
+                      axis=-1).reshape(-1, 2)
     values = attention_map.reshape(-1, 1)
     y_flipped = (h - 1) - coords[:, 1:2]
     return np.concatenate([coords[:, :1], y_flipped, values], axis=1).astype(np.float64)
@@ -91,7 +93,8 @@ class ClusteringPipeline:
 
     def __init__(self, config: AnalysisConfig) -> None:
         self._config = config
-        self._results: Dict[Tuple[ClustererType, Optional[float], Optional[int], Optional[float]], List[ClusterResult]] = {}
+        self._results: Dict[Tuple[ClustererType, Optional[float],
+                                  Optional[int], Optional[float]], List[ClusterResult]] = {}
         self._null_results: Dict[ClustererType, List[NullModelResult]] = {}
         self._baseline_params = (1.3, 15, 1.0)
 
@@ -119,7 +122,8 @@ class ClusteringPipeline:
                     baseline_result = result
 
         if hdbscan is not None:
-            result = self._run_hdbscan(scaled_points, token_confidence=token_confidence)
+            result = self._run_hdbscan(
+                scaled_points, token_confidence=token_confidence)
             self._store_result(result)
             last_result = result
         gmm_result = self._run_gmm(points, token_confidence=token_confidence)
@@ -134,7 +138,8 @@ class ClusteringPipeline:
         summaries: List[ClusterSweepSummary] = []
         for key, records in self._results.items():
             clusterer, eps, min_samples, weight_exp = key
-            confidences = np.array([r.token_confidence for r in records if r.token_confidence is not None])
+            confidences = np.array(
+                [r.token_confidence for r in records if r.token_confidence is not None])
             correlations = {
                 "noise_ratio": {
                     "r_squared": self._r_squared(np.array([r.noise_ratio for r in records]), confidences),
@@ -150,10 +155,12 @@ class ClusteringPipeline:
                 },
                 "attention_entropy": {
                     "r_squared": self._r_squared(
-                        np.array([r.attention_entropy.normalized_entropy for r in records]), confidences
+                        np.array(
+                            [r.attention_entropy.normalized_entropy for r in records]), confidences
                     ),
                     "spearman": self._spearman(
-                        np.array([r.attention_entropy.normalized_entropy for r in records]), confidences
+                        np.array(
+                            [r.attention_entropy.normalized_entropy for r in records]), confidences
                     ),
                 },
             }
@@ -194,12 +201,15 @@ class ClusteringPipeline:
         token_confidence: float,
         weight_exponent: float,
     ) -> ClusterResult:
-        db = DBSCAN(eps=eps, min_samples=min_samples).fit(points, sample_weight=sample_weight)
+        db = DBSCAN(eps=eps, min_samples=min_samples).fit(
+            points, sample_weight=sample_weight)
         labels = db.labels_
         n_clusters, n_noise = _cluster_stats(labels)
         noise_ratio = n_noise / len(labels)
-        mean_strength = float(np.average(sample_weight)) if sample_weight is not None else float(points[:, 2].mean())
-        entropy_metrics = compute_attention_entropy(points[:, 2], self._config.entropy)
+        mean_strength = float(np.average(
+            sample_weight)) if sample_weight is not None else float(points[:, 2].mean())
+        entropy_metrics = compute_attention_entropy(
+            points[:, 2], self._config.entropy)
         metadata = {
             "mean_cluster_size": float(_mean_cluster_size(labels)),
             "std_cluster_size": float(_std_cluster_size(labels)),
@@ -225,8 +235,10 @@ class ClusteringPipeline:
         clusterer = hdbscan.HDBSCAN(min_cluster_size=5, min_samples=3)
         labels = clusterer.fit_predict(points)
         n_clusters, n_noise = _cluster_stats(labels)
-        entropy_metrics = compute_attention_entropy(points[:, 2], self._config.entropy)
-        metadata = {"persistence": float(getattr(clusterer, "cluster_persistence_", np.nan))}
+        entropy_metrics = compute_attention_entropy(
+            points[:, 2], self._config.entropy)
+        metadata = {"persistence": float(
+            getattr(clusterer, "cluster_persistence_", np.nan))}
         return ClusterResult(
             clusterer=ClustererType.HDBSCAN,
             labels=labels,
@@ -240,13 +252,15 @@ class ClusteringPipeline:
         )
 
     def _run_gmm(self, points: np.ndarray, *, token_confidence: float) -> ClusterResult:
-        gm = GaussianMixture(n_components=3, covariance_type="full", random_state=self._config.random_seed)
+        gm = GaussianMixture(
+            n_components=3, covariance_type="full", random_state=self._config.random_seed)
         gm.fit(points[:, :3])
         labels = gm.predict(points[:, :3])
         n_clusters, _ = _cluster_stats(labels)
         responsibilities = gm.predict_proba(points[:, :3])
         noise_ratio = float(1.0 - responsibilities.max(axis=1).mean())
-        entropy_metrics = compute_attention_entropy(points[:, 2], self._config.entropy)
+        entropy_metrics = compute_attention_entropy(
+            points[:, 2], self._config.entropy)
         metadata = {
             "bic": float(gm.bic(points[:, :3])),
             "aic": float(gm.aic(points[:, :3])),
@@ -269,7 +283,8 @@ class ClusteringPipeline:
             permuted = points.copy()
             rng.shuffle(permuted[:, 2])
             rotated = permuted.reshape(24, 24, 3)
-            rotated = np.rot90(rotated, k=int(rng.integers(0, 4)), axes=(0, 1)).reshape(-1, 3)
+            rotated = np.rot90(rotated, k=int(
+                rng.integers(0, 4)), axes=(0, 1)).reshape(-1, 3)
             flipped = rotated[::-1] if rng.random() < 0.5 else rotated
             result = self._run_dbscan(
                 flipped,
@@ -292,7 +307,8 @@ class ClusteringPipeline:
         return np.concatenate([scaled_xy, normalized_z], axis=1)
 
     def _store_result(self, result: ClusterResult) -> None:
-        key = (result.clusterer, result.eps, result.min_samples, result.weight_exponent)
+        key = (result.clusterer, result.eps,
+               result.min_samples, result.weight_exponent)
         self._results.setdefault(key, []).append(result)
 
     @staticmethod
@@ -315,6 +331,16 @@ class ClusteringPipeline:
             return 0.0
         correlation_matrix = np.corrcoef(x_ranks, y_ranks)
         return float(correlation_matrix[0, 1])
+
+    def analyze_layer_evolution(self, all_layer_attentions: List[np.ndarray]) -> Dict[str, np.ndarray]:
+        """
+        Wrapper to compute entropy evolution across all attention layers.
+        """
+        results = track_attention_evolution(all_layer_attentions)
+        print("Layer Entropies:", results["layer_entropies"])
+        print("Critical Layers (significant shifts):",
+              results["critical_layers"])
+        return results
 
 
 def _cluster_stats(labels: LabelArray) -> Tuple[int, int]:
@@ -351,3 +377,43 @@ def _rankdata(values: np.ndarray) -> np.ndarray:
     ranks = np.empty_like(temp, dtype=float)
     ranks[temp] = np.arange(len(values))
     return ranks
+
+
+# ------------------------------------------------------------------
+# Layer-wise attention evolution tracking
+# ------------------------------------------------------------------
+def track_attention_evolution(layer_attentions: List[np.ndarray]) -> Dict[str, np.ndarray]:
+    """
+    Track how attention entropy and clustering characteristics evolve across all layers.
+
+    Args:
+        layer_attentions: List of attention maps, one per layer
+                          Each element should be a [heads, tokens, tokens] numpy array
+
+    Returns:
+        Dict with:
+            - layer_entropies: np.ndarray of entropy per layer
+            - entropy_transitions: np.ndarray of |Δ entropy|
+            - critical_layers: np.ndarray of indices where change is significant
+    """
+
+    def compute_entropy(attn: np.ndarray) -> float:
+        flat = attn.flatten()
+        flat = flat / (flat.sum() + 1e-9)
+        return float(entropy(flat))
+
+    layer_entropies = []
+    for layer_attn in layer_attentions:
+        mean_attn = np.mean(layer_attn, axis=0)
+        layer_entropies.append(compute_entropy(mean_attn))
+
+    layer_entropies = np.array(layer_entropies)
+    transitions = np.abs(np.diff(layer_entropies))
+    threshold = np.mean(transitions) + np.std(transitions)
+    critical_layers = np.where(transitions > threshold)[0]
+
+    return {
+        "layer_entropies": layer_entropies,
+        "entropy_transitions": transitions,
+        "critical_layers": critical_layers,
+    }
