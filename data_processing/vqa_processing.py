@@ -2,8 +2,8 @@ import json
 import os
 
 # Paths
-annotations_path = "data/raw/v2_mscoco_train2014_annotations.json"
-questions_path = "data/raw/v2_OpenEnded_mscoco_train2014_questions.json"
+annotations_path = "../data/raw/v2_mscoco_train2014_annotations.json"
+questions_path = "../data/raw/v2_OpenEnded_mscoco_train2014_questions.json"
 processed_data_path = "data/processed/filtered_vqa_with_links.json"
 
 # Create directories
