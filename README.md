@@ -8,11 +8,31 @@ language-only and visual ablations, confidence calibration, and rich structured 
 
 1. **Environment setup**
 
+	**Option A: Using setup.sh (recommended)**
+	
 	```bash
 	bash setup.sh
 	```
+	
+	This creates a virtual environment, installs all required packages (PyTorch, Transformers, HDBSCAN, etc.), and copies the custom model files to the transformers package directory.
 
-	This creates a virtual environment and installs all required packages (PyTorch, Transformers, HDBSCAN, etc.).
+	**Option B: Using requirements.txt**
+	
+	```bash
+	python3.10 -m venv sees
+	source sees/bin/activate
+	pip install -r requirements.txt
+	```
+	
+	**Note:** After installing via requirements.txt, you must manually copy the custom model files:
+	
+	```bash
+	TRANSFORMERS_PATH=$(python3 -c "import transformers, os; print(os.path.dirname(transformers.__file__))")
+	cp modeling_llava.py "$TRANSFORMERS_PATH/models/llava/modeling_llava.py"
+	cp modeling_llama.py "$TRANSFORMERS_PATH/models/llama/modeling_llama.py"
+	```
+	
+	The custom model files enable attention tracking and intermediate value extraction required for the analysis pipeline.
 
 2. **Generate prompts (optional)**
 
@@ -49,6 +69,20 @@ language-only and visual ablations, confidence calibration, and rich structured 
 - Answer-token vs ground-truth-token head deltas.
 - Language-only, visual dropout, head-ablation, and prefix-control experiments.
 - Image resolution sweeps (224, 336, 448) with structured exports for downstream analysis.
+
+### Dependencies
+
+The project requires the following key dependencies (see `requirements.txt` for complete list):
+
+- **Core ML**: PyTorch 2.1.2, Transformers 4.37.1, Accelerate 0.26.1
+- **Image Processing**: Pillow 10.2.0, OpenCV 4.10.0.84
+- **Data Analysis**: NumPy 1.26.4, pandas, scikit-learn 1.4.2
+- **Clustering**: HDBSCAN 0.8.33, UMAP-learn 0.5.6
+- **Quantization**: bitsandbytes 0.42.0 (optional, for 4-bit/8-bit model loading)
+- **Visualization**: matplotlib 3.7.4, bertviz 1.4.0
+- **Jupyter**: jupyter, ipykernel 6.29.4, ipython 8.12.3
+
+All dependencies are pinned to specific versions for reproducibility.
 
 ### Legacy scripts
 
