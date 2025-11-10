@@ -8,7 +8,27 @@ language-only and visual ablations, confidence calibration, and rich structured 
 
 1. **Environment setup**
 
-	**Option A: Using setup.sh (recommended)**
+	**Option A: Google Cloud GPU Instance (recommended for production)**
+	
+	For Google Cloud VM with GPU (T4, V100, or A100):
+	
+	```bash
+	# Clone and setup in one command
+	git clone https://github.com/itsloganmann/LLaVAProbe.git && \
+	cd LLaVAProbe && \
+	git checkout "Idea-#3----Attention-Evolution-Tracking" && \
+	bash setup_gcloud.sh
+	```
+	
+	This script automatically:
+	- Detects GPU and verifies CUDA installation
+	- Creates virtual environment
+	- Installs PyTorch with CUDA 11.8 support
+	- Installs all dependencies optimized for cloud GPUs
+	- Copies custom model files with automatic backup
+	- Verifies the complete installation
+
+	**Option B: Using setup.sh (local development)**
 	
 	```bash
 	bash setup.sh
@@ -16,23 +36,25 @@ language-only and visual ablations, confidence calibration, and rich structured 
 	
 	This creates a virtual environment, installs all required packages (PyTorch, Transformers, HDBSCAN, etc.), and copies the custom model files to the transformers package directory.
 
-	**Option B: Using requirements.txt**
+	**Option C: Manual installation with requirements.txt**
 	
 	```bash
-	python3.10 -m venv sees
+	python3 -m venv sees
 	source sees/bin/activate
+	
+	# Install PyTorch with CUDA support (for GPU)
+	pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+	
+	# Install remaining dependencies
 	pip install -r requirements.txt
-	```
 	
-	**Note:** After installing via requirements.txt, you must manually copy the custom model files:
-	
-	```bash
+	# Copy custom model files
 	TRANSFORMERS_PATH=$(python3 -c "import transformers, os; print(os.path.dirname(transformers.__file__))")
 	cp modeling_llava.py "$TRANSFORMERS_PATH/models/llava/modeling_llava.py"
 	cp modeling_llama.py "$TRANSFORMERS_PATH/models/llama/modeling_llama.py"
 	```
 	
-	The custom model files enable attention tracking and intermediate value extraction required for the analysis pipeline.
+	**Note:** The custom model files enable attention tracking and intermediate value extraction required for the analysis pipeline.
 
 2. **Generate prompts (optional)**
 
@@ -70,19 +92,56 @@ language-only and visual ablations, confidence calibration, and rich structured 
 - Language-only, visual dropout, head-ablation, and prefix-control experiments.
 - Image resolution sweeps (224, 336, 448) with structured exports for downstream analysis.
 
+### Google Cloud Deployment
+
+**Recommended Instance Configuration:**
+
+| Component | Recommendation | Notes |
+|-----------|---------------|-------|
+| **Instance Type** | `n1-standard-8` or `n1-highmem-8` | 8 vCPUs, 30-52 GB RAM |
+| **GPU** | NVIDIA T4, V100, or A100 | T4 for cost-efficiency, A100 for speed |
+| **OS** | Ubuntu 20.04 LTS or later | With CUDA 11.8+ pre-installed |
+| **Boot Disk** | 100GB+ SSD | Models + data require significant space |
+| **Region** | `us-central1` or `us-west1` | Lower latency, good GPU availability |
+
+**Memory Requirements:**
+- **Full precision (FP16)**: ~14GB VRAM for LLaVA-1.5-7B
+- **8-bit quantization**: ~8GB VRAM (recommended for T4)
+- **4-bit quantization**: ~5GB VRAM (fastest setup time)
+
+**Quick Start Command for Google Cloud SSH:**
+
+```bash
+git clone https://github.com/itsloganmann/LLaVAProbe.git && \
+cd LLaVAProbe && \
+git checkout "Idea-#3----Attention-Evolution-Tracking" && \
+bash setup_gcloud.sh
+```
+
+**Running with Quantization (recommended for T4 GPUs):**
+
+```bash
+# After setup
+source sees/bin/activate
+python analysis/pipeline_runner.py \
+    --prompts results.csv \
+    --output-dir analysis_outputs \
+    --quantization 4bit
+```
+
 ### Dependencies
 
 The project requires the following key dependencies (see `requirements.txt` for complete list):
 
-- **Core ML**: PyTorch 2.1.2, Transformers 4.37.1, Accelerate 0.26.1
+- **Core ML**: PyTorch 2.1.2 (with CUDA 11.8), Transformers 4.37.1, Accelerate 0.26.1
 - **Image Processing**: Pillow 10.2.0, OpenCV 4.10.0.84
 - **Data Analysis**: NumPy 1.26.4, pandas, scikit-learn 1.4.2
 - **Clustering**: HDBSCAN 0.8.33, UMAP-learn 0.5.6
-- **Quantization**: bitsandbytes 0.42.0 (optional, for 4-bit/8-bit model loading)
+- **Quantization**: bitsandbytes 0.42.0 (required for memory-efficient GPU inference)
 - **Visualization**: matplotlib 3.7.4, bertviz 1.4.0
 - **Jupyter**: jupyter, ipykernel 6.29.4, ipython 8.12.3
 
-All dependencies are pinned to specific versions for reproducibility.
+All dependencies are pinned to specific versions for reproducibility and optimized for Google Cloud GPU instances.
 
 ### Legacy scripts
 

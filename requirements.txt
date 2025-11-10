@@ -1,4 +1,18 @@
-# Core ML dependencies
+# =============================================================================
+# LLaVAProbe Requirements - Optimized for Google Cloud GPU Instances
+# =============================================================================
+# Recommended Google Cloud Setup:
+# - Instance: n1-standard-8 or higher
+# - GPU: NVIDIA T4, V100, or A100
+# - OS: Ubuntu 20.04 LTS or later with CUDA 11.8+
+# - Disk: 100GB+ boot disk recommended
+#
+# Quick Install (with CUDA support):
+# pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+# pip install -r requirements.txt
+# =============================================================================
+
+# Core ML dependencies (CUDA 11.8 compatible)
 torch==2.1.2
 torchvision==0.16.2
 transformers==4.37.1
@@ -18,16 +32,19 @@ scikit-learn==1.4.2
 hdbscan==0.8.33
 umap-learn==0.5.6
 
-# Quantization support (optional for 4-bit/8-bit models)
+# Quantization support (REQUIRED for memory-efficient inference on Google Cloud)
+# Enables 4-bit/8-bit model loading - crucial for GPU memory optimization
 bitsandbytes==0.42.0
 
 # HTTP requests
 requests==2.32.3
 
-# Jupyter notebook support
+# Jupyter notebook support (optional - comment out if running headless on GCP)
 jupyter>=1.0.0
 ipykernel==6.29.4
 ipython==8.12.3
+
+# Visualization
 matplotlib==3.7.4
 
 # Visualization and utilities
