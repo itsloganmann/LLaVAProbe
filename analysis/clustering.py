@@ -333,15 +333,13 @@ class ClusteringPipeline:
         correlation_matrix = np.corrcoef(x_ranks, y_ranks)
         return float(correlation_matrix[0, 1])
 
-    def analyze_layer_evolution(self, all_layer_attentions: List[np.ndarray]) -> Dict[str, np.ndarray]:
-        """
-        Wrapper to compute entropy evolution across all attention layers.
-        """
-        results = track_attention_evolution(all_layer_attentions)
-        print("Layer Entropies:", results["layer_entropies"])
-        print("Critical Layers (significant shifts):",
-              results["critical_layers"])
-        return results
+    def analyze_layer_evolution(self, all_layer_attentions: List[np.ndarray]) -> Dict:
+    """
+    Complete wrapper to compute detailed evolution across all attention layers.
+    """
+    results = track_attention_evolution(all_layer_attentions)  # Now uses enhanced version
+    print_layer_evolution(results)  # Pretty print the full table
+    return results
 
 
 def _cluster_stats(labels: LabelArray) -> Tuple[int, int]:
