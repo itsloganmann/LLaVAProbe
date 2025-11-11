@@ -1,15 +1,39 @@
 # =============================================================================
-# LLaVAProbe Requirements - Optimized for Google Cloud GPU Instances
+# LLaVAProbe Requirements - GPU Optimized (Google Cloud & Google Colab)
 # =============================================================================
-# Recommended Google Cloud Setup:
+#
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# GOOGLE COLAB SETUP (Recommended for Easy Testing)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 1. Enable GPU: Runtime > Change runtime type > Hardware accelerator > GPU (T4)
+# 2. Run in Colab cell:
+#    !git clone https://github.com/itsloganmann/LLaVAProbe.git
+#    %cd LLaVAProbe
+#    !git checkout "Idea-#3----Attention-Evolution-Tracking"
+#    !pip install -q -r requirements.txt
+#    
+#    # Copy custom model files
+#    import transformers, os, shutil
+#    trans_path = os.path.dirname(transformers.__file__)
+#    shutil.copy("modeling_llava.py", f"{trans_path}/models/llava/modeling_llava.py")
+#    shutil.copy("modeling_llama.py", f"{trans_path}/models/llama/modeling_llama.py")
+#
+# 3. LLaVA will auto-download from HuggingFace on first run (cached in Colab session)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# GOOGLE CLOUD VM SETUP
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # - Instance: n1-standard-8 or higher
 # - GPU: NVIDIA T4, V100, or A100
 # - OS: Ubuntu 20.04 LTS or later with CUDA 11.8+
 # - Disk: 100GB+ boot disk recommended
 #
 # Quick Install (with CUDA support):
-# pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
-# pip install -r requirements.txt
+#   pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cu118
+#   pip install -r requirements.txt
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#
 # =============================================================================
 
 # Core ML dependencies (CUDA 11.8 compatible)

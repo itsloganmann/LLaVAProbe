@@ -8,7 +8,73 @@ language-only and visual ablations, confidence calibration, and rich structured 
 
 1. **Environment setup**
 
-	**Option A: Google Cloud GPU Instance (recommended for production)**
+	**🚀 Option A: Google Colab (Easiest - Recommended for Testing)**
+	
+	Perfect for quick testing with free GPU access! LLaVA automatically downloads from HuggingFace.
+	
+	**Step 1:** Open [Google Colab](https://colab.research.google.com/) and enable GPU
+	- Go to: `Runtime` → `Change runtime type` → `Hardware accelerator` → `GPU (T4)`
+	
+	**Step 2:** Run this in a Colab cell to setup everything:
+	
+	```python
+	# Clone repository and checkout Idea #3 branch
+	!git clone https://github.com/itsloganmann/LLaVAProbe.git
+	%cd LLaVAProbe
+	!git checkout "Idea-#3----Attention-Evolution-Tracking"
+	
+	# Install dependencies (takes ~2-3 minutes)
+	!pip install -q -r requirements.txt
+	
+	# Copy custom model files to enable attention tracking
+	import transformers, os, shutil
+	trans_path = os.path.dirname(transformers.__file__)
+	shutil.copy("modeling_llava.py", f"{trans_path}/models/llava/modeling_llava.py")
+	shutil.copy("modeling_llama.py", f"{trans_path}/models/llama/modeling_llama.py")
+	print("✅ Setup complete! LLaVA will auto-download on first run.")
+	```
+	
+	**Step 3:** Test the attention tracking:
+	
+	```python
+	# Run the test script (LLaVA downloads automatically ~13GB, takes 3-5 min first time)
+	!python test_layer_evolution.py
+	```
+	
+	**Step 4 (Optional):** Run full analysis pipeline:
+	
+	```python
+	# Create sample prompts file or use existing results.csv
+	!python analysis/pipeline_runner.py \
+	    --prompts results.csv \
+	    --output-dir analysis_outputs \
+	    --quantization 4bit  # Use 4bit for free Colab T4 GPU
+	```
+	
+	**💡 Colab Tips:**
+	- Free T4 GPU has ~15GB VRAM (enough for LLaVA with 4-bit quantization)
+	- Session persists for ~12 hours or until idle timeout (~90 min)
+	- Model downloads are cached during session (redownloads if session restarts)
+	- To save outputs: Mount Google Drive or download via `files.download()`
+	
+	**📥 Working with Local Model (Advanced):**
+	
+	If you've pre-downloaded LLaVA locally in Colab:
+	
+	```python
+	from analysis.llava_runner import LlavaRunner
+	
+	# Point to your local model path in Colab
+	runner = LlavaRunner(
+	    model_id="/content/llava-1.5-7b-hf",  # Your local path
+	    device="cuda",
+	    quantization="4bit"
+	)
+	```
+
+	---
+
+	**Option B: Google Cloud GPU Instance (recommended for production)**
 	
 	For Google Cloud VM with GPU (T4, V100, or A100):
 	
@@ -28,7 +94,7 @@ language-only and visual ablations, confidence calibration, and rich structured 
 	- Copies custom model files with automatic backup
 	- Verifies the complete installation
 
-	**Option B: Using setup.sh (local development)**
+	**Option C: Using setup.sh (local development)**
 	
 	```bash
 	bash setup.sh
@@ -36,7 +102,7 @@ language-only and visual ablations, confidence calibration, and rich structured 
 	
 	This creates a virtual environment, installs all required packages (PyTorch, Transformers, HDBSCAN, etc.), and copies the custom model files to the transformers package directory.
 
-	**Option C: Manual installation with requirements.txt**
+	**Option D: Manual installation with requirements.txt**
 	
 	```bash
 	python3 -m venv sees
