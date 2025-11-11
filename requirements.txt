@@ -52,9 +52,9 @@ Pillow==10.2.0
 opencv-python==4.10.0.84
 
 # Data processing and analysis
-numpy==1.26.4
+numpy<3.0.0,>=2.0.0
 pandas>=2.0.0
-scikit-learn==1.4.2
+scikit-learn>=1.5
 
 # Clustering and dimensionality reduction
 hdbscan==0.8.33
@@ -65,15 +65,15 @@ umap-learn==0.5.6
 bitsandbytes==0.42.0
 
 # HTTP requests
-requests==2.32.3
+requests<3.0.0,>=2.32.4
 
 # Jupyter notebook support (optional - comment out if running headless on GCP)
 jupyter>=1.0.0
-ipykernel==6.29.4
-ipython==8.12.3
+ipykernel==6.17.1
+ipython==7.34.0
 
 # Visualization
-matplotlib==3.7.4
+matplotlib>=3.8.0
 
 # Visualization and utilities
 bertviz==1.4.0
