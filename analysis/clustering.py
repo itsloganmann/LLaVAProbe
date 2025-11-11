@@ -334,12 +334,12 @@ class ClusteringPipeline:
         return float(correlation_matrix[0, 1])
 
     def analyze_layer_evolution(self, all_layer_attentions: List[np.ndarray]) -> Dict:
-    """
-    Complete wrapper to compute detailed evolution across all attention layers.
-    """
-    results = track_attention_evolution(all_layer_attentions)  # Now uses enhanced version
-    print_layer_evolution(results)  # Pretty print the full table
-    return results
+        """
+        Complete wrapper to compute detailed evolution across all attention layers.
+        """
+        results = track_attention_evolution(all_layer_attentions)  # Now uses enhanced version
+        print_layer_evolution(results)  # Pretty print the full table
+        return results
 
 
 def _cluster_stats(labels: LabelArray) -> Tuple[int, int]:
