@@ -111,7 +111,7 @@ def run_pipeline(
     *,
     prompts_path: Path,
     output_dir: Path,
-    quantization: Optional[str] = None,
+    quantization: Optional[str] = "4bit",  # changed default to 4bit
     log_level: str = "INFO",
 ) -> None:
     log_file = output_dir / "pipeline_execution.log"
@@ -258,7 +258,7 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--quantization",
         choices=["none", "4bit", "8bit"],
-        default="none",
+        default="4bit",  # changed default to 4bit
         help="Optional quantization mode for loading LLaVA",
     )
     parser.add_argument("--log-level", default="INFO", help="Logging level (e.g., INFO, DEBUG)")
