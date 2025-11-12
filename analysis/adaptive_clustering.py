@@ -43,17 +43,11 @@ def compute_attention_entropy_signal(attention_map: np.ndarray) -> float:
     Returns:
         Normalized entropy value [0, 1]
     """
-    # Flatten and normalize to probability distribution
     flat = attention_map.flatten()
     flat = flat / (flat.sum() + 1e-10)
-    
-    # Compute Shannon entropy
     entropy = -np.sum(flat * np.log(flat + 1e-10))
-    
-    # Normalize by max possible entropy (uniform distribution)
     max_entropy = np.log(len(flat))
     normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0.0
-    
     return float(normalized_entropy)
 
 
@@ -68,12 +62,10 @@ def compute_attention_variance_signal(attention_map: np.ndarray) -> float:
         Normalized variance [0, 1]
     """
     flat = attention_map.flatten()
-    # Normalize to [0, 1]
     if flat.max() > flat.min():
         normalized = (flat - flat.min()) / (flat.max() - flat.min())
     else:
         normalized = flat
-    
     variance = float(np.var(normalized))
     return variance
 
@@ -99,16 +91,12 @@ def map_entropy_to_eps(
     Returns:
         Adaptive eps value
     """
-    # Linear mapping with threshold
     if entropy > entropy_threshold_loose:
-        # High entropy: map to upper range
         alpha = (entropy - entropy_threshold_loose) / (1.0 - entropy_threshold_loose)
         eps = eps_min + alpha * (eps_max - eps_min) + 0.5
     else:
-        # Low entropy: map to lower range
         alpha = entropy / entropy_threshold_loose
         eps = eps_min + alpha * (eps_max - eps_min) * 0.5
-    
     return float(np.clip(eps, eps_min, eps_max))
 
 
@@ -137,18 +125,14 @@ def adaptive_dbscan_with_quality_metrics(
     Returns:
         Tuple of (best ClusterResult, AdaptiveClusteringMetrics)
     """
-    # Compute adaptivity signals
     entropy = compute_attention_entropy_signal(attention_map)
     variance = compute_attention_variance_signal(attention_map)
     
-    # Convert attention map to points
     points = attention_to_points(attention_map)
     scaled_points = _standardize_points(points)
     
-    # Get initial eps suggestion from entropy
     suggested_eps = map_entropy_to_eps(entropy)
     
-    # Generate candidate eps values around suggestion
     if eps_candidates is None:
         eps_candidates = [
             suggested_eps * 0.7,
@@ -158,17 +142,14 @@ def adaptive_dbscan_with_quality_metrics(
             suggested_eps * 1.3,
         ]
     
-    # Try each eps candidate and compute quality metrics
-    best_result: Optional[ClusterResult] = None
-    best_score: float = -np.inf
-    search_results: List[Dict[str, float]] = []
+    best_result = None
+    best_score = -np.inf
+    search_results = []
     
     for eps in eps_candidates:
-        # Run DBSCAN
         db = DBSCAN(eps=eps, min_samples=min_samples)
         labels = db.fit_predict(scaled_points)
         
-        # Skip if all noise or single cluster
         n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
         if n_clusters < 2:
             search_results.append({
@@ -178,13 +159,11 @@ def adaptive_dbscan_with_quality_metrics(
             })
             continue
         
-        # Compute quality score (silhouette)
         try:
             silhouette = silhouette_score(scaled_points, labels)
         except Exception:
             silhouette = -1.0
         
-        # Compute DBCV if available
         dbcv = None
         if hdbscan is not None and validity_index is not None:
             try:
@@ -192,7 +171,6 @@ def adaptive_dbscan_with_quality_metrics(
             except Exception:
                 pass
         
-        # Use silhouette as primary quality metric
         quality_score = silhouette
         
         search_results.append({
@@ -203,16 +181,11 @@ def adaptive_dbscan_with_quality_metrics(
             "quality_score": quality_score,
         })
         
-        # Track best result
         if quality_score > best_score:
             best_score = quality_score
-            
-            # Compute cluster statistics
             n_noise = int(np.sum(labels == -1))
             noise_ratio = n_noise / len(labels)
             mean_strength = float(points[:, 2].mean())
-            
-            # Compute entropy metrics using existing function
             entropy_metrics = compute_attention_entropy(points[:, 2], config.entropy)
             
             best_result = ClusterResult(
@@ -236,7 +209,6 @@ def adaptive_dbscan_with_quality_metrics(
                 },
             )
     
-    # If no valid clustering found, use default eps
     if best_result is None:
         eps = suggested_eps
         db = DBSCAN(eps=eps, min_samples=min_samples)
@@ -245,7 +217,6 @@ def adaptive_dbscan_with_quality_metrics(
         n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
         n_noise = int(np.sum(labels == -1))
         noise_ratio = n_noise / len(labels) if len(labels) > 0 else 0.0
-        
         entropy_metrics = compute_attention_entropy(points[:, 2], config.entropy)
         
         best_result = ClusterResult(
@@ -267,7 +238,6 @@ def adaptive_dbscan_with_quality_metrics(
             },
         )
     
-    # Build adaptive metrics
     adaptive_metrics = AdaptiveClusteringMetrics(
         entropy=entropy,
         variance=variance,
@@ -299,16 +269,12 @@ def adaptive_hdbscan_with_entropy(
     if hdbscan is None:
         raise RuntimeError("hdbscan is not available")
     
-    # Compute signals
     entropy = compute_attention_entropy_signal(attention_map)
     variance = compute_attention_variance_signal(attention_map)
     
-    # Convert to points
     points = attention_to_points(attention_map)
     scaled_points = _standardize_points(points)
     
-    # Adjust min_cluster_size based on entropy
-    # High entropy → smaller clusters allowed
     if entropy > 0.7:
         min_cluster_size = 3
     elif entropy > 0.5:
@@ -316,7 +282,6 @@ def adaptive_hdbscan_with_entropy(
     else:
         min_cluster_size = 8
     
-    # Run HDBSCAN
     clusterer = hdbscan.HDBSCAN(
         min_cluster_size=min_cluster_size,
         min_samples=3,
@@ -324,14 +289,12 @@ def adaptive_hdbscan_with_entropy(
     )
     labels = clusterer.fit_predict(scaled_points)
     
-    # Compute statistics
     n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
     n_noise = int(np.sum(labels == -1))
     noise_ratio = n_noise / len(labels)
     
     entropy_metrics = compute_attention_entropy(points[:, 2], config.entropy)
     
-    # Try to get DBCV score
     dbcv = None
     if validity_index is not None:
         try:
@@ -363,7 +326,7 @@ def adaptive_hdbscan_with_entropy(
     adaptive_metrics = AdaptiveClusteringMetrics(
         entropy=entropy,
         variance=variance,
-        selected_eps=0.0,  # HDBSCAN doesn't use eps
+        selected_eps=0.0,
         silhouette_score=None,
         dbcv_score=dbcv,
         parameter_search_results=[],
@@ -402,7 +365,6 @@ def compare_adaptive_vs_static(
     Returns:
         Dictionary with 'adaptive' and 'static' ClusterResults
     """
-    # Static clustering
     points = attention_to_points(attention_map)
     scaled_points = _standardize_points(points)
     
@@ -420,5 +382,19 @@ def compare_adaptive_vs_static(
         n_clusters=n_clusters_static,
         n_noise=n_noise_static,
         noise_ratio=n_noise_static / len(labels_static),
-        average_strength=float(points[:, 2].
-
+        average_strength=float(points[:, 2].mean()),
+        attention_entropy=entropy_metrics_static,
+        eps=static_eps,
+        min_samples=static_min_samples,
+        weight_exponent=1.0,
+        token_confidence=token_confidence,
+        metadata={"adaptive_eps": False},
+    )
+    
+    adaptive_result, _ = adaptive_dbscan_with_quality_metrics(
+        attention_map=attention_map,
+        token_confidence=token_confidence,
+        config=config
+    )
+    
+    return {"static": static_result, "adaptive": adaptive_result}
