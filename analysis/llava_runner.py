@@ -5,7 +5,7 @@ from __future__ import annotations
 import enum
 import random
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence, Tuple, cast
+from typing import Any, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
 import torch
@@ -128,7 +128,8 @@ class LlavaRunner:
         prompt_len = inputs["input_ids"].shape[1]
         generated_ids = generation.sequences[0, prompt_len:]
 
-        token_logits = torch.stack([s[0] for s in generation.scores], dim=0).to(torch.float32)  # [T, V]
+        # [T, V] tensors
+        token_logits = torch.stack([s[0] for s in generation.scores], dim=0).to(torch.float32)
         token_probabilities = torch.softmax(token_logits, dim=-1)
 
         predicted_answer = self.processor.tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
@@ -194,7 +195,7 @@ class LlavaRunner:
     # Internal helpers
     # ------------------------------------------------------------------
     def _apply_visual_dropout(self, pixel_values: torch.Tensor, dropout_rate: float) -> torch.Tensor:
-        batch, channels, height, width = pixel_values.shape
+        _, _, height, width = pixel_values.shape
         num_patches_h = height // self.patch_size
         num_patches_w = width // self.patch_size
         mask = visual_dropout_mask(num_patches_h * num_patches_w, dropout_rate).reshape(num_patches_h, num_patches_w)
@@ -303,3 +304,41 @@ class LlavaRunner:
         cur_layer_input = outputs.past_key_values[layer][0][0]
         cur_v_heads = outputs.past_key_values[layer][5][0]
         o_proj = self.model.language_model.layers[layer].self_attn.o_proj.weight.data.T.view(
+            self.num_heads, self.head_dim, -1
+        )
+        attn_recompute = torch.bmm(cur_v_heads, o_proj).permute(1, 0, 2)
+        attn_cur_head = attn_recompute[:, head, :]
+        layer_input_last = cur_layer_input[-1]
+        final_layer_output = outputs.past_key_values[self.num_layers - 1][4][0][-1]
+        final_var = final_layer_output.pow(2).mean(-1, keepdim=True)
+
+        _ = self._log_probability(layer_input_last, final_var, token_id).exp()
+        ablated = self._log_probability(layer_input_last - attn_cur_head, final_var, token_id).exp()
+        return float(ablated)
+
+    def _transfer_output(self, past_kv: Any) -> Tuple[List, List, List]:
+        all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues = [], [], []
+        for layer_idx in range(self.num_layers):
+            layer_tuple = past_kv[layer_idx]
+            all_pos_layer_input.append(layer_tuple[0][0].tolist())
+            all_pos_layer_output.append(layer_tuple[4][0].tolist())
+            all_last_attn_subvalues.append(layer_tuple[5][0].tolist())
+        return all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues
+
+    def _log_probability(self, vector: torch.Tensor, final_var: torch.Tensor, token_id: Optional[int]) -> torch.Tensor:
+        if token_id is None:
+            raise ValueError("token_id must be provided")
+        scaled = vector * torch.rsqrt(final_var + 1e-6)
+        rms = scaled * self.model.language_model.norm.weight.data
+        logits = self.model.language_model.lm_head(rms).data
+        probs = torch.nn.functional.log_softmax(logits, dim=-1)
+        return probs[token_id]
+
+    @staticmethod
+    def _normalize(vector: Sequence[float]) -> List[float]:
+        arr = np.asarray(vector, dtype=np.float64)
+        arr -= arr.min()
+        denom = arr.sum()
+        if denom == 0:
+            return [0.0 for _ in vector]
+        return list(arr / denom)
