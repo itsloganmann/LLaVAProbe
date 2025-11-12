@@ -8,7 +8,7 @@ import logging
 from io import BytesIO
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List, Optional, Sequence
+from typing import List, Optional, Sequence
 
 import numpy as np
 import requests
@@ -44,7 +44,6 @@ class PromptEntry:
 
 def load_prompts(csv_path: Path) -> List[PromptEntry]:
     import csv
-
     prompts: List[PromptEntry] = []
     with csv_path.open("r", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
@@ -139,7 +138,7 @@ def run_pipeline(
         logging.info("[%d/%d] Processing %s", index, len(prompts), entry.image_url)
         try:
             image = fetch_image(entry.image_url)
-        except Exception as exc:  # pragma: no cover - network issues
+        except Exception as exc:
             logging.exception("Failed to fetch %s: %s", entry.image_url, exc)
             continue
 
@@ -165,7 +164,7 @@ def run_pipeline(
                         dropout_rate=dropout_rate,
                         ground_truth=entry.ground_truth,
                     )
-                except Exception as exc:  # pragma: no cover - model failure
+                except Exception as exc:
                     logging.exception("Model run failed for %s: %s", entry.image_url, exc)
                     continue
 
