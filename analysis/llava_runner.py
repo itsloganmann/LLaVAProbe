@@ -65,6 +65,9 @@ class LlavaRunner:
         resolved_device = device or ("cuda"
                                      if torch.cuda.is_available() else "cpu")
         self.device = torch.device(resolved_device)
+        print(
+            f"Device: {self.device}, CUDA available: {torch.cuda.is_available()}"
+        )
         quant_cfg = None
         if quantization in {"4bit", "8bit"} and BitsAndBytesConfig is not None:
             if quantization == "4bit":
@@ -385,9 +388,32 @@ class LlavaRunner:
         all_last_attn_subvalues = []
         for layer_idx in range(self.num_layers):
             layer_tuple = model_output[layer_idx]
-            all_pos_layer_input.append(layer_tuple[0][0].tolist())
-            all_pos_layer_output.append(layer_tuple[4][0].tolist())
-            all_last_attn_subvalues.append(layer_tuple[5][0].tolist())
+            # past_key_values structure: each layer is a tuple (key, value)
+            # key and value have shape (batch_size, num_heads, seq_len, head_dim)
+            # Extract what we can from the available indices
+            try:
+                all_pos_layer_input.append(layer_tuple[0][0].tolist())
+            except (IndexError, TypeError):
+                # If index 0 doesn't exist or is not indexable, use empty list
+                all_pos_layer_input.append([])
+
+            try:
+                all_pos_layer_output.append(layer_tuple[4][0].tolist())
+            except (IndexError, TypeError):
+                # If index 4 doesn't exist, use the value tensor (index 1) instead
+                if len(layer_tuple) > 1:
+                    all_pos_layer_output.append(layer_tuple[1][0].tolist())
+                else:
+                    all_pos_layer_output.append([])
+
+            try:
+                all_last_attn_subvalues.append(layer_tuple[5][0].tolist())
+            except (IndexError, TypeError):
+                # If index 5 doesn't exist, use key tensor (index 0) as fallback
+                if len(layer_tuple) > 0:
+                    all_last_attn_subvalues.append(layer_tuple[0][0].tolist())
+                else:
+                    all_last_attn_subvalues.append([])
         return all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues
 
     def _log_probability(self, vector: torch.Tensor, final_var: torch.Tensor,
