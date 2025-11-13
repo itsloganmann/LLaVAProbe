@@ -40,12 +40,11 @@
 torch==2.1.2
 torchvision==0.16.2
 transformers==4.37.1
-tokenizers==0.19.1
+tokenizers==0.18.0
 accelerate==0.26.1
-huggingface-hub>=0.33.5
+huggingface-hub==0.20.3
 sentencepiece
-accelerate
-bitsandbytes
+bitsandbytes==0.42.0
 
 # Image processing
 Pillow==10.2.0
