@@ -107,7 +107,7 @@ class LlavaWrapper:
         self.model = LlavaForConditionalGeneration.from_pretrained(
             self.model_id,
             low_cpu_mem_usage=True,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             revision="a272c74"
         ).to(self.device)
         self.model.eval()

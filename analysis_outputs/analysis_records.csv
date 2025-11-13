@@ -1,0 +1,1 @@
+question_type,question,image_url,ground_truth,predicted_answer,top1_probability,probability_margin,logit_margin,token_entropy,sequence_probability,attention_entropy,cluster_count,noise_ratio,head_delta,ground_truth_delta,ablations,run_mode,prefix_variant

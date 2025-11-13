@@ -1,0 +1,38 @@
+[2025-11-12 23:58:39,420] INFO Loaded 99 prompts
+[2025-11-12 23:58:39,421] INFO [1/99] Processing https://images.cocodataset.org/val2017/000000039769.jpg
+[2025-11-12 23:58:53,774] ERROR Model run failed for https://images.cocodataset.org/val2017/000000039769.jpg: mat1 and mat2 shapes cannot be multiplied (610x1 and 4096x32064)
+Traceback (most recent call last):
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\analysis\pipeline_runner.py", line 238, in run_pipeline
+    run_output = runner.run(
+        image=resized,
+    ...<4 lines>...
+        ground_truth=entry.ground_truth,
+    )
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\venv\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\analysis\llava_runner.py", line 209, in run
+    attention_map, head_delta, gt_delta = self._extract_attention_map(
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        forward_outputs,
+        ^^^^^^^^^^^^^^^^
+        predicted_token_ids,
+        ^^^^^^^^^^^^^^^^^^^^
+        ground_truth_token_ids,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\analysis\llava_runner.py", line 293, in _extract_attention_map
+    origin_prob = self._log_probability(layer_input_last, final_var,
+                                        token_id)
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\analysis\llava_runner.py", line 463, in _log_probability
+    logits = self.model.lm_head(rms).data
+             ~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\venv\Lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\venv\Lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\yixia\OneDrive\Documents\GitHub\LLaVAProbe\venv\Lib\site-packages\torch\nn\modules\linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (610x1 and 4096x32064)

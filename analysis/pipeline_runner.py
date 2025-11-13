@@ -412,7 +412,7 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--quantization",
         choices=["none", "4bit", "8bit"],
-        default="none",
+        default="4bit",
         help="Optional quantization mode for loading LLaVA",
     )
     parser.add_argument("--log-level",
