@@ -575,7 +575,7 @@ def calculate_token_entropy(token_list: list):
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-def load_dataset_from_csv(csv_path='results.csv', limit=None):
+def load_dataset_from_csv(csv_path='../results.csv', limit=None):
     df = pd.read_csv(csv_path)
     df['image_url'] = df['image_url'].str.replace('https://', 'http://')
     if limit:

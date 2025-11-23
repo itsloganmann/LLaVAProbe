@@ -17,7 +17,7 @@ try:
         dataset = json.load(f)
 
     # ✅ Limit to the first 20 samples
-    dataset = dataset[:20]
+    dataset = dataset[:1000]
 
     print(f"✅ Successfully loaded dataset from {PROCESSED_DATA_PATH}")
 except FileNotFoundError:

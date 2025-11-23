@@ -2,3 +2,5 @@
 output_images/
 sees/
 __pycache__/
+data_processing/data/raw/v2_mscoco_train2014_annotations.json
+data_processing/data/raw/v2_OpenEnded_mscoco_train2014_questions.json

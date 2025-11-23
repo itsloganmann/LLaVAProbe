@@ -4,9 +4,9 @@ import pandas as pd
 import os
 
 # Define paths
-zip_path = "workspace/SEES-project/data_processing/data/raw/v2_Annotations_Train_mscoco.zip"  # Change to your ZIP file path
+zip_path = "../data_processing/data/raw/v2_Annotations_Train_mscoco.zip"  # Change to your ZIP file path
 extract_path = "extracted_data"
-save_directory = "workspace/SEES-project/data_processing/data/raw"  
+save_directory = "../data_processing/data/raw"  
 json_output_path = os.path.join(save_directory, "output.json")
 
 # Extract the ZIP file
