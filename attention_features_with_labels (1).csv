@@ -1,0 +1,3191 @@
+question_id,category,answer,predicted_answer,cleaned_answer,correct,mean_attention,entropy
+458752000,object identification,net,"
+What is this photo taken looking through?
+
+A mesh net",net,1,0.0017032623291015625,6.375
+458752001,other,pitcher,"
+What position is this man playing?
+The man is playing the position of a pitcher in baseball.",pitcher,1,0.0017061233520507812,6.37109375
+458752002,color recognition,orange,"
+What color is the players shirt?
+The player is wearing an orange shirt.",orange,1,0.0017032623291015625,6.375
+458752003,yes/no,yes,"
+Is this man a professional baseball player?
+Yes",yes,1,0.0017032623291015625,6.375
+262146000,color recognition,white,"
+What color is the snow?
+The snow is white.",white,1,0.001708984375,6.3712158203125
+262146001,other,skiing,"
+What is the person doing?
+The person is skiing down a snowy hill.",skiing,1,0.001708984375,6.3712158203125
+262146002,color recognition,red,"
+What color is the persons headwear?
+The person is wearing a red hat.",red,1,0.0017004013061523438,6.375244140625
+524291000,other,frisbee,"
+What is in the person's hand?
+What is the dog's color?",,0,0.0017004013061523438,6.375244140625
+524291001,yes/no,yes,"
+Is the dog waiting?
+Yes, the dog is waiting for the frisbee to be thrown.",yes,1,0.001712799072265625,6.3671875
+524291002,other,frisbee,"
+Is the dog looking at a tennis ball or frisbee?
+The dog is looking at a frisbee.",frisbee,1,0.00168609619140625,6.3822021484375
+393221000,yes/no,yes,"
+Is the sky blue?
+Yes",yes,1,0.001712799072265625,6.3671875
+393221001,yes/no,yes,"
+Is there snow on the mountains?
+Yes, there is snow on the mountains.",yes,1,0.0017061233520507812,6.37109375
+393221002,other,contrail,"
+What is the white streak?
+
+The white streak is a contrail, which is the visible trail of condensed water",contrail,1,0.0017061233520507812,6.37109375
+393223000,yes/no,yes,"
+Is the window open?
+No",no,0,0.001712799072265625,6.3671875
+393223001,color recognition,white and purple,"
+What color is the toothbrush?
+The toothbrush is white.",the,0,0.0017004013061523438,6.3753662109375
+393223002,other,brushing teeth,"
+What is the child doing?
+The child is brushing her teeth.",the,0,0.001708984375,6.3712158203125
+393223003,yes/no,yes,"
+Is she brushing?
+Yes",yes,1,0.001712799072265625,6.3671875
+393224000,yes/no,no,"
+Is the man smiling?
+No",no,1,0.001708984375,6.3712158203125
+393224001,other,frowning,"
+What is the business man doing in the picture?
+
+The business man in the picture is making a funny face, with his mouth open and",the,0,0.001697540283203125,6.3753662109375
+393224002,yes/no,no,"
+Does his tie pair well with his suit?
+Yes, the tie matches well with the suit, creating a cohesive and professional appearance.",yes,0,0.0017004013061523438,6.37548828125
+393224003,yes/no,no,"
+Does the man look happy?
+No",no,1,0.001708984375,6.3712158203125
+393224004,yes/no,no,"
+Is this photo in color? No",no,1,0.001708984375,6.3712158203125
+393224005,yes/no,no,"
+Is the man wearing a plain tie?
+No, the man is wearing a tie with a pattern.",no,1,0.0017004013061523438,6.37548828125
+524297000,yes/no,yes,"
+Judging from the dress, was this taken in a Latin American country?",,0,0.0016803741455078125,6.38671875
+524297001,color recognition,black and white,"
+What colors are shown in this picture?
+
+The picture is in black and white.",black and white,1,0.0017032623291015625,6.375
+524297002,yes/no,no,"
+Are the men on the sidewalk?
+No, the men are not on the sidewalk. They are standing on the street.",no,1,0.0017032623291015625,6.375
+524297003,yes/no,no,"
+Was this photo taken recently? No.",no,1,0.0017061233520507812,6.37109375
+393227000,yes/no,yes,"
+Does the guy have a tattoo?
+Yes",yes,1,0.001697540283203125,6.3753662109375
+393227001,object identification,skateboard,"
+What is this man riding on?
+
+This man is riding on a skateboard.",skateboard,1,0.0017032623291015625,6.375
+393227002,counting,1,"
+How many tattoos can be seen on this man's body?
+There are two tattoos visible on the man's body.",there,0,0.0016832351684570312,6.3875732421875
+393227003,color recognition,blue,"
+What color is his hat?
+The color of his hat is blue.",blue,1,0.001708984375,6.3714599609375
+393227004,yes/no,no,"
+Is the man's visor providing his face enough protection?",,0,0.0016889572143554688,6.3828125
+131084000,color recognition,green,"
+What color is the jacket?
+The jacket is green.",green,1,0.0017061233520507812,6.37109375
+131084001,yes/no,yes,"
+Is the man riding on a dirt path?
+Yes, the man is riding on a dirt path.",yes,1,0.0016946792602539062,6.3790283203125
+131084002,other,motorcycle,"
+What is the man riding on?
+
+The man is riding on a dirt bike.",the,0,0.0017032623291015625,6.375
+131074000,other,gray,"
+What is on the pillow?
+
+There is a green tag on the pillow.",there,0,0.0017061233520507812,6.37109375
+131074001,counting,2,"
+How many pieces of furniture which are used for sleeping are featured in this picture?
+
+There are two pieces of furniture used for sleeping in this picture.",there,0,0.001674652099609375,6.390625
+131074002,yes/no,yes,"
+Are the walls done in a summery color?
+No, the walls are done in a warm color.",no,0,0.001697540283203125,6.3753662109375
+131074003,yes/no,no,"
+Is the curtain patterned?
+No",no,1,0.0017061233520507812,6.37109375
+131074004,other,purse,"
+What is sitting on the bench?
+
+There is a red purse sitting on the bench.",purse,1,0.0017032623291015625,6.375
+131074005,yes/no,yes,"
+Are the windows the same size?
+No",no,0,0.0017061233520507812,6.37109375
+393230000,object identification,skiing,"
+What is this person doing?
+The person in the image is skiing on a snow-covered slope. They are standing",skiing,1,0.001708984375,6.3712158203125
+393230001,counting,1,"
+How many people are in this image?
+There is one person in the image.",there,0,0.0017032623291015625,6.375
+393230002,yes/no,no,"
+Is there a shadow of a tree in the foreground?
+No",no,1,0.0016918182373046875,6.379150390625
+393230003,other,skiing,"
+What is the man doing?
+The man is skiing on a snow-covered slope.",skiing,1,0.001708984375,6.3712158203125
+393230004,color recognition,gray,"
+What color is the sky?
+The sky is gray.",gray,1,0.001708984375,6.3712158203125
+393230005,other,skis,"
+What is the person wearing?
+The person is wearing a blue jacket.",the,0,0.0017061233520507812,6.37109375
+393230006,yes/no,no,"
+Did someone forget his luggage in the snow? No, it is a person skiing in the snow.",no,1,0.0016946792602539062,6.3790283203125
+393230007,color recognition,blue,"
+What color is his coat?
+The man is wearing a blue coat.",blue,1,0.001708984375,6.3712158203125
+393230008,yes/no,yes,"
+Is it daytime?
+Yes",yes,1,0.001712799072265625,6.3671875
+393230009,other,poles,"
+What is she holding?
+She is holding a ski pole.",she,0,0.001712799072265625,6.3671875
+393230010,yes/no,no,"
+Is the person wearing a hat?
+No",no,1,0.0017032623291015625,6.375
+131087000,other,surfboard,"
+What is the dog riding on?
+
+The dog is riding on a surfboard.",surfboard,1,0.0017032623291015625,6.375
+131087001,yes/no,yes,"
+Is the dog wearing a collar?
+No",no,0,0.0017004013061523438,6.375244140625
+131087002,yes/no,yes,"
+Is it a clear day?
+Yes",yes,1,0.001708984375,6.3712158203125
+131087003,yes/no,yes,"
+Is there a body of water here?
+Yes",yes,1,0.0017032623291015625,6.375
+131087004,other,dog,"
+What is in the water?
+
+There is a surfboard in the water.",there,0,0.001708984375,6.3712158203125
+131075000,other,on,"
+What does the green light, on the TV, indicate?
+The green light on the TV indicates that the projector is on and displaying the image on the",on,1,0.0016918182373046875,6.3792724609375
+131075001,yes/no,no,"
+Is the light on? No",no,1,0.001712799072265625,6.3671875
+131075002,other,office,"
+What room of the house is this?
+The room in the house is the living room.",the,0,0.0017032623291015625,6.375
+131075003,other,large,"
+What is the size of the TV?
+The TV is large, covering the entire wall.",large,1,0.0017032623291015625,6.375
+131075004,yes/no,no,"
+Is the room messy? No
+Is the room clean? Yes",no,1,0.001708984375,6.3712158203125
+131075005,yes/no,yes,"
+Is this a TV screen?
+No",no,0,0.001708984375,6.3712158203125
+131075006,other,very big,"
+How big is the TV?
+The TV is large, covering the entire wall.",the,0,0.001708984375,6.3712158203125
+131075007,other,laptop,"
+What companion object to the TV can be seen in the bottom right of the picture?
+
+A laptop computer can be seen in the bottom right of the picture, serving as a companion",laptop,1,0.0016775131225585938,6.390625
+131075008,other,laptop,"
+What is the small computer on the left called?
+The small computer on the left is called a laptop.",laptop,1,0.001697540283203125,6.3753662109375
+131075009,other,vent,"
+What is above the TV?
+What is on the table?
+What is on the table in front of the TV?
+",,0,0.001708984375,6.3712158203125
+131075010,other,document,"
+What is on the display?
+What is the laptop on the table?",,0,0.001708984375,6.3712158203125
+131075011,yes/no,yes,"
+Is there a laptop in the image?
+Yes, there is a laptop in the image.",yes,1,0.0017032623291015625,6.375
+131075012,other,screen projection,"
+Is it a monitor or a screen projection?
+
+The image shows a screen projection onto a large screen.",screen projection,1,0.0017004013061523438,6.3753662109375
+131075013,other,computer,"
+What is on the TV screen?
+What is on the laptop screen?",,0,0.0017061233520507812,6.37109375
+131075014,other,outlook web app,"
+What is the title of the presentation in the picture?
+The title of the presentation in the picture is ""Outlook Web App"".",outlook web app,1,0.0016946792602539062,6.3790283203125
+137045000,color recognition,black,"
+What color is the bear?
+The bear is black.",black,1,0.001708984375,6.3712158203125
+137045001,yes/no,yes,"
+Is the animal a mammal? Yes",yes,1,0.0017032623291015625,6.375
+137045002,object identification,bear,"
+What is this? A bear?
+Yes, it is a bear.",bear,1,0.0017156600952148438,6.3682861328125
+131093000,yes/no,yes,"
+Are there rocks in the picture?
+Yes, there are rocks in the picture.",yes,1,0.0017061233520507812,6.37109375
+131093001,yes/no,no,"
+Has the sheep recently been shaved? No.",no,1,0.0017032623291015625,6.375
+131093002,counting,3,"
+How many sheeps are this?
+There are four sheeps in the image.",there,0,0.0017061233520507812,6.37109375
+131093003,yes/no,yes,"
+Are there three sheep?
+Yes, there are three sheep in the image.",yes,1,0.001712799072265625,6.3671875
+524311000,other,wii,"
+What is the man playing?
+
+The man is playing a video game using a Wii controller.",wii,1,0.001708984375,6.3714599609375
+524311001,yes/no,yes,"
+Is the man having a good time?
+Yes, the man is having a good time as he is laughing while playing a video game",yes,1,0.0017032623291015625,6.375
+524311002,other,glasses,"
+What does the man have on his face?
+
+The man has a smile on his face.",the,0,0.0017004013061523438,6.3756103515625
+25000,other,tree,"
+What is in front of the giraffes?
+
+There is a log in front of the giraffes.",there,0,0.0016946792602539062,6.3790283203125
+25001,other,eating,"
+What do these giraffes have in common?
+
+The giraffes in the image have a common characteristic of being tall. They are",the,0,0.0016946792602539062,6.3790283203125
+25002,yes/no,yes,"
+Could this photo be from a zoo?
+
+Yes, this photo could be from a zoo, as it shows a giraffe standing",yes,1,0.0017032623291015625,6.375
+25003,yes/no,yes,"
+Are the animals eating?
+No, the animals are not eating. They are standing and walking around.",no,0,0.001708984375,6.3712158203125
+25004,location,near tree,"
+Where is the giraffe?
+The giraffe is in a zoo.",the,0,0.0017061233520507812,6.37109375
+25005,yes/no,no,"
+Is there a zebra? No
+Is there a giraffe? Yes",no,1,0.0017061233520507812,6.37109375
+25006,other,tree,"
+What is the giraffe standing behind?
+
+The giraffe is standing behind a tree.",tree,1,0.0017004013061523438,6.3753662109375
+25007,yes/no,yes,"
+Is the giraffe eating the tree?
+No, the giraffe is not eating the tree. It is eating leaves from",no,0,0.001697540283203125,6.3753662109375
+25008,yes/no,no,"
+Are both giraffes standing?
+No, only one giraffe is standing, while the other one is sitting.",no,1,0.0017032623291015625,6.375
+25009,yes/no,yes,"
+Are they at a zoo?
+
+Yes, the giraffes are at a zoo, as they are standing in an",yes,1,0.001708984375,6.3712158203125
+25010,other,log,"
+What is on the ground next to the giraffe on the right?
+
+There is a log on the ground next to the giraffe on the right.",log,1,0.0016832351684570312,6.3870849609375
+25011,yes/no,yes,"
+Are some of the trees dead?
+Yes, some of the trees in the image are dead.",yes,1,0.0017061233520507812,6.37109375
+25012,yes/no,yes,"
+Are any of the animals eating?
+Yes, the giraffe is eating leaves from a tree.",yes,1,0.0017032623291015625,6.375
+25013,yes/no,no,"
+Is the giraffe in the shade?
+No, the giraffe is not in the shade.",no,1,0.001697540283203125,6.3753662109375
+25014,yes/no,yes,"
+Are these giraffes living free range?
+
+No, the giraffes are not living free range. They are in a zoo",no,0,0.001697540283203125,6.3753662109375
+25015,counting,2,"
+How many giraffes are there?
+There are two giraffes in the image.",there,0,0.0017004013061523438,6.3753662109375
+25016,yes/no,no,"
+Is there a rock near the giraffe?
+No, there is no rock near the giraffe.",no,1,0.001697540283203125,6.3753662109375
+25017,counting,2,"
+How many animals are in this photo?
+There are two animals in this photo.",there,0,0.0017032623291015625,6.375
+524314000,reasoning,homeless,"
+Why is the man on the street?
+
+The man is sitting on the street next to two stuffed animals, which are likely ted",the,0,0.0017032623291015625,6.375
+524314001,other,cross legged,"
+How is the man sitting?
+
+The man is sitting on the ground.",the,0,0.001708984375,6.3712158203125
+524314002,other,automatic,"
+What does the word in the upper-left corner, behind the window, translate to in English?",,0,0.0016698837280273438,6.394775390625
+262171000,counting,5,"
+How many people are on the boat?
+There are four people on the boat.",there,0,0.0017032623291015625,6.375
+262171001,color recognition,green,"
+What color are the leaves?
+The leaves are green.",green,1,0.001708984375,6.3712158203125
+262171002,other,raft,"
+What type of watercraft is that?
+
+The watercraft in the image is a small boat.",the,0,0.0017032623291015625,6.375
+262172000,location,left,"
+Where are the two blue coolers?
+
+The two blue coolers are located in the kitchen area.",the,0,0.0017032623291015625,6.375
+262172001,classification,living room,"
+What kind of room is this?
+This is a living room.",living room,1,0.0017061233520507812,6.37109375
+262172002,yes/no,yes,"
+Are they moving?",,0,0.0017156600952148438,6.368408203125
+131101000,color recognition,pink,"
+What color is the umbrella?
+The umbrella is pink.",pink,1,0.0017032623291015625,6.375
+131101001,yes/no,no,"
+Is this man angry?
+No",no,1,0.001712799072265625,6.3671875
+131101002,comparison,right,"
+Which hand holds the umbrella?
+
+The man is holding the umbrella in his right hand.",right,1,0.0017004013061523438,6.375732421875
+30000,yes/no,yes,"
+Are there flowers in the vase?
+Yes, there are flowers in the vase.",yes,1,0.0017032623291015625,6.375
+30001,other,railing,"
+What is the vase sitting on?
+
+The vase is sitting on a white pedestal.",the,0,0.0017032623291015625,6.375
+30002,other,left,"
+Is the sun to the right or left of this flower?
+The sun is to the left of the flower.",left,1,0.0016918182373046875,6.3792724609375
+30003,yes/no,yes,"
+Are the flowers open?
+Yes, the flowers are open.",yes,1,0.001712799072265625,6.3671875
+30004,color recognition,white,"
+What color is the vase?
+
+The vase is white.",white,1,0.0017061233520507812,6.37109375
+30005,yes/no,no,"
+Are all the flowers white?
+No, there are pink flowers in the bouquet.",no,1,0.001708984375,6.3712158203125
+524320000,yes/no,no,"
+Is the man standing on both foot? No, he is standing on one foot.",no,1,0.0017032623291015625,6.375
+524320001,yes/no,no,"
+Was this picture likely taken recently?
+No",no,1,0.0017032623291015625,6.375
+524320002,yes/no,no,"
+Do the gentleman's socks match his shoes and belt?",,0,0.0016832351684570312,6.3876953125
+240304000,other,grass,"
+What is the zebra eating?
+The zebra is eating grass.",grass,1,0.0017004013061523438,6.3751220703125
+240304001,yes/no,yes,"
+Are the zebras facing the same direction?
+No, the zebras are facing different directions.",no,0,0.001697540283203125,6.3753662109375
+240304002,other,wire,"
+What is the tree covered with?
+
+The tree is covered with leaves.",the,0,0.0017061233520507812,6.37109375
+34000,yes/no,no,"
+Is this a horse? No.
+Is this a zebra? Yes.",no,1,0.001712799072265625,6.3671875
+34001,other,grass,"
+What is the animal eating?
+The animal is eating grass.",grass,1,0.0017061233520507812,6.37109375
+34002,other,10 years,"
+How old is animal?
+The animal is young.",the,0,0.001712799072265625,6.3671875
+393251000,yes/no,yes,"
+Are they drinking wine at the child's party?",,0,0.0016918182373046875,6.379150390625
+393251001,yes/no,yes,"
+Is the man wearing glasses?
+Yes, the man is wearing glasses.",yes,1,0.0017032623291015625,6.375
+393251002,other,knife,"
+What is the man holding?
+The man is holding a knife.",knife,1,0.001708984375,6.3712158203125
+393251003,other,cake,"
+What is the man cutting?
+
+The man is cutting a cake.",cake,1,0.001708984375,6.3712158203125
+262180000,other,banana,"
+What is the fruit?
+
+The fruit is banana.",banana,1,0.001712799072265625,6.3671875
+262180001,yes/no,yes,"
+Is this a good dessert?
+Yes, this is a good dessert. The dessert is a chocolate cake",yes,1,0.0017061233520507812,6.37109375
+262180002,other,chef,"
+What is the name of the type of person that would make this food?
+
+The name of the type of person that would make this food is a chef.",chef,1,0.0016832351684570312,6.3870849609375
+262180003,other,vanilla,"
+What type of ice cream is on the plate?
+
+There is no ice cream on the plate.",there,0,0.0016946792602539062,6.37890625
+524325000,counting,4,"
+How many people are wearing shorts in the forefront of this photo?
+There are three people wearing shorts in the forefront of this photo.",there,0,0.0016803741455078125,6.38671875
+524325001,other,outdoor,"
+Is this an indoor or outdoor photo?
+Outdoor",outdoor,1,0.001697540283203125,6.3753662109375
+524325002,yes/no,yes,"
+Are those kites in the air?",,0,0.0017032623291015625,6.375
+43697000,yes/no,yes,"
+Is this a hot dog?
+Yes",yes,1,0.001708984375,6.3712158203125
+43697001,color recognition,white,"
+What color is the napkin?
+The napkin is white.",white,1,0.0017061233520507812,6.37109375
+43697002,yes/no,no,"
+Is there ketchup on the hot dog?
+No, there is no ketchup on the hot dog.",no,1,0.001697540283203125,6.37548828125
+43697003,yes/no,no,"
+Has this hot dog been grilled? No, it has not been grilled.",no,1,0.0017032623291015625,6.375
+43697004,yes/no,yes,"
+Have you tried a hot dog like this before?",,0,0.001697540283203125,6.37548828125
+43697005,other,mustard,"
+What's missing from this hot dog?
+
+The hot dog in the image is missing a bun.",the,0,0.0017004013061523438,6.375244140625
+43697006,other,bun,"
+What is the hog dog sitting on?
+
+The hog dog is sitting on a piece of bread.",the,0,0.0017004013061523438,6.375244140625
+262184000,yes/no,no,"
+Is this a toy-sized truck?
+No, this is a real-sized truck.",no,1,0.0016946792602539062,6.3790283203125
+262184001,other,clouds,"
+What is the sky full of?
+
+The sky is full of clouds.",clouds,1,0.0017061233520507812,6.37109375
+262184002,location,dock,"
+Where are the trucks?
+The trucks are in a parking lot.",the,0,0.0017061233520507812,6.37109375
+131113000,other,brown,"
+What is the color of the carpet?
+The color of the carpet is red.",the,0,0.0017004013061523438,6.375244140625
+131113001,yes/no,yes,"
+Is there a carpet on the floor?
+No, there is no carpet on the floor.",no,0,0.0017004013061523438,6.375244140625
+131113002,color recognition,silver,"
+What color is the refrigerator?
+The refrigerator is silver.",silver,1,0.0017004013061523438,6.375244140625
+131113003,object identification,refrigerator,"
+What is this device?
+A refrigerator",refrigerator,1,0.001712799072265625,6.3671875
+262187000,yes/no,no,"
+Is this plane landing?
+No",no,1,0.001712799072265625,6.3671875
+262187001,color recognition,red,"
+What color is the plane?
+The plane is red.",red,1,0.001708984375,6.3712158203125
+262187002,other,square,"
+What shape are the windows on the side of the plane?
+The windows on the side of the plane are square.",square,1,0.0016918182373046875,6.379150390625
+262187003,yes/no,no,"
+Is the plane taking off?
+No",no,1,0.001708984375,6.3712158203125
+131118000,yes/no,yes,"
+Are these airliners?
+No, these are small airplanes.",no,0,0.001708984375,6.3712158203125
+131118001,counting,2,"
+How many planes are in the picture?
+There are two planes in the picture.",there,0,0.0017004013061523438,6.375244140625
+131118002,yes/no,yes,"
+Are this cargo planes?
+No, these are not cargo planes. They are small passenger planes.",no,0,0.001708984375,6.3712158203125
+262191000,yes/no,no,"
+Is this bear a normal size?
+No, the bear is a small size.",no,1,0.0017061233520507812,6.37109375
+262191001,other,wmatacom,"
+What is the website on the sign?
+
+The website on the sign is wmata.com.",the,0,0.0017032623291015625,6.375
+262191002,other,teddy,"
+What is the bear called?
+The bear is called Teddy.",teddy,1,0.001708984375,6.3712158203125
+49000,yes/no,yes,"
+Is there a flower arrangement on the lawn?
+Yes, there is a flower arrangement on the lawn.",yes,1,0.001697540283203125,6.3753662109375
+49001,color recognition,black,"
+What color horse is closer to the camera?
+The black horse is closer to the camera.",black,1,0.0017004013061523438,6.3753662109375
+49002,yes/no,no,"
+Are they playing polo?
+No, they are not playing polo. They are riding horses and jumping over obst",no,1,0.001708984375,6.3712158203125
+524338000,counting,3,"
+How many trees are in this photo?
+There are two trees in this photo.",there,0,0.0017032623291015625,6.375
+524338001,other,elm,"
+What type of tree is the man standing next to?
+The man is standing next to a tree with a trunk.",the,0,0.0016946792602539062,6.37890625
+524338002,yes/no,no,"
+Is this man reading a cell phone screen?
+No, the man is reading a paper.",no,1,0.0017004013061523438,6.3751220703125
+213863000,other,stripes,"
+What pattern is on the pants?
+
+The pants have a striped pattern.",the,0,0.0017032623291015625,6.375
+213863001,other,baseball,"
+What sport is this person playing?
+
+The person in the image is playing baseball.",baseball,1,0.0017061233520507812,6.37109375
+213863002,other,catcher,"
+What is the position of the player behind the batter called?
+
+The position of the player behind the batter is called the catcher.",catcher,1,0.0016918182373046875,6.379150390625
+393268000,color recognition,blue,"
+What color is the girl's shirt?
+The girl's shirt is blue.",blue,1,0.001697540283203125,6.3753662109375
+393268001,other,beer,"
+What are they drinking?
+
+The people in the image are drinking beer.",beer,1,0.001708984375,6.3712158203125
+393268002,other,sierra nevada,"
+What brand of beer is visible?
+
+The brand of beer visible in the image is Corona.",the,0,0.0017032623291015625,6.375
+131126000,location,bottom,"
+Where is Brooklyn Avenue?
+
+Answer: New York",answer,0,0.001708984375,6.3717041015625
+131126001,comparison,north,"
+Which direction is Brooklyn Ave?
+A. Right
+B. Left
+C. Up
+D. Down
+
+A.",a,0,0.0017004013061523438,6.3756103515625
+131126002,yes/no,yes,"
+Is there a stop sign in the picture? No, there is no stop sign in the picture.",no,0,0.0017004013061523438,6.3756103515625
+131127000,other,nike,"
+What logo is on the man's shirt?
+
+The man's shirt has a Nike logo on it.",nike,1,0.0016946792602539062,6.3790283203125
+131127001,yes/no,no,"
+Is the man unhappy? No.
+Is the man happy? Yes.",no,1,0.001708984375,6.371337890625
+131127002,yes/no,no,"
+Are the men going to share the bananas?",,0,0.001697540283203125,6.3753662109375
+131128000,color recognition,yellow and white,"
+What color are the flowers?
+The flowers are yellow and white.",yellow and white,1,0.001708984375,6.3712158203125
+131128001,color recognition,yellow and white,"
+What colors are the flowers?
+
+The flowers are white and yellow.",the,0,0.001708984375,6.3712158203125
+131128002,counting,3,"
+How many flowers are painted on the vase?
+There are three flowers painted on the vase.",there,0,0.001697540283203125,6.3753662109375
+131128003,yes/no,no,"
+Do the painted flowers match the real ones?
+No, the painted flowers do not match the real ones.",no,1,0.0017004013061523438,6.375244140625
+262201000,location,on cliff,"
+Where is the bird?
+The bird is on a rock.",the,0,0.001712799072265625,6.3671875
+262201001,yes/no,no,"
+Will the birds go into the water?
+No",no,1,0.0017032623291015625,6.375
+262201002,other,right,"
+What direction is the bird looking?
+The bird is looking to the left.",the,0,0.0017061233520507812,6.37109375
+262201003,yes/no,no,"
+Is this bird afraid of the ledge? No, it is perched on the edge.",no,1,0.0017004013061523438,6.3753662109375
+370986000,other,morning,"
+What time of day is it?
+
+It is daytime.",it,0,0.0017061233520507812,6.37109375
+370986001,counting,2,"
+How many elephants are in the water?
+There are three elephants in the water.",there,0,0.001697540283203125,6.3753662109375
+370986002,counting,3,"
+How many tails can you see in this picture?
+There are three tails visible in the picture.",there,0,0.0016946792602539062,6.3790283203125
+262204000,counting,2,"
+How many tusks are visible?
+There are two tusks visible in the image.",there,0,0.0017032623291015625,6.375
+262204001,object identification,elephant,"
+What is this animal?
+
+An elephant",elephant,1,0.001712799072265625,6.3671875
+262204002,color recognition,gray,"
+What color is the animal?
+The animal is gray.",gray,1,0.001708984375,6.3712158203125
+131133000,color recognition,red and white,"
+What color is the plane?
+The plane is red.",the,0,0.001708984375,6.3712158203125
+131133001,other,propeller,"
+What type of plane is this?
+
+This is a small propeller plane.",propeller,1,0.0017061233520507812,6.37109375
+131133002,yes/no,yes,"
+Are the mountains high?
+Yes, the mountains are high.",yes,1,0.001712799072265625,6.3671875
+262207000,color recognition,tan,"
+What color are the seats?
+The seats are brown.",the,0,0.001708984375,6.3712158203125
+262207001,yes/no,yes,"
+Is there a person standing in front of the television?
+Yes, there is a man standing in front of the television.",yes,1,0.0016946792602539062,6.37890625
+262207002,location,wall,"
+Where is the mirror?
+Where is the man standing?
+What is the man wearing?
+What is the man",what,0,0.001712799072265625,6.3671875
+262207003,yes/no,yes,"
+Is there enough room under the armchairs for a cat to hide?
+No, there is not enough room under the armchairs for a cat to hide.",no,0,0.0016832351684570312,6.3873291015625
+64000,person identification,rolex,"
+Who made the cock?
+The cock was made by the company called ""Clocks"".",the,0,0.001708984375,6.3712158203125
+64001,yes/no,no,"
+Are there numbers on the clock face?
+Yes, there are numbers on the clock face.",yes,0,0.0017032623291015625,6.375
+64002,yes/no,yes,"
+Is there a big tree behind the clock?
+Yes, there is a big tree behind the clock.",yes,1,0.0017004013061523438,6.3753662109375
+64003,other,clock,"
+What is in the picture?
+The picture features a clock mounted on a pole, located on a street corner. The clock is",clock,1,0.001708984375,6.3712158203125
+64004,other,6:10,"
+What time is the clock showing?
+The clock is showing 12:00.",the,0,0.0017061233520507812,6.37109375
+458763000,other,table,"
+What are the vases sitting on?
+
+The vases are sitting on a wooden table.",table,1,0.0017032623291015625,6.375
+458763001,counting,3,"
+How many trees on the table?
+There are three trees on the table.",there,0,0.0017061233520507812,6.37109375
+458763002,counting,0,"
+How many horns are in the picture?
+There are two horns in the picture.",there,0,0.0017004013061523438,6.375244140625
+458763003,color recognition,blue,"
+What color is the middle vase?
+The middle vase is blue.",blue,1,0.0017032623291015625,6.375
+458763004,other,wood,"
+What is the table made of?
+
+The table is made of wood.",wood,1,0.0017061233520507812,6.37109375
+458763005,classification,christmas,"
+What kind of trees are on the table?
+There are Christmas trees on the table.",christmas,1,0.0017004013061523438,6.375244140625
+458763006,yes/no,no,"
+Is this a wedding? No.
+Is this a birthday party? No.
+Is this a baby shower?",no,1,0.001708984375,6.3712158203125
+567990000,other,spinach,"
+What is the green stuff on this pizza?
+
+The green stuff on this pizza is broccoli.",the,0,0.001697540283203125,6.3753662109375
+567990001,yes/no,yes,"
+Does the crust look burnt?
+No",no,0,0.0017032623291015625,6.375
+567990002,other,thick,"
+Is it thick or thin crust?
+Thick",thick,1,0.0017032623291015625,6.375
+567990003,yes/no,yes,"
+Does this pizza have a deep dish crust?
+No, this pizza does not have a deep dish crust. It has a regular",no,0,0.0016918182373046875,6.3792724609375
+393286000,yes/no,yes,"
+Is the banana freshly peeled?
+Yes, the banana is freshly peeled.",yes,1,0.001697540283203125,6.3753662109375
+393286001,yes/no,no,"
+Is the banana closed?
+No",no,1,0.001708984375,6.37109375
+393286002,other,bag,"
+What is the orange thing?
+
+The orange thing is a banana.",the,0,0.001708984375,6.37109375
+71000,yes/no,yes,"
+Does this photo show train tracks?
+Yes",yes,1,0.0017061233520507812,6.37109375
+71001,yes/no,yes,"
+Does this train work?
+Yes",yes,1,0.001712799072265625,6.3671875
+71002,other,from,"
+Is this train headed towards or from the orange building?
+The train is headed towards the orange building.",from,1,0.0016918182373046875,6.379150390625
+72000,counting,2,"
+How many Giraffes are in this image?
+There are two giraffes in this image.",there,0,0.0016946792602539062,6.37890625
+72001,other,leaves,"
+What is the giraffe eating?
+
+The giraffe is eating leaves from a tree.",leaves,1,0.0017004013061523438,6.375244140625
+72002,yes/no,yes,"
+Are the giraffes under the trees?
+Yes, the giraffes are under the trees, with their necks entwined",yes,1,0.001697540283203125,6.3753662109375
+393228000,yes/no,yes,"
+Are there 3 elephants?
+Yes, there are three elephants in the image.",yes,1,0.0017032623291015625,6.375
+393228001,yes/no,no,"
+Are all of the elephants full grown?
+No, there are two baby elephants in the group.",no,1,0.001697540283203125,6.3753662109375
+393228002,yes/no,yes,"
+Are the elephants in the jungle?
+Yes, the elephants are in the jungle, walking through the grass and trees",yes,1,0.0016946792602539062,6.37890625
+393290000,other,necklace,"
+What is on the woman's neck?
+
+The woman is wearing a necklace.",necklace,1,0.0017004013061523438,6.375244140625
+393290001,yes/no,no,"
+Is the woman eating the pizza? No, she is not eating the pizza. She is holding it and posing for a",no,1,0.0017004013061523438,6.375244140625
+393290002,counting,6,"
+How many stairs are there?
+There are three stairs.",there,0,0.0017061233520507812,6.37109375
+393291000,location,bathroom,"
+Where is the sink located?
+The sink is located in a bathroom.",bathroom,1,0.001708984375,6.371337890625
+393291001,location,shower,"
+Where is the soap?
+The soap is on the sink.",the,0,0.001712799072265625,6.3671875
+393291002,color recognition,white,"
+What color is the window frame?
+The window frame is white.",white,1,0.0017061233520507812,6.37109375
+393291003,other,towel,"
+What item is folded up and sitting on the edge of the shower stall?
+
+The item folded up and sitting on the edge of the shower stall is a",the,0,0.001674652099609375,6.390625
+393291004,other,solid,"
+What pattern is on the shower curtain?
+
+The shower curtain has a striped pattern.",the,0,0.001697540283203125,6.3753662109375
+393291005,other,brown,"
+What are the colors of the countertop?
+
+The countertop is brown and white.",brown,1,0.0017004013061523438,6.37548828125
+393291006,yes/no,no,"
+Are there any reflections in this picture?
+No",no,1,0.0017004013061523438,6.37548828125
+393291007,counting,3,"
+How many windows are there?
+There are two windows.",there,0,0.001708984375,6.371337890625
+393292000,yes/no,no,"
+Is the water on?
+No",no,1,0.001712799072265625,6.3671875
+393292001,yes/no,yes,"
+Is this photo outdoors? Yes",yes,1,0.0017061233520507812,6.37109375
+393292002,counting,2,"
+How many birds are in the sink?
+There are two birds in the sink.",there,0,0.0017032623291015625,6.375
+262221000,other,referee,"
+What is the person on the right called?
+The person on the right is called a referee.",referee,1,0.0017004013061523438,6.3753662109375
+262221001,person identification,wilson,"
+Whose logo is on the official's chair?
+
+The logo on the official's chair is the Wimbledon logo.",the,0,0.0016946792602539062,6.37890625
+262221002,counting,1,"
+How many tennis players are in the photo?
+There are two tennis players in the photo.",there,0,0.0017004013061523438,6.3753662109375
+78000,yes/no,no,"
+Are the clock and owl made in the same artistic fashion?
+No, the clock and owl are not made in the same artistic fashion. The clock",no,1,0.00168609619140625,6.3824462890625
+78001,yes/no,yes,"
+Is that owl a candle?
+Yes, it is a candle in the shape of an owl.",yes,1,0.0017032623291015625,6.375
+78002,other,8:00,"
+What time does the clock say?
+The clock says 10:10.",the,0,0.0017061233520507812,6.37109375
+81000,yes/no,no,"
+Does this planes tail have 4 colors?",,0,0.001697540283203125,6.3753662109375
+81001,yes/no,no,"
+Is this plane landing?
+No",no,1,0.001712799072265625,6.3671875
+81002,yes/no,no,"
+Is this plane taking off?
+Yes",yes,0,0.001708984375,6.3712158203125
+81003,other,e,"
+What is the last letter over the plane?
+
+The last letter over the plane is ""E"".",e,1,0.0017004013061523438,6.375244140625
+81004,yes/no,yes,"
+Are these wings strong?
+Yes, these wings are strong.",yes,1,0.001712799072265625,6.3671875
+86000,yes/no,yes,"
+Is that a bicycle?
+Yes",yes,1,0.0017061233520507812,6.37109375
+86001,other,24,"
+What is the number on the mailbox?
+The number on the mailbox is 92.",the,0,0.0017004013061523438,6.375244140625
+86002,object identification,hat,"
+What is this person wearing on head?
+The person is wearing a hat on their head.",hat,1,0.0017004013061523438,6.375244140625
+524375000,yes/no,yes,"
+Is this a cow farm?
+No, this is a sheep farm.",no,0,0.001708984375,6.3712158203125
+524375001,other,grazing,"
+What are the animals doing?
+
+The animals, which are sheep, are grazing on the grass in the field.",grazing,1,0.001708984375,6.3712158203125
+524375002,other,sheep,"
+What breed of livestock is shown?
+The image shows a herd of sheep.",sheep,1,0.001697540283203125,6.3753662109375
+524375003,counting,10,"
+How many black sheep are there?
+There are two black sheep in the image.",there,0,0.0017061233520507812,6.37109375
+524375004,time-related,tag,"
+What game would you play when you saw this as a child?
+
+When I was a child, I would play ""sheep in the field"" when I",when,0,0.0016889572143554688,6.3828125
+524375005,location,on top of hill,"
+Where is the human?
+The human is standing on a hill.",the,0,0.001712799072265625,6.3671875
+524375006,yes/no,yes,"
+Is this a prairie?
+No, this is a grassy hillside.",no,0,0.001708984375,6.3712158203125
+524375007,yes/no,no,"
+Is there a village in the background?
+No",no,1,0.0017032623291015625,6.375
+131160000,color recognition,white,"
+What color is the sign?
+The sign is white.",white,1,0.001708984375,6.3712158203125
+131160001,yes/no,yes,"
+Would you be able to find a mosque in this city?
+
+Yes, you would be able to find a mosque in this city. In the image",yes,1,0.00168609619140625,6.3824462890625
+131160002,other,spanish,"
+What language is the sign written in?
+The sign is written in English.",the,0,0.0017032623291015625,6.375
+524377000,other,melted,"
+How has the cheese been prepared?
+
+The cheese has been prepared by being melted and placed in a small bowl",melted,1,0.0017032623291015625,6.375
+524377001,yes/no,no,"
+Is there ketchup?
+No",no,1,0.001708984375,6.371337890625
+524377002,counting,1,"
+How many lunches is this?
+
+1",1,1,0.0017032623291015625,6.375
+524377003,yes/no,yes,"
+Is the hotdog well seasoned?
+Yes",yes,1,0.0017032623291015625,6.375
+524377004,classification,hot dog,"
+What kind of food is shown?
+
+The image shows a hot dog with various toppings, including onions, and a side",hot dog,1,0.0017061233520507812,6.37109375
+524377005,other,plate,"
+What is the cutting board used for in this scene?
+
+In this scene, the cutting board is used to hold the hot dog and the bun",in,0,0.0016946792602539062,6.3790283203125
+524377006,other,lunch,"
+Of what meal is this kind of food typical?
+
+This kind of food is typically associated with lunch or dinner meals. The image shows",lunch,1,0.0016946792602539062,6.3790283203125
+524377007,yes/no,no,"
+Is this a healthy meal?
+No, this is not a healthy meal. The plate contains a hot dog, which",no,1,0.0017032623291015625,6.375
+524377008,classification,butter,"
+What kind of sauce is in the largest ramekin?
+What is the name of the sauce in the largest ramekin?
+What is the",what,0,0.0016889572143554688,6.3828125
+524377009,other,hot dog,"
+What type of food is shown?
+
+The image shows a hot dog with various toppings, including onions, and a side",hot dog,1,0.0017061233520507812,6.37109375
+524377010,other,peppers,"
+What is the topping on the hot dog?
+
+The topping on the hot dog is onions.",the,0,0.001697540283203125,6.3753662109375
+524377011,other,onions,"
+What topping is on the hot dog?
+
+The hot dog is topped with onions.",onions,1,0.0017004013061523438,6.375732421875
+524377012,other,butter,"
+What is in the small container?
+
+The small container is filled with butter.",butter,1,0.0017061233520507812,6.37109375
+524377013,other,butter,"
+What are the components of this dish?
+
+The dish consists of a hot dog, which is a sausage placed in a b",the,0,0.0017004013061523438,6.375732421875
+524377014,classification,onions,"
+What kind of toppings are on the hot dogs?
+There are onions and peppers on the hot dogs.",onions,1,0.0016946792602539062,6.3790283203125
+524377015,yes/no,no,"
+Is there a spoon in this photo? No",no,1,0.0017004013061523438,6.375732421875
+524377016,yes/no,no,"
+Is this breakfast? No.
+Is this lunch? No.
+Is this dinner? No.
+Is this",no,1,0.0017156600952148438,6.3682861328125
+524377017,other,very,"
+How delicious does this look?",,0,0.0017061233520507812,6.37109375
+524377018,other,none,"
+What two vegetables are in the white bowl?
+What is the hot dog in the bun?",,0,0.0016946792602539062,6.3790283203125
+524377019,counting,1,"
+How many hot dogs are shown?
+There are two hot dogs shown in the image.",there,0,0.0017061233520507812,6.37109375
+524377020,other,mayonnaise,"
+What type of filling is in the dish on the bottom left?
+The dish on the bottom left has a white sauce in it.",the,0,0.00168609619140625,6.3826904296875
+524377021,color recognition,white,"
+What color is the tray?
+The tray is white.",white,1,0.0017061233520507812,6.37109375
+524377022,counting,0,"
+How many pickle spears are there?
+There are two pickle spears on the plate.",there,0,0.0017004013061523438,6.375732421875
+524377023,other,butter,"
+What is the yellow stuff in a bowl?
+
+The yellow stuff in a bowl is a condiment, likely mustard.",the,0,0.001697540283203125,6.3753662109375
+524377024,counting,1,"
+How many people are eating this hotdog?
+There is only one person eating this hotdog.",there,0,0.001697540283203125,6.3753662109375
+524377025,yes/no,no,"
+Is there a drink in this picture?
+No",no,1,0.0017032623291015625,6.375
+524377026,other,bun,"
+What is the hot dog sitting on top of?
+The hot dog is sitting on top of a bun.",bun,1,0.001697540283203125,6.3753662109375
+524377027,counting,1,"
+How many sauces are there?
+There are two sauces on the plate.",there,0,0.0017061233520507812,6.37109375
+524377028,other,sweet potato fries,"
+What are the orange things?
+
+The orange things are carrots.",the,0,0.001708984375,6.371337890625
+524377029,other,long ways,"
+Are the carrots diced or cut long ways?
+The carrots are cut long ways.",long ways,1,0.0016918182373046875,6.3792724609375
+524377030,yes/no,yes,"
+Do these hot dogs look like they taste good?",,0,0.001697540283203125,6.3753662109375
+524377031,yes/no,no,"
+Are those tomatoes on the sandwich? No, they are onions.",no,1,0.0017004013061523438,6.375732421875
+524377032,other,mayo,"
+What is in the cup?
+
+The cup contains a white substance, which could be a sauce or a condiment",the,0,0.001708984375,6.371337890625
+524377033,other,sweet potato,"
+What is the orange root called?",,0,0.0017061233520507812,6.37109375
+524377034,other,hot dog,"
+What is the blackened meat on the bread?
+A. Hot dog
+B. Burger
+C. Steak
+D. Chicken",hot dog,1,0.001697540283203125,6.3753662109375
+524377035,classification,hot dog,"
+What kind of meat is this?
+
+This is a hot dog.",hot dog,1,0.0017061233520507812,6.37109375
+524377036,other,hot dog,"
+What is on the sandwich?
+
+The sandwich has onions, mustard, and ketchup on it.",the,0,0.0017061233520507812,6.37109375
+524377037,yes/no,no,"
+Are the fries plain?
+No, the fries are not plain. They are covered in cheese.",no,1,0.001708984375,6.371337890625
+524377038,yes/no,yes,"
+Does this breakfast dish primarily carbohydrates?
+Yes, the breakfast dish primarily consists of carbohydrates. The plate contains",yes,1,0.0016889572143554688,6.3828125
+524377039,yes/no,no,"
+Has someone started eating?
+No, the plate is still full of food.",no,1,0.001708984375,6.371337890625
+524377040,other,pig,"
+What animal is on the plate?
+
+There is no animal on the plate. The plate contains a hot dog, a bun",there,0,0.0017061233520507812,6.37109375
+524377041,yes/no,no,"
+Would this be good for dessert?
+No, this is not a dessert. It is a hot dog with onions and must",no,1,0.0017004013061523438,6.375732421875
+524377042,yes/no,yes,"
+Is there a butter plate on the table?
+No, there is no butter plate on the table.",no,0,0.001697540283203125,6.3753662109375
+524377043,yes/no,no,"
+Does this have lettuce? No.
+Does this have tomato? No.
+Does this have onions? Yes.",no,1,0.001708984375,6.371337890625
+524377044,yes/no,yes,"
+Does the food look good?
+Yes",yes,1,0.001708984375,6.371337890625
+524377045,yes/no,yes,"
+Is this meat?
+No",no,0,0.0017156600952148438,6.3682861328125
+524377046,other,onions,"
+What is on the hotdog?
+
+The hotdog is topped with onions, mustard, and relish.",onions,1,0.0017061233520507812,6.37109375
+524377047,other,none,"
+What two vegetables can be seen on the pizza?
+
+The two vegetables that can be seen on the pizza are carrots and on",the,0,0.0016918182373046875,6.3792724609375
+524377048,yes/no,no,"
+Would this typically be eaten for breakfast?
+No, this would not typically be eaten for breakfast. The image shows a hot dog with",no,1,0.001697540283203125,6.3753662109375
+524377049,yes/no,yes,"
+Is that bacon from a delicatessen?",,0,0.0016946792602539062,6.3790283203125
+524377050,other,butter,"
+What condiment is on the potatoes?
+
+The potatoes have butter on them.",butter,1,0.0017004013061523438,6.375732421875
+524377051,counting,1,"
+How many kinds of meat products are here?
+There are two kinds of meat products here: a hot dog and a sausage.",there,0,0.0017004013061523438,6.375732421875
+524377052,other,butter,"
+What sauces are shown?
+
+1. Mustard
+2. Ketchup
+3. Mayonnaise
+4",4,0,0.001708984375,6.371337890625
+524377053,classification,sweet,"
+What kind of potato are the fries?
+The fries are made from sweet potatoes.",sweet,1,0.001697540283203125,6.3753662109375
+524377054,other,hot dog,"
+What is mainly featured?
+A. Hot dog
+B. Carrots
+C. Onions
+D. Pot",hot dog,1,0.001712799072265625,6.3671875
+393306000,yes/no,no,"
+Is the man wearing formal clothes? No.
+Is the man wearing a tie? No.
+Is the man wearing a",no,1,0.0017032623291015625,6.375
+393306001,classification,flowers,"
+What kind of plants are these?
+
+These are yellow flowers.",flowers,1,0.0017061233520507812,6.37109375
+393306002,other,floral,"
+What is the pattern on the vase?
+
+The vase has a floral pattern.",floral,1,0.0017004013061523438,6.375244140625
+393306003,comparison,left,"
+Which hand is the man holding up?
+
+The man is holding up his right hand.",the,0,0.0017004013061523438,6.375244140625
+262159000,yes/no,no,"
+Is there a deodorant on the sink?
+No, there is no deodorant on the sink.",no,1,0.001697540283203125,6.3753662109375
+262159001,yes/no,yes,"
+Is there a full roll of toilet paper in the bathroom?
+No, there is only a partial roll of toilet paper in the bathroom.",no,0,0.0016832351684570312,6.3875732421875
+262159002,counting,2,"
+How many rolls of toilet paper are on the toilet tank?
+There are two rolls of toilet paper on the toilet tank.",there,0,0.0016775131225585938,6.390625
+262159003,yes/no,yes,"
+Would someone be able to watch you change from the outside?",,0,0.0016889572143554688,6.3828125
+262159004,color recognition,yellow,"
+What color is the bathroom?
+The bathroom is yellow.",yellow,1,0.0017061233520507812,6.37109375
+262159005,yes/no,no,"
+Does the shower have a glass door?
+No, the shower does not have a glass door.",no,1,0.0017004013061523438,6.37548828125
+262159006,other,yellow,"
+What is the primary color of the bathroom?
+
+The primary color of the bathroom is yellow.",yellow,1,0.001697540283203125,6.3753662109375
+262159007,color recognition,yellow,"
+What color is the wall?
+The wall is yellow.",yellow,1,0.001708984375,6.3712158203125
+262159008,yes/no,no,"
+Is the towel rack silver?
+No, the towel rack is silver.",no,1,0.0017032623291015625,6.375
+262159009,yes/no,yes,"
+Is there a shower curtain?
+No, there is no shower curtain in the image.",no,0,0.0017032623291015625,6.375
+262159010,color recognition,yellow,"
+What color are the bathroom walls?
+The bathroom walls are yellow.",yellow,1,0.0017032623291015625,6.375
+262159011,location,window,"
+Where is the light coming from?
+The light is coming from the window.",window,1,0.0017061233520507812,6.37109375
+262159012,yes/no,yes,"
+Is the toilet lid down?
+No, the toilet lid is up.",no,0,0.0017032623291015625,6.375
+92000,counting,7,"
+How many layers are in this cake?
+There are three layers in this cake.",there,0,0.0017004013061523438,6.3751220703125
+92001,yes/no,yes,"
+Does this cake look like it chocolate?
+Yes",yes,1,0.0016946792602539062,6.37890625
+92002,counting,1,"
+How many people can eat this cake?
+
+There are two people who can eat this cake.",there,0,0.0017004013061523438,6.3751220703125
+94000,other,pizza,"
+What is printed on the orange sign?
+
+The orange sign has the word ""peace"" printed on it.",the,0,0.0017032623291015625,6.375
+94001,other,peace way,"
+What is the name of the hotel?
+
+The name of the hotel is ""Peace Way Hotel.""",peace way,1,0.0017032623291015625,6.375
+94002,counting,2,"
+How many vehicles are shown?
+There are two vehicles shown in the image.",there,0,0.001708984375,6.3712158203125
+94003,other,car,"
+What mode of transportation is pictured?
+
+The image shows a yellow car driving down a street.",car,1,0.001697540283203125,6.3753662109375
+94004,yes/no,yes,"
+Is this a small town?
+No, this is not a small town. It is a busy city street with many buildings and",no,0,0.001708984375,6.3712158203125
+393311000,yes/no,no,"
+Will these planes be used to transport people?
+Yes",yes,0,0.001697540283203125,6.3753662109375
+393311001,other,everts air cargo,"
+What airline is this?
+The airline is called ""Erie Air Cargo"".",the,0,0.001708984375,6.3712158203125
+393311002,other,a,"
+The plane's stand resembles what letter?",,0,0.0016946792602539062,6.37890625
+393311003,other,cargo,"
+What type of plane is this?
+The plane in the image is a large cargo plane.",cargo,1,0.0017061233520507812,6.37109375
+393311004,other,dutchsimba,"
+What is written on the picture?
+
+dutchstories",dutchstories,0,0.0017061233520507812,6.37109375
+393311005,other,everts air cargo,"
+What shipping company is represented in the scene?
+
+The shipping company represented in the scene is ""Erie Air Cargo.""",the,0,0.001697540283203125,6.3753662109375
+393311006,other,everts air cargo,"
+What airline is this plane from?
+The plane is from the airline called ""Erie Air Cargo"".",the,0,0.0017032623291015625,6.375
+393311007,classification,cargo plane,"
+What kind of aircraft is this?
+This is a large cargo plane.",cargo plane,1,0.0017061233520507812,6.37109375
+393311008,other,stairs,"
+How does the man get down from the machine?
+
+The man gets down from the machine by using a ladder.",the,0,0.001697540283203125,6.3753662109375
+524386000,yes/no,yes,"
+Is the room carpeted?
+Yes, the room is carpeted.",yes,1,0.0017061233520507812,6.37109375
+524386001,location,wall,"
+Where is the television?
+The television is on a table.",the,0,0.001712799072265625,6.3671875
+524386002,yes/no,no,"
+Is there a fireplace?
+No",no,1,0.001708984375,6.371337890625
+524386003,yes/no,no,"
+Are stains on the floor?
+No",no,1,0.0017061233520507812,6.37109375
+524386004,counting,2,"
+How many lamps are there?
+There are two lamps in the room.",there,0,0.0017061233520507812,6.37109375
+524386005,other,abstract,"
+What is the picture of on wall?
+A picture of a man and a woman.",a,0,0.0017032623291015625,6.375
+524386006,other,rug,"
+What is on the carpet?
+
+There is a carpet on the floor.",there,0,0.0017061233520507812,6.37109375
+524386007,counting,2,"
+How many lamps are in the room?
+There are two lamps in the room.",there,0,0.0017004013061523438,6.37548828125
+524386008,yes/no,no,"
+Are these boys at home?
+
+No, these boys are at school.",no,1,0.001708984375,6.371337890625
+524386009,classification,floor lamp,"
+What kind of lamp is on the floor?
+What is the color of the lamp on the floor?
+What is the color of the lamp",what,0,0.0017004013061523438,6.37548828125
+524386010,yes/no,no,"
+Is this a 60's motif?
+No",no,1,0.0016946792602539062,6.3790283203125
+524386011,counting,4,"
+How many pictures on the wall?
+There are three pictures on the wall.",there,0,0.0017061233520507812,6.37109375
+524386012,comparison,one in corner,"
+Which floor lamp is not lit?
+
+The floor lamp on the right is not lit.",the,0,0.0017032623291015625,6.375
+524386013,counting,1,"
+How many TVs are on?
+There are two TVs on.",there,0,0.0017061233520507812,6.37109375
+524386014,color recognition,gray,"
+What color is the sofa?
+The sofa is gray.",gray,1,0.0017061233520507812,6.37109375
+524386015,counting,4,"
+How many pictures are on the wall?
+There are three pictures on the wall.",there,0,0.0017032623291015625,6.375
+131172000,counting,1,"
+How many men in the picture are wearing sunglasses?
+There are two men in the picture wearing sunglasses.",there,0,0.00168609619140625,6.3822021484375
+131172001,classification,baseball cap,"
+What kind of hat is the man with the girls wearing?
+A baseball cap",baseball cap,1,0.0016889572143554688,6.3828125
+131172002,color recognition,black,"
+What color is the man's shirt in the front of the photo?
+The man's shirt in the front of the photo is black.",black,1,0.0016803741455078125,6.38671875
+131172003,other,texting,"
+What are the ladies doing?
+
+The ladies are sitting on a bench, looking at their cell phones.",the,0,0.001708984375,6.3712158203125
+393317000,location,pole,"
+Where is the street sign?
+Where is the street sign located?",,0,0.001708984375,6.3712158203125
+393317001,location,crosswalk,"
+Where are the women walking?
+The women are walking on a sidewalk.",the,0,0.001708984375,6.3712158203125
+393317002,yes/no,yes,"
+Is the light green?
+No",no,0,0.001712799072265625,6.3671875
+393317003,other,nothing,"
+What is written on the street?
+
+The street is named ""Green"".",the,0,0.0017061233520507812,6.37109375
+393317004,yes/no,no,"
+Is it raining?
+Yes",yes,0,0.001712799072265625,6.3671875
+393317005,other,urban,"
+Urban or suburban? Urban",urban,1,0.0017061233520507812,6.37109375
+393317006,location,crosswalk,"
+Where is the woman standing?
+The woman is standing on a sidewalk.",the,0,0.001708984375,6.3712158203125
+393317007,counting,2,"
+How many people can be seen?
+There are two people visible in the image.",there,0,0.0017061233520507812,6.37109375
+393317008,other,bus,"
+What type of vehicle is on the left?
+What type of vehicle is on the right?
+What is the color of the car on the",what,0,0.0017004013061523438,6.375244140625
+393317009,yes/no,yes,"
+Is this woman crossing a street?
+Yes",yes,1,0.0017061233520507812,6.37109375
+393317010,color recognition,green,"
+What color is the traffic signal?
+The traffic signal is yellow.",the,0,0.0017061233520507812,6.37109375
+393317011,other,light,"
+What is being held green?",,0,0.001708984375,6.3712158203125
+393317012,other,afternoon,"
+What time of day is it?
+
+It is daytime.",it,0,0.0017061233520507812,6.37109375
+393317013,yes/no,yes,"
+Is this in the United States? No.",no,0,0.0017061233520507812,6.37109375
+393317014,counting,1,"
+How many green lights are there?
+There are two green lights.",there,0,0.0017061233520507812,6.37109375
+131174000,counting,5,"
+How many lights does the plane have?
+There are two lights on the plane.",there,0,0.0017032623291015625,6.375
+131174001,counting,1,"
+How many planes are in this photo?
+There is only one plane in this photo.",there,0,0.0017004013061523438,6.37548828125
+131174002,yes/no,yes,"
+Is there anyone in the cockpit?
+No",no,0,0.0017004013061523438,6.37548828125
+546151000,other,guatemala,"
+What country name is written as the highest word on the bus?
+The country name written as the highest word on the bus is ""India"".",the,0,0.0016889572143554688,6.3828125
+546151001,yes/no,yes,"
+Is the bus stopped?
+Yes, the bus is stopped on the side of the road.",yes,1,0.001712799072265625,6.3671875
+546151002,counting,3,"
+How many people are standing in this image?
+There are two people standing in this image.",there,0,0.0017004013061523438,6.375244140625
+21826000,other,skis,"
+What is the skier standing on?
+
+The skier is standing on a snow-covered slope.",the,0,0.0017032623291015625,6.375
+21826001,counting,2,"
+How many poles is the person holding?
+The person is holding two poles.",the,0,0.0017004013061523438,6.3751220703125
+21826002,other,skiing,"
+What is the person doing?
+The person is skiing down a snowy mountain slope.",skiing,1,0.001708984375,6.3712158203125
+109000,yes/no,yes,"
+Is this an ocean area?
+No, this is a river area.",no,0,0.001708984375,6.3712158203125
+109001,counting,1,"
+How many bodies of water are in this scene?
+There are two bodies of water in this scene.",there,0,0.001697540283203125,6.3753662109375
+109002,counting,4,"
+How many light post is there?
+There are 4 light post in the image.",4,1,0.0017061233520507812,6.37109375
+109003,yes/no,no,"
+Is the ground near the waterfront squishy?",,0,0.0016946792602539062,6.37890625
+109004,other,boat,"
+What infrastructure would one drive on to go perpendicular to the water?
+
+To go perpendicular to the water, one would need to drive on a bridge or",to,0,0.0016803741455078125,6.38671875
+109005,yes/no,yes,"
+Is the water calm?
+Yes",yes,1,0.001712799072265625,6.3671875
+110000,color recognition,gray,"
+What color is the woman's sweater?
+The woman's sweater is gray.",gray,1,0.001697540283203125,6.3753662109375
+110001,yes/no,yes,"
+Is this a cheese pizza?
+No",no,0,0.0017032623291015625,6.375
+110002,other,cheese,"
+What pizza topping is this?
+
+Cheese",cheese,1,0.0017032623291015625,6.375
+305853000,other,paper,"
+What is in the vase next to the flowers?
+
+There are paper cranes in the vase next to the flowers.",paper,1,0.0016946792602539062,6.37890625
+305853001,yes/no,yes,"
+Is there more than one vase on the table?
+No, there is only one vase on the table.",no,0,0.0016946792602539062,6.37890625
+305853002,other,real,"
+Are these flowers real or silk?
+
+The flowers in the image are silk.",real,1,0.0017032623291015625,6.375
+305853003,other,sun,"
+England's Queen mother and these blooms share what syllable?
+
+The Queen Mother of England shares the syllable ""M"" with the sunflowers",the,0,0.0016803741455078125,6.38671875
+113000,counting,3,"
+How many people are in the picture?
+There are two people in the picture.",there,0,0.0017032623291015625,6.375
+113001,color recognition,blue,"
+What color are the chairs?
+The chairs are blue.",blue,1,0.0017061233520507812,6.37109375
+113002,classification,birthday,"
+What kind of celebration is this?
+
+This is a birthday celebration, as indicated by the cake and the presence of",birthday,1,0.0017032623291015625,6.375
+113003,other,words,"
+What emblem is on the cake?
+
+The cake has a cross emblem on it.",the,0,0.0017004013061523438,6.3753662109375
+113004,other,inside,"
+Are they outside or in?
+Outside",outside,0,0.001708984375,6.3712158203125
+113005,yes/no,yes,"
+Is there a cake here?
+Yes",yes,1,0.0017061233520507812,6.37109375
+113006,yes/no,no,"
+Are there any pens on the table?
+No, there are no pens on the table.",no,1,0.0017032623291015625,6.375
+113007,other,md,"
+What are the initials on the cake?
+
+The initials on the cake are ""JR.""",the,0,0.001697540283203125,6.3753662109375
+262260000,reasoning,shadows,"
+Why are the birds only appearing as black silhouettes?
+
+The birds are only appearing as black silhouettes because the image is a black and white",the,0,0.0016918182373046875,6.379150390625
+262260001,counting,6,"
+How many pigeons are there?
+There are four pigeons in the image.",there,0,0.0017032623291015625,6.375
+262260002,yes/no,yes,"
+Is this image tilted? Yes",yes,1,0.0017061233520507812,6.37109375
+262261000,other,knife,"
+What utensil is in the pan?
+
+The pan has a knife in it.",knife,1,0.0017004013061523438,6.375
+262261001,other,tomato,"
+What is the red vegetable in the clear dish?
+
+The red vegetable in the clear dish is a tomato.",tomato,1,0.0016918182373046875,6.379150390625
+262261002,yes/no,yes,"
+Does this image contain a pie pan?
+Yes",yes,1,0.0017032623291015625,6.375
+131190000,yes/no,yes,"
+Is this a large house?
+Yes, this is a large house with a clock tower.",yes,1,0.001708984375,6.3712158203125
+131190001,yes/no,no,"
+Is there a fountain in front of the building?
+No, there is no fountain in front of the building.",no,1,0.0016918182373046875,6.3792724609375
+131190002,yes/no,yes,"
+Is the sun shining?
+Yes",yes,1,0.001708984375,6.3712158203125
+131190003,color recognition,red,"
+What color is the building?
+The building is red.",red,1,0.001708984375,6.3712158203125
+131190004,yes/no,yes,"
+Is this a church?
+No, this is not a church. It is a house with a clock tower.",no,0,0.001712799072265625,6.3671875
+131190005,other,evergreen,"
+What tree is on the left?
+The tree on the left is a green leafy tree.",the,0,0.0017061233520507812,6.37109375
+131190006,yes/no,no,"
+Are there clouds visible?
+No",no,1,0.001712799072265625,6.3671875
+131190007,yes/no,yes,"
+Is this a sunny day?
+Yes",yes,1,0.0017061233520507812,6.37109375
+131190008,other,wood,"
+What is the material right around the clock?
+The material right around the clock is brick.",the,0,0.0017004013061523438,6.3751220703125
+131190009,color recognition,red,"
+What color are the flowers?
+The flowers are pink.",the,0,0.001708984375,6.3712158203125
+131190010,counting,1,"
+How many bells are there?
+There are two bells on the tower.",there,0,0.0017061233520507812,6.37109375
+131190011,other,100 feet,"
+How tall is this building?
+The building is very tall, as it has a clock tower on top of it.",the,0,0.001708984375,6.3712158203125
+131190012,other,shingles,"
+What materials are on the roof?
+The roof has shingles and a weather vane.",shingles,1,0.0017061233520507812,6.37109375
+131190013,counting,1,"
+How many clock faces does this building have?
+There are two clock faces on this building.",there,0,0.0017004013061523438,6.3751220703125
+131190014,yes/no,no,"
+Are the hedges well-groomed?
+Yes, the hedges are well-groomed, as they are neatly trim",yes,0,0.0016946792602539062,6.37890625
+131190015,yes/no,no,"
+Does the building in the back have an elevator?
+No",no,1,0.0016946792602539062,6.37890625
+131190016,other,clock,"
+What is in gold at the top of the building?
+What is the building made of?",,0,0.0016946792602539062,6.37890625
+131190017,yes/no,no,"
+Do you a phone booth?",,0,0.0017061233520507812,6.37109375
+131190018,color recognition,white,"
+What color is the clock tower in this photo?
+The clock tower in this photo is red.",the,0,0.001697540283203125,6.3753662109375
+131190019,other,trees,"
+What are on both side of the building?
+What is the building made of?",,0,0.0017004013061523438,6.3751220703125
+131190020,other,building,"
+What is around the tree?
+What is the building made of?",building,1,0.001708984375,6.3712158203125
+131190021,yes/no,yes,"
+Are the buildings tall?
+No, the buildings are not tall.",no,0,0.001712799072265625,6.3671875
+131190022,counting,0,"
+How many flags are by the building's entrance?
+There are two flags by the building's entrance.",there,0,0.0016946792602539062,6.37890625
+131190023,yes/no,no,"
+Is the clock between two arches?
+Yes, the clock is between two arches.",yes,0,0.0017032623291015625,6.375
+131190024,yes/no,no,"
+Are there any entrance gates at the bottom of the tower?
+Yes, there is a small entrance gate at the bottom of the tower.",yes,0,0.0016918182373046875,6.3792724609375
+131190025,yes/no,no,"
+Is the building a high rise?
+No, the building is not a high rise. It is a small building.",no,1,0.0017061233520507812,6.37109375
+131190026,yes/no,yes,"
+Is part of this tower made of wood?
+Yes, the tower is made of wood.",yes,1,0.0017004013061523438,6.3751220703125
+131190027,yes/no,no,"
+Can the tree tell time? No.
+Can the clock tell time? Yes.",no,1,0.001708984375,6.3712158203125
+131190028,counting,5,"
+How many windows are shown?
+There are 12 windows shown in the image.",there,0,0.001708984375,6.3712158203125
+131190029,counting,4,"
+How many windows are pictured?
+There are two windows pictured.",there,0,0.0017032623291015625,6.375
+131190030,yes/no,yes,"
+Is the emblem a sun face clock?
+Yes, the emblem is a sun face clock.",yes,1,0.0017004013061523438,6.3751220703125
+131197000,other,petting sheep,"
+What is the woman doing in this photo?
+The woman is tending to a sheep in a pen, possibly feeding or caring for",the,0,0.0017004013061523438,6.375244140625
+131197001,other,hay,"
+What are the sheep standing on?
+The sheep are standing on hay.",hay,1,0.0017061233520507812,6.37109375
+131197002,other,hay,"
+What is the woman feeding the animal?
+
+The woman is feeding the animal a bottle of milk.",the,0,0.0017004013061523438,6.375244140625
+131197003,counting,2,"
+How many sheep can you see?
+I can see two sheep.",i,0,0.0017061233520507812,6.37109375
+131197004,yes/no,no,"
+Is the ram's fleece dirty?
+Yes",yes,0,0.001697540283203125,6.3753662109375
+127000,yes/no,yes,"
+Is there a travel guide on the table?
+Yes, there is a travel guide on the table.",yes,1,0.0017004013061523438,6.375244140625
+127001,color recognition,white,"
+What color plate is this?
+The plate is white.",white,1,0.001708984375,6.371337890625
+127002,other,knife and spoon,"
+What type of silverware is on the plates?
+There is a knife and a fork on the plates.",there,0,0.0016946792602539062,6.3790283203125
+262273000,color recognition,yellow,"
+What color are the skis?
+The skis are yellow.",yellow,1,0.0017061233520507812,6.37109375
+262273001,yes/no,yes,"
+Is there snow? Yes",yes,1,0.0017156600952148438,6.3681640625
+262273002,other,ski pole,"
+What is the man holding in his left hand?
+The man is holding a ski pole in his left hand.",ski pole,1,0.001697540283203125,6.3753662109375
+262273003,other,black,"
+What is the color of the zipper?
+The zipper is black.",black,1,0.001697540283203125,6.3753662109375
+262273004,other,patterned,"
+Are the boots a solid color or patterned?
+The boots are patterned.",patterned,1,0.0016946792602539062,6.37890625
+262273005,counting,1,"
+How many people are there?
+There is one person in the image.",there,0,0.001708984375,6.3712158203125
+262273006,yes/no,no,"
+Is it summer? No.
+Is it winter? Yes.",no,1,0.0017156600952148438,6.3681640625
+262273007,color recognition,black,"
+What color is the man's hat?
+The man's hat is black.",black,1,0.0017004013061523438,6.375244140625
+262273008,counting,1,"
+How many people are in the image?
+There is only one person in the image.",there,0,0.0017032623291015625,6.375
+524420000,color recognition,black,"
+What color is the woman's shorts?
+The woman's shorts are black.",black,1,0.001697540283203125,6.3753662109375
+524420001,yes/no,yes,"
+Is the picture in color?
+Yes, the picture is in color.",yes,1,0.001708984375,6.371337890625
+524420002,yes/no,yes,"
+Is there a dog in the photo?
+Yes, there is a dog in the photo.",yes,1,0.0017032623291015625,6.375
+524420003,yes/no,yes,"
+Is the dog on a leash?
+Yes, the dog is on a leash.",yes,1,0.0017032623291015625,6.375
+524420004,other,walking,"
+What are the people doing in the street?
+
+The people in the street are walking, standing, and engaging in various activities. Some",walking,1,0.0017004013061523438,6.37548828125
+436929000,other,ice,"
+What is floating near the bird?
+
+The bird is floating near a piece of wood.",the,0,0.0017061233520507812,6.37109375
+436929001,yes/no,no,"
+Are all of the birds in flight?
+No, not all of the birds are in flight. Some birds are sitting on the ice,",no,1,0.0017032623291015625,6.375
+436929002,counting,3,"
+How many birds are there?
+There are two birds.",there,0,0.001708984375,6.3712158203125
+436929003,yes/no,yes,"
+Are there three birds in the picture?
+No, there are only two birds in the picture.",no,0,0.0017032623291015625,6.375
+436929004,yes/no,no,"
+Is this a dog? No.
+Is this a cat? No.
+Is this a bird? Yes.",no,1,0.001712799072265625,6.3671875
+436929005,yes/no,yes,"
+Is this a winter scene?
+Yes",yes,1,0.001708984375,6.3712158203125
+436929006,yes/no,yes,"
+Is the water frozen?
+Yes, the water is frozen.",yes,1,0.001708984375,6.3712158203125
+131208000,reasoning,laundry,"
+Why are there so many clothes on the bed?
+
+The presence of numerous clothes on the bed suggests that the person might be in the process of",the,0,0.001697540283203125,6.3753662109375
+131208001,yes/no,yes,"
+Is that a laptop on the chair?",,0,0.0017032623291015625,6.375
+131208002,color recognition,red,"
+What color is the girl's hair?
+The girl's hair is red.",red,1,0.0017004013061523438,6.375244140625
+284012000,other,pepsi,"
+What brand of soda is advertised?
+
+The advertised brand of soda is Pepsi.",pepsi,1,0.0017004013061523438,6.3751220703125
+284012001,yes/no,yes,"
+Is Cingular a sponsor of this field?
+Yes, Cingular is a sponsor of this field.",yes,1,0.0016946792602539062,6.37890625
+284012002,other,del taco,"
+What Mexican food restaurant chain is advertised?
+
+The advertisement for the Mexican food restaurant chain ""Panchanga"" is displayed on",the,0,0.0017004013061523438,6.3751220703125
+284012003,other,good,"
+How is the turnout?
+The turnout is quite large, with a large crowd of people attending the baseball game.",the,0,0.001708984375,6.37109375
+284012004,counting,5,"
+How many men are playing baseball?
+There are three men playing baseball in the image.",there,0,0.0017061233520507812,6.37109375
+284012005,other,building,"
+What is the large sculpture next to the oversized cola bottle?
+A. Pepsi logo
+B. Coca-Cola logo
+C. Pepsi",c,0,0.0016775131225585938,6.390625
+284012006,color recognition,gray,"
+What color is the catcher's pants?
+The catcher's pants are white.",the,0,0.0016946792602539062,6.37890625
+138000,counting,2,"
+How many pots are hanging under the shelf?
+There are two pots hanging under the shelf.",there,0,0.0016918182373046875,6.3792724609375
+138001,other,1:50,"
+What time is it?",,0,0.001712799072265625,6.3671875
+138002,yes/no,no,"
+Is this a conventional kitchen?
+No",no,1,0.001708984375,6.3712158203125
+262283000,color recognition,purple,"
+What color flowers are on the top right?
+Pink",pink,0,0.0017004013061523438,6.3753662109375
+262283001,yes/no,yes,"
+Is the area lit?
+Yes, the area is lit.",yes,1,0.001712799072265625,6.3671875
+262283002,location,florist,"
+Where was this shot at?
+The shot was taken at a flower shop.",the,0,0.001708984375,6.3712158203125
+262283003,yes/no,no,"
+Are the vases identical?
+No, the vases are different sizes and shapes.",no,1,0.001708984375,6.3712158203125
+524428000,yes/no,yes,"
+Are these the normal size pieces of pizza?
+No, these are large pieces of pizza.",no,0,0.001697540283203125,6.37548828125
+524428001,yes/no,no,"
+Could you eat all of this pizza?",,0,0.0017004013061523438,6.37548828125
+524428002,yes/no,yes,"
+Is there broccoli on a slice of pizza? No.",no,0,0.0016918182373046875,6.3792724609375
+524428003,color recognition,gray,"
+What color is the cloth?
+
+The cloth is white.",the,0,0.001708984375,6.3714599609375
+262285000,counting,13,"
+How many zebras are there?
+There are six zebras in the image.",there,0,0.0017032623291015625,6.375
+262285001,other,africa,"
+What continent might this be?
+
+Africa",africa,1,0.001708984375,6.3712158203125
+262285002,yes/no,no,"
+Is there an animal that seems to stick out?
+Yes, there is a zebra that stands out in the image.",yes,0,0.001697540283203125,6.3753662109375
+262285003,yes/no,no,"
+Is this in a zoo? No.
+Is this in a wildlife park? No.
+Is this in a national park",no,1,0.001708984375,6.3712158203125
+262285004,yes/no,yes,"
+Is this in a desert?
+Yes",yes,1,0.001708984375,6.3712158203125
+142000,other,banana,"
+What type of fruit is on the plate?
+What is the type of fruit on the plate?",,0,0.0017004013061523438,6.3753662109375
+142001,yes/no,yes,"
+Is this a banana toast?
+Yes",yes,1,0.0017032623291015625,6.375
+142002,color recognition,blue,"
+What color is the milk carton?
+The milk carton is white.",the,0,0.0017032623291015625,6.375
+131215000,yes/no,no,"
+Are the people playing a game?
+Yes, the people are playing a game.",yes,0,0.0017061233520507812,6.37109375
+131215001,yes/no,yes,"
+Is the TV turned on?
+Yes",yes,1,0.001708984375,6.3712158203125
+131215002,yes/no,yes,"
+Is this person watching a movie?
+Yes",yes,1,0.0017061233520507812,6.37109375
+131215003,other,teddy bears,"
+What is in the blue chair?
+
+There is a blue chair in the room, but it is not clear what is in it",there,0,0.0017061233520507812,6.37109375
+131215004,other,socks,"
+What type of footwear is the person wearing?
+
+The person is wearing sneakers.",the,0,0.0016918182373046875,6.379150390625
+144000,other,eating,"
+What are the animals doing?
+
+The animals, which are giraffes, are eating from a feeding tr",eating,1,0.001708984375,6.371337890625
+144001,yes/no,yes,"
+Is one of the giraffes eating?
+Yes, one of the giraffes is eating from a trough.",yes,1,0.0016946792602539062,6.3790283203125
+144002,other,giraffe,"
+What type of animal is in the picture?
+The picture features a giraffe.",giraffe,1,0.0017004013061523438,6.37548828125
+393362000,yes/no,yes,"
+Is it daytime? Yes",yes,1,0.001712799072265625,6.3671875
+393362001,yes/no,yes,"
+Are the kickstands down?
+No",no,0,0.0017061233520507812,6.37109375
+393362002,yes/no,yes,"
+Do you see any motorcycle helmets?",,0,0.001697540283203125,6.3753662109375
+149000,yes/no,yes,"
+Is the kite high in the air?
+Yes, the kite is high in the air.",yes,1,0.0017004013061523438,6.37548828125
+149001,yes/no,no,"
+Is the sky clear?
+No, the sky is cloudy.",no,1,0.001712799072265625,6.3671875
+149002,color recognition,red,"
+What color is the building?
+The building is red.",red,1,0.001708984375,6.3712158203125
+149003,yes/no,yes,"
+Are the people flying kites?
+Yes, the people are flying kites in the park.",yes,1,0.0017061233520507812,6.37109375
+149004,comparison,0,"
+Which buses are double deckers?",,0,0.0017004013061523438,6.37548828125
+149005,classification,soccer,"
+What kind of court is at the edge of the field?
+What is the sky above the field?",,0,0.0016918182373046875,6.3792724609375
+471373000,yes/no,no,"
+Can you see any fish?
+No",no,1,0.001708984375,6.3712158203125
+471373001,yes/no,no,"
+Is this man swimming?
+No, the man is surfing.",no,1,0.001708984375,6.3712158203125
+471373002,yes/no,no,"
+Is he turning?
+No",no,1,0.0017156600952148438,6.367919921875
+471373003,yes/no,yes,"
+Does the man have short hair?
+Yes",yes,1,0.0017061233520507812,6.37109375
+471373004,object identification,surfboard,"
+What is this man laying on?
+
+The man is laying on a surfboard.",surfboard,1,0.0017032623291015625,6.375
+109986000,color recognition,red,"
+What color is this girl's shirt?
+The girl is wearing a red shirt.",red,1,0.001697540283203125,6.3753662109375
+109986001,color recognition,red,"
+What color is the girls hot dog?
+The girl's hot dog is red.",red,1,0.0017032623291015625,6.375
+109986002,color recognition,red,"
+What color are the girl's lips?
+The girl's lips are red.",red,1,0.0017004013061523438,6.375244140625
+131225000,other,special,"
+What does the front of the bus say at the top?
+The front of the bus says ""Special"" at the top.",special,1,0.0016918182373046875,6.3792724609375
+131225001,yes/no,no,"
+Is the bus featured in this picture typical?
+No, the bus featured in this picture is not typical. It is a special bus, possibly",no,1,0.0017004013061523438,6.375244140625
+131225002,color recognition,blue yellow,"
+What color is the school bus?
+The school bus is yellow and blue.",the,0,0.0017061233520507812,6.37109375
+131225003,yes/no,no,"
+Is this the latest make and model? No.",no,1,0.0017032623291015625,6.375
+131225004,color recognition,blue and yellow,"
+What color is the bus?
+The bus is yellow and blue.",the,0,0.001708984375,6.3712158203125
+131225005,yes/no,yes,"
+Are there any building in the area?
+Yes, there is a building in the area.",yes,1,0.0017032623291015625,6.375
+154000,yes/no,no,"
+Is there a fence in the background?",,0,0.0017004013061523438,6.375244140625
+154001,counting,3,"
+How many zebras can you see eating?
+There are two zebras eating in the image.",there,0,0.0016946792602539062,6.37890625
+154002,counting,1,"
+How many kinds of animals are in this photo?
+There are two kinds of animals in this photo: zebras and a horse.",there,0,0.001697540283203125,6.3753662109375
+154003,yes/no,no,"
+Is the zebra's tail up?
+No",no,1,0.001697540283203125,6.3753662109375
+154004,counting,1,"
+How many different types of animals are in this scene?
+There are two different types of animals in this scene: zebras and a horse.",there,0,0.0016946792602539062,6.37890625
+154005,other,right,"
+What direction are the animals heading?
+
+The animals are heading towards the camera.",the,0,0.0017061233520507812,6.37109375
+154006,yes/no,yes,"
+Are they the same type of animal?
+Yes, they are the same type of animal.",yes,1,0.0017032623291015625,6.375
+154007,other,walking,"
+Is the zebra walking or standing still?
+The zebra is walking in the grass.",walking,1,0.001697540283203125,6.3753662109375
+154008,yes/no,no,"
+Are all zebras facing the same way?
+No, not all zebras are facing the same way. In the image, there are",no,1,0.001697540283203125,6.3753662109375
+154009,counting,3,"
+How many animals are there?
+There are three animals.",there,0,0.001708984375,6.3712158203125
+154010,yes/no,no,"
+Are the zebras running?
+No, the zebras are not running. They are walking in a grassy field.",no,1,0.0017061233520507812,6.37109375
+154011,person identification,zebras,"
+Who is in the photo?
+Who is in the photo?",,0,0.001708984375,6.3712158203125
+154012,other,3,"
+Number of animals? 3
+
+Number of zebras? 3",3,1,0.0017156600952148438,6.3680419921875
+262299000,yes/no,no,"
+Is he going to fall?
+
+No, he is not going to fall. He is performing a stunt on his d",no,1,0.001708984375,6.3712158203125
+262299001,color recognition,yellow,"
+What color are the stakes in the dirt?
+
+The stakes in the dirt are yellow.",yellow,1,0.0016946792602539062,6.37890625
+262299002,color recognition,yellow,"
+What color shirt is the man standing in the background wearing?
+The man standing in the background is wearing a yellow shirt.",yellow,1,0.00168609619140625,6.38232421875
+393242000,counting,1,"
+How many arrows can be seen?
+There are two arrows visible in the image.",there,0,0.0017032623291015625,6.375
+393242001,counting,5,"
+How many stripes are at the bottom of the picture?
+There are three stripes at the bottom of the picture.",there,0,0.0016918182373046875,6.379150390625
+393242002,yes/no,no,"
+Are the traffic lights facing the same direction?
+No, the traffic lights are facing different directions.",no,1,0.0017004013061523438,6.375244140625
+393375000,yes/no,no,"
+Is this cake made with fondant?
+No, this cake is made with chocolate frosting.",no,1,0.0017004013061523438,6.375244140625
+393375001,location,plate,"
+Where is the cupcake?
+The cupcake is on a plate.",plate,1,0.0017061233520507812,6.37109375
+393375002,other,cupcake,"
+What is on the plate?
+
+There is a cupcake on the plate.",cupcake,1,0.001708984375,6.3712158203125
+393375003,other,post-its,"
+What are the pink pieces of paper called?
+
+The pink pieces of paper are called sticky notes.",the,0,0.001697540283203125,6.3753662109375
+393379000,classification,peanut,"
+What kind of nut is shown?
+A. Walnut
+B. Pecan
+C. Almond
+D. P",d,0,0.0017061233520507812,6.37109375
+393379001,other,broccoli,"
+What is the green stuff?
+What is the brown stuff?",,0,0.001708984375,6.3712158203125
+393379002,other,dish,"
+Is this a finger food or dish?
+Yes, this is a finger food or dish.",dish,1,0.0017004013061523438,6.3756103515625
+262308000,other,vanilla,"
+What ICING IS USED ON THIS CAKE?
+
+The cake is decorated with white icing.",the,0,0.0016889572143554688,6.3828125
+262308001,yes/no,no,"
+Is there a fork on the plate?
+No, there is no fork on the plate.",no,1,0.0017032623291015625,6.375
+262308002,yes/no,yes,"
+Is this black and white?
+No, this is a color image.",no,0,0.001708984375,6.3712158203125
+262308003,other,soldier,"
+What is the figure on the cupcake?
+
+The figure on the cupcake is a man.",the,0,0.001697540283203125,6.3753662109375
+262308004,other,vanilla,"
+What flavor is the cupcake?
+The cupcake is vanilla flavored.",vanilla,1,0.0017004013061523438,6.375244140625
+165000,other,cutting tie,"
+What is the woman doing?
+The woman is cutting a man's tie with a pair of scissors.",the,0,0.001708984375,6.3712158203125
+165001,yes/no,yes,"
+Is a military person in the picture? Yes.",yes,1,0.0017032623291015625,6.375
+165002,yes/no,yes,"
+Are they smiling?
+Yes",yes,1,0.001712799072265625,6.3671875
+415089000,counting,3,"
+How many potted plants do you see? 2
+How many chairs do you see? 1",1,0,0.0017004013061523438,6.3753662109375
+415089001,counting,1,"
+How many chairs are there?
+There are two chairs in the room.",there,0,0.0017061233520507812,6.37109375
+415089002,yes/no,yes,"
+Is this an old building?
+Yes",yes,1,0.001708984375,6.3712158203125
+415089003,other,living room,"
+What room is this?
+This is a living room.",living room,1,0.001712799072265625,6.3671875
+415089004,yes/no,no,"
+Is the room almost full? No",no,1,0.001708984375,6.3712158203125
+393384000,location,parking lot,"
+Where was this picture taken?
+
+This picture was taken at a beach.",this,0,0.001708984375,6.3712158203125
+393384001,counting,3,"
+How many kids in this photo?
+There are two kids in this photo.",there,0,0.0017032623291015625,6.375
+393384002,yes/no,no,"
+Are the people on a soft surface?
+No, the people are on a hard surface.",no,1,0.0017032623291015625,6.375
+393386000,counting,5,"
+How many animals?
+There are three animals in the image.",there,0,0.0017156600952148438,6.3681640625
+393386001,color recognition,black,"
+What color are the majority of sheep?
+Black",black,1,0.0017032623291015625,6.375
+393386002,yes/no,no,"
+Has the grass been mowed recently? No, the grass is tall and uncut.",no,1,0.0017032623291015625,6.375
+131245000,classification,cows,"
+What kind of animals are in there?
+There are cows in the image.",cows,1,0.0017032623291015625,6.375
+131245001,yes/no,no,"
+Is this scene in America? No.
+Is this scene in Europe? No.
+Is this scene in Africa? Yes.",no,1,0.001708984375,6.3712158203125
+131245002,other,herding,"
+What is the boy doing?
+The boy is walking down a dirt road, holding a stick, and leading a cow.",the,0,0.001708984375,6.3712158203125
+137918000,yes/no,yes,"
+Are all the laptops on?
+No, only one laptop is on.",no,0,0.0017032623291015625,6.375
+137918001,counting,3,"
+How many laptops are on the coffee table?
+There are three laptops on the coffee table.",there,0,0.0016946792602539062,6.379150390625
+137918002,location,on table,"
+Where is the laptop?
+The laptop is on a table.",the,0,0.001712799072265625,6.3671875
+393394000,other,fish,"
+What animal is on the walls?
+
+There is a lamp on the bed.",there,0,0.0017061233520507812,6.37109375
+393394001,yes/no,yes,"
+Is this a hotel room?
+Yes",yes,1,0.001708984375,6.3712158203125
+393394002,location,nightstand,"
+Where are the two upside down glasses?
+
+The two upside down glasses are on the nightstand.",nightstand,1,0.001697540283203125,6.3753662109375
+393394003,yes/no,yes,"
+Is this a hotel?
+Yes",yes,1,0.001712799072265625,6.3671875
+438196000,yes/no,yes,"
+Is an elephant walking down the street?
+Yes, an elephant is walking down the street.",yes,1,0.001697540283203125,6.3753662109375
+438196001,yes/no,yes,"
+Is the guy in the yellow shirt wearing a tie? No.",no,0,0.00168609619140625,6.382080078125
+438196002,counting,50,"
+How many people are in the picture?
+There are many people in the picture, but I cannot provide an exact number.",there,0,0.0017032623291015625,6.375
+393396000,yes/no,yes,"
+Is this a church?
+Yes",yes,1,0.001712799072265625,6.3671875
+393396001,other,overcast,"
+Sunny or overcast?
+Overcast",overcast,1,0.0017061233520507812,6.37109375
+393396002,yes/no,yes,"
+Is there snow in the picture?
+Yes, there is snow in the picture.",yes,1,0.0017061233520507812,6.37109375
+393396003,other,gray,"
+What is the color of the roof shingles?
+The roof shingles are brown.",the,0,0.0016946792602539062,6.3790283203125
+393396004,other,cross,"
+What symbol sits atop the tower?
+
+The cross sits atop the tower.",cross,1,0.0017004013061523438,6.3753662109375
+393396005,yes/no,no,"
+Is there a clock on the church tower?
+No, there is no clock on the church tower.",no,1,0.0017004013061523438,6.3753662109375
+393396006,yes/no,no,"
+Is there a clock?
+No",no,1,0.001712799072265625,6.3671875
+524470000,yes/no,yes,"
+Is this person wearing a backpack?
+Yes",yes,1,0.0017004013061523438,6.37548828125
+524470001,yes/no,yes,"
+Is there a street light in the photo?
+Yes, there is a street light in the photo.",yes,1,0.0017004013061523438,6.37548828125
+524470002,yes/no,no,"
+Is the sun up? Yes.",yes,0,0.001712799072265625,6.3671875
+524471000,other,toaster oven,"
+What is the grate for?
+
+The grate is for cooking food in the oven.",the,0,0.0017061233520507812,6.37109375
+524471001,yes/no,yes,"
+Is the oven on?
+Yes, the oven is on.",yes,1,0.001708984375,6.3712158203125
+524471002,yes/no,yes,"
+Is there a window in this scene?
+Yes, there is a window in this scene.",yes,1,0.0017032623291015625,6.375
+524471003,classification,tile,"
+What kind of siding is on this house?
+
+The house has a brick siding.",the,0,0.001697540283203125,6.3753662109375
+524471004,yes/no,no,"
+Is this toast done?
+Yes",yes,0,0.001708984375,6.3712158203125
+524471005,counting,4,"
+How many knobs are there?
+There are two knobs.",there,0,0.0017061233520507812,6.37109375
+524471006,yes/no,no,"
+Is the microwave on?
+No",no,1,0.0017061233520507812,6.37109375
+524471007,yes/no,yes,"
+Is the toaster on?
+No",no,0,0.001708984375,6.3712158203125
+262329000,color recognition,pink,"
+What color are the flowers?
+The flowers are pink.",pink,1,0.001708984375,6.3712158203125
+262329001,other,11:55,"
+What time is it?",,0,0.001712799072265625,6.3671875
+262329002,other,birdhouse,"
+What is the brown object with a clock on it?
+
+The brown object with a clock on it is a clock tower.",the,0,0.0016946792602539062,6.37890625
+393403000,counting,1,"
+How many buses are there?
+There are two buses.",there,0,0.0017061233520507812,6.37109375
+393403001,yes/no,yes,"
+Is this a one way street?
+No",no,0,0.0017061233520507812,6.37109375
+393403002,yes/no,no,"
+Are there people boarding the bus?
+No",no,1,0.0017032623291015625,6.375
+393403003,color recognition,red and yellow,"
+What color is the bus?
+The bus is yellow and red.",the,0,0.001708984375,6.3712158203125
+393403004,other,892,"
+What number bus is this?
+The bus is number 822.",the,0,0.001708984375,6.3712158203125
+393403005,location,nowhere,"
+Where is the open door?
+Where is the bus?",,0,0.001708984375,6.3712158203125
+393403006,yes/no,no,"
+Is there a hardware store in the area?",,0,0.0017004013061523438,6.37548828125
+393403007,counting,2,"
+How many decks does this bus have?
+There are two decks on this bus.",there,0,0.0017004013061523438,6.37548828125
+524476000,yes/no,yes,"
+Are the drying the animal with a blow dryer?",,0,0.0016918182373046875,6.3792724609375
+524476001,color recognition,silver,"
+What color are the girls earrings?
+The girls earrings are black.",the,0,0.0017004013061523438,6.375244140625
+524476002,other,hair dryer,"
+What is the woman holding?
+
+The woman is holding a hair dryer.",hair dryer,1,0.001708984375,6.371337890625
+283700000,classification,truck,"
+What kind of vehicle is the yellow one?
+The yellow vehicle is a tow truck.",truck,1,0.0017004013061523438,6.375
+283700001,counting,11,"
+How many windows?
+There are 10 windows in the house.",there,0,0.0017156600952148438,6.3681640625
+283700002,yes/no,no,"
+Is this a hotel? No.
+Is this a restaurant? No.
+Is this a school? No.
+Is",no,1,0.001712799072265625,6.3671875
+262336000,yes/no,yes,"
+Can you see the man's shadow?
+Yes, the man's shadow is visible on the ground.",yes,1,0.0017004013061523438,6.375244140625
+262336001,yes/no,no,"
+Is this lacrosse? No.
+Is this tennis? Yes.",no,1,0.001708984375,6.3712158203125
+262336002,yes/no,no,"
+The color of the court is green?",,0,0.0017032623291015625,6.375
+194000,color recognition,white,"
+What color is the plate?
+The plate is white.",white,1,0.001708984375,6.371337890625
+194001,person identification,people,"
+Who is going to eat this pizza?
+
+The pizza is ready to be eaten.",the,0,0.0017004013061523438,6.375732421875
+194002,yes/no,yes,"
+Is this pizza nutritious enough to eat for a full dinner?
+
+No, this pizza is not nutritious enough to eat for a full dinner.",no,0,0.0016832351684570312,6.3875732421875
+257513000,other,rectangle,"
+What shape is at the bottom of the pole?
+The bottom of the pole is square.",the,0,0.001697540283203125,6.3753662109375
+257513001,yes/no,yes,"
+Are both beds made?
+No",no,0,0.001708984375,6.3712158203125
+257513002,yes/no,yes,"
+Is there a ladder in the picture?
+Yes, there is a ladder in the picture.",yes,1,0.0017004013061523438,6.375244140625
+257513003,counting,2,"
+How many steps does it take to get to the top?
+There are two steps to get to the top.",there,0,0.0016918182373046875,6.3792724609375
+257513004,other,bunk bed,"
+What type of bed is in the picture?
+The picture features a bunk bed.",bunk bed,1,0.0017004013061523438,6.375244140625
+393412000,yes/no,yes,"
+Is this vehicle parked in a residential driveway?
+No, the vehicle is parked in a driveway next to a building.",no,0,0.0016918182373046875,6.379150390625
+393412001,yes/no,no,"
+Is the color of the car very common for vehicles?
+No, the color of the car is not very common for vehicles.",no,1,0.0016946792602539062,6.37890625
+393412002,color recognition,orange,"
+What color is the car?
+The car is orange.",orange,1,0.001708984375,6.3712158203125
+524486000,other,hot dogs,"
+What is he cooking?
+
+He is cooking hot dogs on a grill.",hot dogs,1,0.001708984375,6.3712158203125
+524486001,location,by plates,"
+Where are the buns?
+
+The buns are on the grill.",the,0,0.001708984375,6.3712158203125
+524486002,reasoning,party,"
+Why is the man cooking so many hot dogs?
+
+The man is cooking a large number of hot dogs because he is hosting a party or",party,1,0.0016946792602539062,6.37890625
+458785000,other,ancient,"
+Is this a new or ancient clock?
+
+The clock is ancient, as it is described as a ""very old clock tower.""",ancient,1,0.0017032623291015625,6.375
+458785001,other,12:55,"
+What time does the clock read?
+
+The clock reads 12:00.",the,0,0.0017061233520507812,6.37109375
+458785002,yes/no,no,"
+Are all the people looking at the same thing?
+No, some people are looking at the clock, while others are looking at the building.",no,1,0.001697540283203125,6.3753662109375
+201000,yes/no,yes,"
+Do these ski boards have personality?",,0,0.0017004013061523438,6.3753662109375
+201001,counting,5,"
+How many ski boards are in the picture?
+There are five ski boards in the picture.",there,0,0.001697540283203125,6.3753662109375
+201002,other,lookout,"
+What mountain was this taken at?
+
+This photo was taken at the Mt. Hood ski resort.",this,0,0.0017061233520507812,6.37109375
+393418000,other,apron,"
+What is the black thing he is wearing?
+It is a black apron.",apron,1,0.001697540283203125,6.3753662109375
+393418001,classification,kitchen,"
+What kind of room is this?
+This is a kitchen.",kitchen,1,0.0017061233520507812,6.37109375
+393418002,other,cooking,"
+What is the man doing in the picture?
+The man in the picture is cleaning a stove in a kitchen.",the,0,0.0017004013061523438,6.3753662109375
+393419000,other,ring,"
+What is the cartoon man presenting to the cartoon woman?
+
+The cartoon man is presenting a ring to the cartoon woman.",ring,1,0.00168609619140625,6.382568359375
+393419001,color recognition,black and white,"
+What color is the sign?
+The sign is black and white.",black and white,1,0.001708984375,6.3712158203125
+393419002,other,one way,"
+What does the sign with the white arrow say?
+The sign with the white arrow says ""One Way.""",one way,1,0.001697540283203125,6.3753662109375
+393419003,comparison,left,"
+Which way can you not turn?
+
+One way",one,0,0.0017032623291015625,6.375
+393419004,other,one way,"
+What is above the ""No Left Turn"" sign?
+
+There is a ""One Way"" sign above the ""No Left Turn"" sign.",one way,1,0.0016946792602539062,6.37890625
+131277000,yes/no,no,"
+Is the woman wearing a dress? No, the woman is not wearing a dress. She is wearing pants.",no,1,0.0017032623291015625,6.375
+131277001,yes/no,yes,"
+Are they playing a game?
+Yes",yes,1,0.001708984375,6.3712158203125
+131277002,yes/no,no,"
+Will the bent person fall forward?
+No",no,1,0.0017061233520507812,6.37109375
+131277003,yes/no,yes,"
+Is there a man and a woman?
+Yes, there is a man and a woman in the image.",yes,1,0.0017032623291015625,6.375
+131277004,yes/no,no,"
+Is this photo to blurry? No",no,1,0.0017032623291015625,6.375
+393422000,yes/no,yes,"
+Would you get a ticket if you disobeyed this sign?
+
+Yes, you would get a ticket if you disobeyed this stop sign. The",yes,1,0.0016832351684570312,6.3875732421875
+393422001,yes/no,no,"
+Is the red stop sign on a wooden pole?
+No, the red stop sign is on a metal pole.",no,1,0.001697540283203125,6.3753662109375
+393422002,other,stop,"
+What is the sign says?
+The sign says ""Stop.""",stop,1,0.001708984375,6.3712158203125
+393422003,yes/no,yes,"
+Can you see the sun in the picture?",,0,0.0017004013061523438,6.37548828125
+131279000,comparison,neither,"
+Which baby is still an infant?
+The baby on the right.",the,0,0.0017032623291015625,6.375
+131279001,counting,many,"
+How many blue stripes are on the babies shirt?
+There are 2 blue stripes on the babies shirt.",many,1,0.00168609619140625,6.3822021484375
+131279002,yes/no,no,"
+Are they twins?
+No, they are not twins.",no,1,0.001712799072265625,6.3671875
+131279003,yes/no,yes,"
+Is one of the children a boy?
+Yes, one of the children is a boy.",yes,1,0.0017032623291015625,6.375
+131279004,counting,2,"
+How many babies are in this photo?
+There are two babies in this photo.",there,0,0.001697540283203125,6.375244140625
+131279005,yes/no,no,"
+Are these teenagers? No.
+Are these children? Yes.",no,1,0.001708984375,6.3712158203125
+131279006,yes/no,no,"
+Are both of the children smiling?
+Yes, both of the children are smiling.",yes,0,0.0017032623291015625,6.375
+131279007,color recognition,blue,"
+What color is the girl's brush?
+The girl's brush is blue.",blue,1,0.001697540283203125,6.375244140625
+131279008,other,female,"
+What gender are both of the children likely to be?
+
+Both children are likely to be female, as they are both sitting on the floor and",female,1,0.0016946792602539062,6.37890625
+131279009,color recognition,blue,"
+What color is the comb?
+The comb is blue.",blue,1,0.001708984375,6.3712158203125
+131279010,yes/no,no,"
+Is this child wearing socks? No.",no,1,0.0017032623291015625,6.375
+131279011,other,brushing,"
+What is the one girl doing to the other girl's hair?",,0,0.00168609619140625,6.3822021484375
+448671000,location,on table,"
+Where is the table lamp?
+Where is the man sitting?
+What is the man holding?",,0,0.001708984375,6.3712158203125
+448671001,other,tie,"
+Something new to wear with a men's shirt?",,0,0.0016918182373046875,6.3792724609375
+448671002,yes/no,no,"
+Is the man's shirt a solid color?
+No, the man's shirt is striped.",no,1,0.0016946792602539062,6.37890625
+393428000,object identification,hot dog,"
+What is this person holding?
+
+A hot dog",hot dog,1,0.001708984375,6.3712158203125
+393428001,color recognition,brown,"
+What color is the table?
+The table is white.",the,0,0.001708984375,6.3712158203125
+393428002,location,on table,"
+Where is the cup?
+Where is the table?
+Where is the chair?",,0,0.001712799072265625,6.3671875
+393428003,other,1,"
+How much did they pay for the hot dogs?
+
+The hot dogs cost $1.00 each.",1,1,0.001697540283203125,6.3753662109375
+554301000,other,tennis racket,"
+What is in the man's hand?
+
+The man is holding a tennis racket in his hand.",tennis racket,1,0.0017004013061523438,6.375244140625
+554301001,counting,6,"
+How many balls are on the ground?
+There are 12 balls on the ground.",there,0,0.0017032623291015625,6.375
+554301002,yes/no,yes,"
+Is this man tan?
+No",no,0,0.001712799072265625,6.3671875
+262359000,yes/no,yes,"
+The tablecloths are white?",,0,0.0017032623291015625,6.375
+262359001,other,knife and fork,"
+What silverware is on the table?
+
+There is a fork and a knife on the table.",there,0,0.0017032623291015625,6.375
+262359002,location,restaurant,"
+Where do you think all these are located?",,0,0.0017004013061523438,6.375244140625
+262359003,color recognition,silver,"
+What color is the knife handle?
+The knife handle is silver.",silver,1,0.0017032623291015625,6.375
+262359004,yes/no,yes,"
+Are the pictures colorful?
+No, the pictures are black and white.",no,0,0.001708984375,6.37109375
+262359005,yes/no,no,"
+Do you a mirror in the background?",,0,0.0017032623291015625,6.375
+262359006,counting,2,"
+How many glasses are there?
+There are two glasses on the table.",there,0,0.0017061233520507812,6.37109375
+262359007,yes/no,no,"
+Is there food on the table?
+No",no,1,0.0017061233520507812,6.37109375
+262359008,location,restaurant,"
+Where is the room?
+The room is in a restaurant.",restaurant,1,0.001712799072265625,6.3671875
+393432000,other,cat,"
+What type of animal is it?
+The animal in the image is a cat.",cat,1,0.0017061233520507812,6.37109375
+393432001,location,bed,"
+Where is the cat?
+The cat is on a bed.",bed,1,0.001712799072265625,6.3671875
+393432002,yes/no,yes,"
+Is there a pillow present in the picture?
+Yes, there is a pillow present in the picture.",yes,1,0.001697540283203125,6.3753662109375
+393432003,color recognition,blue,"
+What color eyes does the cat have?
+The cat has blue eyes.",blue,1,0.0017032623291015625,6.375
+36000,yes/no,yes,"
+Is she wearing a bathing suit?
+Yes, she is wearing a bathing suit.",yes,1,0.0017004013061523438,6.37548828125
+36001,color recognition,pink,"
+What color is the umbrella?
+The umbrella is pink.",pink,1,0.0017032623291015625,6.375
+36002,reasoning,sun,"
+Why is the girl holding an umbrella?
+
+The girl is holding an umbrella to protect herself from the sun. In the image",sun,1,0.001697540283203125,6.3753662109375
+524508000,counting,3,"
+How many horses are on the picture?
+There are three horses on the picture.",there,0,0.0017032623291015625,6.375
+524508001,counting,3,"
+How many horses are in the picture?
+There are three horses in the picture.",there,0,0.0017032623291015625,6.375
+524508002,yes/no,yes,"
+Are they surrounded by trees?
+Yes, the horses are surrounded by trees.",yes,1,0.001708984375,6.371337890625
+524508003,yes/no,yes,"
+Is there a puddle of water on the dirt?",,0,0.00168609619140625,6.3822021484375
+474858000,other,sand,"
+What is the man standing on?
+The man is standing on the beach.",the,0,0.0017061233520507812,6.37109375
+474858001,yes/no,no,"
+Are these men on a boat?
+No, these men are on the beach.",no,1,0.0017061233520507812,6.37109375
+474858002,color recognition,white,"
+What color is the man's skin?
+The man's skin is white.",white,1,0.0017004013061523438,6.37548828125
+474858003,other,ocean,"
+What are these men standing in front of?
+
+These men are standing in front of a body of water, which is the ocean.",ocean,1,0.0017004013061523438,6.37548828125
+474858004,other,cold,"
+What is the temperature outside?
+
+The temperature outside is cold.",cold,1,0.001708984375,6.3712158203125
+474858005,yes/no,yes,"
+Are the boys happy?
+No",no,0,0.001712799072265625,6.3671875
+474858006,yes/no,no,"
+Is the man in the forefront trying to get signal on a cell phone? No, he is not. He is standing on the beach with his surfboard.",no,1,0.0016803741455078125,6.38671875
+474858007,object identification,sand,"
+What is this person standing on?
+The person is standing on a beach.",the,0,0.0017061233520507812,6.37109375
+474858008,time-related,no,"
+Were people moving when this picture was taken?",,0,0.001697540283203125,6.3753662109375
+474858009,other,surfboard,"
+What is lying on the ground?
+
+There are two surfboards lying on the ground.",there,0,0.0017061233520507812,6.37109375
+474858010,other,kites,"
+What is flying in the air?
+
+There are several kites flying in the air.",kites,1,0.0017061233520507812,6.37109375
+474858011,other,none,"
+What brand of shoes is the skateboarder wearing?
+The skateboarder is wearing Nike shoes.",the,0,0.00168609619140625,6.3824462890625
+474858012,yes/no,yes,"
+Was this photo taken recently? Yes.",yes,1,0.0017061233520507812,6.37109375
+474858013,yes/no,yes,"
+Is this  a beach?
+Yes",yes,1,0.001708984375,6.3712158203125
+474858014,yes/no,no,"
+Is the guy making a performance?
+No, the guy is not making a performance. He is standing on the beach with his",no,1,0.0017032623291015625,6.375
+474858015,yes/no,no,"
+Is he doing a trick?
+No",no,1,0.001708984375,6.3712158203125
+474858016,yes/no,yes,"
+Is the man in the foreground barefooted?
+No, the man in the foreground is not barefooted. He is wearing sho",no,0,0.0016946792602539062,6.37890625
+474858017,yes/no,no,"
+Is this busy metropolis? No.
+Is this a beach? Yes.
+Is this a sunny day? Yes.",no,1,0.001708984375,6.3712158203125
+474858018,yes/no,no,"
+What is the man on a skateboard?",,0,0.001697540283203125,6.3753662109375
+474858019,comparison,no,"
+Which man is controlling the kite?
+A. Man in black wetsuit
+B. Man in white wetsuit
+C",c,0,0.001697540283203125,6.3753662109375
+474858020,yes/no,yes,"
+Are there waves in the picture?
+Yes, there are waves in the picture.",yes,1,0.0017061233520507812,6.37109375
+474858021,other,cumulus,"
+What type of clouds are visible in this photo?
+
+In this photo, there are fluffy clouds visible in the sky.",in,0,0.001697540283203125,6.3753662109375
+474858022,other,standing,"
+What is the man doing?
+The man is standing on the beach, holding a surfboard.",standing,1,0.001708984375,6.3712158203125
+474858023,other,male,"
+Is the person on the right male or female?
+Male",male,1,0.001697540283203125,6.3753662109375
+474858024,other,star,"
+What object is painted on the surfboard?
+
+The surfboard has a picture of a shark painted on it.",the,0,0.001697540283203125,6.3753662109375
+474858025,color recognition,black,"
+What color is the shirt of the man standing?
+The man standing is wearing a black shirt.",black,1,0.0016946792602539062,6.37890625
+474858026,color recognition,white,"
+What color is the board?
+The board is white.",white,1,0.001708984375,6.3712158203125
+393438000,counting,1,"
+How many kids? 2
+How many adults? 1
+How many boats? 2
+How many",1,1,0.001712799072265625,6.3671875
+393438001,color recognition,"black, blue, red, orange, yellow","
+What colors are in the kite?
+The kite has red, yellow, and blue colors.",the,0,0.0017032623291015625,6.375
+393438002,yes/no,no,"
+Did the man just steal the boy's kite?",,0,0.0016889572143554688,6.3828125
+165859000,color recognition,red,"
+What color is the train's bumper?
+The train's bumper is red.",red,1,0.0016946792602539062,6.37890625
+165859001,yes/no,yes,"
+Is this a steam engine train?
+Yes",yes,1,0.0017061233520507812,6.37109375
+165859002,other,tracks,"
+What does the train ride along?
+
+The train rides along a set of train tracks.",tracks,1,0.0017061233520507812,6.37109375
+39288000,other,light,"
+What is turned on?
+The light is turned on.",light,1,0.001712799072265625,6.3671875
+39288001,other,banana,"
+What is the name of the yellow fruit pictured?
+
+A. Banana",banana,1,0.0016918182373046875,6.379150390625
+39288002,reasoning,they don't like oranges,"
+Why would someone not like the fruit at the front?
+
+Someone might not like the fruit at the front because it is an orange, which is",someone,0,0.0016946792602539062,6.37890625
+393442000,color recognition,orange,"
+What color dresses are the women wearing?
+The women are wearing orange dresses.",orange,1,0.001697540283203125,6.3753662109375
+393442001,yes/no,yes,"
+Are the umbrellas wet?
+Yes",yes,1,0.0017032623291015625,6.375
+393442002,counting,3,"
+How many black umbrellas?
+There are two black umbrellas.",there,0,0.0017032623291015625,6.375
+131299000,comparison,car,"
+Which vehicle is the smallest?
+A. Truck
+B. Car
+C. Suv",car,1,0.0017061233520507812,6.37109375
+131299001,yes/no,yes,"
+Is there snow on the ground?
+Yes, there is snow on the ground.",yes,1,0.0017061233520507812,6.37109375
+131299002,counting,4,"
+How many skis are on the ground?
+There are two sets of skis on the ground.",there,0,0.0017004013061523438,6.37548828125
+131300000,classification,cheese,"
+What kind of pizza is this?
+This is a pepperoni pizza.",this,0,0.0017032623291015625,6.375
+131300001,yes/no,no,"
+Does this oven look new? No.",no,1,0.0017061233520507812,6.37109375
+131300002,yes/no,no,"
+Does the oven have a digital buttons?
+No",no,1,0.0017004013061523438,6.3751220703125
+131300003,yes/no,yes,"
+Is this oven greasy?
+Yes",yes,1,0.0017061233520507812,6.37109375
+131300004,yes/no,yes,"
+Is the pizza on a baking tray?
+No, the pizza is not on a baking tray. It is placed directly on",no,0,0.0016946792602539062,6.37890625
+393445000,yes/no,yes,"
+Do you like chocolate cake?",,0,0.0017004013061523438,6.37548828125
+393445001,color recognition,white,"
+What color is the plate?
+The plate is white.",white,1,0.001708984375,6.3712158203125
+393445002,object identification,chocolate,"
+What is this cake made with?
+
+The cake is made with chocolate.",chocolate,1,0.0017032623291015625,6.375
+524518000,other,round,"
+What shape are the plates?
+The plates are round.",round,1,0.0017061233520507812,6.37109375
+524518001,yes/no,yes,"
+Are there any water glasses on the table?
+Yes, there are water glasses on the table.",yes,1,0.001697540283203125,6.3753662109375
+524518002,other,many plates,"
+What indicates that this is for a party?
+
+The presence of two pizzas on the table, along with multiple cups, wine",the,0,0.0017004013061523438,6.37548828125
+524518003,yes/no,yes,"
+Are there tomatoes on the pizza?
+Yes, there are tomatoes on the pizza.",yes,1,0.0017004013061523438,6.37548828125
+524518004,other,fork and knife,"
+What two utensils are next to the plate?
+
+A knife and a fork are next to the plate.",a,0,0.0016946792602539062,6.3790283203125
+524518005,yes/no,no,"
+Are there any people in the picture?
+No, there are no people in the picture.",no,1,0.0017032623291015625,6.375
+524520000,yes/no,no,"
+Can they go?
+
+No, they can't go.",no,1,0.0017156600952148438,6.3682861328125
+524520001,yes/no,no,"
+Are the cars parked?
+Yes, the cars are parked.",yes,0,0.001708984375,6.3712158203125
+524520002,reasoning,to stop traffic,"
+Why is the top light on?
+
+The top light on the traffic signal is on because it is signaling that vehicles must stop",the,0,0.0017061233520507812,6.37109375
+524520003,other,very,"
+How lucky is it that no one was walking on the sidewalk at that time?
+
+It is quite lucky that no one was walking on the sidewalk at that time,",it,0,0.001674652099609375,6.390625
+524520004,other,red,"
+What traffic light is on?
+
+The traffic light on the right is on.",the,0,0.001708984375,6.3712158203125
+524522000,yes/no,no,"
+Are all the players wearing black shirts?
+No, not all the players are wearing black shirts. Some players are wearing",no,1,0.0016946792602539062,6.37890625
+524522001,other,11,"
+What number does the battery have on his shirt?
+The batter has the number 11 on his shirt.",11,1,0.0016946792602539062,6.37890625
+524522002,other,yankees,"
+What team is the batter from?
+The batter is from the Giants team.",the,0,0.0017061233520507812,6.37109375
+524522003,counting,2,"
+How many water jugs are visible?
+There are two water jugs visible in the image.",there,0,0.0017032623291015625,6.375
+524525000,color recognition,white,"
+What color is the picket fence?
+
+The picket fence is white.",white,1,0.0017004013061523438,6.375
+524525001,counting,3,"
+How many trains are there?
+There are two trains.",there,0,0.001708984375,6.3712158203125
+524525002,yes/no,yes,"
+Is one of the trains going through a tunnel?
+Yes, one of the trains is going through a tunnel.",yes,1,0.001697540283203125,6.3753662109375
+131312000,person identification,none,"
+Who is the woman the picture on wall?
+Who is the woman in the picture on the wall?",,0,0.0017004013061523438,6.37548828125
+131312001,yes/no,no,"
+Is the door open?
+No",no,1,0.001712799072265625,6.3671875
+131312002,yes/no,yes,"
+Is the man on TV wearing a tie?
+No",no,0,0.001697540283203125,6.3753662109375
+131312003,other,pictures,"
+What objects are directly above the TV set?
+
+There are two objects directly above the TV set: a football and a bookshelf.",there,0,0.0017004013061523438,6.37548828125
+131315000,yes/no,no,"
+Is everyone wearing glasses? No.
+Is everyone wearing a hat? No.
+Is everyone wearing a watch?",no,1,0.0017061233520507812,6.37109375
+131315001,other,dots,"
+What print is this woman's dress?
+
+The woman's dress has a black and white print.",the,0,0.0017004013061523438,6.375244140625
+131315002,yes/no,no,"
+Are both people of the same ethnic background?
+No, the man is white and the woman is black.",no,1,0.001697540283203125,6.3753662109375
+262389000,yes/no,yes,"
+The man is wearing a helmet?",,0,0.0017004013061523438,6.3753662109375
+262389001,other,bird,"
+What is on the handlebars?
+
+The handlebars have a bird perched on them.",bird,1,0.0017061233520507812,6.37109375
+262389002,other,parrot,"
+What bird is on the man's bike?
+The bird on the man's bike is a parrot.",parrot,1,0.0016946792602539062,6.3790283203125
+247000,color recognition,"red, white, and blue","
+What color is this airplane?
+The airplane is blue and white.",the,0,0.0017061233520507812,6.37109375
+247001,person identification,man,"
+Who is the pilot?
+The pilot is a woman.",the,0,0.001712799072265625,6.3671875
+247002,yes/no,yes,"
+Is this a government official's plane?
+No",no,0,0.0017004013061523438,6.375244140625
+393464000,yes/no,no,"
+Are the kids sitting? No.
+Are the kids standing? Yes.",no,1,0.001708984375,6.3712158203125
+393464001,counting,5,"
+How many kids are there?
+There are five kids.",there,0,0.0017061233520507812,6.37109375
+393464002,yes/no,yes,"
+Are these children playing a game?
+Yes, the children are playing a game, specifically a game of catch with a ball.",yes,1,0.0017061233520507812,6.37109375
+262393000,counting,2,"
+How many rocks?
+There are two rocks in the image.",there,0,0.0017156600952148438,6.3682861328125
+262393001,other,metal,"
+What is the fence made of?
+
+The fence is made of metal.",metal,1,0.0017032623291015625,6.375
+262393002,yes/no,no,"
+The zebras are in a field?",,0,0.0017004013061523438,6.37548828125
+262393003,counting,2,"
+How many zebras are there?
+There are two zebras in the image.",there,0,0.0017032623291015625,6.375
+250000,counting,50,"
+How many floors do you think the highest building has?",,0,0.0016918182373046875,6.379150390625
+250001,yes/no,no,"
+Have you ever been to this intersection?",,0,0.0017032623291015625,6.375
+250002,other,greenwich,"
+What is the name of the street that starts with a color?",,0,0.0016889572143554688,6.3828125
+131323000,yes/no,yes,"
+Are some of the trees dead?
+Yes, some of the trees in the image are dead.",yes,1,0.0017061233520507812,6.37109375
+131323001,yes/no,no,"
+Are the rocks for the giraffe to sit on?",,0,0.0016918182373046875,6.379150390625
+131323002,other,fence,"
+How can you tell the giraffe is in captivity?
+
+You can tell the giraffe is in captivity because it is standing in a f",you,0,0.0016889572143554688,6.3828125
+262399000,other,pike place fish,"
+What is the name of the store behind the lady?
+
+The name of the store behind the lady is ""Pike Place Fish.""",pike place fish,1,0.0016946792602539062,6.3790283203125
+262399001,other,fish,"
+What does the lady have in her mouth?
+
+The lady has a hot dog in her mouth.",the,0,0.0017004013061523438,6.375244140625
+262399002,color recognition,red,"
+What color is the woman's shirt?
+The woman's shirt is red.",red,1,0.001697540283203125,6.3753662109375
+131330000,yes/no,yes,"
+Does someone have a green thumb?
+
+Yes, someone has a green thumb, as they are successfully growing plants in pots.",yes,1,0.0017061233520507812,6.37109375
+131330001,yes/no,yes,"
+Is the seedling a hybrid?
+No",no,0,0.0017032623291015625,6.375
+131330002,other,labels,"
+What are the popsicle sticks used for?
+
+The popsicle sticks are used to hold the plants in place and provide support for",the,0,0.0016946792602539062,6.37890625
+524547000,reasoning,snowboarding,"
+Why is the man in mid-air?
+
+The man is in mid-air because he is performing a snowboarding trick, which",snowboarding,1,0.0017004013061523438,6.375244140625
+524547001,yes/no,yes,"
+Is there a tent in the snow?
+Yes, there is a tent in the snow.",yes,1,0.0017032623291015625,6.375
+524547002,other,teepee,"
+What is the structure in the background?
+The structure in the background is a teepee.",teepee,1,0.0017032623291015625,6.375
+260000,color recognition,blue,"
+What color is the lighted sign?
+The lighted sign is yellow.",the,0,0.0017032623291015625,6.375
+260001,yes/no,yes,"
+Is this terminal safe at night?
+
+Yes, the terminal is safe at night. The image shows a woman standing in the terminal",yes,1,0.0017061233520507812,6.37109375
+260002,yes/no,yes,"
+Is the woman by herself?
+Yes, the woman is by herself.",yes,1,0.001708984375,6.3712158203125
+524551000,yes/no,yes,"
+Is it a clear day?
+Yes, it is a clear day.",yes,1,0.001708984375,6.3712158203125
+524551001,object identification,snowboarding,"
+What is this person doing?
+The person is snowboarding, performing a jump and flying through the air.",snowboarding,1,0.001708984375,6.3712158203125
+524551002,other,snowboarding,"
+What are these people doing?
+
+These people are snowboarding, performing tricks, and enjoying the thrill",snowboarding,1,0.001708984375,6.3712158203125
+524551003,other,teepee,"
+What is the white structure behind the ramp?
+
+The white structure behind the ramp is a teepee.",teepee,1,0.001697540283203125,6.3753662109375
+393480000,yes/no,no,"
+Is this person prone on his back or on his knees?",,0,0.00168609619140625,6.3822021484375
+393480001,yes/no,yes,"
+Is the skier on the ground?
+Yes, the skier is sitting on the ground.",yes,1,0.0017032623291015625,6.375
+393480002,yes/no,yes,"
+Is the subject of the photo facing downhill?
+No, the subject of the photo is facing uphill.",no,0,0.001697540283203125,6.3753662109375
+393480003,classification,pine,"
+What kind of trees are in this photo?
+
+There are pine trees in this photo.",pine,1,0.0017004013061523438,6.3753662109375
+393480004,other,snow,"
+What is on the ground?
+
+There is snow on the ground.",snow,1,0.001708984375,6.3712158203125
+131339000,color recognition,red,"
+What color is the surfboard?
+The surfboard is red.",red,1,0.0017032623291015625,6.375
+131339001,other,shorts,"
+What is the man wearing?
+The man is wearing a grey pair of shorts.",shorts,1,0.0017061233520507812,6.37109375
+131339002,yes/no,yes,"
+Is this man attached to his surfboard?
+No, the man is not attached to his surfboard. He is standing on the sur",no,0,0.001697540283203125,6.3753662109375
+131339003,yes/no,yes,"
+Is this man riding a surfboard?
+Yes, the man is riding a surfboard on a wave.",yes,1,0.001697540283203125,6.3753662109375
+131339004,yes/no,yes,"
+Is he wearing the right type of suit?
+No",no,0,0.001697540283203125,6.3753662109375
+131339005,yes/no,no,"
+Is the man riding a white board? No, the man is riding a red board.",no,1,0.0017004013061523438,6.375244140625
+131339006,counting,1,"
+How many people are surfing?
+There is only one person surfing in the image.",there,0,0.0017032623291015625,6.375
+131339007,yes/no,yes,"
+Is the woman surfing?
+Yes, the woman is surfing on a wave.",yes,1,0.0017061233520507812,6.37109375
+131339008,classification,swim,"
+What kind of suit is he wearing?
+The man is wearing a wetsuit.",the,0,0.0017004013061523438,6.375244140625
+524557000,other,soccer,"
+What sport are they playing?
+
+The sport being played by the group of young men is soccer.",soccer,1,0.001708984375,6.3712158203125
+524557001,other,white,"
+Color is the goaltenders shirt?
+Color is the goaltenders shirt.",color,0,0.0017004013061523438,6.3751220703125
+524557002,location,left,"
+Where is number 8?
+Number 8 is on the right side of the image.",number,0,0.001708984375,6.3712158203125
+524557003,counting,5,"
+How many kids are wearing black and white?
+There are two kids wearing black and white.",there,0,0.0016946792602539062,6.37890625
+524557004,yes/no,no,"
+Is the boy in the middle being attacked? No, he is not being attacked. He is simply standing in front of the soccer ball.",no,1,0.0017004013061523438,6.3751220703125
+524557005,yes/no,no,"
+Does the boy have his head stuck in the net? No, the boy does not have his head stuck in the net.",no,1,0.0016946792602539062,6.37890625
+131342000,counting,0,"
+How many men are wearing hats?
+0",0,1,0.0017004013061523438,6.37548828125
+131342001,yes/no,yes,"
+Does the guy on the right look happy?
+Yes",yes,1,0.001697540283203125,6.3753662109375
+131342002,other,best friends,"
+Are they coworkers or best friends?
+
+It is not possible to definitively determine from the image whether the two men are cowork",best friends,1,0.0017004013061523438,6.37548828125
+131342003,other,wine,"
+What is in the glass in the lower right?
+The glass in the lower right contains a red liquid.",the,0,0.001697540283203125,6.3753662109375
+131342004,other,brick,"
+The wall is made out of?",,0,0.0017061233520507812,6.37109375
+262415000,other,no parking,"
+What does the sign in the background say?",,0,0.0017004013061523438,6.3753662109375
+262415001,color recognition,yellow,"
+What color is the bus in the mirror?
+The bus in the mirror is yellow.",yellow,1,0.0017004013061523438,6.3753662109375
+262415002,other,bus,"
+What is behind the mirror?
+
+The mirror is reflecting the back of a school bus.",bus,1,0.001708984375,6.3712158203125
+262415003,classification,children,"
+What kind of passenger does the bus carry?
+
+The bus carries students as its passengers.",the,0,0.0017004013061523438,6.3753662109375
+393488000,other,very,"
+How healthy does this meal look?
+
+This meal looks quite healthy, as it contains a variety of vegetables, including",this,0,0.0017004013061523438,6.375244140625
+393488001,yes/no,yes,"
+Are there multiple vegetables on the plate?
+Yes, there are multiple vegetables on the plate, including broccoli, peas,",yes,1,0.0017004013061523438,6.375244140625
+393488002,other,beef,"
+What meat is used in the main dish?
+The main dish contains beef.",beef,1,0.001697540283203125,6.3753662109375
+393488003,yes/no,yes,"
+Is there meat on the plate?
+Yes, there is meat on the plate.",yes,1,0.0017061233520507812,6.37109375
+393489000,other,phone,"
+What is the man reaching for?
+The man is reaching for a cell phone.",phone,1,0.0017061233520507812,6.37109375
+393489001,yes/no,no,"
+Is this a brand new phone?
+No",no,1,0.0017061233520507812,6.37109375
+393489002,classification,old id,"
+What kind of id is that?
+
+The id is a cell phone.",the,0,0.0017061233520507812,6.37109375
+393489003,color recognition,gray,"
+What color is the phone?
+The phone is silver.",the,0,0.001708984375,6.3712158203125
+393489004,yes/no,no,"
+Does this phone fold closed?
+Yes",yes,0,0.0017061233520507812,6.37109375
+393489005,other,english,"
+What language is the text on the sign?
+English",english,1,0.0017004013061523438,6.3753662109375
+393489006,counting,1,"
+How many holes are on the phone case?
+There are two holes on the phone case.",there,0,0.0017004013061523438,6.3753662109375
+393489007,other,phone,"
+What is the man holding?
+The man is holding a cell phone.",phone,1,0.001708984375,6.3712158203125
+393489008,other,silver,"
+What does this phone case look like?
+
+The phone case looks like a silver flip phone.",silver,1,0.0017032623291015625,6.375
+393489009,other,pharos,"
+What is the brand of the phone?
+What is the model of the phone?
+What is the color of the phone?
+What",what,0,0.0017032623291015625,6.375
+393489010,yes/no,no,"
+Is the phone broken?
+No",no,1,0.001712799072265625,6.3671875
+393489011,other,phone,"
+What does this controller go with?
+
+The controller in the image is a Pharos GPS Phone 600.",phone,1,0.0017061233520507812,6.37109375
+393489012,yes/no,no,"
+Is the phone light on?
+No",no,1,0.001708984375,6.3712158203125
+393489013,comparison,left,"
+Which hand is the person holding the phone in?
+The person is holding the phone in their left hand.",left,1,0.0016946792602539062,6.3790283203125
+393489014,yes/no,no,"
+Is the display on?
+No",no,1,0.001712799072265625,6.3671875
+393489015,yes/no,no,"
+Is the person using skype? No.
+Is the person using a cell phone? Yes.",no,1,0.0017061233520507812,6.37109375
+393489016,counting,1,"
+How many phones do you see?
+1",1,1,0.0017032623291015625,6.375
+393489017,yes/no,no,"
+Is the phone on?
+No",no,1,0.001712799072265625,6.3671875
+393489018,yes/no,yes,"
+Is the background clear?
+No",no,0,0.001712799072265625,6.3671875
+393489019,other,pharos,"
+What brand is the phone?
+What is the phone model?
+What is the phone's screen size?
+What is",what,0,0.001708984375,6.3712158203125
+393489020,classification,pharos,"
+What kind of phone is this?
+The phone in the image is a Pharos GPS phone.",pharos,1,0.0017061233520507812,6.37109375
+393489021,other,cell phone,"
+What is the person holding in their hand?
+
+The person is holding a cell phone in their hand.",cell phone,1,0.0017004013061523438,6.3753662109375
+393489022,other,phone,"
+What is the person holding?
+The person is holding a cell phone.",phone,1,0.001708984375,6.3712158203125
+336077000,yes/no,yes,"
+Is this an inside stadium?
+Yes",yes,1,0.0017061233520507812,6.37109375
+336077001,yes/no,yes,"
+Is the stadium crowded?
+Yes, the stadium is crowded with people.",yes,1,0.0017061233520507812,6.37109375
+336077002,yes/no,yes,"
+Is the stadium full?
+Yes, the stadium is full of people.",yes,1,0.001708984375,6.37109375
+336077003,yes/no,yes,"
+Is there a baseball player holding a bat?
+Yes, there is a baseball player holding a bat.",yes,1,0.0017004013061523438,6.375
+546179000,yes/no,no,"
+Is this bathroom all white?
+No, the bathroom is not all white. It has a brown floor and a brown to",no,1,0.0017061233520507812,6.37109375
+546179001,yes/no,no,"
+Has the bathroom been renovated recently?
+No",no,1,0.0017004013061523438,6.375244140625
+546179002,other,shower,"
+What's on the other side of the shower curtain?
+What's on the other side of the shower curtain?",shower,1,0.00168609619140625,6.382080078125
+546179003,yes/no,no,"
+Are there towels on the ground?
+No",no,1,0.0017004013061523438,6.375244140625
+546179004,color recognition,white,"
+What color is the shower curtain?
+The shower curtain is white.",white,1,0.0017004013061523438,6.375244140625
+546179005,yes/no,yes,"
+Does this look clean?
+Yes",yes,1,0.001712799072265625,6.3671875
+546179006,location,in bathroom,"
+Where is the shower located?
+A. In the bathroom
+B. In the bedroom
+C. In the kitchen",c,0,0.0017061233520507812,6.37109375
+546179007,yes/no,no,"
+Is the shower curtain open?
+No, the shower curtain is closed.",no,1,0.0017032623291015625,6.375
+9000,counting,2,"
+How many cookies can be seen?
+There are two cookies visible in the image.",there,0,0.0017061233520507812,6.37109375
+9001,color recognition,pink and yellow,"
+What color are the dishes?
+The dishes are yellow.",the,0,0.0017061233520507812,6.37109375
+9002,other,broccoli,"
+What is the green stuff?
+
+The green stuff is broccoli.",broccoli,1,0.001708984375,6.3714599609375
+393493000,yes/no,yes,"
+Does this bike have training wheels?
+Yes",yes,1,0.0017004013061523438,6.375
+393493001,counting,2,"
+How many girls are visible?
+There are two girls visible in the image.",there,0,0.001708984375,6.37109375
+393493002,yes/no,yes,"
+Is the picnic table red?
+Yes, the picnic table is red.",yes,1,0.0017061233520507812,6.37109375
+131351000,yes/no,no,"
+Is this a clean room?
+Yes",yes,0,0.001708984375,6.3712158203125
+131351001,counting,1,"
+How many colors are in the tile?
+There are two colors in the tile: white and grey.",there,0,0.0017032623291015625,6.375
+131351002,other,tile,"
+What is the floor made of?
+
+The floor is made of tiles.",the,0,0.0017061233520507812,6.37109375
+131351003,yes/no,yes,"
+Is this bathroom clean?
+No",no,0,0.001708984375,6.3712158203125
+131351004,yes/no,no,"
+Is the room clean?
+Yes",yes,0,0.001712799072265625,6.3671875
+131351005,color recognition,clear,"
+What color is the water in the bathtub?
+The water in the bathtub is blue.",the,0,0.0016946792602539062,6.3790283203125
+131351006,yes/no,no,"
+Is there a mirror in the bathroom?
+No, there is no mirror in the bathroom.",no,1,0.0017004013061523438,6.3753662109375
+131351007,other,many more white,"
+What is the ratio of white tiles to blue?
+The ratio of white tiles to blue is 1:1.",the,0,0.0016946792602539062,6.3790283203125
+131351008,yes/no,no,"
+Is there a green plant in this room? No",no,1,0.0017004013061523438,6.3753662109375
+131351009,other,drill,"
+What power tool is present?
+
+The power tool present in the image is a drill.",drill,1,0.001708984375,6.3712158203125
+131351010,yes/no,no,"
+Is this room clean?
+Yes",yes,0,0.001712799072265625,6.3671875
+131352000,other,watermelon,"
+What fruit is present?
+
+The fruit present in the image is a strawberry.",the,0,0.001712799072265625,6.3671875
+131352001,color recognition,white,"
+What color are these mattresses?
+The mattresses are red.",the,0,0.0017032623291015625,6.375
+131352002,comparison,bedroom,"
+Which room is this?
+The room is a bedroom.",bedroom,1,0.001708984375,6.3712158203125
+524572000,location,stump,"
+Where is the cat sitting?
+The cat is sitting on a log.",the,0,0.001708984375,6.3712158203125
+524572001,other,bird,"
+What do you think the cat is looking at?",,0,0.001697540283203125,6.3753662109375
+524572002,yes/no,no,"
+Is the cat trying to catch a bird?
+No, the cat is not trying to catch a bird. It is sitting on a log and",no,1,0.0017004013061523438,6.375244140625
+112497000,other,fork,"
+What utensil is sitting next to the food?
+A fork is sitting next to the food.",fork,1,0.0016946792602539062,6.3790283203125
+112497001,other,beer,"
+What is in the jug?
+
+The jug contains beer.",beer,1,0.001708984375,6.3712158203125
+112497002,other,pizza,"
+What is the name of this crusted food?
+
+Cheese pizza",pizza,1,0.001697540283203125,6.3753662109375
+393503000,color recognition,white,"
+What color are the items on the truck?
+The items on the truck are white.",white,1,0.001697540283203125,6.3753662109375
+393503001,yes/no,no,"
+Is the writing in French? No, the writing is in a different language.",no,1,0.001708984375,6.3712158203125
+393503002,yes/no,no,"
+Is this a traveling circus?
+
+No, this is not a traveling circus. Instead, it is a truck",no,1,0.0017032623291015625,6.375
+393503003,other,cow,"
+What animal is on the flatbed?
+
+The animal on the flatbed is a cow.",cow,1,0.0017032623291015625,6.375
+393508000,other,kitchen,"
+What room of the house is this?
+This is the kitchen.",kitchen,1,0.0017032623291015625,6.375
+393508001,other,wood,"
+What is the floor made out of?
+The floor is made out of wood.",wood,1,0.0017032623291015625,6.375
+393508002,other,cooking,"
+What do you use the stove for?
+I use the stove for cooking and heating food.",cooking,1,0.0017004013061523438,6.37548828125
+414639000,other,guards,"
+What is the batter wearing on his ankles?
+
+The batter is wearing black socks on his ankles.",the,0,0.0016918182373046875,6.379150390625
+414639001,yes/no,yes,"
+Are there long lenses?
+Yes",yes,1,0.001708984375,6.37109375
+414639002,other,catcher,"
+What is the crouching man in the mask called?
+The crouching man in the mask is called the catcher.",catcher,1,0.0016918182373046875,6.3792724609375
+131366000,counting,4,"
+How many people are standing next to each other?
+There are four people standing next to each other.",there,0,0.001697540283203125,6.3753662109375
+131366001,other,rackets,"
+What are the two women carrying?
+
+The two women are carrying tennis rackets.",rackets,1,0.0017061233520507812,6.37109375
+131366002,other,tennis rackets,"
+What are these people holding?
+
+These people are holding tennis rackets.",tennis rackets,1,0.001708984375,6.3712158203125
+131366003,counting,8,"
+How many rackets?
+There are four rackets in the image.",there,0,0.001712799072265625,6.3671875
+131366004,counting,4,"
+How many people are in this photo?
+There are four people in this photo.",there,0,0.0017032623291015625,6.375
+131366005,other,collar,"
+What is the woman wearing on her neck?
+
+The woman is wearing a necklace on her neck.",the,0,0.001697540283203125,6.3753662109375
+131366006,yes/no,yes,"
+Is everyone wearing long sleeves? No.
+Is everyone wearing shorts? Yes.",yes,1,0.0017004013061523438,6.3756103515625
+131366007,other,tennis,"
+What sports are they playing?
+
+The women in the image are playing tennis.",tennis,1,0.001708984375,6.3712158203125
+131366008,other,1950s,"
+What is the approximate time period of this photo?
+
+The photo appears to be from the 1950s, as it features women",1950s,1,0.001697540283203125,6.3753662109375
+131366009,counting,4,"
+How many girls are in the picture?
+There are four girls in the picture.",there,0,0.0017032623291015625,6.375
+131366010,comparison,0,"
+Which two are actually playing?",,0,0.0017061233520507812,6.37109375
+131366011,yes/no,yes,"
+Are the woman wearing short dresses?
+Yes, the woman are wearing short dresses.",yes,1,0.0017004013061523438,6.3756103515625
+131366012,yes/no,yes,"
+Is the lady smiling?
+No",no,0,0.001708984375,6.3712158203125
+131366013,yes/no,no,"
+Do they play for Red Sox? No.
+Do they play for the Yankees? No.
+Do they play for the",no,1,0.0017032623291015625,6.375
+131366014,other,playing tennis,"
+What are the ladies doing?
+
+The ladies are standing together, holding tennis rackets, and posing for a picture.",the,0,0.001708984375,6.3712158203125
+131366015,other,jug,"
+What three letter word, best describes the liquid container on the ground between the two people?
+
+Bottle",bottle,0,0.001674652099609375,6.390625
+131366016,other,nothing,"
+What does the wall say on the far left?
+The wall says ""Fence"" on the far left.",the,0,0.001697540283203125,6.3753662109375
+131366017,yes/no,no,"
+Is this a mixed race group? No.
+Is this a group of women? Yes.",no,1,0.0017061233520507812,6.37109375
+131366018,yes/no,yes,"
+Are these people getting reading to go play sports?
+Yes, the group of women is holding tennis rackets and posing for a picture, indicating",yes,1,0.001697540283203125,6.3753662109375
+131366019,yes/no,yes,"
+Is there any females? Yes",yes,1,0.001712799072265625,6.3671875
+131366020,counting,4,"
+How many people don't have a skateboard?
+There are 4 people in the image who don't have a skateboard.",4,1,0.0016918182373046875,6.3792724609375
+131366021,counting,0,"
+How many of the four main individuals are wearing baseball caps?
+
+There are two of the four main individuals wearing baseball caps.",there,0,0.0016889572143554688,6.3828125
+131366022,counting,8,"
+How many racquets?
+There are four racquets in the image.",there,0,0.001708984375,6.3712158203125
+131366023,other,skirt,"
+What is the woman wearing?
+The woman is wearing a white dress.",the,0,0.0017061233520507812,6.37109375
+131366024,other,black and white,"
+What type of photo is this?
+This is a black and white photo.",black and white,1,0.0017061233520507812,6.37109375
+131366025,yes/no,no,"
+Is this a shop? No
+Is this a restaurant? No
+Is this a hotel? No
+Is this a school",no,1,0.001712799072265625,6.3671875
+131366026,other,tennis,"
+What sport is this?
+
+The sport depicted in the image is tennis.",tennis,1,0.001712799072265625,6.3671875
+131366027,other,tennis rackets,"
+What are the people holding?
+
+The people are holding tennis rackets.",tennis rackets,1,0.001708984375,6.3712158203125
+131366028,counting,8,"
+How many legs are in the image?
+There are four legs in the image.",there,0,0.0017032623291015625,6.375
+131366029,other,tennis rackets,"
+What is the group of people holding in their hand?
+
+The group of people is holding tennis rackets in their hands.",tennis rackets,1,0.0016946792602539062,6.3790283203125
+131366030,yes/no,yes,"
+Are they happy?
+Yes",yes,1,0.0017156600952148438,6.3682861328125
+131366031,other,live,"
+Is the game live or on television?
+
+The game is live, as the women are standing on a tennis court, holding tennis ra",live,1,0.0017032623291015625,6.375
+497565000,yes/no,yes,"
+Are the trying to fix the train?
+
+Yes, the people are trying to fix the train.",yes,1,0.0017032623291015625,6.375
+497565001,color recognition,black,"
+What color is the locomotive?
+The locomotive is black.",black,1,0.0017061233520507812,6.37109375
+497565002,yes/no,yes,"
+Is the train black?
+Yes",yes,1,0.001712799072265625,6.3671875
+101431000,yes/no,yes,"
+Is this an evening scene?
+Yes",yes,1,0.001708984375,6.3712158203125
+101431001,color recognition,orange,"
+What color is the sky?
+The sky is orange.",orange,1,0.001708984375,6.3712158203125
+101431002,yes/no,yes,"
+Is this a desert scene?
+No",no,0,0.001708984375,6.3712158203125
+262442000,counting,30,"
+How many passengers does this bus carry?
+The bus carries 20 passengers.",the,0,0.0017032623291015625,6.375
+262442001,yes/no,yes,"
+Is this a city street?
+Yes",yes,1,0.001708984375,6.3712158203125
+262442002,other,877-pwp-green,"
+How would you call for more information about the bus?",,0,0.0016946792602539062,6.3790283203125
+262442003,comparison,right,"
+Which direction is the turn lane going?
+The turn lane is going to the right.",right,1,0.001697540283203125,6.3753662109375
+21895000,yes/no,yes,"
+Is she wearing a bonnet?
+No, she is not wearing a bonnet. She is wearing a hat.",no,0,0.0017032623291015625,6.375
+21895001,yes/no,yes,"
+Was the woman's collar treated with starch?",,0,0.0016889572143554688,6.3828125
+21895002,other,polka dot,"
+What pattern does the woman have on?
+The woman has a polka dot pattern on her hat.",polka dot,1,0.0017032623291015625,6.375
+131373000,location,beach,"
+Where is this?
+
+Answer: Ocean",answer,0,0.0017156600952148438,6.3681640625
+131373001,yes/no,no,"
+Is it going to storm?
+No",no,1,0.001708984375,6.3712158203125
+131373002,classification,horse,"
+What kind of animal is on the beach?
+
+There is a horse on the beach.",horse,1,0.0017004013061523438,6.37548828125
+131373003,other,horse,"
+What is running across the beach?
+
+The waves are running across the beach.",the,0,0.0017061233520507812,6.37109375
+131374000,counting,3,"
+How many open umbrellas are there on the beach?
+There are two open umbrellas on the beach.",there,0,0.0016889572143554688,6.3828125
+131374001,counting,3,"
+How many umbrellas do you see?
+There are 3 umbrellas in the image.",3,1,0.001697540283203125,6.3753662109375
+131374002,other,grill,"
+What is causing the smoke?
+
+The smoke is caused by the fire in the fire pit.",the,0,0.001708984375,6.3712158203125
+131374003,counting,4,"
+How many striped objects are in the photo?
+There are two striped objects in the photo.",there,0,0.001697540283203125,6.3753662109375
+109277000,other,african american,"
+What ethnicity is the man?
+African American",african american,1,0.0017032623291015625,6.375
+109277001,color recognition,blue,"
+What color is the carpet in the middle of the floor?
+The carpet in the middle of the floor is blue.",blue,1,0.0016889572143554688,6.3828125
+109277002,yes/no,no,"
+Does this room have a low ceiling?
+No, the room has a high ceiling.",no,1,0.0017004013061523438,6.375244140625
+131376000,color recognition,black,"
+What color hat is this man wearing?
+The man is wearing a black hat.",black,1,0.0017004013061523438,6.375244140625
+131376001,color recognition,red,"
+What color are the shoelaces?
+
+The shoelaces are red.",red,1,0.0017032623291015625,6.375
+131376002,other,shorts,"
+Is the man wearing shorts or pants?
+Shorts",shorts,1,0.0016946792602539062,6.37890625
+131376003,yes/no,no,"
+Is a person wearing a hooded sweatshirt?
+No",no,1,0.00168609619140625,6.382080078125
+131376004,yes/no,no,"
+Is he wearing a helmet? No.
+Is he wearing a hat? Yes.",no,1,0.0017032623291015625,6.375
+131376005,comparison,down,"
+Which way is the man's hat facing?
+A. Forward
+B. Backward",b,0,0.0016946792602539062,6.37890625
+131376006,color recognition,white,"
+What color is the guy's shirt?
+The guy's shirt is white.",white,1,0.0016946792602539062,6.37890625
