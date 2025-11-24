@@ -1240,8 +1240,16 @@ class LlamaForCausalLM(LlamaPreTrainedModel):
                 past_length = past_key_values.seen_tokens
                 max_cache_length = past_key_values.get_max_length()
             else:
-                cache_length = past_length = past_key_values[0][0].shape[2]
+                cleaned_past = []
+                for layer in past_key_values:
+                    if isinstance(layer, (list, tuple)) and len(layer) >= 2:
+                        cleaned_past.append((layer[0], layer[1]))
+                    else:
+                        cleaned_past.append(layer)
+
+                cache_length = past_length = cleaned_past[0][0].shape[2]
                 max_cache_length = None
+                past_key_values = cleaned_past
 
             # Keep only the unprocessed tokens:
             # 1 - If the length of the attention_mask exceeds the length of input_ids, then we are in a setting where
