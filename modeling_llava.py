@@ -435,9 +435,15 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
                 # In case input_ids.shape[1] == 1 & pixel_values==None & past_key_values != None, we are in the case of
                 # generation with cache
                 if past_key_values is not None and pixel_values is not None and input_ids.shape[1] == 1:
+                    pkv = past_key_values[0][0]
                     # Retrieve the first layer to inspect the logits and mask out the hidden states
                     # that are set to 0
-                    first_layer_past_key_value = past_key_values[0][0][:, :, :, 0]
+                    if pkv.dim() == 4:
+                        first_layer_past_key_value = pkv[:, :, :, 0]
+                    elif pkv.dim() == 3:
+                        first_layer_past_key_value = pkv.unsqueeze(0)
+                    else:
+                        raise ValueError(f"Unexpected PKV shape: {pkv.shape}")
 
                     # Sum all dimensions of head_dim (-2) to avoid random errors such as: https://github.com/huggingface/transformers/pull/28032#issuecomment-1863691941
                     batch_index, non_attended_tokens = torch.where(first_layer_past_key_value.float().sum(-2) == 0)
