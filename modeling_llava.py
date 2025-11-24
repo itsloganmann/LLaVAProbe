@@ -448,6 +448,7 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
                     # Sum all dimensions of head_dim (-2) to avoid random errors such as: https://github.com/huggingface/transformers/pull/28032#issuecomment-1863691941
                     mask = first_layer_past_key_value.float().sum(-2) == 0
                     indices = torch.where(mask)
+                    batch_index = indices[0]
                     non_attended_tokens = indices[-1]
 
                     # Get the target length
