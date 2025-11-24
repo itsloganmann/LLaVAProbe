@@ -446,7 +446,9 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
                         raise ValueError(f"Unexpected PKV shape: {pkv.shape}")
 
                     # Sum all dimensions of head_dim (-2) to avoid random errors such as: https://github.com/huggingface/transformers/pull/28032#issuecomment-1863691941
-                    batch_index, non_attended_tokens = torch.where(first_layer_past_key_value.float().sum(-2) == 0)
+                    mask = first_layer_past_key_value.float().sum(-2) == 0
+                    indices = torch.where(mask)
+                    non_attended_tokens = indices[-1]
 
                     # Get the target length
                     target_seqlen = first_layer_past_key_value.shape[-1] + 1
