@@ -434,15 +434,20 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
             else:
                 # In case input_ids.shape[1] == 1 & pixel_values==None & past_key_values != None, we are in the case of
                 # generation with cache
-                if past_key_values is not None and pixel_values is not None and input_ids.shape[1] == 1:
-                    # Retrieve the first layer to inspect the logits and mask out the hidden states
-                    # that are set to 0
-                    first_layer_past_key_value = past_key_values[0][0][:, :, :, 0]
-
-                    # Sum all dimensions of head_dim (-2) to avoid random errors such as: https://github.com/huggingface/transformers/pull/28032#issuecomment-1863691941
-                    batch_index, non_attended_tokens = torch.where(first_layer_past_key_value.float().sum(-2) == 0)
-
-                    # Get the target length
+                if (
+                    past_key_values is not None
+                    and isinstance(past_key_values, (list, tuple))
+                    and len(past_key_values) > 0
+                    and isinstance(past_key_values[0], (list, tuple))
+                    and len(past_key_values[0]) == 2
+                    and input_ids.shape[1] == 1
+                    and pixel_values is not None
+                ):
+                    key_states, value_states = past_key_values[0]
+                    first_layer_past_key_value = key_states[:, :, :, 0]
+                    batch_index, non_attended_tokens = torch.where(
+                        first_layer_past_key_value.float().sum(-2) == 0
+                    )
                     target_seqlen = first_layer_past_key_value.shape[-1] + 1
 
                     extended_attention_mask = torch.ones(
@@ -451,18 +456,15 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
                         device=attention_mask.device,
                     )
 
-                    # Filter out only the tokens that can be un-attended, this can happen
-                    # if one uses Llava + Fused modules where the cache on the
-                    # first iteration is already big enough, or if one passes custom cache
                     valid_indices = non_attended_tokens < extended_attention_mask.size(-1)
                     new_batch_index = batch_index[valid_indices]
                     new_non_attended_tokens = non_attended_tokens[valid_indices]
 
-                    # Zero-out the places where we don't need to attend
                     extended_attention_mask[new_batch_index, new_non_attended_tokens] = 0
 
                     attention_mask = torch.cat((attention_mask, extended_attention_mask), dim=1)
                     position_ids = torch.sum(attention_mask, dim=1).unsqueeze(-1) - 1
+
 
         outputs = self.language_model(
             attention_mask=attention_mask,
