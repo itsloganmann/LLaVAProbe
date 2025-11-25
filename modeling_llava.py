@@ -499,9 +499,10 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
         return LlavaCausalLMOutputWithPast(
             loss=loss,
             logits=logits,
-            past_key_values=outputs.past_key_values+(yzp_image_features,),
+            past_key_values=outputs.past_key_values,
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
+            image_hidden_states=(yzp_image_features,) if "yzp_image_features" in locals() else None,
         )
 
     def prepare_inputs_for_generation(
