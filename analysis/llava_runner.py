@@ -223,8 +223,10 @@ class LlavaRunner:
 
         head_increases: List[Tuple[int, int, float]] = []
         for layer_idx in range(self.num_layers):
-            cur_layer_input = torch.tensor(all_pos_layer_input[layer_idx])
-            cur_v_heads = torch.tensor(all_last_attn_subvalues[layer_idx])
+            key, value = outputs.past_key_values[layer_idx]
+            cur_layer_input = key[0]
+            cur_v_heads = value[0]
+
             o_proj = self.model.language_model.layers[layer_idx].self_attn.o_proj.weight.data.T.view(
                 self.num_heads, self.head_dim, -1
             )
@@ -240,8 +242,10 @@ class LlavaRunner:
         head_increases.sort(key=lambda item: item[2], reverse=True)
         best_layer, best_head, _ = head_increases[0]
 
-        cur_layer_input = outputs.past_key_values[best_layer][0][0]
-        cur_v_heads = outputs.past_key_values[best_layer][5][0]
+        key, value = outputs.past_key_values[best_layer]
+        cur_layer_input = key[0]
+        cur_v_heads = value[0]
+
         o_proj = self.model.language_model.layers[best_layer].self_attn.o_proj.weight.data.T.view(
             self.num_heads, self.head_dim, -1
         )
@@ -301,29 +305,32 @@ class LlavaRunner:
         return results
 
     def _ablate_head(self, outputs: Any, layer: int, head: int, token_id: Optional[int]) -> float:
-        cur_layer_input = outputs.past_key_values[layer][0][0]
-        cur_v_heads = outputs.past_key_values[layer][5][0]
+        key, value = outputs.past_key_values[layer]
+        cur_layer_input = key[0]
+        cur_v_heads = value[0]
         o_proj = self.model.language_model.layers[layer].self_attn.o_proj.weight.data.T.view(
             self.num_heads, self.head_dim, -1
         )
         attn_recompute = torch.bmm(cur_v_heads, o_proj).permute(1, 0, 2)
         attn_cur_head = attn_recompute[:, head, :]
         layer_input_last = cur_layer_input[-1]
-        final_layer_output = outputs.past_key_values[self.num_layers - 1][4][0][-1]
+        last_key, last_value = outputs.past_key_values[self.num_layers - 1]
+        final_layer_output = last_value[0][-1]
         final_var = final_layer_output.pow(2).mean(-1, keepdim=True)
 
         _ = self._log_probability(layer_input_last, final_var, token_id).exp()
         ablated = self._log_probability(layer_input_last - attn_cur_head, final_var, token_id).exp()
         return float(ablated)
 
-    def _transfer_output(self, past_kv: Any) -> Tuple[List, List, List]:
-        all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues = [], [], []
+    def _transfer_output(self, past_kv):
+        all_keys = []
+        all_values = []
         for layer_idx in range(self.num_layers):
-            layer_tuple = past_kv[layer_idx]
-            all_pos_layer_input.append(layer_tuple[0][0].tolist())
-            all_pos_layer_output.append(layer_tuple[4][0].tolist())
-            all_last_attn_subvalues.append(layer_tuple[5][0].tolist())
-        return all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues
+            key, value = past_kv[layer_idx]  # HF format
+            all_keys.append(key[0].tolist())     # (T,H,D)
+            all_values.append(value[0].tolist()) # (T,H,D)
+        return all_keys, all_values, all_values  # dummy third output to satisfy callers
+
 
     def _log_probability(self, vector: torch.Tensor, final_var: torch.Tensor, token_id: Optional[int]) -> torch.Tensor:
         if token_id is None:
