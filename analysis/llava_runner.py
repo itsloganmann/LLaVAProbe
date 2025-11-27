@@ -156,9 +156,22 @@ class LlavaRunner:
         forward_outputs = self.model(
             **inputs,
             output_hidden_states=True,
+            output_attentions=True,
             use_cache=True,
             return_dict=True,
         )
+
+        layer_attentions = [
+            attn.detach().cpu().numpy()
+            for attn in forward_outputs.attentions
+        ]
+
+        from .clustering import track_attention_evolution
+        layer_evolution = track_attention_evolution(layer_attentions)
+
+        print("\n==== LAYER EVOLUTION ====\n")
+        print(layer_evolution)
+
         attention_map, head_delta, gt_delta = self._extract_attention_map(
             forward_outputs,
             predicted_token_ids,
