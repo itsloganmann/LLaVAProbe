@@ -170,7 +170,7 @@ class LlavaRunner:
         layer_evolution = track_attention_evolution(layer_attentions)
 
         print("\n==== LAYER EVOLUTION ====\n")
-        print(layer_evolution)
+        print_layer_evolution(layer_evolution)
 
         attention_map, head_delta, gt_delta = self._extract_attention_map(
             forward_outputs,
