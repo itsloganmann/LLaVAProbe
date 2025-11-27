@@ -155,8 +155,17 @@ def compute_confidence_metrics(
         entropy_config: Configuration controlling entropy normalisation.
     """
 
-    if logits.ndim != 2 or probabilities.ndim != 2:
+    # --- FIX: squeeze batch dimension if present ---
+    if logits.dim() == 3:
+        logits = logits.squeeze(0)
+
+    if probabilities.dim() == 3:
+        probabilities = probabilities.squeeze(0)
+
+    # Validate final shape
+    if logits.dim() != 2 or probabilities.dim() != 2:
         raise ValueError("logits and probabilities must be 2D tensors")
+
     if logits.shape != probabilities.shape:
         raise ValueError("logits and probabilities must share shape")
 
