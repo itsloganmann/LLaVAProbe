@@ -178,7 +178,12 @@ def compute_confidence_metrics(
     )
 
     # Compute per-token log probabilities
-    token_indices = torch.tensor(predicted_token_ids, dtype=torch.long)
+    token_indices = torch.tensor(
+        predicted_token_ids,
+        dtype=torch.long,
+        device=probabilities.device
+    )
+
     gather_probs = torch.gather(probabilities, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
     gather_logits = torch.gather(logits, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
 
