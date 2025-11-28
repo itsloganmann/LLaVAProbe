@@ -18,9 +18,11 @@ from analysis.llava_runner import LlavaRunner
 
 runner = LlavaRunner(
     model_id="llava-hf/llava-1.5-7b-hf",
-    device="cuda" if torch.cuda.is_available() else "cpu",
+    device="cuda",
     quantization=None
 )
+
+# if torch.cuda.is_available() else "cpu"
 
 print("Running inference with full attention + layer evolution...")
 
