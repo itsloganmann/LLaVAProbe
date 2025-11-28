@@ -142,6 +142,12 @@ class LlavaRunner:
                     self.processor.tokenizer.decode([tid]).strip() for tid in ground_truth_token_ids
                 ]
 
+        if token_logits.ndim == 3:
+            token_logits = token_logits.squeeze(1)
+
+        if token_probabilities.ndim == 3:
+            token_probabilities = token_probabilities.squeeze(1)
+
         confidence_metrics = compute_confidence_metrics(
             logits=token_logits,
             probabilities=token_probabilities,
