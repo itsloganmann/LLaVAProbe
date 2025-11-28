@@ -235,7 +235,7 @@ class LlavaRunner:
         past_key_values = outputs.past_key_values
         token_id = predicted_token_ids[-1] if predicted_token_ids else None
 
-        all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues = self._transfer_output(past_key_values)
+        all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues = self._transfer_output(outputs)
         final_var = torch.tensor(all_pos_layer_output[-1][-1]).pow(2).mean(-1, keepdim=True)
 
         # compute increases per head
