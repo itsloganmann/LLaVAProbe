@@ -338,16 +338,29 @@ class LlavaRunner:
         ablated = self._log_probability(layer_input_last - attn_cur_head, final_var, token_id).exp()
         return float(ablated)
 
-    def _transfer_output(self, model_output) -> Tuple[List, List, List]:
+    def _transfer_output(self, outputs):
+        hidden_states = outputs.hidden_states  # tuple: (layer0, layer1, ..., final)
+        attentions = outputs.attentions        # tuple: (layer0_attn, layer1_attn, ...)
+
         all_pos_layer_input = []
         all_pos_layer_output = []
         all_last_attn_subvalues = []
+
         for layer_idx in range(self.num_layers):
-            layer_tuple = model_output[layer_idx]
-            all_pos_layer_input.append(layer_tuple[0][0].tolist())
-            all_pos_layer_output.append(layer_tuple[4][0].tolist())
-            all_last_attn_subvalues.append(layer_tuple[5][0].tolist())
+            # Input to layer = hidden state BEFORE the layer
+            layer_input = hidden_states[layer_idx]          # [batch, seq, dim]
+            # Output of layer = hidden state AFTER the layer
+            layer_output = hidden_states[layer_idx + 1]     # [batch, seq, dim]
+            # Per-head attention weights
+            attn = attentions[layer_idx]                    # [batch, heads, seq, seq]
+
+            # Convert to lists for your downstream code
+            all_pos_layer_input.append(layer_input[0].tolist())
+            all_pos_layer_output.append(layer_output[0].tolist())
+            all_last_attn_subvalues.append(attn[0].tolist())
+
         return all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues
+
 
     def _log_probability(self, vector: torch.Tensor, final_var: torch.Tensor, token_id: Optional[int]) -> torch.Tensor:
         if token_id is None:
