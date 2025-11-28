@@ -172,7 +172,7 @@ class LlavaRunner:
             for attn in forward_outputs.attentions
         ]
 
-        from .clustering import track_attention_evolution
+        from .clustering import track_attention_evolution, print_layer_evolution
         layer_evolution = track_attention_evolution(layer_attentions)
 
         print("\n==== LAYER EVOLUTION ====\n")
