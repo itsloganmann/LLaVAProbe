@@ -179,7 +179,7 @@ def compute_confidence_metrics(
 
     # Compute per-token log probabilities
     token_indices = torch.tensor(predicted_token_ids, dtype=torch.long)
-    gather_probs = torch.gather(probabilities, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
+    gather_probs = torch.gather(probabilities, dim=1, index=token_indices).squeeze(-1)
     gather_logits = torch.gather(logits, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
 
     per_token_log_probs = gather_probs.clamp_min(entropy_cfg.epsilon).log().tolist()
