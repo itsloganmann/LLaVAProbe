@@ -126,7 +126,9 @@ class LlavaRunner:
             raise RuntimeError("Expected generation scores to be available; ensure output_scores=True")
         generated_ids = generation.sequences[0, inputs["input_ids"].shape[1] :]
         token_logits = torch.stack(generation.scores).to(torch.float32)
-        token_probabilities = torch.stack([torch.nn.functional.softmax(score, dim=-1) for score in generation.scores])
+        token_probabilities = torch.stack(
+            [torch.nn.functional.softmax(score, dim=-1) for score in generation.scores]
+        )
 
         predicted_answer = self.processor.tokenizer.decode(generated_ids, skip_special_tokens=True).strip()
         predicted_token_ids = generated_ids.tolist()
@@ -232,19 +234,29 @@ class LlavaRunner:
         predicted_token_ids: Sequence[int],
         ground_truth_token_ids: Optional[Sequence[int]] = None,
     ) -> Tuple[np.ndarray, float, Optional[float]]:
-        past_key_values = outputs.past_key_values
         token_id = predicted_token_ids[-1] if predicted_token_ids else None
 
         all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues = self._transfer_output(outputs)
-        final_var = torch.tensor(all_pos_layer_output[-1][-1]).pow(2).mean(-1, keepdim=True)
+        final_var = torch.tensor(
+            all_pos_layer_output[-1][-1],
+            device=self.device,
+        ).pow(2).mean(-1, keepdim=True)
 
         # compute increases per head
         head_increases: List[Tuple[int, int, float]] = []
         for layer_idx in range(self.num_layers):
-            cur_layer_input = torch.tensor(all_pos_layer_input[layer_idx])
-            cur_v_heads = torch.tensor(all_last_attn_subvalues[layer_idx])
-            o_proj = self.model.language_model.model.layers[layer_idx].self_attn.o_proj.weight.data.T.view(
-                self.num_heads, self.head_dim, -1
+            cur_layer_input = torch.tensor(
+                all_pos_layer_input[layer_idx],
+                device=self.device,
+            )
+            cur_v_heads = torch.tensor(
+                all_last_attn_subvalues[layer_idx],
+                device=self.device,
+            )
+            o_proj = (
+                self.model.language_model.model.layers[layer_idx]
+                .self_attn.o_proj.weight.to(self.device)
+                .T.view(self.num_heads, self.head_dim, -1)
             )
             attn_recompute = torch.bmm(cur_v_heads, o_proj).permute(1, 0, 2)
             attn_sum = torch.sum(attn_recompute, dim=0)
@@ -262,14 +274,19 @@ class LlavaRunner:
 
         cur_layer_input = outputs.past_key_values[best_layer][0][0]
         cur_v_heads = outputs.past_key_values[best_layer][5][0]
-        o_proj = self.model.language_model.model.layers[best_layer].self_attn.o_proj.weight.data.T.view(
-            self.num_heads, self.head_dim, -1
+        o_proj = (
+            self.model.language_model.model.layers[best_layer]
+            .self_attn.o_proj.weight.to(self.device)
+            .T.view(self.num_heads, self.head_dim, -1)
         )
         attn_recompute = torch.bmm(cur_v_heads, o_proj).permute(1, 0, 2)
         attn_cur_head = attn_recompute[:, best_head, :]
 
         layer_input_last = cur_layer_input[-1]
-        final_var = torch.tensor(all_pos_layer_output[-1][-1]).pow(2).mean(-1, keepdim=True)
+        final_var = torch.tensor(
+            all_pos_layer_output[-1][-1],
+            device=self.device,
+        ).pow(2).mean(-1, keepdim=True)
         origin_prob = self._log_probability(layer_input_last, final_var, token_id)
 
         attn_plus = attn_cur_head + layer_input_last
@@ -325,13 +342,23 @@ class LlavaRunner:
     def _ablate_head(self, outputs, layer: int, head: int, token_id: Optional[int]) -> float:
         cur_layer_input = outputs.past_key_values[layer][0][0]
         cur_v_heads = outputs.past_key_values[layer][5][0]
-        o_proj = self.model.language_model.model.layers[layer].self_attn.o_proj.weight.data.T.view(
-            self.num_heads, self.head_dim, -1
+
+        o_proj = (
+            self.model.language_model.model.layers[layer]
+            .self_attn.o_proj.weight.to(self.device)
+            .T.view(self.num_heads, self.head_dim, -1)
         )
         attn_recompute = torch.bmm(cur_v_heads, o_proj).permute(1, 0, 2)
         attn_cur_head = attn_recompute[:, head, :]
+
         layer_input_last = cur_layer_input[-1]
+
         final_layer_output = outputs.past_key_values[self.num_layers - 1][4][0][-1]
+        if not torch.is_tensor(final_layer_output):
+            final_layer_output = torch.tensor(final_layer_output, device=self.device)
+        else:
+            final_layer_output = final_layer_output.to(self.device)
+
         final_var = final_layer_output.pow(2).mean(-1, keepdim=True)
 
         baseline = self._log_probability(layer_input_last, final_var, token_id).exp()
@@ -361,13 +388,18 @@ class LlavaRunner:
 
         return all_pos_layer_input, all_pos_layer_output, all_last_attn_subvalues
 
-
     def _log_probability(self, vector: torch.Tensor, final_var: torch.Tensor, token_id: Optional[int]) -> torch.Tensor:
         if token_id is None:
             raise ValueError("token_id must be provided")
+
+        # Ensure everything is on the correct device
+        vector = vector.to(self.device)
+        final_var = final_var.to(self.device)
+
         scaled = vector * torch.rsqrt(final_var + 1e-6)
-        rms = scaled * self.model.language_model.model.norm.weight.data
-        logits = self.model.language_model.lm_head(rms).data
+        norm_weight = self.model.language_model.model.norm.weight.to(self.device)
+        rms = scaled * norm_weight
+        logits = self.model.language_model.lm_head(rms)
         probs = torch.nn.functional.log_softmax(logits, dim=-1)
         return probs[token_id]
 
