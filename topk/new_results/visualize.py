@@ -17,7 +17,7 @@ SEES_GAP_THRESHOLD = 0.15
 
 # --- Helper Function for Safe Correlation Calculation ---
 def safe_pearsonr_r2(data, col1, col2):
-    """Calculates Pearson R and R^2, returning NaN if N < 2 or data is constant."""
+    """Calculates Pearson R and R^2, returning NaN if N < 3 or data is constant."""
     n = len(data)
     # Require at least 3 points for a meaningful correlation plot
     if n < 3: 
@@ -46,9 +46,9 @@ def calculate_grouped_correlation(df, method_name):
 # --- Data Loading and Processing ---
 # List all files to be processed
 # We include the 'full' file and use glob for all 'topk' files
-files_to_process = ['analysis_results_final.csv'] + glob.glob('analysis_results_final_topk*.csv')
+files_to_process = ['analysis_results_final.csv'] + glob.glob('analysis_results_final_topk_*.csv')
 
-# Remove files that might be duplicates or unwanted (e.g., the original single 'topk' file)
+# Exclude the generic 'analysis_results_final_topk.csv' if it exists to avoid redundancy
 files_to_process = [f for f in files_to_process if 'analysis_results_final_topk.csv' not in f]
 files_to_process = sorted(list(set(files_to_process))) # Ensure unique and sort them
 
@@ -57,7 +57,7 @@ if not files_to_process:
     exit()
 
 all_correlations = []
-method_order = []
+method_order = [] # This list will be dynamically populated
 
 for file_path in files_to_process:
     try:
@@ -65,14 +65,18 @@ for file_path in files_to_process:
         
         if file_path == 'analysis_results_final.csv':
             method_name = 'Full Attention'
-            method_order.insert(0, method_name) # Ensure Full Attention is first
+            # Use insert to ensure Full Attention is always at the start
+            if method_name not in method_order:
+                 method_order.insert(0, method_name) 
         elif 'analysis_results_final_topk_' in file_path:
+            # This logic correctly extracts the number (e.g., '5' from 'topk_5.csv')
             k_value = file_path.split('_')[-1].replace('.csv', '')
             method_name = f'Top-K {k_value}'
             if method_name not in method_order:
-                method_order.append(method_name)
+                # Append to the end for later numerical sorting
+                method_order.append(method_name) 
         else:
-            method_name = file_path # Should not happen with the current files
+            method_name = file_path
             if method_name not in method_order:
                 method_order.append(method_name)
                 
@@ -106,13 +110,43 @@ r2_plot_data_sorted = r2_plot_data.groupby('Question Type')['R2'].max().sort_val
 r_plot_data['Question Type'] = pd.Categorical(r_plot_data['Question Type'], categories=r2_plot_data_sorted, ordered=True)
 r2_plot_data['Question Type'] = pd.Categorical(r2_plot_data['Question Type'], categories=r2_plot_data_sorted, ordered=True)
 
-# Define a consistent color palette and method order
-method_order = ['Full Attention', 'Top-K 10', 'Top-K 25', 'Top-K 50', 'Top-K 100']
-colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
+# ----------------------------------------------------------------------
+# START: CORRECTED DYNAMIC ORDERING AND COLOR MAPPING LOGIC
+# ----------------------------------------------------------------------
+
+# Separate 'Full Attention' and the 'Top-K' methods
+full_attention = [m for m in method_order if m == 'Full Attention']
+top_k_methods = [m for m in method_order if m.startswith('Top-K ')]
+
+# Sort the Top-K methods numerically
+def sort_key(method_name):
+    # Extracts the number from 'Top-K 5', 'Top-K 10', etc.
+    try:
+        return int(method_name.split(' ')[-1])
+    except ValueError:
+        return float('inf') # Put any non-numeric K's at the end
+
+top_k_methods.sort(key=sort_key)
+
+# Recreate the final sorted method order
+method_order = full_attention + top_k_methods
+
+# Define a consistent color palette and method map dynamically
+num_methods = len(method_order)
+# Use a good contrasting palette (like 'tab10') for the dynamic list
+if num_methods <= 10:
+    colors = sns.color_palette("tab10", num_methods)
+else:
+    colors = sns.color_palette("viridis", num_methods) # Fallback for > 10
 color_map = dict(zip(method_order, colors))
 
+# Apply the dynamically generated, sorted method order as a categorical type
 r2_plot_data['Method'] = pd.Categorical(r2_plot_data['Method'], categories=method_order, ordered=True)
 r_plot_data['Method'] = pd.Categorical(r_plot_data['Method'], categories=method_order, ordered=True)
+
+# ----------------------------------------------------------------------
+# END: CORRECTED DYNAMIC ORDERING AND COLOR MAPPING LOGIC
+# ----------------------------------------------------------------------
 
 
 # --- Plotting R² Comparison (The Attention-Confidence Gap) ---
@@ -132,7 +166,7 @@ r2_plot.axhline(
     color='red', 
     linestyle='--', 
     linewidth=1.5, 
-    label=f'SEES Gap Threshold ($R^2=0.15$)'
+    label=f'SEES Gap Threshold ($R^2={SEES_GAP_THRESHOLD}$)'
 )
 
 plt.title('R² Comparison: Full vs. Top-K Attention Entropy vs. Token Confidence', pad=15)
@@ -170,5 +204,4 @@ plt.savefig('r_comparison_all_methods.png', dpi=300)
 plt.show()
 
 print("\nVisualization script complete. Two files, 'r2_comparison_all_methods.png' and 'r_comparison_all_methods.png', have been generated.")
-print("The R² plot now compares all Top-K variants against the Full Attention method.")
-print("The R plot now compares the sign and magnitude of the Pearson R for all methods.")
+print("The script now dynamically includes and correctly sorts all 'analysis_results_final_topk_*.csv' files, including 'analysis_results_final_topk_5.csv'.")
