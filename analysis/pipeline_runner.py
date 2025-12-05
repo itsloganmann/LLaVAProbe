@@ -137,6 +137,8 @@ def run_pipeline(
     output_dir: Path,
     quantization: Optional[str] = "4bit",  # default: 4-bit
     log_level: str = "INFO",
+    vision_cutoff_mode: Optional[str] = None,
+    vision_cutoff_layer: Optional[int] = None,
 ) -> None:
     log_file = output_dir / "pipeline_execution.log"
     logging.basicConfig(
@@ -151,6 +153,12 @@ def run_pipeline(
 
     config = AnalysisConfig()
     runner = LlavaRunner(config=config, quantization=None if quantization == "none" else quantization)
+    
+    # Enable vision cutoff ablation if requested
+    if vision_cutoff_mode and vision_cutoff_layer is not None:
+        logging.info(f"Enabling vision cutoff: mode={vision_cutoff_mode}, layer={vision_cutoff_layer}")
+        runner.set_vision_cutoff(vision_cutoff_mode, vision_cutoff_layer)
+    
     clustering = ClusteringPipeline(config)
     calibrator = ConfidenceCalibrator(config.calibration)
     writer = AnalysisWriter(output_dir)
@@ -286,6 +294,18 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         help="Optional quantization mode for loading LLaVA",
     )
     parser.add_argument("--log-level", default="INFO", help="Logging level (e.g., INFO, DEBUG)")
+    parser.add_argument(
+        "--vision-cutoff-mode",
+        choices=["early_cut", "late_only"],
+        default=None,
+        help="Vision cutoff ablation mode: early_cut (disable vision after layer) or late_only (vision only in late layers)",
+    )
+    parser.add_argument(
+        "--vision-cutoff-layer",
+        type=int,
+        default=None,
+        help="Layer index for vision cutoff boundary",
+    )
     return parser.parse_args(argv)
 
 
@@ -295,6 +315,8 @@ def main(argv: Optional[Sequence[str]] = None) -> None:
         prompts_path=Path(args.prompts),
         output_dir=Path(args.output_dir),
         quantization=args.quantization,
+        vision_cutoff_mode=args.vision_cutoff_mode,
+        vision_cutoff_layer=args.vision_cutoff_layer,
         log_level=args.log_level,
     )
 

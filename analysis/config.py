@@ -35,12 +35,23 @@ class CalibrationConfig:
 
 
 @dataclass
+class VisionCutoffConfig:
+    """Configuration for vision cut-off ablation experiments."""
+
+    enabled: bool = False
+    mode: str = "early_cut"   # "early_cut" or "late_only"
+    cutoff_layer: int = 2     # layer index
+    zero_strategy: str = "kv" # only implement kv zeroing
+
+
+@dataclass
 class AblationConfig:
     """Configuration controlling ablation experiments."""
 
     language_only: bool = False
     visual_dropout_rates: Sequence[float] = (0.0, 0.2, 0.5)
     head_dropout_trials: int = 3
+    vision_cutoff: VisionCutoffConfig = field(default_factory=VisionCutoffConfig)
 
 
 @dataclass

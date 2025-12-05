@@ -28,6 +28,9 @@ import torch.utils.checkpoint
 from torch import nn
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 
+# Module-level registry for vision cutoff state
+_VISION_CUTOFF_STATE = None
+
 from ...activations import ACT2FN
 from ...cache_utils import Cache, DynamicCache
 from ...modeling_attn_mask_utils import (
@@ -409,6 +412,20 @@ class LlamaAttention(nn.Module):
 
         key_states = repeat_kv(key_states, self.num_key_value_groups)
         value_states = repeat_kv(value_states, self.num_key_value_groups)
+        
+        # Vision cutoff ablation: zero image K/V in disabled layers
+        global _VISION_CUTOFF_STATE
+        state = _VISION_CUTOFF_STATE
+        
+        if state and state.get("enabled") and self.layer_idx in state.get("disabled_layers", set()):
+            mask = state.get("image_token_mask")
+            if mask is not None and mask.shape[1] >= kv_seq_len:
+                mask = mask[:, :kv_seq_len]  # (B, seq)
+                mask = mask.unsqueeze(1).unsqueeze(-1)  # (B,1,seq,1)
+                
+                key_states = key_states.masked_fill(mask, 0.0)
+                value_states = value_states.masked_fill(mask, 0.0)
+        
         attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(self.head_dim)
         if attn_weights.size() != (bsz, self.num_heads, q_len, kv_seq_len):
             raise ValueError(

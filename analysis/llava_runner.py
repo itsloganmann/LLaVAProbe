@@ -89,6 +89,33 @@ class LlavaRunner:
         self.num_heads = llama_config.num_attention_heads
         self.head_dim = llama_config.hidden_size // self.num_heads
 
+    def set_vision_cutoff(self, mode: str, cutoff_layer: int) -> None:
+        """Configure vision cutoff ablation for the model.
+        
+        Args:
+            mode: "early_cut" (disable layers > cutoff_layer) or "late_only" (disable layers < cutoff_layer)
+            cutoff_layer: Layer index for cutoff boundary
+        """
+        state = self.model.language_model.vision_cutoff
+        state["enabled"] = True
+        state["mode"] = mode
+        state["cutoff_layer"] = cutoff_layer
+        
+        if mode == "early_cut":
+            # disable layers > cutoff_layer
+            state["disabled_layers"] = set(range(cutoff_layer + 1, self.num_layers))
+        elif mode == "late_only":
+            # disable layers < cutoff_layer
+            state["disabled_layers"] = set(range(0, cutoff_layer))
+        
+        # Update module-level registry for layer access
+        try:
+            import sys
+            if 'modeling_llama' in sys.modules:
+                sys.modules['modeling_llama']._VISION_CUTOFF_STATE = state
+        except:
+            pass
+
     # ------------------------------------------------------------------
     # Public API
     # ------------------------------------------------------------------

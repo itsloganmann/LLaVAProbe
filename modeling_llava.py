@@ -245,6 +245,18 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
             config.text_config, attn_implementation=config._attn_implementation
         )
         self.pad_token_id = self.config.pad_token_id if self.config.pad_token_id is not None else -1
+        
+        # Vision cutoff state for ablation experiments
+        self.language_model.vision_cutoff = {
+            "enabled": False,
+            "mode": "early_cut",
+            "cutoff_layer": None,
+            "disabled_layers": set(),
+            "image_token_mask": None,
+        }
+        # Also attach to the inner model for layer access
+        self.language_model.model.vision_cutoff = self.language_model.vision_cutoff
+        
         self.post_init()
 
     def get_input_embeddings(self):
@@ -339,6 +351,18 @@ class LlavaForConditionalGeneration(LlavaPreTrainedModel):
         final_embedding[image_to_overwrite] = image_features.contiguous().reshape(-1, embed_dim).to(target_device)
         final_attention_mask |= image_to_overwrite
         position_ids = (final_attention_mask.cumsum(-1) - 1).masked_fill_((final_attention_mask == 0), 1)
+
+        # Capture image token mask for vision cutoff ablation
+        image_token_mask = image_to_overwrite.clone()
+        self.language_model.vision_cutoff["image_token_mask"] = image_token_mask
+        
+        # Update module-level registry for layer access
+        try:
+            from .modeling_llama import _VISION_CUTOFF_STATE as _vcs
+            import sys
+            sys.modules['modeling_llama']._VISION_CUTOFF_STATE = self.language_model.vision_cutoff
+        except:
+            pass
 
         if labels is None:
             final_labels = None
