@@ -238,8 +238,17 @@ class ClusteringPipeline:
         n_clusters, n_noise = _cluster_stats(labels)
         entropy_metrics = compute_attention_entropy(
             points[:, 2], self._config.entropy)
-        metadata = {"persistence": float(
-            getattr(clusterer, "cluster_persistence_", np.nan))}
+        # --- FIX: persistence is an array, so compute a summary statistic ---
+        persistence_vals = getattr(clusterer, "cluster_persistence_", None)
+
+        if persistence_vals is None or len(persistence_vals) == 0:
+            persistence_scalar = 0.0
+        else:
+        # You can use mean, max, or sum — mean is most standard
+            persistence_scalar = float(np.mean(persistence_vals))
+
+        metadata = {"persistence": persistence_scalar}
+
         return ClusterResult(
             clusterer=ClustererType.HDBSCAN,
             labels=labels,
