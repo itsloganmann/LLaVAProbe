@@ -241,13 +241,16 @@ class ClusteringPipeline:
         # --- FIX: persistence is an array, so compute a summary statistic ---
         persistence_vals = getattr(clusterer, "cluster_persistence_", None)
 
-        if persistence_vals is None or len(persistence_vals) == 0:
+        if persistence_vals is None:
             persistence_scalar = 0.0
         else:
         # You can use mean, max, or sum — mean is most standard
-            persistence_scalar = float(np.mean(persistence_vals))
-
-        metadata = {"persistence": persistence_scalar}
+            try:
+                arr = np.asarray(persistence_vals, dtype=float)
+                persistence_scalar = float(arr.mean())
+            except Exception:
+        # Handles weird non-numeric structures (lists of dicts, nested arrays, etc.)
+                persistence_scalar = 0.0
 
         return ClusterResult(
             clusterer=ClustererType.HDBSCAN,
@@ -258,7 +261,7 @@ class ClusteringPipeline:
             average_strength=float(points[:, 2].mean()),
             attention_entropy=entropy_metrics,
             token_confidence=token_confidence,
-            metadata=metadata,
+            metadata={"persistence": persistence_scalar},
         )
 
     def _run_gmm(self, points: np.ndarray, *, token_confidence: float) -> ClusterResult:
