@@ -1,0 +1,5912 @@
+{
+  "summaries": [
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.8,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 0.9,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.0,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 4.1306781801911885e-05,
+          "spearman": -0.054609554612328304
+        },
+        "cluster_count": {
+          "r_squared": 4.058483093285859e-05,
+          "spearman": -0.034495433590376295
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.1,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.0064461173957976615,
+          "spearman": -0.0478159631614607
+        },
+        "cluster_count": {
+          "r_squared": 0.008217727024054045,
+          "spearman": 0.298255760881619
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.2,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.007804383330423451,
+          "spearman": -0.033920684007511984
+        },
+        "cluster_count": {
+          "r_squared": 0.008233416652295706,
+          "spearman": 0.300877626404496
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.3,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008278615337480786,
+          "spearman": -0.031008350732978987
+        },
+        "cluster_count": {
+          "r_squared": 0.00842615510677693,
+          "spearman": 0.3052577204986007
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.4,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008119955515367339,
+          "spearman": -0.02770792220353167
+        },
+        "cluster_count": {
+          "r_squared": 0.007855666248205318,
+          "spearman": 0.3078568892703417
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 3.125145438531268e-06,
+          "spearman": -0.03217157147775402
+        },
+        "cluster_count": {
+          "r_squared": 3.542268283404853e-07,
+          "spearman": 0.2448288356225361
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.5,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008000917514015375,
+          "spearman": -0.023419800948449653
+        },
+        "cluster_count": {
+          "r_squared": 0.007842941067807254,
+          "spearman": 0.31231810639336427
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.007894004492847495,
+          "spearman": -0.05567716465860303
+        },
+        "cluster_count": {
+          "r_squared": 0.00810931353482175,
+          "spearman": 0.29726797658213866
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.6,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.007243779918272546,
+          "spearman": -0.03578030962627995
+        },
+        "cluster_count": {
+          "r_squared": 0.006988507571212383,
+          "spearman": 0.3159142765626015
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.007894431623426673,
+          "spearman": -0.038468997076393986
+        },
+        "cluster_count": {
+          "r_squared": 0.00810931353482175,
+          "spearman": 0.29726797658213866
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.7,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.006312688531820116,
+          "spearman": -0.05225528527393653
+        },
+        "cluster_count": {
+          "r_squared": 0.006083773264844234,
+          "spearman": 0.3164764467099966
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008108221784951833,
+          "spearman": -0.034053926542064517
+        },
+        "cluster_count": {
+          "r_squared": 0.00818732176476292,
+          "spearman": 0.29801940270967453
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.0018495027969500134,
+          "spearman": 0.059627809443781474
+        },
+        "cluster_count": {
+          "r_squared": 0.00169158994273241,
+          "spearman": 0.30728573336893333
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.8,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.005182517588426714,
+          "spearman": -0.0604519895613577
+        },
+        "cluster_count": {
+          "r_squared": 0.004994206423634347,
+          "spearman": 0.31700518521216986
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008337569789737192,
+          "spearman": -0.03660576731130192
+        },
+        "cluster_count": {
+          "r_squared": 0.008374336713532472,
+          "spearman": 0.29980015730562437
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.007097134962096264,
+          "spearman": -0.03936903156627363
+        },
+        "cluster_count": {
+          "r_squared": 0.008068037516537367,
+          "spearman": 0.29718013193821385
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 1.9,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 5,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.004723633505391531,
+          "spearman": -0.0554525891393192
+        },
+        "cluster_count": {
+          "r_squared": 0.004642840853940459,
+          "spearman": 0.3185355765631489
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 5,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 5,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 10,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.00856628339602824,
+          "spearman": -0.05002558909041767
+        },
+        "cluster_count": {
+          "r_squared": 0.008552246198433932,
+          "spearman": 0.3006092617060636
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 10,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 10,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 15,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.008374773420565714,
+          "spearman": -0.07024526581621816
+        },
+        "cluster_count": {
+          "r_squared": 0.00810931353482175,
+          "spearman": 0.29726797658213866
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 15,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 15,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 20,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 20,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 20,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 25,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 25,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 25,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 30,
+      "weight_exponent": 0.5,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.008383503520089887,
+          "spearman": 0.021785444200589695
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 30,
+      "weight_exponent": 1.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.004959710556524275,
+          "spearman": -0.01747190519330089
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "dbscan",
+      "eps": 2.0,
+      "min_samples": 30,
+      "weight_exponent": 2.0,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 0.0076563952131930525,
+          "spearman": -0.03358088694501264
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "gaussian_mixture",
+      "eps": null,
+      "min_samples": null,
+      "weight_exponent": null,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.000307153411175744,
+          "spearman": 0.013589590929783008
+        },
+        "cluster_count": {
+          "r_squared": NaN,
+          "spearman": 0.36223508178328234
+        },
+        "mean_strength": {
+          "r_squared": 5.682328465186512e-06,
+          "spearman": 0.3581677673305151
+        },
+        "attention_entropy": {
+          "r_squared": 0.008884377123794905,
+          "spearman": 0.026028255638813336
+        }
+      },
+      "sample_count": 27000
+    },
+    {
+      "clusterer": "hdbscan",
+      "eps": null,
+      "min_samples": null,
+      "weight_exponent": null,
+      "correlations": {
+        "noise_ratio": {
+          "r_squared": 0.0002617460792397633,
+          "spearman": -0.029333847190977688
+        },
+        "cluster_count": {
+          "r_squared": 7.632208479488728e-05,
+          "spearman": 0.1442938397729987
+        },
+        "mean_strength": {
+          "r_squared": 0.003574589216754631,
+          "spearman": 0.059041447526805825
+        },
+        "attention_entropy": {
+          "r_squared": 0.00016868791980896981,
+          "spearman": -0.008094464281184297
+        }
+      },
+      "sample_count": 27000
+    }
+  ],
+  "null_models": [
+    {
+      "clusterer": "dbscan",
+      "average_noise_ratio": 1.0,
+      "average_clusters": 0.0,
+      "samples": 810000
+    }
+  ]
+}

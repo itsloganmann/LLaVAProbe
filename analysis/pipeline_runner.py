@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import warnings
 from io import BytesIO
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,6 +14,9 @@ from typing import Iterable, List, Optional, Sequence, Tuple
 import numpy as np
 import requests
 from PIL import Image
+
+# Suppress sklearn deprecation warnings
+warnings.filterwarnings("ignore", message=".*force_all_finite.*")
 
 from . import (
     AnalysisConfig,
@@ -189,7 +193,11 @@ def run_pipeline(
     output_dir: Path,
     quantization: Optional[str] = None,
     log_level: str = "INFO",
+    num_samples: Optional[int] = None,
 ) -> None:
+    # Create output directory FIRST (before logging setup needs it)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     log_file = output_dir / "pipeline_execution.log"
     logging.basicConfig(
         level=getattr(logging, log_level.upper(), logging.INFO),
@@ -199,7 +207,6 @@ def run_pipeline(
             logging.FileHandler(log_file, mode="w", encoding="utf-8"),
         ],
     )
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     config = AnalysisConfig()
     runner = LlavaRunner(
@@ -210,7 +217,17 @@ def run_pipeline(
     writer = AnalysisWriter(output_dir)
 
     prompts = load_prompts(prompts_path)
+
+    # Limit samples if requested
+    if num_samples is not None and num_samples < len(prompts):
+        prompts = prompts[:num_samples]
+        logging.info("Limited to %d samples (out of %d available)",
+                     num_samples, len(prompts))
+
     records: List[AnalysisRecord] = []
+
+    # Incremental save frequency (save every N samples)
+    SAVE_INTERVAL = 10
 
     for index, entry in enumerate(prompts, start=1):
         logging.info("[%d/%d] Processing %s", index, len(prompts),
@@ -230,8 +247,21 @@ def run_pipeline(
             (RunnerMode.VISUAL_DROPOUT, entry.prefix, "dropout_0.5", 0.5),
         ]
 
+        # Causal intervention variants (need attention map from baseline first)
+        causal_variants = [
+            (RunnerMode.MASK_HIGH_ATTENTION, entry.prefix, "mask_high_0.3",
+             0.3),
+            (RunnerMode.MASK_LOW_ATTENTION, entry.prefix, "mask_low_0.3", 0.3),
+            (RunnerMode.MASK_RANDOM_CONTROL, entry.prefix, "mask_random_0.3",
+             0.3),
+        ]
+
         for resolution in config.patch_sweep.resolutions:
             resized = image.resize((resolution, resolution))
+
+            # Store baseline attention map for causal variants
+            baseline_attention_map = None
+
             for mode, prefix_value, variant_name, dropout_rate in variants:
                 variant_label = f"{variant_name}_r{resolution}"
                 try:
@@ -243,6 +273,11 @@ def run_pipeline(
                         dropout_rate=dropout_rate,
                         ground_truth=entry.ground_truth,
                     )
+
+                    # Save attention map from baseline for causal variants
+                    if variant_name == "baseline":
+                        baseline_attention_map = run_output.attention_map
+
                 except Exception as exc:  # pragma: no cover - model failure
                     logging.exception("Model run failed for %s: %s",
                                       entry.image_url, exc)
@@ -357,6 +392,68 @@ def run_pipeline(
                                               entry.ground_truth),
                     )
 
+            # Run causal intervention variants (only if we have baseline attention map)
+            if baseline_attention_map is not None:
+                for mode, prefix_value, variant_name, mask_pct in causal_variants:
+                    variant_label = f"{variant_name}_r{resolution}"
+                    try:
+                        run_output = runner.run(
+                            image=resized,
+                            prompt=entry.prompt,
+                            prefix=prefix_value,
+                            mode=mode,
+                            mask_percentile=mask_pct,
+                            precomputed_attention_map=baseline_attention_map,
+                            ground_truth=entry.ground_truth,
+                        )
+                    except Exception as exc:
+                        logging.exception(
+                            "Causal intervention failed for %s: %s",
+                            entry.image_url, exc)
+                        continue
+
+                    # Process causal variant output
+                    cluster_result = clustering.evaluate_sample(
+                        run_output.attention_map, run_output.token_confidence)
+                    cluster_reports = build_cluster_reports(
+                        cluster_result.labels, run_output.attention_map)
+                    attention_metrics = compute_attention_entropy(
+                        run_output.attention_map, config.entropy)
+
+                    confidence = run_output.confidence_metrics
+                    record = AnalysisRecord(
+                        question_type=entry.question_type,
+                        question=entry.question,
+                        image_url=entry.image_url,
+                        ground_truth=entry.ground_truth,
+                        predicted_answer=run_output.predicted_answer,
+                        confidence=confidence,
+                        attention_entropy=attention_metrics.normalized_entropy,
+                        clusters=cluster_reports,
+                        noise_ratio=cluster_result.noise_ratio,
+                        cluster_count=cluster_result.n_clusters,
+                        token_confidence=run_output.token_confidence,
+                        top_margin=confidence.probability_margin,
+                        logit_margin=confidence.logit_margin,
+                        head_delta=run_output.head_delta,
+                        per_head_topk_info={"method": "causal_intervention"},
+                        ground_truth_delta=run_output.ground_truth_delta,
+                        ground_truth_tokens=run_output.ground_truth_tokens,
+                        ablations=[],
+                        run_mode=mode.value,
+                        prefix_variant=variant_label,
+                    )
+                    records.append(record)
+
+        # Incremental save every SAVE_INTERVAL samples
+        if index % SAVE_INTERVAL == 0 and records:
+            partial_outputs = StructuredOutputs(
+                records=records, calibration=calibrator.summarize())
+            writer.write_csv(partial_outputs, "analysis_records_partial.csv")
+            logging.info(
+                "Saved partial results (%d records) to analysis_records_partial.csv",
+                len(records))
+
     outputs = StructuredOutputs(records=records,
                                 calibration=calibrator.summarize())
     json_path = writer.write_json(outputs, "analysis_records.json")
@@ -418,6 +515,11 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--log-level",
                         default="INFO",
                         help="Logging level (e.g., INFO, DEBUG)")
+    parser.add_argument(
+        "--num-samples",
+        type=int,
+        default=None,
+        help="Limit number of samples to process (default: all)")
     return parser.parse_args(argv)
 
 
@@ -428,6 +530,7 @@ def main(argv: Optional[Sequence[str]] = None) -> None:
         output_dir=Path(args.output_dir),
         quantization=args.quantization,
         log_level=args.log_level,
+        num_samples=args.num_samples,
     )
 
 

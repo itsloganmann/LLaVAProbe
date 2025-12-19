@@ -60,7 +60,10 @@ class ConfidenceCalibrator:
         self._records: List[ConfidenceRecord] = []
 
     def add(self, subset: str, probability: float, is_correct: bool) -> None:
-        self._records.append(ConfidenceRecord(subset=subset, probability=probability, is_correct=is_correct))
+        self._records.append(
+            ConfidenceRecord(subset=subset,
+                             probability=probability,
+                             is_correct=is_correct))
 
     def summarize(self) -> List[ConfidenceBreakdown]:
         summaries: List[ConfidenceBreakdown] = []
@@ -76,21 +79,25 @@ class ConfidenceCalibrator:
                     num_examples=len(subset_records),
                     ece=ece,
                     brier=brier,
-                )
-            )
+                ))
         return summaries
 
-    def _expected_calibration_error(self, records: Sequence[ConfidenceRecord]) -> float:
+    def _expected_calibration_error(
+            self, records: Sequence[ConfidenceRecord]) -> float:
         if not records:
             return 0.0
         bin_edges = np.linspace(0.0, 1.0, self._config.num_bins + 1)
         total = len(records)
         ece = 0.0
         for b_start, b_end in zip(bin_edges[:-1], bin_edges[1:]):
-            bin_records = [r for r in records if b_start <= r.probability < b_end or (b_end == 1.0 and r.probability == 1.0)]
+            bin_records = [
+                r for r in records if b_start <= r.probability < b_end or (
+                    b_end == 1.0 and r.probability == 1.0)
+            ]
             if not bin_records:
                 continue
-            bin_acc = np.mean([1.0 if r.is_correct else 0.0 for r in bin_records])
+            bin_acc = np.mean(
+                [1.0 if r.is_correct else 0.0 for r in bin_records])
             bin_conf = np.mean([r.probability for r in bin_records])
             weight = len(bin_records) / total
             ece += abs(bin_acc - bin_conf) * weight
@@ -100,11 +107,13 @@ class ConfidenceCalibrator:
     def _brier_score(records: Sequence[ConfidenceRecord]) -> float:
         if not records:
             return 0.0
-        errors = [(r.probability - (1.0 if r.is_correct else 0.0)) ** 2 for r in records]
+        errors = [(r.probability - (1.0 if r.is_correct else 0.0))**2
+                  for r in records]
         return float(np.mean(errors))
 
 
-def compute_token_entropy(probabilities: Sequence[float], config: EntropyConfig) -> float:
+def compute_token_entropy(probabilities: Sequence[float],
+                          config: EntropyConfig) -> float:
     """Compute normalized Shannon entropy over the top-k probabilities."""
 
     array = torch.as_tensor(probabilities, dtype=torch.float32)
@@ -122,18 +131,26 @@ def compute_token_entropy(probabilities: Sequence[float], config: EntropyConfig)
     return float(entropy / np.log(top_k))
 
 
-def compute_attention_entropy(attention_map: np.ndarray, config: EntropyConfig) -> AttentionEntropyMetrics:
+def compute_attention_entropy(
+        attention_map: np.ndarray,
+        config: EntropyConfig) -> AttentionEntropyMetrics:
     """Compute entropy over a dense attention map."""
 
     flattened = attention_map.astype(np.float64).reshape(-1)
     total = float(flattened.sum())
     if total <= 0.0:
-        return AttentionEntropyMetrics(raw_entropy=0.0, normalized_entropy=0.0, num_elements=len(flattened))
+        return AttentionEntropyMetrics(raw_entropy=0.0,
+                                       normalized_entropy=0.0,
+                                       num_elements=len(flattened))
     probs = flattened / total
     probs = np.clip(probs, config.epsilon, None)
     raw_entropy = float(-(probs * np.log(probs)).sum())
-    normalized = raw_entropy / float(np.log(len(flattened))) if config.normalize and len(flattened) > 1 else raw_entropy
-    return AttentionEntropyMetrics(raw_entropy=raw_entropy, normalized_entropy=normalized, num_elements=len(flattened))
+    normalized = raw_entropy / float(np.log(
+        len(flattened))) if config.normalize and len(
+            flattened) > 1 else raw_entropy
+    return AttentionEntropyMetrics(raw_entropy=raw_entropy,
+                                   normalized_entropy=normalized,
+                                   num_elements=len(flattened))
 
 
 def compute_confidence_metrics(
@@ -161,21 +178,30 @@ def compute_confidence_metrics(
         raise ValueError("logits and probabilities must share shape")
 
     entropy_cfg = entropy_config or EntropyConfig()
-    predicted_tokens = [tokenizer.decode([idx]).strip() for idx in predicted_token_ids]
-    ground_truth_tokens = (
-        [tokenizer.decode([idx]).strip() for idx in ground_truth_token_ids]
-        if ground_truth_token_ids is not None
-        else None
-    )
+    predicted_tokens = [
+        tokenizer.decode([idx]).strip() for idx in predicted_token_ids
+    ]
+    ground_truth_tokens = ([
+        tokenizer.decode([idx]).strip() for idx in ground_truth_token_ids
+    ] if ground_truth_token_ids is not None else None)
 
     # Compute per-token log probabilities
-    token_indices = torch.tensor(predicted_token_ids, dtype=torch.long)
-    gather_probs = torch.gather(probabilities, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
-    gather_logits = torch.gather(logits, dim=1, index=token_indices.unsqueeze(-1)).squeeze(-1)
+    # Ensure token_indices is on the same device as probabilities
+    token_indices = torch.tensor(predicted_token_ids,
+                                 dtype=torch.long,
+                                 device=probabilities.device)
+    gather_probs = torch.gather(probabilities,
+                                dim=1,
+                                index=token_indices.unsqueeze(-1)).squeeze(-1)
+    gather_logits = torch.gather(logits,
+                                 dim=1,
+                                 index=token_indices.unsqueeze(-1)).squeeze(-1)
 
-    per_token_log_probs = gather_probs.clamp_min(entropy_cfg.epsilon).log().tolist()
+    per_token_log_probs = gather_probs.clamp_min(
+        entropy_cfg.epsilon).log().tolist()
 
-    top1_probability = float(gather_probs[-1]) if len(gather_probs) > 0 else 0.0
+    top1_probability = float(
+        gather_probs[-1]) if len(gather_probs) > 0 else 0.0
     top2_probability = _second_best_probability(probabilities[-1])
     probability_margin = float(top1_probability - top2_probability)
 
@@ -183,8 +209,10 @@ def compute_confidence_metrics(
     top2_logit = _second_best_logit(logits[-1])
     logit_margin = float(top1_logit - top2_logit)
 
-    token_entropy = compute_token_entropy(probabilities[-1].tolist(), entropy_cfg)
-    sequence_prob = float(torch.exp(torch.tensor(per_token_log_probs).sum())) if per_token_log_probs else 0.0
+    token_entropy = compute_token_entropy(probabilities[-1].tolist(),
+                                          entropy_cfg)
+    sequence_prob = float(torch.exp(torch.tensor(
+        per_token_log_probs).sum())) if per_token_log_probs else 0.0
 
     return ConfidenceMetrics(
         predicted_tokens=predicted_tokens,
