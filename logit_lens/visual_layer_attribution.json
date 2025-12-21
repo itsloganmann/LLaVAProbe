@@ -1,0 +1,51 @@
+{
+  "threshold": 0.5,
+  "visual_layers": [
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31
+  ],
+  "positive_layers": [
+    19,
+    30,
+    31
+  ],
+  "negative_layers": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "visual_layers_only": {
+    "mlp_contribution": 4.680625808596611,
+    "attn_contribution": 4.217815484762191,
+    "mlp_fraction": 0.5260051344149357,
+    "attn_fraction": 0.4739948655850643
+  },
+  "all_layers": {
+    "mlp_contribution": 3.5031324368715286,
+    "attn_contribution": 5.414742908060552,
+    "mlp_fraction": 0.3928214178125192,
+    "attn_fraction": 0.6071785821874808
+  },
+  "positive_layers_only": {
+    "mlp_contribution": 3.588967414736748,
+    "attn_contribution": 1.390043354034424
+  },
+  "negative_layers_only": {
+    "mlp_contribution": 1.0916583938598634,
+    "attn_contribution": 2.827772130727768
+  }
+}

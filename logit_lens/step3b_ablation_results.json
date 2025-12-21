@@ -1,0 +1,121 @@
+{
+  "n_samples": 200,
+  "ablation_results": {
+    "baseline": {
+      "overall_accuracy": 0.06,
+      "accuracy_by_type": {
+        "object identification": 0.0,
+        "other": 0.06382978723404255
+      },
+      "n_correct": 12,
+      "n_total": 200,
+      "config": {}
+    },
+    "neuron_1512_L31": {
+      "overall_accuracy": 0.06,
+      "accuracy_by_type": {
+        "object identification": 0.0,
+        "other": 0.06382978723404255
+      },
+      "n_correct": 12,
+      "n_total": 200,
+      "config": {
+        "31": [
+          1512
+        ]
+      }
+    },
+    "neuron_1512_all": {
+      "overall_accuracy": 0.06,
+      "accuracy_by_type": {
+        "object identification": 0.0,
+        "other": 0.06382978723404255
+      },
+      "n_correct": 12,
+      "n_total": 200,
+      "config": {
+        "17": [
+          1512
+        ],
+        "21": [
+          1512
+        ],
+        "27": [
+          1512
+        ],
+        "30": [
+          1512
+        ],
+        "31": [
+          1512
+        ]
+      }
+    },
+    "top5_L31": {
+      "overall_accuracy": 0.06,
+      "accuracy_by_type": {
+        "object identification": 0.0,
+        "other": 0.06382978723404255
+      },
+      "n_correct": 12,
+      "n_total": 200,
+      "config": {
+        "31": [
+          1512,
+          1360,
+          1573,
+          3556,
+          2298
+        ]
+      }
+    },
+    "random_5_L31": {
+      "overall_accuracy": 0.06,
+      "accuracy_by_type": {
+        "object identification": 0.0,
+        "other": 0.06382978723404255
+      },
+      "n_correct": 12,
+      "n_total": 200,
+      "config": {
+        "31": [
+          100,
+          500,
+          1000,
+          2000,
+          3000
+        ]
+      }
+    }
+  },
+  "impact_analysis": {
+    "neuron_1512_L31": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0
+      }
+    },
+    "neuron_1512_all": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0
+      }
+    },
+    "top5_L31": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0
+      }
+    },
+    "random_5_L31": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0
+      }
+    }
+  }
+}

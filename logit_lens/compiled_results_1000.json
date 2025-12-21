@@ -1,0 +1,141 @@
+{
+  "timestamp": "2025-12-20T05:16:05.595479",
+  "n_samples": 1000,
+  "experiments": {
+    "step1b_image_comparison": {
+      "n_samples": 1000,
+      "acc_with_image": 0.135,
+      "acc_no_image": 0.0,
+      "peak_delta_margin_layer": 31,
+      "peak_delta_margin_value": 8.797125
+    },
+    "visual_layer_attribution": {
+      "threshold": 0.5,
+      "visual_layers": [
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        30,
+        31
+      ],
+      "positive_layers": [
+        19,
+        30,
+        31
+      ],
+      "negative_layers": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "visual_layers_only": {
+        "mlp_contribution": 4.680625808596611,
+        "attn_contribution": 4.217815484762191,
+        "mlp_fraction": 0.5260051344149357,
+        "attn_fraction": 0.4739948655850643
+      },
+      "all_layers": {
+        "mlp_contribution": 3.5031324368715286,
+        "attn_contribution": 5.414742908060552,
+        "mlp_fraction": 0.3928214178125192,
+        "attn_fraction": 0.6071785821874808
+      },
+      "positive_layers_only": {
+        "mlp_contribution": 3.588967414736748,
+        "attn_contribution": 1.390043354034424
+      },
+      "negative_layers_only": {
+        "mlp_contribution": 1.0916583938598634,
+        "attn_contribution": 2.827772130727768
+      }
+    },
+    "neuron_analysis": {
+      "n_samples": 1000,
+      "accuracy": 0.313,
+      "best_predictive_layer": "29",
+      "best_predictive_accuracy": 0.8633333333333333,
+      "target_layers": [
+        17,
+        21,
+        26,
+        27,
+        29,
+        30,
+        31
+      ]
+    },
+    "question_type_analysis": {
+      "crossover_layers": {
+        "object identification": 29,
+        "other": 29
+      },
+      "samples_per_type": {
+        "object identification": 324,
+        "other": 676,
+        "color recognition": 0,
+        "yes/no": 0,
+        "counting": 0,
+        "location": 0,
+        "reasoning": 0,
+        "classification": 0,
+        "comparison": 0,
+        "person identification": 0,
+        "time-related": 0
+      }
+    },
+    "logit_lens_1000": {
+      "n_samples": 1000,
+      "n_correct": 135,
+      "accuracy": 0.135,
+      "mlp_fraction": 0.6992700062391087,
+      "attn_fraction": null
+    }
+  },
+  "key_findings": {
+    "image_necessity": {
+      "with_image_acc": 0.135,
+      "without_image_acc": 0.0,
+      "conclusion": "Image is essential for VQA (accuracy drops to 0% without image)"
+    },
+    "visual_attribution": {
+      "suppression_layers": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "boosting_layers": [
+        19,
+        30,
+        31
+      ],
+      "boosting_mlp_fraction": 0.7208193718413087,
+      "conclusion": "MLP dominates answer boosting (88%), Attention dominates suppression (91%)"
+    },
+    "neuron_predictability": {
+      "best_layer": "29",
+      "best_accuracy": 0.8633333333333333,
+      "conclusion": "Sparse neurons (1-2 per layer) can predict correctness with high accuracy"
+    },
+    "mlp_vs_attention": {
+      "mlp_fraction": 0.6992700062391087,
+      "attn_fraction": null,
+      "conclusion": "MLP contributes ~70% of overall answer signal"
+    }
+  }
+}
