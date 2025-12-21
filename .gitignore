@@ -3,3 +3,5 @@ output_images/
 sees/
 __pycache__/
 test_output/
+analysis_outputs/
+analysis_outputs_test/
