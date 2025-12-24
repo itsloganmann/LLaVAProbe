@@ -66,34 +66,33 @@ def load_prompts(csv_path: Path) -> List[PromptEntry]:
     return prompts
 
 
-def fetch_image(url: str, timeout: float = 10.0) -> Image.Image:
-    """
-    Fetch image safely, even if SSL verification fails.
-    Attempts HTTPS first; falls back to verified proxy if needed.
-    """
-    try:
-        # First try regular HTTPS fetch
-        response = requests.get(url, timeout=timeout)
-        response.raise_for_status()
-        return Image.open(BytesIO(response.content)).convert("RGB")
+from pathlib import Path
+from urllib.parse import urlparse
 
-    except requests.exceptions.SSLError as ssl_err:
-        logging.warning(f"SSL error fetching {url}: {ssl_err}")
+def fetch_image(path_or_url: str, timeout: float = 10.0) -> Image.Image:
+    """
+    Load an image from either:
+    - a local filesystem path (preferred), or
+    - an HTTP/HTTPS URL (fallback, if that's what you pass in).
+    """
+    # 1) Try local file path first
+    p = Path(path_or_url)
+    if p.exists():
+        return Image.open(p).convert("RGB")
+
+    # 2) If it looks like a URL, fall back to HTTP
+    parsed = urlparse(path_or_url)
+    if parsed.scheme in ("http", "https"):
         try:
-            # Retry without SSL verification (safe in this isolated context)
-            response = requests.get(url, timeout=timeout, verify=False)
+            response = requests.get(path_or_url, timeout=timeout)
             response.raise_for_status()
             return Image.open(BytesIO(response.content)).convert("RGB")
-        except Exception:
-            # Fallback: proxy through images.weserv.nl (valid HTTPS)
-            proxy_url = f"https://images.weserv.nl/?url={url.lstrip('https://').lstrip('http://')}"
-            logging.info(f"Retrying through secure proxy: {proxy_url}")
-            response = requests.get(proxy_url, timeout=timeout)
-            response.raise_for_status()
-            return Image.open(BytesIO(response.content)).convert("RGB")
+        except Exception as exc:
+            raise RuntimeError(f"Failed to fetch {path_or_url}: {exc}") from exc
 
-    except Exception as exc:
-        raise RuntimeError(f"Failed to fetch {url}: {exc}") from exc
+    # 3) If neither works, bail clearly
+    raise FileNotFoundError(f"Could not interpret image path/url: {path_or_url}")
+
 
 
 def build_cluster_reports(labels: np.ndarray, attention_map: np.ndarray) -> List[ClusterReport]:
