@@ -49,8 +49,6 @@ class RunnerOutput:
     ground_truth_delta: Optional[float]
     ground_truth_tokens: Optional[Sequence[str]]
     ablations: List[AblationResult]
-    head_layer: int
-    head_index: int
 
 
 class LlavaRunner:
@@ -209,7 +207,7 @@ class LlavaRunner:
         print("\n==== LAYER EVOLUTION ====\n")
         print_layer_evolution(layer_evolution)
 
-        attention_map, head_delta, gt_delta, best_layer, best_head = self._extract_attention_map(
+        attention_map, head_delta, gt_delta = self._extract_attention_map(
             forward_outputs,
             predicted_token_ids,
             ground_truth_token_ids,
@@ -236,8 +234,6 @@ class LlavaRunner:
             ground_truth_delta=gt_delta,
             ground_truth_tokens=ground_truth_tokens,
             ablations=ablations,
-            head_layer=best_layer,
-            head_index=best_head,
         )
 
     # ------------------------------------------------------------------
@@ -264,7 +260,7 @@ class LlavaRunner:
         outputs,
         predicted_token_ids: Sequence[int],
         ground_truth_token_ids: Optional[Sequence[int]] = None,
-    ) -> Tuple[np.ndarray, float, Optional[float], int, int]:
+    ) -> Tuple[np.ndarray, float, Optional[float]]:
         """
         Option B: work purely in attention space.
 
@@ -350,7 +346,7 @@ class LlavaRunner:
         # ------------------------------------------------------------------
         ground_truth_delta: Optional[float] = None
 
-        return attention_map, float(head_delta), ground_truth_delta, best_layer, best_head
+        return attention_map, float(head_delta), ground_truth_delta
 
     def _run_head_ablation(
         self,
