@@ -49,6 +49,7 @@ class RunnerOutput:
     ground_truth_delta: Optional[float]
     ground_truth_tokens: Optional[Sequence[str]]
     ablations: List[AblationResult]
+    layer_evolution: Optional[dict] = None
 
 
 class LlavaRunner:
@@ -234,6 +235,7 @@ class LlavaRunner:
             ground_truth_delta=gt_delta,
             ground_truth_tokens=ground_truth_tokens,
             ablations=ablations,
+            layer_evolution=layer_evolution,
         )
 
     # ------------------------------------------------------------------

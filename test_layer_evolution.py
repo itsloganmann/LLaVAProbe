@@ -85,9 +85,9 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
     
     return fallback_data
 
-def serialize_result(output, image_url: str, index: int, question: str) -> Dict[str, Any]:
+def serialize_result(output, image_url: str, index: int, question: str, layer_evolution: Dict = None) -> Dict[str, Any]:
     """Convert model output to serializable dictionary."""
-    return {
+    result = {
         "index": index,
         "image_url": image_url,
         "question": question,
@@ -103,6 +103,35 @@ def serialize_result(output, image_url: str, index: int, question: str) -> Dict[
         # Save full attention map as nested list (can be large)
         "attention_map": output.attention_map.tolist() if output.attention_map.size < 100000 else None,
     }
+    
+    # Add layer evolution metrics if available
+    if layer_evolution and "summary" in layer_evolution:
+        result["layer_evolution"] = {
+            "most_diffuse_layer": int(layer_evolution["summary"]["most_diffuse_layer"]),
+            "most_focused_layer": int(layer_evolution["summary"]["most_focused_layer"]),
+            "highest_shift_layer": int(layer_evolution["summary"]["highest_shift_layer"]),
+            "most_diverse_heads_layer": int(layer_evolution["summary"]["most_diverse_heads_layer"]),
+            "total_entropy_change": float(layer_evolution["summary"]["total_entropy_change"]),
+            "max_single_shift": float(layer_evolution["summary"]["max_single_shift"]),
+        }
+        
+        # Also save per-layer metrics for detailed analysis
+        result["per_layer_metrics"] = [
+            {
+                "layer": int(m["layer_index"]),
+                "entropy": float(m["entropy"]),
+                "entropy_shift": float(m["entropy_shift"]),
+                "sparsity": float(m["sparsity"]),
+                "sparsity_shift": float(m["sparsity_shift"]),
+                "kl_divergence": float(m["kl_divergence"]),
+                "head_diversity": float(m["head_diversity"]),
+                "is_critical_entropy": bool(m.get("is_critical_entropy", False)),
+                "is_critical_multimetric": bool(m.get("is_critical_multimetric", False)),
+            }
+            for m in layer_evolution["per_layer_metrics"]
+        ]
+    
+    return result
 
 def save_checkpoint(results: List[Dict], checkpoint_num: int):
     """Save intermediate checkpoint."""
@@ -159,8 +188,8 @@ def main():
                 prefix=DEFAULT_PREFIX,
             )
             
-            # Serialize and save result
-            result = serialize_result(output, image_url, idx, question)
+            # Serialize and save result (layer_evolution is now in output)
+            result = serialize_result(output, image_url, idx, question, output.layer_evolution)
             results.append(result)
             successful += 1
             
