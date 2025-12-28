@@ -51,16 +51,33 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
         print(f"✅ Found {len(data)} samples in dataset")
         return data[:num_images]
     
-    # Fallback: Use sample COCO URLs
+    # Fallback: Use actual valid COCO val2017 image IDs
     print(f"⚠️  VQA dataset not found at {PROCESSED_DATA_PATH}")
-    print(f"   Using fallback: generating {num_images} COCO image URLs")
+    print(f"   Using fallback: COCO val2017 images")
+    
+    # These are real COCO val2017 image IDs that exist
+    # Seed list of 100 known valid IDs, then we'll cycle through them
+    base_valid_ids = [
+        139, 285, 632, 724, 776, 785, 802, 872, 885, 1000,
+        1268, 1296, 1425, 1503, 1584, 1761, 1818, 1993, 2006, 2149,
+        2153, 2157, 2261, 2299, 2473, 2532, 2587, 2592, 2685, 2923,
+        2975, 3156, 3255, 3501, 3661, 3845, 4134, 4395, 4765, 5001,
+        5037, 5060, 5477, 5992, 6040, 6213, 6460, 6471, 6614, 6723,
+        6954, 7108, 7278, 7386, 7511, 7574, 7816, 7888, 8021, 8277,
+        8532, 8629, 9448, 9590, 9769, 9891, 10092, 10363, 10707, 10977,
+        11197, 11511, 12062, 12280, 12576, 12667, 13004, 13177, 13546, 14007,
+        14205, 14439, 14473, 14888, 15029, 15254, 15335, 15597, 15956, 16228,
+        16439, 16598, 17029, 17178, 17207, 17714, 17899, 18150, 18380, 18519
+    ]
     
     fallback_data = []
     for i in range(num_images):
-        # Generate COCO image IDs (padded to 12 digits)
-        image_id = str(i + 1).zfill(12)
+        # Cycle through valid IDs, repeating if necessary
+        image_id = base_valid_ids[i % len(base_valid_ids)]
+        image_id_str = str(image_id).zfill(12)
+        
         fallback_data.append({
-            "image_url": f"http://images.cocodataset.org/val2017/{image_id}.jpg",
+            "image_url": f"http://images.cocodataset.org/val2017/{image_id_str}.jpg",
             "question_text": DEFAULT_PROMPT,
             "answer": "unknown",
             "category": "general"
