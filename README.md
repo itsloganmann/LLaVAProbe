@@ -41,6 +41,26 @@ language-only and visual ablations, confidence calibration, and rich structured 
 	!python test_layer_evolution.py
 	```
 	
+	**🎯 NEW: Batch Processing on 1000 Images**
+	
+	Process 1000 images and save layer evolution results to JSON:
+	
+	```python
+	# Quick test with 5 images first
+	!python test_quick.py
+	
+	# Then run full analysis on 1000 images (takes ~1-2 hours on T4 GPU)
+	!python test_layer_evolution.py
+	
+	# Download results
+	from google.colab import files
+	files.download('layer_evolution_results.json')
+	```
+	
+	Or use the interactive notebook: `Run_Layer_Evolution_Colab.ipynb`
+	
+	See [LAYER_EVOLUTION_README.md](LAYER_EVOLUTION_README.md) for detailed documentation.
+	
 	**Step 4 (Optional):** Run full analysis pipeline:
 	
 	```python

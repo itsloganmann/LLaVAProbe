@@ -1,44 +1,198 @@
+"""
+Layer Evolution Analysis - Run on 1000 Images
+Processes multiple images and saves layer evolution results to JSON.
+Can be run directly in Colab after cloning the repo and installing dependencies.
+"""
+
 from PIL import Image
 import requests
 import torch
+import json
+import os
+from io import BytesIO
+from datetime import datetime
+from pathlib import Path
+from typing import List, Dict, Any
+import numpy as np
 
+print("="*70)
+print("LAYER EVOLUTION ANALYSIS - BATCH PROCESSING")
+print("="*70)
 print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
-# Load image
-print("Loading image...")
-image = Image.open(requests.get(
-    "https://llava-vl.github.io/static/images/view.jpg",
-    stream=True
-).raw)
+# Configuration
+NUM_IMAGES = 1000
+OUTPUT_FILE = "layer_evolution_results.json"
+CHECKPOINT_INTERVAL = 50  # Save checkpoint every N images
+PROCESSED_DATA_PATH = "data_processing/data/processed/filtered_vqa_with_links.json"
 
-# Always load LlavaRunner (never use preloaded model)
-print("Loading model via LlavaRunner...")
+# Default prompt for all images
+DEFAULT_PROMPT = "What do you see in this image?"
+DEFAULT_PREFIX = "This image shows"
 
-from analysis.llava_runner import LlavaRunner
+def load_image_from_url(url: str, timeout: int = 10) -> Image.Image:
+    """Load image from URL with error handling."""
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+        return Image.open(BytesIO(response.content)).convert("RGB")
+    except Exception as e:
+        print(f"  ⚠️  Error loading {url}: {e}")
+        return None
 
-runner = LlavaRunner(
-    model_id="llava-hf/llava-1.5-7b-hf",
-    device="cuda",
-    quantization=None
-)
+def load_dataset(num_images: int) -> List[Dict[str, Any]]:
+    """Load image dataset from VQA JSON or use fallback URLs."""
+    
+    # Try to load from VQA dataset
+    if os.path.exists(PROCESSED_DATA_PATH):
+        print(f"✅ Loading dataset from {PROCESSED_DATA_PATH}")
+        with open(PROCESSED_DATA_PATH, "r") as f:
+            data = json.load(f)
+        print(f"✅ Found {len(data)} samples in dataset")
+        return data[:num_images]
+    
+    # Fallback: Use sample COCO URLs
+    print(f"⚠️  VQA dataset not found at {PROCESSED_DATA_PATH}")
+    print(f"   Using fallback: generating {num_images} COCO image URLs")
+    
+    fallback_data = []
+    for i in range(num_images):
+        # Generate COCO image IDs (padded to 12 digits)
+        image_id = str(i + 1).zfill(12)
+        fallback_data.append({
+            "image_url": f"http://images.cocodataset.org/val2017/{image_id}.jpg",
+            "question_text": DEFAULT_PROMPT,
+            "answer": "unknown",
+            "category": "general"
+        })
+    
+    return fallback_data
 
-# if torch.cuda.is_available() else "cpu"
+def serialize_result(output, image_url: str, index: int, question: str) -> Dict[str, Any]:
+    """Convert model output to serializable dictionary."""
+    return {
+        "index": index,
+        "image_url": image_url,
+        "question": question,
+        "predicted_answer": output.predicted_answer,
+        "token_confidence": float(output.token_confidence),
+        "head_delta": float(output.head_delta),
+        "attention_map_shape": list(output.attention_map.shape),
+        "attention_map_mean": float(np.mean(output.attention_map)),
+        "attention_map_std": float(np.std(output.attention_map)),
+        "num_generated_tokens": len(output.predicted_token_ids),
+        "token_strings": output.token_strings,
+        "token_ids": [int(tid) for tid in output.predicted_token_ids],
+        # Save full attention map as nested list (can be large)
+        "attention_map": output.attention_map.tolist() if output.attention_map.size < 100000 else None,
+    }
 
-print("Running inference with full attention + layer evolution...")
+def save_checkpoint(results: List[Dict], checkpoint_num: int):
+    """Save intermediate checkpoint."""
+    checkpoint_file = f"checkpoint_{checkpoint_num}.json"
+    with open(checkpoint_file, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"  💾 Checkpoint saved: {checkpoint_file}")
 
-output = runner.run(
-    image=image,
-    prompt="What do you see in this image?",
-    prefix="This image shows",
-)
+def main():
+    # Load dataset
+    print(f"\n📦 Loading dataset ({NUM_IMAGES} images)...")
+    dataset = load_dataset(NUM_IMAGES)
+    actual_num = min(NUM_IMAGES, len(dataset))
+    print(f"✅ Will process {actual_num} images\n")
+    
+    # Initialize model
+    print("🔧 Loading LLaVA model...")
+    from analysis.llava_runner import LlavaRunner
+    
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    runner = LlavaRunner(
+        model_id="llava-hf/llava-1.5-7b-hf",
+        device=device,
+        quantization=None  # Set to "4bit" or "8bit" for lower memory usage
+    )
+    print(f"✅ Model loaded on {device}\n")
+    
+    # Process images
+    results = []
+    successful = 0
+    failed = 0
+    
+    print("🚀 Starting batch processing...\n")
+    start_time = datetime.now()
+    
+    for idx, sample in enumerate(dataset[:actual_num], start=1):
+        image_url = sample.get("image_url", "")
+        question = sample.get("question_text", DEFAULT_PROMPT)
+        
+        print(f"[{idx}/{actual_num}] Processing: {image_url[:60]}...")
+        
+        # Load image
+        image = load_image_from_url(image_url)
+        if image is None:
+            failed += 1
+            print(f"  ❌ Skipped (failed to load)\n")
+            continue
+        
+        try:
+            # Run inference
+            output = runner.run(
+                image=image,
+                prompt=question,
+                prefix=DEFAULT_PREFIX,
+            )
+            
+            # Serialize and save result
+            result = serialize_result(output, image_url, idx, question)
+            results.append(result)
+            successful += 1
+            
+            print(f"  ✅ Success | Answer: '{output.predicted_answer[:50]}...' | Confidence: {output.token_confidence:.4f}\n")
+            
+        except Exception as e:
+            failed += 1
+            print(f"  ❌ Error during inference: {e}\n")
+            continue
+        
+        # Save checkpoint periodically
+        if idx % CHECKPOINT_INTERVAL == 0:
+            save_checkpoint(results, idx)
+    
+    # Save final results
+    print("="*70)
+    print("💾 Saving final results...")
+    
+    output_data = {
+        "metadata": {
+            "total_images": actual_num,
+            "successful": successful,
+            "failed": failed,
+            "timestamp": datetime.now().isoformat(),
+            "device": device,
+            "model": "llava-hf/llava-1.5-7b-hf",
+            "prompt": DEFAULT_PROMPT,
+            "prefix": DEFAULT_PREFIX,
+        },
+        "results": results
+    }
+    
+    with open(OUTPUT_FILE, "w") as f:
+        json.dump(output_data, f, indent=2)
+    
+    elapsed = datetime.now() - start_time
+    
+    print(f"✅ Results saved to: {OUTPUT_FILE}")
+    print("="*70)
+    print("SUMMARY")
+    print("="*70)
+    print(f"Total processed: {successful}/{actual_num}")
+    print(f"Failed: {failed}")
+    print(f"Success rate: {100*successful/actual_num:.1f}%")
+    print(f"Time elapsed: {elapsed}")
+    print(f"Average time per image: {elapsed.total_seconds()/successful:.2f}s")
+    print("="*70)
+    
+    return results
 
-print("\n" + "="*50)
-print("RESULTS (Full Attention Tracking + Layer Evolution)")
-print("="*50)
-print(f"Predicted answer: {output.predicted_answer}")
-print(f"Token confidence: {output.token_confidence:.4f}")
-print(f"Head delta: {output.head_delta:.6f}")
-print(f"Attention map shape: {output.attention_map.shape}")
-print(f"Generated tokens: {len(output.predicted_token_ids)}")
-print(f"Tokens: {output.token_strings}")
-print("="*50)
+if __name__ == "__main__":
+    results = main()
