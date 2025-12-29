@@ -29,7 +29,7 @@ print("="*70)
 print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
 # Configuration
-NUM_IMAGES = 1000
+NUM_IMAGES = 5
 
 # 🔁 CHANGED: write results into Drive folder
 OUTPUT_FILE = os.path.join(SAVE_DIR, "layer_evolution_results.json")
