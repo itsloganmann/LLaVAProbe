@@ -15,17 +15,23 @@ from pathlib import Path
 from typing import List, Dict, Any
 import numpy as np
 
-# ========= Drive (optional — works in Colab AND normal Python) =========
+# ========= Google Drive Setup (Auto-detects Colab) =========
 try:
     from google.colab import drive
     drive.mount('/content/drive')
-    SAVE_DIR = "/content/drive/MyDrive/llava_probe_runs"
-    print("🟢 Using Google Drive for storage")
+    BASE_DRIVE_DIR = "/content/drive/MyDrive/llava_probe_runs"
+    IS_COLAB = True
+    print("🟢 Google Drive mounted successfully")
 except Exception:
-    SAVE_DIR = "./llava_probe_runs"
+    BASE_DRIVE_DIR = "./llava_probe_runs"
+    IS_COLAB = False
     print("🟡 Colab not detected — saving locally instead")
 
-os.makedirs(SAVE_DIR, exist_ok=True)
+# Create timestamped folder for this run
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+RUN_FOLDER = os.path.join(BASE_DRIVE_DIR, f"run_{timestamp}")
+os.makedirs(RUN_FOLDER, exist_ok=True)
+print(f"📁 Results will be saved to: {RUN_FOLDER}")
 # ======================================================================
 
 print("="*70)
@@ -34,10 +40,12 @@ print("="*70)
 print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
 # Configuration
-NUM_IMAGES = 5   # ← change this whenever you want
+NUM_IMAGES = 1000   # Total number of images to process
 
-# Results go into Drive (or local fallback)
-OUTPUT_FILE = os.path.join(SAVE_DIR, "layer_evolution_results.json")
+# All results save to Google Drive folder
+OUTPUT_FILE = os.path.join(RUN_FOLDER, "layer_evolution_results.json")
+CHECKPOINT_DIR = os.path.join(RUN_FOLDER, "checkpoints")
+os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 
 CHECKPOINT_INTERVAL = 50  # Save checkpoint every N images
 PROCESSED_DATA_PATH = "data_processing/data/processed/filtered_vqa_with_links.json"
@@ -135,10 +143,11 @@ def serialize_result(output, image_url: str, index: int, question: str, layer_ev
     return result
 
 def save_checkpoint(results: List[Dict], checkpoint_num: int):
-    checkpoint_file = os.path.join(SAVE_DIR, f"checkpoint_{checkpoint_num}.json")
+    """Save checkpoint to Google Drive folder."""
+    checkpoint_file = os.path.join(CHECKPOINT_DIR, f"checkpoint_{checkpoint_num}.json")
     with open(checkpoint_file, "w") as f:
         json.dump(results, f, indent=2)
-    print(f"  💾 Checkpoint saved: {checkpoint_file}")
+    print(f"  💾 Checkpoint saved to Drive: checkpoint_{checkpoint_num}.json")
 
 def main():
     print(f"\n📦 Loading dataset ({NUM_IMAGES} images)...")
@@ -218,7 +227,13 @@ def main():
     
     elapsed = datetime.now() - start_time
     
-    print(f"✅ Results saved to: {OUTPUT_FILE}")
+    print("="*70)
+    print("✅ ALL RESULTS SAVED TO GOOGLE DRIVE")
+    print("="*70)
+    print(f"📁 Run folder: {RUN_FOLDER}")
+    print(f"📄 Final results: layer_evolution_results.json")
+    print(f"📦 Checkpoints folder: checkpoints/")
+    print(f"   (Contains checkpoint_50.json, checkpoint_100.json, etc.)")
     print("="*70)
     print("SUMMARY")
     print("="*70)
@@ -227,6 +242,9 @@ def main():
     print(f"Success rate: {100*successful/actual_num:.1f}%")
     print(f"Time elapsed: {elapsed}")
     print(f"Average time per image: {elapsed.total_seconds()/successful:.2f}s")
+    if IS_COLAB:
+        print(f"\n🔗 Access your results in Google Drive:")
+        print(f"   MyDrive/llava_probe_runs/run_{timestamp}/")
     print("="*70)
     
     return results
