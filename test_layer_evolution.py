@@ -15,13 +15,18 @@ from pathlib import Path
 from typing import List, Dict, Any
 import numpy as np
 
-# ========= NEW: always save to Google Drive =========
-from google.colab import drive
-drive.mount('/content/drive')
+# ========= Drive (optional — works in Colab AND normal Python) =========
+try:
+    from google.colab import drive
+    drive.mount('/content/drive')
+    SAVE_DIR = "/content/drive/MyDrive/llava_probe_runs"
+    print("🟢 Using Google Drive for storage")
+except Exception:
+    SAVE_DIR = "./llava_probe_runs"
+    print("🟡 Colab not detected — saving locally instead")
 
-SAVE_DIR = "/content/drive/MyDrive/llava_probe_runs"
 os.makedirs(SAVE_DIR, exist_ok=True)
-# ====================================================
+# ======================================================================
 
 print("="*70)
 print("LAYER EVOLUTION ANALYSIS - BATCH PROCESSING")
@@ -29,20 +34,18 @@ print("="*70)
 print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
 # Configuration
-NUM_IMAGES = 5
+NUM_IMAGES = 5   # ← change this whenever you want
 
-# 🔁 CHANGED: write results into Drive folder
+# Results go into Drive (or local fallback)
 OUTPUT_FILE = os.path.join(SAVE_DIR, "layer_evolution_results.json")
 
 CHECKPOINT_INTERVAL = 50  # Save checkpoint every N images
 PROCESSED_DATA_PATH = "data_processing/data/processed/filtered_vqa_with_links.json"
 
-# Default prompt for all images
 DEFAULT_PROMPT = "What do you see in this image?"
 DEFAULT_PREFIX = "This image shows"
 
 def load_image_from_url(url: str, timeout: int = 10) -> Image.Image:
-    """Load image from URL with error handling."""
     try:
         response = requests.get(url, timeout=timeout)
         response.raise_for_status()
@@ -52,9 +55,6 @@ def load_image_from_url(url: str, timeout: int = 10) -> Image.Image:
         return None
 
 def load_dataset(num_images: int) -> List[Dict[str, Any]]:
-    """Load image dataset from VQA JSON or use fallback URLs."""
-    
-    # Try to load from VQA dataset
     if os.path.exists(PROCESSED_DATA_PATH):
         print(f"✅ Loading dataset from {PROCESSED_DATA_PATH}")
         with open(PROCESSED_DATA_PATH, "r") as f:
@@ -62,7 +62,6 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
         print(f"✅ Found {len(data)} samples in dataset")
         return data[:num_images]
     
-    # Fallback: Use actual valid COCO val2017 image IDs
     print(f"⚠️  VQA dataset not found at {PROCESSED_DATA_PATH}")
     print(f"   Using fallback: COCO val2017 images")
     
@@ -93,7 +92,6 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
     return fallback_data
 
 def serialize_result(output, image_url: str, index: int, question: str, layer_evolution: Dict = None) -> Dict[str, Any]:
-    """Convert model output to serializable dictionary."""
     result = {
         "index": index,
         "image_url": image_url,
@@ -137,7 +135,6 @@ def serialize_result(output, image_url: str, index: int, question: str, layer_ev
     return result
 
 def save_checkpoint(results: List[Dict], checkpoint_num: int):
-    """Save intermediate checkpoint (Drive-safe)."""
     checkpoint_file = os.path.join(SAVE_DIR, f"checkpoint_{checkpoint_num}.json")
     with open(checkpoint_file, "w") as f:
         json.dump(results, f, indent=2)
