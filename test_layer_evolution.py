@@ -40,7 +40,7 @@ print("="*70)
 print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
 # Configuration
-NUM_IMAGES = 5   # Total number of images to process
+NUM_IMAGES = 500   # Total number of images to process
 
 # All results save to Google Drive folder
 OUTPUT_FILE = os.path.join(RUN_FOLDER, "layer_evolution_results.json")
