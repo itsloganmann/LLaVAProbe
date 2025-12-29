@@ -15,6 +15,14 @@ from pathlib import Path
 from typing import List, Dict, Any
 import numpy as np
 
+# ========= NEW: always save to Google Drive =========
+from google.colab import drive
+drive.mount('/content/drive')
+
+SAVE_DIR = "/content/drive/MyDrive/llava_probe_runs"
+os.makedirs(SAVE_DIR, exist_ok=True)
+# ====================================================
+
 print("="*70)
 print("LAYER EVOLUTION ANALYSIS - BATCH PROCESSING")
 print("="*70)
@@ -22,7 +30,10 @@ print("Using device:", "cuda" if torch.cuda.is_available() else "cpu")
 
 # Configuration
 NUM_IMAGES = 1000
-OUTPUT_FILE = "layer_evolution_results.json"
+
+# 🔁 CHANGED: write results into Drive folder
+OUTPUT_FILE = os.path.join(SAVE_DIR, "layer_evolution_results.json")
+
 CHECKPOINT_INTERVAL = 50  # Save checkpoint every N images
 PROCESSED_DATA_PATH = "data_processing/data/processed/filtered_vqa_with_links.json"
 
@@ -55,8 +66,6 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
     print(f"⚠️  VQA dataset not found at {PROCESSED_DATA_PATH}")
     print(f"   Using fallback: COCO val2017 images")
     
-    # These are real COCO val2017 image IDs that exist
-    # Seed list of 100 known valid IDs, then we'll cycle through them
     base_valid_ids = [
         139, 285, 632, 724, 776, 785, 802, 872, 885, 1000,
         1268, 1296, 1425, 1503, 1584, 1761, 1818, 1993, 2006, 2149,
@@ -72,10 +81,8 @@ def load_dataset(num_images: int) -> List[Dict[str, Any]]:
     
     fallback_data = []
     for i in range(num_images):
-        # Cycle through valid IDs, repeating if necessary
         image_id = base_valid_ids[i % len(base_valid_ids)]
         image_id_str = str(image_id).zfill(12)
-        
         fallback_data.append({
             "image_url": f"http://images.cocodataset.org/val2017/{image_id_str}.jpg",
             "question_text": DEFAULT_PROMPT,
@@ -100,11 +107,9 @@ def serialize_result(output, image_url: str, index: int, question: str, layer_ev
         "num_generated_tokens": len(output.predicted_token_ids),
         "token_strings": output.token_strings,
         "token_ids": [int(tid) for tid in output.predicted_token_ids],
-        # Save full attention map as nested list (can be large)
         "attention_map": output.attention_map.tolist() if output.attention_map.size < 100000 else None,
     }
     
-    # Add layer evolution metrics if available
     if layer_evolution and "summary" in layer_evolution:
         result["layer_evolution"] = {
             "most_diffuse_layer": int(layer_evolution["summary"]["most_diffuse_layer"]),
@@ -114,8 +119,6 @@ def serialize_result(output, image_url: str, index: int, question: str, layer_ev
             "total_entropy_change": float(layer_evolution["summary"]["total_entropy_change"]),
             "max_single_shift": float(layer_evolution["summary"]["max_single_shift"]),
         }
-        
-        # Also save per-layer metrics for detailed analysis
         result["per_layer_metrics"] = [
             {
                 "layer": int(m["layer_index"]),
@@ -134,20 +137,18 @@ def serialize_result(output, image_url: str, index: int, question: str, layer_ev
     return result
 
 def save_checkpoint(results: List[Dict], checkpoint_num: int):
-    """Save intermediate checkpoint."""
-    checkpoint_file = f"checkpoint_{checkpoint_num}.json"
+    """Save intermediate checkpoint (Drive-safe)."""
+    checkpoint_file = os.path.join(SAVE_DIR, f"checkpoint_{checkpoint_num}.json")
     with open(checkpoint_file, "w") as f:
         json.dump(results, f, indent=2)
     print(f"  💾 Checkpoint saved: {checkpoint_file}")
 
 def main():
-    # Load dataset
     print(f"\n📦 Loading dataset ({NUM_IMAGES} images)...")
     dataset = load_dataset(NUM_IMAGES)
     actual_num = min(NUM_IMAGES, len(dataset))
     print(f"✅ Will process {actual_num} images\n")
     
-    # Initialize model
     print("🔧 Loading LLaVA model...")
     from analysis.llava_runner import LlavaRunner
     
@@ -155,11 +156,10 @@ def main():
     runner = LlavaRunner(
         model_id="llava-hf/llava-1.5-7b-hf",
         device=device,
-        quantization=None  # Set to "4bit" or "8bit" for lower memory usage
+        quantization=None
     )
     print(f"✅ Model loaded on {device}\n")
     
-    # Process images
     results = []
     successful = 0
     failed = 0
@@ -172,8 +172,6 @@ def main():
         question = sample.get("question_text", DEFAULT_PROMPT)
         
         print(f"[{idx}/{actual_num}] Processing: {image_url[:60]}...")
-        
-        # Load image
         image = load_image_from_url(image_url)
         if image is None:
             failed += 1
@@ -181,14 +179,12 @@ def main():
             continue
         
         try:
-            # Run inference
             output = runner.run(
                 image=image,
                 prompt=question,
                 prefix=DEFAULT_PREFIX,
             )
             
-            # Serialize and save result (layer_evolution is now in output)
             result = serialize_result(output, image_url, idx, question, output.layer_evolution)
             results.append(result)
             successful += 1
@@ -200,11 +196,9 @@ def main():
             print(f"  ❌ Error during inference: {e}\n")
             continue
         
-        # Save checkpoint periodically
         if idx % CHECKPOINT_INTERVAL == 0:
             save_checkpoint(results, idx)
     
-    # Save final results
     print("="*70)
     print("💾 Saving final results...")
     
