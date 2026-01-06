@@ -34,18 +34,28 @@
 #   pip install -r requirements.txt
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
-# NOTE: numpy is constrained to a range compatible with:
-#   - numba 0.60.0 (numpy<2.1,>=1.22)
-#   - opencv-* 4.12.0.88 (numpy<2.3.0,>=2)
-#   - tensorflow 2.19.0 (numpy<2.2.0,>=1.26.0)
-# Final range: numpy>=2.0.0,<2.1.0
+# NUMPY NOTE:
+#   - numba 0.60.0 → numpy<2.1,>=1.22
+#   - opencv-* 4.12.0.88 → numpy<2.3.0,>=2
+#   - tensorflow 2.19.0 → numpy<2.2.0,>=1.26.0
+# Final: numpy>=2.0.0,<2.1.0
+#
+# HUGGINGFACE STACK NOTE:
+#   - gradio 5.50.0 → huggingface-hub>=0.33.5,<2.0
+#   - datasets 4.0.0 → huggingface-hub>=0.24.0
+#   - peft 0.18.0 → huggingface-hub>=0.25.0
+#   - diffusers 0.36.0 → huggingface-hub>=0.34.0,<2.0
+#   - sentence-transformers 5.2.0 → transformers>=4.41.0,<6.0.0
+# So we use:
+#   transformers>=4.41.0,<5.0.0
+#   huggingface-hub>=0.34.0,<2.0.0
 # =============================================================================
 
 # Core ML dependencies (CUDA 11.8 compatible)
-transformers==4.37.1
+transformers>=4.41.0,<5.0.0
 tokenizers<0.19,>=0.14
 accelerate==0.26.1
-huggingface-hub==0.20.3
+huggingface-hub>=0.34.0,<2.0.0
 sentencepiece
 bitsandbytes==0.42.0
 
