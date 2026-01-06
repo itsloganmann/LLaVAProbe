@@ -34,13 +34,21 @@
 #   pip install -r requirements.txt
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
+# NOTE:
+# - We DO NOT pin numpy or tokenizers here to avoid hard conflicts with
+#   Colab / system packages (numba, opencv, tensorflow, sentence-transformers, etc.).
+# - Transformers / huggingface-hub are set to ranges compatible with:
+#     * sentence-transformers 5.2.0
+#     * gradio 5.50.0
+#     * diffusers 0.36.0
+#     * datasets 4.0.0
+#     * peft 0.18.0
 # =============================================================================
 
 # Core ML dependencies (CUDA 11.8 compatible)
-transformers==4.37.1
-tokenizers<0.19,>=0.14
+transformers>=4.41.0,<5.0.0
 accelerate==0.26.1
-huggingface-hub==0.20.3
+huggingface-hub>=0.34.0,<2.0.0
 sentencepiece
 bitsandbytes==0.42.0
 
@@ -49,7 +57,7 @@ Pillow==10.2.0
 opencv-python==4.10.0.84
 
 # Data processing and analysis
-numpy==1.26.4
+# (numpy is intentionally NOT pinned; will use environment version)
 pandas>=2.0.0
 scikit-learn==1.4.2
 
@@ -59,7 +67,7 @@ umap-learn==0.5.6
 
 # Quantization support (REQUIRED for memory-efficient inference on Google Cloud)
 # Enables 4-bit/8-bit model loading - crucial for GPU memory optimization
-bitsandbytes==0.42.0
+# (bitsandbytes declared above in Core ML dependencies)
 
 # HTTP requests
 requests<3.0.0,>=2.32.4
@@ -79,4 +87,3 @@ pypdf==6.1.3
 # Development and testing (optional)
 pytest>=7.4.0
 pytest-cov>=4.1.0
-
