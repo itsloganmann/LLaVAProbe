@@ -62,6 +62,10 @@ class PaliGemmaRunner:
         # Load processor
         self.processor = AutoProcessor.from_pretrained(model_id)
         
+        # Force eager attention to enable attention output
+        import os
+        os.environ["TRANSFORMERS_ATTN_IMPLEMENTATION"] = "eager"
+        
         # Load model with optional quantization
         if quantization == "4bit":
             from transformers import BitsAndBytesConfig
@@ -72,18 +76,21 @@ class PaliGemmaRunner:
             self.model = PaliGemmaForConditionalGeneration.from_pretrained(
                 model_id,
                 quantization_config=quantization_config,
-                device_map="auto"
+                device_map="auto",
+                attn_implementation="eager"
             )
         elif quantization == "8bit":
             self.model = PaliGemmaForConditionalGeneration.from_pretrained(
                 model_id,
                 load_in_8bit=True,
-                device_map="auto"
+                device_map="auto",
+                attn_implementation="eager"
             )
         else:
             self.model = PaliGemmaForConditionalGeneration.from_pretrained(
                 model_id,
-                torch_dtype=torch.float16 if device == "cuda" else torch.float32
+                torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+                attn_implementation="eager"
             ).to(device)
         
         self.model.eval()
@@ -102,8 +109,12 @@ class PaliGemmaRunner:
     ) -> RunnerOutput:
         """Run inference with layer evolution tracking."""
         
-        # Prepare input
+        # Prepare input with image token (PaliGemma expects <image> token)
         full_prompt = f"{prefix} {prompt}".strip() if prefix else prompt
+        # Add image token at the beginning if not present
+        if "<image>" not in full_prompt:
+            full_prompt = f"<image>{full_prompt}"
+        
         inputs = self.processor(
             text=full_prompt,
             images=image,
