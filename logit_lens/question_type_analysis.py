@@ -30,11 +30,6 @@ PARENT_DIR = os.path.dirname(SCRIPT_DIR)
 
 def load_existing_data():
     """Load data from existing experiments."""
-    # Load 1000-sample logit lens results
-    with open(os.path.join(SCRIPT_DIR, 'logit_lens_results_1000.json'),
-              'r') as f:
-        logit_lens_data = json.load(f)
-
     # Load step1b image comparison (has per-sample results)
     with open(os.path.join(SCRIPT_DIR, 'step1b_image_comparison.json'),
               'r') as f:
@@ -47,6 +42,13 @@ def load_existing_data():
 
     # Load original CSV for question types
     df = pd.read_csv(os.path.join(PARENT_DIR, 'results.csv'))
+
+    # logit_lens_results_1000.json is optional (may not exist)
+    logit_lens_data = None
+    logit_lens_path = os.path.join(SCRIPT_DIR, 'logit_lens_results_1000.json')
+    if os.path.exists(logit_lens_path):
+        with open(logit_lens_path, 'r') as f:
+            logit_lens_data = json.load(f)
 
     return logit_lens_data, image_comparison_data, neuron_data, df
 

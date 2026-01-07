@@ -146,13 +146,9 @@ def run_ablation_experiment(n_samples=200):
     print("\nLoading model...")
     model_name = "llava-hf/llava-1.5-7b-hf"
 
-    quantization_config = BitsAndBytesConfig(
-        load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16)
-
     model = LlavaForConditionalGeneration.from_pretrained(
         model_name,
-        quantization_config=quantization_config,
-        device_map="cuda:1",
+        device_map="auto",
         torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_name)
 
@@ -470,4 +466,9 @@ def create_ablation_visualization(results, impact_analysis):
 
 
 if __name__ == "__main__":
-    results, impact = run_ablation_experiment(n_samples=200)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--n_samples', type=int, default=200)
+    args = parser.parse_args()
+
+    results, impact = run_ablation_experiment(n_samples=args.n_samples)

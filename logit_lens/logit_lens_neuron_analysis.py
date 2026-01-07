@@ -184,13 +184,9 @@ def run_neuron_analysis(n_samples=100, target_layers=None):
     print("\nLoading model...")
     model_name = "llava-hf/llava-1.5-7b-hf"
 
-    quantization_config = BitsAndBytesConfig(
-        load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16)
-
     model = LlavaForConditionalGeneration.from_pretrained(
         model_name,
-        quantization_config=quantization_config,
-        device_map="cuda:1",
+        device_map="auto",
         torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_name)
 

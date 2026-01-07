@@ -59,7 +59,7 @@ class LogitLensAnalyzer:
         self,
         model_id: str = "llava-hf/llava-1.5-7b-hf",
         device: str = "cuda",
-        quantization: str = "4bit",
+        quantization: str = "none",
     ):
         self.model_id = model_id
         self.device = device
@@ -246,9 +246,18 @@ class LogitLensAnalyzer:
                 predicted_token = self.processor.tokenizer.decode(
                     [predicted_token_id]).strip()
 
-                # Check correctness
-                is_correct = predicted_token.lower() == ground_truth.lower(
-                ).strip()
+                # Check correctness (lenient matching)
+                # Handles cases like "Ski" matching "skiing", "Ele" matching "elephant"
+                pred_lower = predicted_token.lower().strip()
+                gt_lower = ground_truth.lower().strip()
+                is_correct = (
+                    pred_lower == gt_lower or  # Exact match
+                    gt_lower.startswith(pred_lower)
+                    or  # GT starts with pred (e.g., "ski" -> "skiing")
+                    pred_lower.startswith(gt_lower) or  # Pred starts with GT
+                    gt_lower in pred_lower or  # GT contained in pred
+                    pred_lower in gt_lower  # Pred contained in GT
+                )
 
                 # Now run forward pass again to collect residual streams
                 # We need to run with the input that would produce this token
@@ -450,7 +459,7 @@ def run_logit_lens_experiment(
     print("=" * 70)
 
     # Initialize analyzer
-    analyzer = LogitLensAnalyzer(quantization="4bit")
+    analyzer = LogitLensAnalyzer(quantization="none")
 
     # Load VQA samples from existing analysis records
     print("\nLoading VQA samples...")

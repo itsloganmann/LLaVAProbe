@@ -135,6 +135,52 @@ def compile_results():
     except Exception as e:
         print(f"⚠️ Could not load question_type_analysis.json: {e}")
 
+    # Load Causal Ablation Results
+    try:
+        with open(os.path.join(SCRIPT_DIR, 'step3b_ablation_results.json'),
+                  'r') as f:
+            data = json.load(f)
+        ablation_results = data.get("ablation_results", {})
+        impact_analysis = data.get("impact_analysis", {})
+
+        # Extract key ablation stats
+        baseline_acc = ablation_results.get("baseline",
+                                            {}).get("overall_accuracy", 0)
+        neuron_1512_acc = ablation_results.get("neuron_1512_L31",
+                                               {}).get("overall_accuracy", 0)
+        top5_acc = ablation_results.get("top5_L31",
+                                        {}).get("overall_accuracy", 0)
+        random_acc = ablation_results.get("random_5_L31",
+                                          {}).get("overall_accuracy", 0)
+
+        summary["experiments"]["causal_ablation"] = {
+            "n_samples":
+            data.get("n_samples"),
+            "baseline_accuracy":
+            baseline_acc,
+            "neuron_1512_L31_accuracy":
+            neuron_1512_acc,
+            "neuron_1512_L31_drop":
+            impact_analysis.get("neuron_1512_L31", {}).get("overall_drop", 0),
+            "top5_L31_accuracy":
+            top5_acc,
+            "top5_L31_drop":
+            impact_analysis.get("top5_L31", {}).get("overall_drop", 0),
+            "random_5_L31_accuracy":
+            random_acc,
+            "random_5_L31_drop":
+            impact_analysis.get("random_5_L31", {}).get("overall_drop", 0),
+            "causal_evidence":
+            abs(
+                impact_analysis.get("neuron_1512_L31",
+                                    {}).get("overall_drop", 0))
+            > abs(
+                impact_analysis.get("random_5_L31", {}).get("overall_drop", 0))
+        }
+        print("✅ Loaded step3b_ablation_results.json")
+    except Exception as e:
+        print(f"⚠️ Could not load step3b_ablation_results.json: {e}")
+
     # Load 1000-sample logit lens if exists
     try:
         with open(os.path.join(SCRIPT_DIR, 'logit_lens_results_1000.json'),
@@ -222,6 +268,26 @@ def generate_key_findings(summary):
             "mlp_fraction": ll.get("mlp_fraction"),
             "attn_fraction": ll.get("attn_fraction"),
             "conclusion": "MLP contributes ~70% of overall answer signal"
+        }
+
+    # Causal Ablation (the "kill switch" evidence)
+    if "causal_ablation" in exp:
+        ca = exp["causal_ablation"]
+        neuron_drop = ca.get("neuron_1512_L31_drop", 0)
+        random_drop = ca.get("random_5_L31_drop", 0)
+        causal_evidence = ca.get("causal_evidence", False)
+
+        findings["causal_ablation"] = {
+            "baseline_accuracy":
+            ca.get("baseline_accuracy"),
+            "neuron_1512_drop":
+            neuron_drop,
+            "random_neurons_drop":
+            random_drop,
+            "causal_evidence":
+            causal_evidence,
+            "conclusion":
+            f"Ablating Neuron 1512 at L31 causes {abs(neuron_drop)*100:.1f}% accuracy drop vs {abs(random_drop)*100:.1f}% for random neurons - {'CAUSAL EVIDENCE CONFIRMED' if causal_evidence else 'Need more samples'}"
         }
 
     return findings
@@ -313,7 +379,7 @@ def main():
     print("=" * 70)
 
     results["step1b"] = run_command(
-        f'"{python_exe}" logit_lens_image_comparison.py --n_samples {N_SAMPLES}',
+        f'"{python_exe}" "{os.path.join(SCRIPT_DIR, "logit_lens_image_comparison.py")}" --n_samples {N_SAMPLES}',
         "Step 1b: Image Comparison")
 
     # Step 3: Run Visual Layer Attribution (uses Step 1b results)
@@ -323,7 +389,7 @@ def main():
     print("=" * 70)
 
     results["visual_attribution"] = run_command(
-        f'"{python_exe}" visual_layer_attribution.py',
+        f'"{python_exe}" "{os.path.join(SCRIPT_DIR, "visual_layer_attribution.py")}"',
         "Visual Layer Attribution")
 
     # Step 4: Run Question Type Analysis (uses Step 1b results)
@@ -333,7 +399,8 @@ def main():
     print("=" * 70)
 
     results["question_type"] = run_command(
-        f'"{python_exe}" question_type_analysis.py', "Question Type Analysis")
+        f'"{python_exe}" "{os.path.join(SCRIPT_DIR, "question_type_analysis.py")}"',
+        "Question Type Analysis")
 
     # Step 4: Run Neuron Analysis
     print("\n" + "=" * 70)
@@ -342,12 +409,23 @@ def main():
     print("=" * 70)
 
     results["neuron_analysis"] = run_command(
-        f'"{python_exe}" logit_lens_neuron_analysis.py --n_samples {N_SAMPLES}',
+        f'"{python_exe}" "{os.path.join(SCRIPT_DIR, "logit_lens_neuron_analysis.py")}" --n_samples {N_SAMPLES}',
         "Neuron-Level Analysis")
+
+    # Step 5: Run Causal Ablation Tests (the "kill switch" experiment)
+    print("\n" + "=" * 70)
+    print("STEP 5: Running Causal Ablation Tests")
+    print(
+        "This zeros out key neurons to prove causation (not just correlation)")
+    print("=" * 70)
+
+    results["ablation_tests"] = run_command(
+        f'"{python_exe}" "{os.path.join(SCRIPT_DIR, "step3b_ablation_tests.py")}" --n_samples {N_SAMPLES}',
+        "Causal Ablation Tests")
 
     # Step 6: Compile Results
     print("\n" + "=" * 70)
-    print("STEP 5: Compiling Results")
+    print("STEP 6: Compiling Results")
     print("=" * 70)
 
     summary = compile_results()
@@ -370,10 +448,10 @@ def main():
         'visual_layer_attribution.json', 'visual_layer_attribution.png',
         'question_type_analysis.json', 'question_type_analysis.png',
         'step3b_neuron_analysis.json', 'step3b_neuron_analysis.png',
-        f'compiled_results_{N_SAMPLES}.json'
+        'step3b_ablation_results.json', f'compiled_results_{N_SAMPLES}.json'
     ]
     for f in output_files:
-        exists = "✅" if os.path.exists(f) else "❌"
+        exists = "✅" if os.path.exists(os.path.join(SCRIPT_DIR, f)) else "❌"
         print(f"  {exists} {f}")
 
     print(f"\n{'='*70}")

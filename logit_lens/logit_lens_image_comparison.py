@@ -41,7 +41,7 @@ def run_image_comparison(n_samples: int = 100):
 
     # Load analyzer
     print("\nLoading model...")
-    analyzer = LogitLensAnalyzer(quantization="4bit")
+    analyzer = LogitLensAnalyzer(quantization="none")
 
     # Load samples
     print("\nLoading samples...")

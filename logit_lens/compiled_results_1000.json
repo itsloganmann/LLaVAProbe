@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-12-20T05:16:05.595479",
+  "timestamp": "2025-12-29T18:53:45.204635",
   "n_samples": 1000,
   "experiments": {
     "step1b_image_comparison": {
       "n_samples": 1000,
-      "acc_with_image": 0.135,
-      "acc_no_image": 0.0,
+      "acc_with_image": 0.703,
+      "acc_no_image": 0.081,
       "peak_delta_margin_layer": 31,
       "peak_delta_margin_value": 8.797125
     },
@@ -94,18 +94,22 @@
         "time-related": 0
       }
     },
-    "logit_lens_1000": {
-      "n_samples": 1000,
-      "n_correct": 135,
-      "accuracy": 0.135,
-      "mlp_fraction": 0.6992700062391087,
-      "attn_fraction": null
+    "causal_ablation": {
+      "n_samples": 200,
+      "baseline_accuracy": 0.06,
+      "neuron_1512_L31_accuracy": 0.06,
+      "neuron_1512_L31_drop": 0.0,
+      "top5_L31_accuracy": 0.06,
+      "top5_L31_drop": 0.0,
+      "random_5_L31_accuracy": 0.06,
+      "random_5_L31_drop": 0.0,
+      "causal_evidence": false
     }
   },
   "key_findings": {
     "image_necessity": {
-      "with_image_acc": 0.135,
-      "without_image_acc": 0.0,
+      "with_image_acc": 0.703,
+      "without_image_acc": 0.081,
       "conclusion": "Image is essential for VQA (accuracy drops to 0% without image)"
     },
     "visual_attribution": {
@@ -132,10 +136,12 @@
       "best_accuracy": 0.8633333333333333,
       "conclusion": "Sparse neurons (1-2 per layer) can predict correctness with high accuracy"
     },
-    "mlp_vs_attention": {
-      "mlp_fraction": 0.6992700062391087,
-      "attn_fraction": null,
-      "conclusion": "MLP contributes ~70% of overall answer signal"
+    "causal_ablation": {
+      "baseline_accuracy": 0.06,
+      "neuron_1512_drop": 0.0,
+      "random_neurons_drop": 0.0,
+      "causal_evidence": false,
+      "conclusion": "Ablating Neuron 1512 at L31 causes 0.0% accuracy drop vs 0.0% for random neurons - Need more samples"
     }
   }
 }
