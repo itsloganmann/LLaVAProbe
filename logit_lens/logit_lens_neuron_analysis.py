@@ -185,9 +185,7 @@ def run_neuron_analysis(n_samples=100, target_layers=None):
     model_name = "llava-hf/llava-1.5-7b-hf"
 
     model = LlavaForConditionalGeneration.from_pretrained(
-        model_name,
-        device_map="auto",
-        torch_dtype=torch.float16)
+        model_name, device_map="auto", torch_dtype=torch.float16)
     processor = AutoProcessor.from_pretrained(model_name)
 
     # Create analyzer

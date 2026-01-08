@@ -1,7 +1,7 @@
 {
   "threshold": 0.5,
   "visual_layers": [
-    19,
+    17,
     21,
     22,
     23,
@@ -14,11 +14,11 @@
     31
   ],
   "positive_layers": [
-    19,
     30,
     31
   ],
   "negative_layers": [
+    17,
     21,
     22,
     23,
@@ -29,23 +29,23 @@
     28
   ],
   "visual_layers_only": {
-    "mlp_contribution": 4.680625808596611,
-    "attn_contribution": 4.217815484762191,
-    "mlp_fraction": 0.5260051344149357,
-    "attn_fraction": 0.4739948655850643
+    "mlp_contribution": 4.604110191345216,
+    "attn_contribution": 4.2310036520957945,
+    "mlp_fraction": 0.5211149819833055,
+    "attn_fraction": 0.47888501801669436
   },
   "all_layers": {
-    "mlp_contribution": 3.5031324368715286,
-    "attn_contribution": 5.414742908060552,
-    "mlp_fraction": 0.3928214178125192,
-    "attn_fraction": 0.6071785821874808
+    "mlp_contribution": 3.1527956917881967,
+    "attn_contribution": 5.920664962112903,
+    "mlp_fraction": 0.34747444355012047,
+    "attn_fraction": 0.6525255564498795
   },
   "positive_layers_only": {
-    "mlp_contribution": 3.588967414736748,
-    "attn_contribution": 1.390043354034424
+    "mlp_contribution": 3.6600401000976563,
+    "attn_contribution": 0.7965870742797851
   },
   "negative_layers_only": {
-    "mlp_contribution": 1.0916583938598634,
-    "attn_contribution": 2.827772130727768
+    "mlp_contribution": 0.9440700912475588,
+    "attn_contribution": 3.4344165778160094
   }
 }

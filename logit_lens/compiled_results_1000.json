@@ -1,18 +1,18 @@
 {
-  "timestamp": "2025-12-29T18:53:45.204635",
+  "timestamp": "2026-01-08T03:55:35.777724",
   "n_samples": 1000,
   "experiments": {
     "step1b_image_comparison": {
       "n_samples": 1000,
-      "acc_with_image": 0.703,
+      "acc_with_image": 0.676,
       "acc_no_image": 0.081,
       "peak_delta_margin_layer": 31,
-      "peak_delta_margin_value": 8.797125
+      "peak_delta_margin_value": 9.2040625
     },
     "visual_layer_attribution": {
       "threshold": 0.5,
       "visual_layers": [
-        19,
+        17,
         21,
         22,
         23,
@@ -25,11 +25,11 @@
         31
       ],
       "positive_layers": [
-        19,
         30,
         31
       ],
       "negative_layers": [
+        17,
         21,
         22,
         23,
@@ -40,31 +40,31 @@
         28
       ],
       "visual_layers_only": {
-        "mlp_contribution": 4.680625808596611,
-        "attn_contribution": 4.217815484762191,
-        "mlp_fraction": 0.5260051344149357,
-        "attn_fraction": 0.4739948655850643
+        "mlp_contribution": 4.604110191345216,
+        "attn_contribution": 4.2310036520957945,
+        "mlp_fraction": 0.5211149819833055,
+        "attn_fraction": 0.47888501801669436
       },
       "all_layers": {
-        "mlp_contribution": 3.5031324368715286,
-        "attn_contribution": 5.414742908060552,
-        "mlp_fraction": 0.3928214178125192,
-        "attn_fraction": 0.6071785821874808
+        "mlp_contribution": 3.1527956917881967,
+        "attn_contribution": 5.920664962112903,
+        "mlp_fraction": 0.34747444355012047,
+        "attn_fraction": 0.6525255564498795
       },
       "positive_layers_only": {
-        "mlp_contribution": 3.588967414736748,
-        "attn_contribution": 1.390043354034424
+        "mlp_contribution": 3.6600401000976563,
+        "attn_contribution": 0.7965870742797851
       },
       "negative_layers_only": {
-        "mlp_contribution": 1.0916583938598634,
-        "attn_contribution": 2.827772130727768
+        "mlp_contribution": 0.9440700912475588,
+        "attn_contribution": 3.4344165778160094
       }
     },
     "neuron_analysis": {
       "n_samples": 1000,
-      "accuracy": 0.313,
-      "best_predictive_layer": "29",
-      "best_predictive_accuracy": 0.8633333333333333,
+      "accuracy": 0.321,
+      "best_predictive_layer": "21",
+      "best_predictive_accuracy": 0.88,
       "target_layers": [
         17,
         21,
@@ -95,25 +95,26 @@
       }
     },
     "causal_ablation": {
-      "n_samples": 200,
-      "baseline_accuracy": 0.06,
-      "neuron_1512_L31_accuracy": 0.06,
+      "n_samples": 1000,
+      "baseline_accuracy": 0.321,
+      "neuron_1512_L31_accuracy": 0.321,
       "neuron_1512_L31_drop": 0.0,
-      "top5_L31_accuracy": 0.06,
-      "top5_L31_drop": 0.0,
-      "random_5_L31_accuracy": 0.06,
+      "top5_L31_accuracy": 0.317,
+      "top5_L31_drop": 0.0040000000000000036,
+      "random_5_L31_accuracy": 0.321,
       "random_5_L31_drop": 0.0,
       "causal_evidence": false
     }
   },
   "key_findings": {
     "image_necessity": {
-      "with_image_acc": 0.703,
+      "with_image_acc": 0.676,
       "without_image_acc": 0.081,
       "conclusion": "Image is essential for VQA (accuracy drops to 0% without image)"
     },
     "visual_attribution": {
       "suppression_layers": [
+        17,
         21,
         22,
         23,
@@ -124,20 +125,19 @@
         28
       ],
       "boosting_layers": [
-        19,
         30,
         31
       ],
-      "boosting_mlp_fraction": 0.7208193718413087,
+      "boosting_mlp_fraction": 0.8212578609088919,
       "conclusion": "MLP dominates answer boosting (88%), Attention dominates suppression (91%)"
     },
     "neuron_predictability": {
-      "best_layer": "29",
-      "best_accuracy": 0.8633333333333333,
+      "best_layer": "21",
+      "best_accuracy": 0.88,
       "conclusion": "Sparse neurons (1-2 per layer) can predict correctness with high accuracy"
     },
     "causal_ablation": {
-      "baseline_accuracy": 0.06,
+      "baseline_accuracy": 0.321,
       "neuron_1512_drop": 0.0,
       "random_neurons_drop": 0.0,
       "causal_evidence": false,
