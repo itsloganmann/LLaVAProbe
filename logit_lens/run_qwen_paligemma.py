@@ -62,8 +62,8 @@ class MultiModelLogitLens:
         )
         self.processor = AutoProcessor.from_pretrained(model_id)
         
-        # Get number of layers - Qwen2-VL uses model.model.layers
-        self.n_layers = len(self.model.model.layers)
+        # Get number of layers - Qwen2-VL uses model.language_model.layers
+        self.n_layers = len(self.model.model.language_model.layers)
         print(f"Model loaded. {self.n_layers} layers.")
     
     def _load_paligemma(self):
@@ -85,7 +85,7 @@ class MultiModelLogitLens:
     def _get_layer_module(self, layer_idx: int):
         """Get the layer module for the current model type."""
         if self.model_type == "qwen2-vl":
-            return self.model.model.layers[layer_idx]
+            return self.model.model.language_model.layers[layer_idx]
         elif self.model_type == "paligemma":
             return self.model.language_model.model.layers[layer_idx]
     
@@ -99,7 +99,7 @@ class MultiModelLogitLens:
     def _get_norm(self):
         """Get the final layer norm."""
         if self.model_type == "qwen2-vl":
-            return self.model.model.norm
+            return self.model.model.language_model.norm
         elif self.model_type == "paligemma":
             return self.model.language_model.model.norm
     
