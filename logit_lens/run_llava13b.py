@@ -39,13 +39,14 @@ def run_llava13b_analysis(n_samples: int = 1000):
         quantization="none"
     )
     
-    # Load samples
+    # Load samples from the same source as the original scripts
     print("\nLoading samples...")
     parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    with open(os.path.join(parent_dir, "data_processing/data/raw/processed_vqav2_1000.json"), "r") as f:
+    with open(os.path.join(parent_dir, "test_intervention_output/analysis_records.json"), "r") as f:
         data = json.load(f)
-    samples = data["samples"][:n_samples]
-    print(f"Loaded {len(samples)} samples")
+    
+    records = data.get("records", [])[:n_samples]
+    print(f"Loaded {len(records)} samples")
     
     # Run analysis with real images
     print("\n" + "=" * 70)
@@ -53,17 +54,17 @@ def run_llava13b_analysis(n_samples: int = 1000):
     print("=" * 70)
     
     results_with_image = []
-    for i, sample in enumerate(tqdm(samples, desc="With image")):
+    for i, record in enumerate(tqdm(records, desc="With image")):
         try:
             # Load image
-            response = requests.get(sample["image_url"], timeout=10)
+            response = requests.get(record["image_url"], timeout=10)
             image = Image.open(BytesIO(response.content)).convert("RGB")
             
             # Run logit lens
             result = analyzer.analyze_sample(
-                question=sample["question"],
+                question=record["question"],
                 image=image,
-                ground_truth=sample["answers"][0]
+                ground_truth=record["ground_truth"]
             )
             results_with_image.append(result)
         except Exception as e:
@@ -77,12 +78,12 @@ def run_llava13b_analysis(n_samples: int = 1000):
     
     blank_image = Image.new("RGB", (336, 336), color=(128, 128, 128))
     results_no_image = []
-    for i, sample in enumerate(tqdm(samples, desc="Without image")):
+    for i, record in enumerate(tqdm(records, desc="Without image")):
         try:
             result = analyzer.analyze_sample(
-                question=sample["question"],
+                question=record["question"],
                 image=blank_image,
-                ground_truth=sample["answers"][0]
+                ground_truth=record["ground_truth"]
             )
             results_no_image.append(result)
         except Exception as e:
