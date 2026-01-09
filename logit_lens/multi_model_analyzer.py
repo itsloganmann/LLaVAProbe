@@ -127,11 +127,12 @@ class MultiModelLogitLensAnalyzer:
         architecture = self.config["architecture"]
 
         if architecture == "llava":
-            return self.model.lm_head
+            return self.model.language_model.lm_head
         elif architecture == "qwen2_vl":
             return self.model.lm_head
         elif architecture == "paligemma":
-            return self.model.language_model.lm_head
+            # PaliGemma: lm_head is at model level, not language_model
+            return self.model.lm_head
         else:
             raise ValueError(f"Unknown architecture: {architecture}")
 
@@ -140,12 +141,13 @@ class MultiModelLogitLensAnalyzer:
         architecture = self.config["architecture"]
 
         if architecture == "llava":
-            return self.model.model.layers[layer_idx]
-        elif architecture == "qwen2_vl":
-            # Qwen2-VL has layers at model.language_model.layers
-            return self.model.model.language_model.layers[layer_idx]
-        elif architecture == "paligemma":
             return self.model.language_model.model.layers[layer_idx]
+        elif architecture == "qwen2_vl":
+            # Qwen2-VL has layers at model.model.layers
+            return self.model.model.layers[layer_idx]
+        elif architecture == "paligemma":
+            # PaliGemma: layers at model.language_model.layers (no .model)
+            return self.model.language_model.layers[layer_idx]
         else:
             raise ValueError(f"Unknown architecture: {architecture}")
 

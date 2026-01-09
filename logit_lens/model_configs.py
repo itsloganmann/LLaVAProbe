@@ -40,15 +40,15 @@ MODELS = {
         "description":
         "Qwen2-VL 7B - Different architecture, strong multilingual",
     },
-    "paligemma2-3b": {
-        "model_id": "google/paligemma2-3b-pt-224",
+    "paligemma-3b": {
+        "model_id": "google/paligemma-3b-mix-224",
         "model_class": "PaliGemmaForConditionalGeneration",
         "processor_class": "AutoProcessor",
         "architecture": "paligemma",
         "hidden_dim": 2048,
         "n_layers": 18,
         "mlp_dim": 16384,
-        "description": "PaliGemma 2 3B - Google's VLM, smaller but efficient",
+        "description": "PaliGemma 3B - Google's VLM, smaller but efficient",
     },
 }
 
