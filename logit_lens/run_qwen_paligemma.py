@@ -78,8 +78,8 @@ class MultiModelLogitLens:
         )
         self.processor = PaliGemmaProcessor.from_pretrained(model_id)
         
-        # Get number of layers - PaliGemma uses model.language_model.model.layers
-        self.n_layers = len(self.model.language_model.model.layers)
+        # Get number of layers - PaliGemma uses language_model.layers (GemmaModel)
+        self.n_layers = len(self.model.language_model.layers)
         print(f"Model loaded. {self.n_layers} layers.")
     
     def _get_layer_module(self, layer_idx: int):
@@ -87,21 +87,21 @@ class MultiModelLogitLens:
         if self.model_type == "qwen2-vl":
             return self.model.model.language_model.layers[layer_idx]
         elif self.model_type == "paligemma":
-            return self.model.language_model.model.layers[layer_idx]
+            return self.model.language_model.layers[layer_idx]
     
     def _get_lm_head(self):
         """Get the LM head for the current model type."""
         if self.model_type == "qwen2-vl":
             return self.model.lm_head
         elif self.model_type == "paligemma":
-            return self.model.language_model.lm_head
+            return self.model.lm_head  # lm_head is on main model, not language_model
     
     def _get_norm(self):
         """Get the final layer norm."""
         if self.model_type == "qwen2-vl":
             return self.model.model.language_model.norm
         elif self.model_type == "paligemma":
-            return self.model.language_model.model.norm
+            return self.model.language_model.norm
     
     def _register_hooks(self):
         """Register hooks to capture residual streams."""
