@@ -126,7 +126,9 @@ class MultiModelLogitLensAnalyzer:
         """Get the LM head (unembedding matrix) based on architecture."""
         architecture = self.config["architecture"]
 
-        if architecture in ["llava", "qwen2_vl"]:
+        if architecture == "llava":
+            return self.model.lm_head
+        elif architecture == "qwen2_vl":
             return self.model.lm_head
         elif architecture == "paligemma":
             return self.model.language_model.lm_head
@@ -137,8 +139,11 @@ class MultiModelLogitLensAnalyzer:
         """Get the transformer layer module based on architecture."""
         architecture = self.config["architecture"]
 
-        if architecture in ["llava", "qwen2_vl"]:
+        if architecture == "llava":
             return self.model.model.layers[layer_idx]
+        elif architecture == "qwen2_vl":
+            # Qwen2-VL has layers at model.language_model.layers
+            return self.model.model.language_model.layers[layer_idx]
         elif architecture == "paligemma":
             return self.model.language_model.model.layers[layer_idx]
         else:
