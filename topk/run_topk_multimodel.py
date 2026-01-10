@@ -218,8 +218,8 @@ class Qwen2VLMechanism:
         print(f"Qwen2-VL loaded successfully")
     
     def get_layers(self):
-        """Get transformer layers."""
-        return self.model.model.layers
+        """Get transformer layers - Qwen2-VL uses model.model.language_model.layers"""
+        return self.model.model.language_model.layers
     
     def get_attention_patches(self, image, question, K=5):
         """Compute top-K head aggregated attention map."""
@@ -304,13 +304,13 @@ class Qwen2VLMechanism:
                 
                 # Quick logit computation (approximate)
                 with torch.no_grad():
-                    # Use final layer norm + lm_head
-                    normed = self.model.model.norm(added.unsqueeze(0).half())
+                    # Use final layer norm + lm_head (Qwen2-VL path)
+                    normed = self.model.model.language_model.norm(added.unsqueeze(0).half())
                     head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
                     
-                    base_normed = self.model.model.norm(residual_last.unsqueeze(0))
+                    base_normed = self.model.model.language_model.norm(residual_last.unsqueeze(0))
                     base_logits = self.model.lm_head(base_normed)[0]
                     base_probs = torch.softmax(base_logits, dim=-1)
                     base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
@@ -370,8 +370,8 @@ class PaliGemmaMechanism:
         print(f"PaliGemma loaded successfully")
     
     def get_layers(self):
-        """Get transformer layers."""
-        return self.model.language_model.model.layers
+        """Get transformer layers - PaliGemma uses model.language_model.layers"""
+        return self.model.language_model.layers
     
     def get_attention_patches(self, image, question, K=5):
         """Compute top-K head aggregated attention map."""
@@ -430,20 +430,21 @@ class PaliGemmaMechanism:
             o_weight_split = o_weight.view(hidden_size, num_heads, head_dim).permute(1, 2, 0)
             head_outputs = torch.bmm(attn_out, o_weight_split)
             
-            residual_last = layer_input[-1].to(self.model.language_model.model.embed_tokens.weight.dtype)
+            residual_last = layer_input[-1].to(self.model.language_model.embed_tokens.weight.dtype)
             
             for head_idx in range(num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
                 added = (head_contrib + residual_last).float()
                 
                 with torch.no_grad():
-                    normed = self.model.language_model.model.norm(added.unsqueeze(0).half())
-                    head_logits = self.model.language_model.lm_head(normed)[0]
+                    # PaliGemma: model.language_model.norm and model.lm_head
+                    normed = self.model.language_model.norm(added.unsqueeze(0).half())
+                    head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
                     
-                    base_normed = self.model.language_model.model.norm(residual_last.unsqueeze(0))
-                    base_logits = self.model.language_model.lm_head(base_normed)[0]
+                    base_normed = self.model.language_model.norm(residual_last.unsqueeze(0))
+                    base_logits = self.model.lm_head(base_normed)[0]
                     base_probs = torch.softmax(base_logits, dim=-1)
                     base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
                     
