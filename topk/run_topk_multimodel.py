@@ -268,15 +268,17 @@ class Qwen2VLMechanism:
             if layer_idx >= len(hidden_states) - 1 or layer_idx >= len(attentions):
                 continue
                 
-            layer_input = hidden_states[layer_idx][0]  # [seq_len, hidden]
-            attn_weights = attentions[layer_idx][0]  # [num_heads, seq_len, seq_len]
+            # Clone and detach to avoid inference mode issues
+            layer_input = hidden_states[layer_idx][0].clone().detach()  # [seq_len, hidden]
+            attn_weights = attentions[layer_idx][0].clone().detach()  # [num_heads, seq_len, seq_len]
             
             layer = layers[layer_idx]
             num_heads = attn_weights.shape[0]
             
-            # Get V projection
+            # Get V projection (use no_grad since we already have detached tensors)
             v_proj = layer.self_attn.v_proj
-            V = v_proj(layer_input.to(v_proj.weight.dtype))
+            with torch.no_grad():
+                V = v_proj(layer_input.to(v_proj.weight.dtype))
             
             head_dim = V.shape[-1] // num_heads
             V_heads = V.view(-1, num_heads, head_dim).permute(1, 0, 2)  # [num_heads, seq_len, head_dim]
@@ -409,14 +411,16 @@ class PaliGemmaMechanism:
             if layer_idx >= len(hidden_states) - 1 or layer_idx >= len(attentions):
                 continue
                 
-            layer_input = hidden_states[layer_idx][0]
-            attn_weights = attentions[layer_idx][0]
+            # Clone and detach to avoid inference mode issues
+            layer_input = hidden_states[layer_idx][0].clone().detach()
+            attn_weights = attentions[layer_idx][0].clone().detach()
             
             layer = layers[layer_idx]
             num_heads = attn_weights.shape[0]
             
             v_proj = layer.self_attn.v_proj
-            V = v_proj(layer_input.to(v_proj.weight.dtype))
+            with torch.no_grad():
+                V = v_proj(layer_input.to(v_proj.weight.dtype))
             
             head_dim = V.shape[-1] // num_heads
             V_heads = V.view(-1, num_heads, head_dim).permute(1, 0, 2)
