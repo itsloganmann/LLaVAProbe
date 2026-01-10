@@ -487,22 +487,31 @@ class PaliGemmaMechanism:
 
 def load_vqa_data(n_samples=100):
     """Load VQA data from the standard dataset location."""
-    # Try multiple possible paths
+    # Try multiple possible paths for CSV
     possible_paths = [
-        "data_processing/data/processed/filtered_vqa_with_links.json",
-        "../data_processing/data/processed/filtered_vqa_with_links.json",
-        "/home/ubuntu/LLaVAProbe/data_processing/data/processed/filtered_vqa_with_links.json",
+        "results.csv",
+        "../results.csv",
+        "/home/ubuntu/LLaVAProbe/results.csv",
     ]
     
-    data = None
+    df = None
     for path in possible_paths:
         if os.path.exists(path):
-            with open(path, 'r') as f:
-                data = json.load(f)
+            df = pd.read_csv(path)
             break
     
-    if data is None:
-        raise FileNotFoundError("Could not find VQA dataset")
+    if df is None:
+        raise FileNotFoundError("Could not find VQA dataset (results.csv)")
+    
+    # Convert to list of dicts
+    data = []
+    for _, row in df.iterrows():
+        data.append({
+            "question_type": row.get("question_type", "unknown"),
+            "question": row.get("question", ""),
+            "ground_truth": row.get("ground_truth", ""),
+            "image_url": row.get("image_url", ""),
+        })
     
     # Sample data
     if n_samples and n_samples < len(data):
