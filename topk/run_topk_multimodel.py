@@ -325,12 +325,13 @@ class Qwen2VLMechanism:
         all_head_increase.sort(key=lambda x: x[1], reverse=True)
         top_k_heads = all_head_increase[:K]
         
-        # Aggregate attention (simplified - use attention weights from top heads)
-        patch_size = self.config["patch_grid"]
-        num_patches = patch_size * patch_size
-        aggregated = np.zeros(num_patches, dtype=float)
-        
-        if len(top_k_heads) > 0:
+        # Aggregate attention - use dynamic size based on actual attention
+        # For Qwen2-VL, the sequence length varies per image
+        if len(top_k_heads) > 0 and len(attentions) > 0:
+            # Get actual sequence length from first attention
+            seq_len = attentions[0].shape[-1]
+            aggregated = np.zeros(seq_len, dtype=float)
+            
             scores = np.array([s for _, s in top_k_heads])
             if len(scores) > 1 and not np.allclose(scores, scores[0]):
                 weights = np.exp(scores - scores.max())
@@ -342,10 +343,15 @@ class Qwen2VLMechanism:
                 layer_idx, head_idx = map(int, head_info.split("_"))
                 if layer_idx < len(attentions):
                     attn = attentions[layer_idx][0, head_idx, -1, :].cpu().numpy()
-                    # Take the image patch positions (assume first num_patches tokens are image)
-                    if len(attn) >= num_patches:
-                        patch_attn = attn[:num_patches]
-                        aggregated += weights[idx] * patch_attn
+                    # Use full attention, pad/truncate to match
+                    if len(attn) == seq_len:
+                        aggregated += weights[idx] * attn
+                    elif len(attn) > seq_len:
+                        aggregated += weights[idx] * attn[:seq_len]
+                    else:
+                        aggregated[:len(attn)] += weights[idx] * attn
+        else:
+            aggregated = np.zeros(100, dtype=float)  # fallback
         
         # Normalize
         aggregated_norm = normalize(aggregated.tolist())
@@ -573,21 +579,28 @@ def run_analysis(model_name, top_k=5, n_samples=100):
             # Compute metrics
             attention_entropy = calculate_entropy(aggregated_norm)
             
-            # Reshape and cluster
-            scores_2d = np.array(aggregated_norm).reshape(patch_size, patch_size)
-            attentions_3d = transform_matrix_to_3d_points(scores_2d)
+            # Skip spatial clustering for models with dynamic resolution
+            # Just compute basic metrics
+            n_clusters = 0
+            n_noise = 0
+            cluster_metrics = {}
+            cluster_ents = {}
             
-            filtered = apply_threshold(attentions_3d, 80)
-            weighted = duplicate_points(filtered, 1, 9)
-            
-            if len(weighted) > 0:
-                db, n_clusters, n_noise = find_clusters(weighted)
-                cluster_metrics = calculate_metrics(db, weighted)
-                cluster_ents = cluster_entropy(db, weighted)
-            else:
-                n_clusters, n_noise = 0, 0
-                cluster_metrics = {}
-                cluster_ents = {}
+            # Try clustering only if we have a fixed grid (not for Qwen2-VL)
+            if model_name != "qwen2-vl" and len(aggregated_norm) == patch_size * patch_size:
+                try:
+                    scores_2d = np.array(aggregated_norm).reshape(patch_size, patch_size)
+                    attentions_3d = transform_matrix_to_3d_points(scores_2d)
+                    
+                    filtered = apply_threshold(attentions_3d, 80)
+                    weighted = duplicate_points(filtered, 1, 9)
+                    
+                    if len(weighted) > 0:
+                        db, n_clusters, n_noise = find_clusters(weighted)
+                        cluster_metrics = calculate_metrics(db, weighted)
+                        cluster_ents = cluster_entropy(db, weighted)
+                except Exception:
+                    pass  # Fall back to no clustering
             
             # Build result dict
             result = {
