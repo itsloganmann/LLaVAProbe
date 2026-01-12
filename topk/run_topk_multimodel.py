@@ -224,7 +224,8 @@ class Qwen2VLMechanism:
         self.model.eval()
         
         # Get GQA parameters from first layer
-        first_layer = self.model.model.layers[0].self_attn
+        # Qwen2-VL path: model.model.language_model.layers
+        first_layer = self.model.model.language_model.layers[0].self_attn
         self.num_heads = first_layer.num_heads  # 28
         self.num_kv_heads = first_layer.num_key_value_heads  # 4
         self.head_dim = first_layer.head_dim  # 128
@@ -234,8 +235,8 @@ class Qwen2VLMechanism:
         print(f"  GQA config: {self.num_heads} heads, {self.num_kv_heads} KV heads, {self.num_kv_groups} groups")
     
     def get_layers(self):
-        """Get transformer layers - Qwen2-VL uses model.model.layers"""
-        return self.model.model.layers
+        """Get transformer layers - Qwen2-VL uses model.model.language_model.layers"""
+        return self.model.model.language_model.layers
     
     def get_attention_patches(self, image, question, K=5):
         """Compute top-K head aggregated attention map using Δ log P methodology.
@@ -337,12 +338,13 @@ class Qwen2VLMechanism:
                 
                 with torch.no_grad():
                     # Use final layer norm + lm_head
-                    normed = self.model.model.norm(added.unsqueeze(0).half())
+                    # Qwen2-VL: model.model.language_model.norm
+                    normed = self.model.model.language_model.norm(added.unsqueeze(0).half())
                     head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
                     
-                    base_normed = self.model.model.norm(residual_last.unsqueeze(0))
+                    base_normed = self.model.model.language_model.norm(residual_last.unsqueeze(0))
                     base_logits = self.model.lm_head(base_normed)[0]
                     base_probs = torch.softmax(base_logits, dim=-1)
                     base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
