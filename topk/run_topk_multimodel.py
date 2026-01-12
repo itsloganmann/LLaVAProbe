@@ -200,7 +200,14 @@ def cluster_entropy(db, weighted_attentions):
 # ============================================================================
 
 class Qwen2VLMechanism:
-    """Top-K attention analysis for Qwen2-VL."""
+    """Top-K attention analysis for Qwen2-VL using same methodology as LLaVA.
+    
+    Qwen2-VL uses Grouped Query Attention (GQA):
+    - num_heads = 28 (query heads)
+    - num_kv_heads = 4 (key-value heads)
+    - Each KV head is shared by 7 query heads (28/4 = 7)
+    - head_dim = 128
+    """
     
     def __init__(self, device="cuda"):
         self.config = MODEL_CONFIGS["qwen2-vl"]
@@ -215,14 +222,26 @@ class Qwen2VLMechanism:
         )
         self.processor = AutoProcessor.from_pretrained(self.config["model_id"])
         self.model.eval()
+        
+        # Get GQA parameters from first layer
+        first_layer = self.model.model.layers[0].self_attn
+        self.num_heads = first_layer.num_heads  # 28
+        self.num_kv_heads = first_layer.num_key_value_heads  # 4
+        self.head_dim = first_layer.head_dim  # 128
+        self.num_kv_groups = self.num_heads // self.num_kv_heads  # 7
+        
         print(f"Qwen2-VL loaded successfully")
+        print(f"  GQA config: {self.num_heads} heads, {self.num_kv_heads} KV heads, {self.num_kv_groups} groups")
     
     def get_layers(self):
-        """Get transformer layers - Qwen2-VL uses model.model.language_model.layers"""
-        return self.model.model.language_model.layers
+        """Get transformer layers - Qwen2-VL uses model.model.layers"""
+        return self.model.model.layers
     
     def get_attention_patches(self, image, question, K=5):
-        """Compute top-K head aggregated attention map."""
+        """Compute top-K head aggregated attention map using Δ log P methodology.
+        
+        Same approach as LLaVA but handles GQA by expanding KV heads.
+        """
         # Prepare input
         messages = [{
             "role": "user",
@@ -257,7 +276,7 @@ class Qwen2VLMechanism:
         predicted_idx = probs.argmax().item()
         token_confidence = float(torch.log(probs[predicted_idx]).item())
         
-        # Compute per-head contributions
+        # Compute per-head contributions using Δ log P
         all_head_increase = []
         layers = self.get_layers()
         num_layers = min(self.config["num_layers"], len(layers))
@@ -275,44 +294,55 @@ class Qwen2VLMechanism:
             layer = layers[layer_idx]
             num_heads = attn_weights.shape[0]
             
-            # Get V projection (use no_grad since we already have detached tensors)
+            # Get V projection - outputs [seq_len, num_kv_heads * head_dim]
             v_proj = layer.self_attn.v_proj
             with torch.no_grad():
                 V = v_proj(layer_input.to(v_proj.weight.dtype))
             
-            head_dim = V.shape[-1] // num_heads
-            V_heads = V.view(-1, num_heads, head_dim).permute(1, 0, 2)  # [num_heads, seq_len, head_dim]
+            # Reshape V for KV heads: [seq_len, num_kv_heads, head_dim]
+            seq_len = V.shape[0]
+            V_kv = V.view(seq_len, self.num_kv_heads, self.head_dim)
             
-            # Compute per-head output
+            # Expand KV heads to match query heads (GQA expansion)
+            # Each KV head is repeated num_kv_groups times
+            # [seq_len, num_kv_heads, head_dim] -> [seq_len, num_heads, head_dim]
+            V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+            
+            # Permute to [num_heads, seq_len, head_dim]
+            V_heads = V_expanded.permute(1, 0, 2)
+            
+            # Compute per-head output: attn_weights @ V_heads
+            # attn_weights: [num_heads, seq_len, seq_len]
+            # V_heads: [num_heads, seq_len, head_dim]
             attn_out = torch.bmm(attn_weights, V_heads)  # [num_heads, seq_len, head_dim]
             
-            # Get o_proj weight
+            # Get o_proj weight and split by head
             o_proj = layer.self_attn.o_proj
             o_weight = o_proj.weight.data.to(attn_out.dtype)
             hidden_size = o_weight.shape[0]
             
-            # Split o_proj by head
-            o_weight_split = o_weight.view(hidden_size, num_heads, head_dim).permute(1, 2, 0)
+            # o_proj expects [batch, seq, num_heads * head_dim] -> [batch, seq, hidden]
+            # Split weight: [hidden_size, num_heads * head_dim] -> [num_heads, head_dim, hidden_size]
+            o_weight_split = o_weight.view(hidden_size, num_heads, self.head_dim).permute(1, 2, 0)
             
-            # Compute head contributions
+            # Compute head contributions: [num_heads, seq_len, head_dim] @ [num_heads, head_dim, hidden] 
             head_outputs = torch.bmm(attn_out, o_weight_split)  # [num_heads, seq_len, hidden_size]
             
-            # Baseline: residual only
+            # Baseline: residual only (last position)
             residual_last = layer_input[-1].to(self.model.dtype)
             
             for head_idx in range(num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
                 added = (head_contrib + residual_last).float()
                 
-                # Quick logit computation (approximate)
                 with torch.no_grad():
-                    # Use final layer norm + lm_head (Qwen2-VL path)
-                    normed = self.model.model.language_model.norm(added.unsqueeze(0).half())
+                    # Use final layer norm + lm_head
+                    normed = self.model.model.norm(added.unsqueeze(0).half())
                     head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
                     
-                    base_normed = self.model.model.language_model.norm(residual_last.unsqueeze(0))
+                    base_normed = self.model.model.norm(residual_last.unsqueeze(0))
                     base_logits = self.model.lm_head(base_normed)[0]
                     base_probs = torch.softmax(base_logits, dim=-1)
                     base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
@@ -321,14 +351,12 @@ class Qwen2VLMechanism:
                 
                 all_head_increase.append((f"{layer_idx}_{head_idx}", delta))
         
-        # Select top-K heads
+        # Select top-K heads by Δ log P
         all_head_increase.sort(key=lambda x: x[1], reverse=True)
         top_k_heads = all_head_increase[:K]
         
-        # Aggregate attention - use dynamic size based on actual attention
-        # For Qwen2-VL, the sequence length varies per image
+        # Aggregate attention from top-K heads
         if len(top_k_heads) > 0 and len(attentions) > 0:
-            # Get actual sequence length from first attention
             seq_len = attentions[0].shape[-1]
             aggregated = np.zeros(seq_len, dtype=float)
             
@@ -343,7 +371,6 @@ class Qwen2VLMechanism:
                 layer_idx, head_idx = map(int, head_info.split("_"))
                 if layer_idx < len(attentions):
                     attn = attentions[layer_idx][0, head_idx, -1, :].cpu().numpy()
-                    # Use full attention, pad/truncate to match
                     if len(attn) == seq_len:
                         aggregated += weights[idx] * attn
                     elif len(attn) > seq_len:
@@ -351,16 +378,21 @@ class Qwen2VLMechanism:
                     else:
                         aggregated[:len(attn)] += weights[idx] * attn
         else:
-            aggregated = np.zeros(100, dtype=float)  # fallback
+            aggregated = np.zeros(100, dtype=float)
         
-        # Normalize
         aggregated_norm = normalize(aggregated.tolist())
         
         return aggregated_norm, token_confidence, self.processor.decode(predicted_idx)
 
 
 class PaliGemmaMechanism:
-    """Top-K attention analysis for PaliGemma."""
+    """Top-K attention analysis for PaliGemma using same methodology as LLaVA.
+    
+    PaliGemma-3B uses standard Multi-Head Attention:
+    - num_heads = 8
+    - head_dim = 256
+    - hidden_dim = 2048
+    """
     
     def __init__(self, device="cuda"):
         self.config = MODEL_CONFIGS["paligemma"]
@@ -375,11 +407,22 @@ class PaliGemmaMechanism:
         )
         self.processor = AutoProcessor.from_pretrained(self.config["model_id"])
         self.model.eval()
+        
+        # Get attention parameters from first layer
+        first_layer = self.model.language_model.model.layers[0].self_attn
+        self.num_heads = first_layer.num_heads
+        self.head_dim = first_layer.head_dim
+        # Check for GQA
+        self.num_kv_heads = getattr(first_layer, 'num_key_value_heads', self.num_heads)
+        self.num_kv_groups = self.num_heads // self.num_kv_heads if self.num_kv_heads else 1
+        self.uses_gqa = self.num_kv_heads != self.num_heads
+        
         print(f"PaliGemma loaded successfully")
+        print(f"  MHA config: {self.num_heads} heads, head_dim={self.head_dim}, GQA={self.uses_gqa}")
     
     def get_layers(self):
-        """Get transformer layers - PaliGemma uses model.language_model.layers"""
-        return self.model.language_model.layers
+        """Get transformer layers - PaliGemma uses model.language_model.model.layers"""
+        return self.model.language_model.model.layers
     
     def get_attention_patches(self, image, question, K=5):
         """Compute top-K head aggregated attention map."""
@@ -406,7 +449,7 @@ class PaliGemmaMechanism:
         predicted_idx = probs.argmax().item()
         token_confidence = float(torch.log(probs[predicted_idx]).item())
         
-        # Compute per-head contributions
+        # Compute per-head contributions using Δ log P
         all_head_increase = []
         layers = self.get_layers()
         num_layers = min(self.config["num_layers"], len(layers))
@@ -428,8 +471,18 @@ class PaliGemmaMechanism:
             with torch.no_grad():
                 V = v_proj(layer_input.to(v_proj.weight.dtype))
             
-            head_dim = V.shape[-1] // num_heads
-            V_heads = V.view(-1, num_heads, head_dim).permute(1, 0, 2)
+            seq_len = V.shape[0]
+            
+            # Handle GQA if present
+            if self.uses_gqa:
+                # Reshape V for KV heads
+                V_kv = V.view(seq_len, self.num_kv_heads, self.head_dim)
+                # Expand KV heads to match query heads
+                V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+                V_heads = V_expanded.permute(1, 0, 2)
+            else:
+                # Standard MHA
+                V_heads = V.view(seq_len, num_heads, self.head_dim).permute(1, 0, 2)
             
             attn_out = torch.bmm(attn_weights, V_heads)
             
@@ -437,23 +490,23 @@ class PaliGemmaMechanism:
             o_weight = o_proj.weight.data.to(attn_out.dtype)
             hidden_size = o_weight.shape[0]
             
-            o_weight_split = o_weight.view(hidden_size, num_heads, head_dim).permute(1, 2, 0)
+            o_weight_split = o_weight.view(hidden_size, num_heads, self.head_dim).permute(1, 2, 0)
             head_outputs = torch.bmm(attn_out, o_weight_split)
             
-            residual_last = layer_input[-1].to(self.model.language_model.embed_tokens.weight.dtype)
+            residual_last = layer_input[-1].to(self.model.language_model.model.embed_tokens.weight.dtype)
             
             for head_idx in range(num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
                 added = (head_contrib + residual_last).float()
                 
                 with torch.no_grad():
-                    # PaliGemma: model.language_model.norm and model.lm_head
-                    normed = self.model.language_model.norm(added.unsqueeze(0).half())
+                    # PaliGemma: model.language_model.model.norm and model.lm_head
+                    normed = self.model.language_model.model.norm(added.unsqueeze(0).half())
                     head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
                     
-                    base_normed = self.model.language_model.norm(residual_last.unsqueeze(0))
+                    base_normed = self.model.language_model.model.norm(residual_last.unsqueeze(0))
                     base_logits = self.model.lm_head(base_normed)[0]
                     base_probs = torch.softmax(base_logits, dim=-1)
                     base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
@@ -462,16 +515,15 @@ class PaliGemmaMechanism:
                 
                 all_head_increase.append((f"{layer_idx}_{head_idx}", delta))
         
-        # Select top-K heads
+        # Select top-K heads by Δ log P
         all_head_increase.sort(key=lambda x: x[1], reverse=True)
         top_k_heads = all_head_increase[:K]
         
-        # Aggregate attention
-        patch_size = self.config["patch_grid"]
-        num_patches = patch_size * patch_size
-        aggregated = np.zeros(num_patches, dtype=float)
-        
-        if len(top_k_heads) > 0:
+        # Aggregate attention - use dynamic size
+        if len(top_k_heads) > 0 and len(attentions) > 0:
+            seq_len = attentions[0].shape[-1]
+            aggregated = np.zeros(seq_len, dtype=float)
+            
             scores = np.array([s for _, s in top_k_heads])
             if len(scores) > 1 and not np.allclose(scores, scores[0]):
                 weights = np.exp(scores - scores.max())
@@ -483,9 +535,14 @@ class PaliGemmaMechanism:
                 layer_idx, head_idx = map(int, head_info.split("_"))
                 if layer_idx < len(attentions):
                     attn = attentions[layer_idx][0, head_idx, -1, :].cpu().numpy()
-                    if len(attn) >= num_patches:
-                        patch_attn = attn[:num_patches]
-                        aggregated += weights[idx] * patch_attn
+                    if len(attn) == seq_len:
+                        aggregated += weights[idx] * attn
+                    elif len(attn) > seq_len:
+                        aggregated += weights[idx] * attn[:seq_len]
+                    else:
+                        aggregated[:len(attn)] += weights[idx] * attn
+        else:
+            aggregated = np.zeros(100, dtype=float)
         
         aggregated_norm = normalize(aggregated.tolist())
         
