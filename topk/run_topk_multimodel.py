@@ -377,7 +377,8 @@ class Qwen2VLMechanism:
             for idx, (head_info, _) in enumerate(top_k_heads):
                 layer_idx, head_idx = map(int, head_info.split("_"))
                 if layer_idx < len(attentions):
-                    attn = attentions[layer_idx][0, head_idx, -1, :].cpu().numpy()
+                    # Convert bfloat16 to float32 for numpy compatibility
+                    attn = attentions[layer_idx][0, head_idx, -1, :].float().cpu().numpy()
                     if len(attn) == seq_len:
                         aggregated += weights[idx] * attn
                     elif len(attn) > seq_len:
@@ -541,7 +542,8 @@ class PaliGemmaMechanism:
             for idx, (head_info, _) in enumerate(top_k_heads):
                 layer_idx, head_idx = map(int, head_info.split("_"))
                 if layer_idx < len(attentions):
-                    attn = attentions[layer_idx][0, head_idx, -1, :].cpu().numpy()
+                    # Convert to float32 for numpy compatibility
+                    attn = attentions[layer_idx][0, head_idx, -1, :].float().cpu().numpy()
                     if len(attn) == seq_len:
                         aggregated += weights[idx] * attn
                     elif len(attn) > seq_len:
