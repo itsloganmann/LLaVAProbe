@@ -65,16 +65,23 @@ print("\n=== Attention Config ===")
 try:
     first_layer = model.language_model.layers[0]
     attn = first_layer.self_attn
-    print(f"num_heads: {attn.num_heads}")
-    print(f"num_key_value_heads: {attn.num_key_value_heads}")
-    print(f"head_dim: {attn.head_dim}")
+    # Try getting from config
+    config = attn.config
+    print(f"num_attention_heads: {config.num_attention_heads}")
+    print(f"num_key_value_heads: {config.num_key_value_heads}")
+    hidden_size = config.hidden_size
+    head_dim = hidden_size // config.num_attention_heads
+    print(f"hidden_size: {hidden_size}")
+    print(f"head_dim (computed): {head_dim}")
+    
+    # Check GQA
+    num_heads = config.num_attention_heads
+    num_kv_heads = config.num_key_value_heads
+    if num_kv_heads < num_heads:
+        print(f"GQA enabled: {num_heads} heads, {num_kv_heads} KV heads, {num_heads // num_kv_heads} groups")
+    else:
+        print("MHA (no GQA)")
 except Exception as e:
-    print(f"Error accessing via language_model.layers: {e}")
-    try:
-        first_layer = model.language_model.model.layers[0]
-        attn = first_layer.self_attn
-        print(f"num_heads: {attn.num_heads}")
-        print(f"num_key_value_heads: {attn.num_key_value_heads}")
-        print(f"head_dim: {attn.head_dim}")
-    except Exception as e2:
-        print(f"Error accessing via language_model.model.layers: {e2}")
+    print(f"Error: {e}")
+    import traceback
+    traceback.print_exc()
