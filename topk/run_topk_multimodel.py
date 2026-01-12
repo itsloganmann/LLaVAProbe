@@ -214,9 +214,10 @@ class Qwen2VLMechanism:
         self.device = device
         
         print(f"Loading Qwen2-VL from {self.config['model_id']}...")
+        # Use bfloat16 for numerical stability (float16 causes NaN logits)
         self.model = Qwen2VLForConditionalGeneration.from_pretrained(
             self.config["model_id"],
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map="auto",
             attn_implementation="eager",
         )
@@ -262,8 +263,12 @@ class Qwen2VLMechanism:
             return_tensors="pt",
         ).to(self.device)
         
+        # Cast pixel_values to bfloat16 to match model dtype
+        if "pixel_values" in inputs:
+            inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+        
         # Run inference
-        with torch.inference_mode():
+        with torch.no_grad():
             outputs = self.model(
                 **inputs,
                 output_attentions=True,
@@ -330,7 +335,7 @@ class Qwen2VLMechanism:
             head_outputs = torch.bmm(attn_out, o_weight_split)  # [num_heads, seq_len, hidden_size]
             
             # Baseline: residual only (last position)
-            residual_last = layer_input[-1].to(self.model.dtype)
+            residual_last = layer_input[-1].to(torch.bfloat16)
             
             for head_idx in range(num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
@@ -339,7 +344,7 @@ class Qwen2VLMechanism:
                 with torch.no_grad():
                     # Use final layer norm + lm_head
                     # Qwen2-VL: model.model.language_model.norm
-                    normed = self.model.model.language_model.norm(added.unsqueeze(0).half())
+                    normed = self.model.model.language_model.norm(added.unsqueeze(0).to(torch.bfloat16))
                     head_logits = self.model.lm_head(normed)[0]
                     head_probs = torch.softmax(head_logits, dim=-1)
                     head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
