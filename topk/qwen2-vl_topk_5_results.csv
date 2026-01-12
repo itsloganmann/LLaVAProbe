@@ -1,0 +1,201 @@
+image_id,question_type,question,ground_truth,image_url,n_clusters,n_noise,attention_entropy,token_confidence,predicted_token,cluster_count
+0,yes/no,Is this toast done?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524471.jpg,0,0,0.4416122893344772,-0.58984375,I,0
+1,other,What is on the sandwich?,hot dog,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.42309821156998867,-0.60546875,The,0
+2,other,What is the dog riding on?,surfboard,http://images.cocodataset.org/train2014/COCO_train2014_000000131087.jpg,0,0,0.42519524618699983,-0.1513671875,The,0
+3,yes/no,Is the phone on?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4579293633061793,-1.3828125,I,0
+4,other,What fruit is present?,watermelon,http://images.cocodataset.org/train2014/COCO_train2014_000000131352.jpg,0,0,0.4302257575967189,-0.78125,The,0
+5,other,What is the name of the store behind the lady?,pike place fish,http://images.cocodataset.org/train2014/COCO_train2014_000000262399.jpg,0,0,0.5060485795636275,-0.1513671875,The,0
+6,other,What brand of shoes is the skateboarder wearing?,none,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.4609178870305455,-0.7890625,It,0
+7,other,What is the skier standing on?,skis,http://images.cocodataset.org/train2014/COCO_train2014_000000021826.jpg,0,0,0.414880544296493,-0.10693359375,The,0
+8,yes/no,Does this phone fold closed?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.19682484190873872,-0.5,No,0
+9,other,How delicious does this look?,very,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.42162111226907956,-0.87890625,The,0
+10,yes/no,Is she wearing a bathing suit?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000036.jpg,0,0,0.2458776536326319,-0.03173828125,Yes,0
+11,yes/no,Is the person using skype?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4888435630799913,-0.68359375,There,0
+12,counting,How many umbrellas do you see?,3,http://images.cocodataset.org/train2014/COCO_train2014_000000131374.jpg,0,0,0.5232690049854769,-0.87109375,There,0
+13,yes/no,Is the ground near the waterfront squishy?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000000109.jpg,0,0,0.5186746813937837,-1.03125,Yes,0
+14,other,What is the person on the right called?,referee,http://images.cocodataset.org/train2014/COCO_train2014_000000262221.jpg,0,0,0.4273921062123045,-0.51953125,The,0
+15,yes/no,Is this in a desert?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000262285.jpg,0,0,0.5615019945054548,-0.96484375,No,0
+16,yes/no,Is the light on?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131075.jpg,0,0,0.1608768900384158,-0.515625,No,0
+17,other,What is the small computer on the left called?,laptop,http://images.cocodataset.org/train2014/COCO_train2014_000000131075.jpg,0,0,0.454982051797284,-0.734375,I,0
+18,other,How big is the TV?,very big,http://images.cocodataset.org/train2014/COCO_train2014_000000131075.jpg,0,0,0.42765960943056525,-1.0546875,It,0
+19,other,What language is the sign written in?,spanish,http://images.cocodataset.org/train2014/COCO_train2014_000000131160.jpg,0,0,0.4319823030788111,-0.74609375,The,0
+20,other,What is the man standing on?,sand,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.41938571896930155,-0.341796875,The,0
+21,other,What two utensils are next to the plate?,fork and knife,http://images.cocodataset.org/train2014/COCO_train2014_000000524518.jpg,0,0,0.449901980940247,-0.9609375,I,0
+22,yes/no,Is there ketchup?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.21020580448451215,-0.421875,No,0
+23,yes/no,Can you see any fish?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000471373.jpg,0,0,0.4876601132616471,-1.0703125,No,0
+24,other,"What does the green light, on the TV, indicate?",on,http://images.cocodataset.org/train2014/COCO_train2014_000000131075.jpg,0,0,0.4835498602291322,-0.8359375,The,0
+25,yes/no,Do you a phone booth?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.44517370149122837,-0.60546875,No,0
+26,other,What is the woman holding?,hair dryer,http://images.cocodataset.org/train2014/COCO_train2014_000000524476.jpg,0,0,0.4206340716578592,-0.2275390625,The,0
+27,yes/no,Are the rocks for the giraffe to sit on?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131323.jpg,0,0,0.2904707841870614,-1.21875,It,0
+28,yes/no,Is this pizza nutritious enough to eat for a full dinner?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000194.jpg,0,0,0.479812129777384,-0.94921875,I,0
+29,yes/no,Can they go?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524520.jpg,0,0,0.4892151995965759,-0.9921875,No,0
+30,comparison,Which vehicle is the smallest?,car,http://images.cocodataset.org/train2014/COCO_train2014_000000131299.jpg,0,0,0.4202557993365918,-0.51953125,The,0
+31,yes/no,Is the dog wearing a collar?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131087.jpg,0,0,0.45436273489083173,-0.890625,I,0
+32,other,What is the temperature outside?,cold,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.27907895360331464,-0.74609375,It,0
+33,yes/no,Do the gentleman's socks match his shoes and belt?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524320.jpg,0,0,0.19560056727459088,-1.2421875,I,0
+34,yes/no,Is this in a zoo?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000262285.jpg,0,0,0.5556434638304347,-0.232421875,No,0
+35,other,What is in the jug?,beer,http://images.cocodataset.org/train2014/COCO_train2014_000000112497.jpg,0,0,0.42544288883319403,-0.859375,The,0
+36,counting,How many sauces are there?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.4576028616431655,-0.57421875,There,0
+37,counting,How many trains are there?,3,http://images.cocodataset.org/train2014/COCO_train2014_000000524525.jpg,0,0,0.45726954226040983,-0.5625,There,0
+38,object identification,What is this person wearing on head?,hat,http://images.cocodataset.org/train2014/COCO_train2014_000000000086.jpg,0,0,0.4089319585409488,0.0,The,0
+39,yes/no,Is this room clean?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131351.jpg,0,0,0.31848255187070507,-0.58203125,No,0
+40,counting,How many hot dogs are shown?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.44756879237012465,-0.68359375,There,0
+41,other,What is the woman feeding the animal?,hay,http://images.cocodataset.org/train2014/COCO_train2014_000000131197.jpg,0,0,0.41680213563528107,-0.7265625,The,0
+42,yes/no,Do you like chocolate cake?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393445.jpg,0,0,0.41489456918987627,-0.43359375,I,0
+43,comparison,Which way can you not turn?,left,http://images.cocodataset.org/train2014/COCO_train2014_000000393419.jpg,0,0,0.34827661565578877,-0.828125,You,0
+44,color recognition,What color are the flowers?,red,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.41557997412504244,-0.6640625,The,0
+45,classification,What kind of celebration is this?,birthday,http://images.cocodataset.org/train2014/COCO_train2014_000000000113.jpg,0,0,0.4256361253919492,-0.58203125,It,0
+46,other,What are on both side of the building?,trees,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.42240652088943986,-0.91015625,I,0
+47,other,What is in the man's hand?,tennis racket,http://images.cocodataset.org/train2014/COCO_train2014_000000554301.jpg,0,0,0.42602050917712486,-0.12451171875,The,0
+48,yes/no,Are there long lenses?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000414639.jpg,0,0,0.48320577052673075,-0.7578125,Yes,0
+49,color recognition,What color is the traffic signal?,green,http://images.cocodataset.org/train2014/COCO_train2014_000000393317.jpg,0,0,0.4286417761563429,-0.1748046875,The,0
+50,comparison,Which direction is the turn lane going?,right,http://images.cocodataset.org/train2014/COCO_train2014_000000262442.jpg,0,0,0.408118430925997,-0.7734375,The,0
+51,other,What breed of livestock is shown?,sheep,http://images.cocodataset.org/train2014/COCO_train2014_000000524375.jpg,0,0,0.4052910238248714,-0.51953125,The,0
+52,color recognition,What color is the woman's shirt?,red,http://images.cocodataset.org/train2014/COCO_train2014_000000262399.jpg,0,0,0.41647823556450236,-0.08544921875,The,0
+53,other,What type of food is shown?,hot dog,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.4129033470845421,-0.1376953125,The,0
+54,color recognition,What color are the majority of sheep?,black,http://images.cocodataset.org/train2014/COCO_train2014_000000393386.jpg,0,0,0.41711505254416825,-0.169921875,The,0
+55,counting,How many stripes are at the bottom of the picture?,5,http://images.cocodataset.org/train2014/COCO_train2014_000000393242.jpg,0,0,0.504995834799781,-0.79296875,There,0
+56,color recognition,What color is the man's hat?,black,http://images.cocodataset.org/train2014/COCO_train2014_000000262273.jpg,0,0,0.41916815099688276,-0.12890625,The,0
+57,yes/no,Is he turning?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000471373.jpg,0,0,0.27684149991384777,-0.78125,No,0
+58,other,What does this phone case look like?,silver,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4501830211213855,-0.703125,The,0
+59,counting,How many pickle spears are there?,0,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.4446959358521654,-0.1748046875,There,0
+60,other,How is the man sitting?,cross legged,http://images.cocodataset.org/train2014/COCO_train2014_000000524314.jpg,0,0,0.4311415340088685,-0.203125,The,0
+61,yes/no,Is the woman surfing?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131339.jpg,0,0,0.23586086758254024,-0.5546875,No,0
+62,yes/no,Is this a toy-sized truck?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000262184.jpg,0,0,0.17256239845744123,-0.0277099609375,No,0
+63,yes/no,Are these boys at home?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524386.jpg,0,0,0.32304166320180244,-1.125,It,0
+64,other,The plane's stand resembles what letter?,a,http://images.cocodataset.org/train2014/COCO_train2014_000000393311.jpg,0,0,0.4202995681507826,-0.57421875,The,0
+65,color recognition,What color is the picket fence?,white,http://images.cocodataset.org/train2014/COCO_train2014_000000524525.jpg,0,0,0.4161025931260087,-0.07275390625,The,0
+66,other,What is the green stuff on this pizza?,spinach,http://images.cocodataset.org/train2014/COCO_train2014_000000567990.jpg,0,0,0.42325226844744673,-0.341796875,The,0
+67,yes/no,Does this image contain a pie pan?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000262261.jpg,0,0,0.34534165602902883,-0.03173828125,Yes,0
+68,other,What is the woman wearing?,skirt,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.41666324690292583,-0.271484375,The,0
+69,counting,How many pigeons are there?,6,http://images.cocodataset.org/train2014/COCO_train2014_000000262260.jpg,0,0,0.4555195493818206,-0.79296875,There,0
+70,yes/no,Is an elephant walking down the street?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000438196.jpg,0,0,0.3811795291295067,-0.048095703125,Yes,0
+71,yes/no,Is a military person in the picture?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000165.jpg,0,0,0.37498474914155594,-0.019775390625,Yes,0
+72,counting,How many girls are in the picture?,4,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.4524939462679269,-0.203125,There,0
+73,counting,How many balls are on the ground?,6,http://images.cocodataset.org/train2014/COCO_train2014_000000554301.jpg,0,0,0.449612103862788,-0.68359375,There,0
+74,color recognition,What color are the girls earrings?,silver,http://images.cocodataset.org/train2014/COCO_train2014_000000524476.jpg,0,0,0.4129860569592996,-0.462890625,The,0
+75,yes/no,Is this a dog?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000436929.jpg,0,0,0.18025649184921666,-0.01177978515625,No,0
+76,other,Sunny or overcast?,overcast,http://images.cocodataset.org/train2014/COCO_train2014_000000393396.jpg,0,0,0.4163922871033601,-0.87109375,The,0
+77,yes/no,Is one of the trains going through a tunnel?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524525.jpg,0,0,0.49421347398335913,-0.1748046875,Yes,0
+78,other,What brand of beer is visible?,sierra nevada,http://images.cocodataset.org/train2014/COCO_train2014_000000393268.jpg,0,0,0.4170922783287291,-0.45703125,I,0
+79,other,What type of watercraft is that?,raft,http://images.cocodataset.org/train2014/COCO_train2014_000000262171.jpg,0,0,0.41874356070880475,-0.5703125,The,0
+80,yes/no,Would you get a ticket if you disobeyed this sign?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393422.jpg,0,0,0.5555016407855827,-1.21875,Yes,0
+81,other,What does the train ride along?,tracks,http://images.cocodataset.org/train2014/COCO_train2014_000000165859.jpg,0,0,0.4155378375439541,-0.060302734375,The,0
+82,yes/no,Are the trying to fix the train?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000497565.jpg,0,0,0.36004104544532756,-1.15625,It,0
+83,other,What is the approximate time period of this photo?,1950s,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.4488417401976313,-1.03125,The,0
+84,other,Is it thick or thin crust?,thick,http://images.cocodataset.org/train2014/COCO_train2014_000000567990.jpg,0,0,0.40706576533173106,-0.671875,The,0
+85,counting,How many buses are there?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000393403.jpg,0,0,0.4563514211859262,-0.375,There,0
+86,comparison,Which hand holds the umbrella?,right,http://images.cocodataset.org/train2014/COCO_train2014_000000131101.jpg,0,0,0.4186715536803276,-0.890625,I,0
+87,counting,How many black umbrellas?,3,http://images.cocodataset.org/train2014/COCO_train2014_000000393442.jpg,0,0,0.4552750271805507,-0.546875,There,0
+88,other,What are the components of this dish?,butter,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.4300104222979031,-0.142578125,The,0
+89,reasoning,Why are there so many clothes on the bed?,laundry,http://images.cocodataset.org/train2014/COCO_train2014_000000131208.jpg,0,0,0.44641481626419555,-0.94921875,It,0
+90,classification,What kind of trees are on the table?,christmas,http://images.cocodataset.org/train2014/COCO_train2014_000000458763.jpg,0,0,0.4475916106026545,-0.85546875,The,0
+91,yes/no,Is this a good dessert?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000262180.jpg,0,0,0.378547118512237,-1.1484375,I,0
+92,yes/no,Is there a street light in the photo?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524470.jpg,0,0,0.45975659433549376,-0.380859375,Yes,0
+93,counting,How many windows are pictured?,4,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.40248379040684074,-1.109375,It,0
+94,color recognition,What color is the sign?,black and white,http://images.cocodataset.org/train2014/COCO_train2014_000000393419.jpg,0,0,0.43099646470382436,-0.060302734375,The,0
+95,other,What is the color of the zipper?,black,http://images.cocodataset.org/train2014/COCO_train2014_000000262273.jpg,0,0,0.44394218924355183,-0.90625,I,0
+96,color recognition,What color is the umbrella?,pink,http://images.cocodataset.org/train2014/COCO_train2014_000000000036.jpg,0,0,0.4230678568065476,-0.035888671875,The,0
+97,color recognition,What color is the school bus?,blue yellow,http://images.cocodataset.org/train2014/COCO_train2014_000000131225.jpg,0,0,0.40813761005028254,-0.1982421875,The,0
+98,other,"What is above the ""No Left Turn"" sign?",one way,http://images.cocodataset.org/train2014/COCO_train2014_000000393419.jpg,0,0,0.5107531922944238,-0.8671875,I,0
+99,yes/no,Is this man tan?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000554301.jpg,0,0,0.3702863029126594,-0.2373046875,Yes,0
+100,other,What brand is the phone?,pharos,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4335682945539677,-0.380859375,The,0
+101,classification,What kind of room is this?,kitchen,http://images.cocodataset.org/train2014/COCO_train2014_000000393418.jpg,0,0,0.4193756568168931,-1.171875,The,0
+102,yes/no,Is this  a beach?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.32032612965596696,-0.03173828125,Yes,0
+103,yes/no,Is this lacrosse?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000262336.jpg,0,0,0.26824493257875187,-0.0986328125,No,0
+104,other,What direction is the bird looking?,right,http://images.cocodataset.org/train2014/COCO_train2014_000000262201.jpg,0,0,0.42795120320002394,-0.9765625,I,0
+105,yes/no,Is there a fence in the background?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000000154.jpg,0,0,0.20602690959363876,-0.68359375,No,0
+106,counting,How many people don't have a skateboard?,4,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.4542243401887856,-0.85546875,There,0
+107,other,What continent might this be?,africa,http://images.cocodataset.org/train2014/COCO_train2014_000000262285.jpg,0,0,0.4481485396035614,-0.86328125,The,0
+108,yes/no,Is the room carpeted?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524386.jpg,0,0,0.44383516872792683,-0.212890625,Yes,0
+109,yes/no,Is the man riding a white board?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131339.jpg,0,0,0.21582006876573315,-0.2177734375,No,0
+110,person identification,Who is in the photo?,zebras,http://images.cocodataset.org/train2014/COCO_train2014_000000000154.jpg,0,0,0.4398206480802829,-0.83203125,The,0
+111,other,Are the boots a solid color or patterned?,patterned,http://images.cocodataset.org/train2014/COCO_train2014_000000262273.jpg,0,0,0.45086169042192414,-0.421875,The,0
+112,yes/no,Is the plane taking off?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000262187.jpg,0,0,0.3813997406889224,-0.70703125,No,0
+113,color recognition,What color is this airplane?,"red, white, and blue",http://images.cocodataset.org/train2014/COCO_train2014_000000000247.jpg,0,0,0.4270055876724214,-0.09423828125,The,0
+114,other,What's on the other side of the shower curtain?,shower,http://images.cocodataset.org/train2014/COCO_train2014_000000546179.jpg,0,0,0.48398270174661534,-0.9765625,I,0
+115,yes/no,Is the microwave on?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524471.jpg,0,0,0.43537261543890443,-1.109375,I,0
+116,yes/no,What is the man on a skateboard?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.43232974117939754,-1.171875,I,0
+117,yes/no,Are there clouds visible?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.18969654507766337,-0.59765625,No,0
+118,other,What are these men standing in front of?,ocean,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.4318335297130067,-0.1884765625,The,0
+119,yes/no,Is he doing a trick?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.19790800649907542,-0.2578125,No,0
+120,color recognition,What color is the animal?,gray,http://images.cocodataset.org/train2014/COCO_train2014_000000262204.jpg,0,0,0.4240095421922237,-0.035888671875,The,0
+121,counting,How many kinds of animals are in this photo?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000000154.jpg,0,0,0.4803570017530275,-0.12890625,There,0
+122,yes/no,Is this a mixed race group?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.19013410361418528,-0.212890625,No,0
+123,yes/no,Is this a desert scene?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000101431.jpg,0,0,0.4620247598524359,-0.87109375,I,0
+124,other,What type of ice cream is on the plate?,vanilla,http://images.cocodataset.org/train2014/COCO_train2014_000000262180.jpg,0,0,0.483843303322487,-0.83203125,I,0
+125,other,What is turned on?,light,http://images.cocodataset.org/train2014/COCO_train2014_000000039288.jpg,0,0,0.42828877904763024,-0.765625,The,0
+126,counting,How many green lights are there?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000393317.jpg,0,0,0.4703968187646228,-0.8359375,There,0
+127,comparison,Which buses are double deckers?,0,http://images.cocodataset.org/train2014/COCO_train2014_000000000149.jpg,0,0,0.45950829841486573,-0.18359375,There,0
+128,counting,How many lunches is this?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.47150199345803107,-0.77734375,It,0
+129,color recognition,What color is the umbrella?,pink,http://images.cocodataset.org/train2014/COCO_train2014_000000131101.jpg,0,0,0.4263286713103247,-0.1201171875,The,0
+130,yes/no,Is she brushing?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393223.jpg,0,0,0.4438307224926217,-0.369140625,Yes,0
+131,other,What is the person holding in their hand?,cell phone,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4942568964802909,-0.05615234375,The,0
+132,other,What pattern is on the pants?,stripes,http://images.cocodataset.org/train2014/COCO_train2014_000000213863.jpg,0,0,0.41152196594665363,-0.1513671875,The,0
+133,other,What gender are both of the children likely to be?,female,http://images.cocodataset.org/train2014/COCO_train2014_000000131279.jpg,0,0,0.2646650618241844,-0.609375,Both,0
+134,yes/no,Can the tree tell time?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.3784012178314124,-0.859375,No,0
+135,yes/no,Is the seedling a hybrid?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131330.jpg,0,0,0.4952147745806425,-0.5078125,Yes,0
+136,color recognition,What color are the leaves?,green,http://images.cocodataset.org/train2014/COCO_train2014_000000262171.jpg,0,0,0.4253037907857514,-0.287109375,The,0
+137,other,What is the one girl doing to the other girl's hair?,brushing,http://images.cocodataset.org/train2014/COCO_train2014_000000131279.jpg,0,0,0.47106967128139654,-0.2470703125,The,0
+138,yes/no,Do these ski boards have personality?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000201.jpg,0,0,0.5178491449356389,-0.89453125,Yes,0
+139,yes/no,Are these wings strong?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000081.jpg,0,0,0.37695242017063696,-0.79296875,I,0
+140,yes/no,Is this man a professional baseball player?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000458752.jpg,0,0,0.4833122349925105,-0.76171875,Yes,0
+141,yes/no,Are there people boarding the bus?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000393403.jpg,0,0,0.1906583769368145,-0.52734375,No,0
+142,yes/no,Have you tried a hot dog like this before?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000043697.jpg,0,0,0.4638732353985131,-0.302734375,I,0
+143,other,What is in the vase next to the flowers?,paper,http://images.cocodataset.org/train2014/COCO_train2014_000000305853.jpg,0,0,0.47741785670257136,-1.0859375,I,0
+144,other,What is the brand of the phone?,pharos,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.47816998570547975,-0.38671875,The,0
+145,person identification,Who made the cock?,rolex,http://images.cocodataset.org/train2014/COCO_train2014_000000000064.jpg,0,0,0.43972909556766304,-0.7578125,I,0
+146,other,What are the popsicle sticks used for?,labels,http://images.cocodataset.org/train2014/COCO_train2014_000000131330.jpg,0,0,0.4400978309281258,-0.34765625,The,0
+147,yes/no,Is the stadium crowded?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000336077.jpg,0,0,0.3848935186912545,-0.1650390625,Yes,0
+148,classification,What kind of passenger does the bus carry?,children,http://images.cocodataset.org/train2014/COCO_train2014_000000262415.jpg,0,0,0.43404551882732473,-0.703125,The,0
+149,yes/no,Is the light green?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393317.jpg,0,0,0.4862630118668205,-0.26171875,Yes,0
+150,other,What is the man holding?,phone,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.4322922762523094,-0.060302734375,The,0
+151,yes/no,Is there a baseball player holding a bat?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000336077.jpg,0,0,0.3387115716380153,-0.035888671875,Yes,0
+152,yes/no,Are the vases identical?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000262283.jpg,0,0,0.386017025563087,-1.21875,I,0
+153,yes/no,Has the sheep recently been shaved?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000131093.jpg,0,0,0.5139891687040299,-1.09375,It,0
+154,yes/no,Is the area lit?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000262283.jpg,0,0,0.5190470007112392,-0.3984375,Yes,0
+155,yes/no,Is there snow on the mountains?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393221.jpg,0,0,0.49286892988703945,-0.1474609375,Yes,0
+156,location,Where is the television?,wall,http://images.cocodataset.org/train2014/COCO_train2014_000000524386.jpg,0,0,0.43776930215711657,-0.1337890625,The,0
+157,counting,How many babies are in this photo?,2,http://images.cocodataset.org/train2014/COCO_train2014_000000131279.jpg,0,0,0.4624197883323997,-0.09423828125,There,0
+158,other,What country name is written as the highest word on the bus?,guatemala,http://images.cocodataset.org/train2014/COCO_train2014_000000546151.jpg,0,0,0.4681205632474567,-0.369140625,The,0
+159,yes/no,Is this breakfast?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.13077055784900407,-0.0439453125,No,0
+160,yes/no,Is this photo outdoors?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393292.jpg,0,0,0.3997191606728639,-0.302734375,Yes,0
+161,other,What are the animals doing?,grazing,http://images.cocodataset.org/train2014/COCO_train2014_000000524375.jpg,0,0,0.41680646755669165,-0.1474609375,The,0
+162,yes/no,Is this bathroom clean?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131351.jpg,0,0,0.4254007962292296,-1.2578125,No,0
+163,other,Is the sun to the right or left of this flower?,left,http://images.cocodataset.org/train2014/COCO_train2014_000000000030.jpg,0,0,0.45714133026202575,-0.90234375,It,0
+164,other,What is the orange root called?,sweet potato,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.42202901113920466,-0.68359375,I,0
+165,other,How tall is this building?,100 feet,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.3345795557478266,-0.52734375,It,0
+166,yes/no,Is this a hotel?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393394.jpg,0,0,0.4641268359973508,-1.1171875,I,0
+167,classification,What kind of meat is this?,hot dog,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.42438560121081104,-0.6953125,The,0
+168,counting,How many trees are in this photo?,3,http://images.cocodataset.org/train2014/COCO_train2014_000000524338.jpg,0,0,0.4358368593103837,-1.078125,I,0
+169,yes/no,Are the boys happy?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.4491887942424868,-0.76171875,I,0
+170,classification,What kind of sauce is in the largest ramekin?,butter,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.4679991022288587,-0.984375,I,0
+171,yes/no,Is it daytime?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000393362.jpg,0,0,0.3521608129756535,-0.203125,Yes,0
+172,other,What is the bear called?,teddy,http://images.cocodataset.org/train2014/COCO_train2014_000000262191.jpg,0,0,0.4311932604163349,-0.5546875,The,0
+173,color recognition,What color is the shower curtain?,white,http://images.cocodataset.org/train2014/COCO_train2014_000000546179.jpg,0,0,0.41980712119456415,-0.08984375,The,0
+174,color recognition,What color is the lighted sign?,blue,http://images.cocodataset.org/train2014/COCO_train2014_000000000260.jpg,0,0,0.4633090346326821,-0.283203125,The,0
+175,classification,What kind of hat is the man with the girls wearing?,baseball cap,http://images.cocodataset.org/train2014/COCO_train2014_000000131172.jpg,0,0,0.49605220458518473,-0.1748046875,The,0
+176,yes/no,Is this man reading a cell phone screen?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000524338.jpg,0,0,0.26430374882273766,-0.2421875,No,0
+177,yes/no,Is there a shower curtain?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000262159.jpg,0,0,0.2729752878674487,-1.015625,No,0
+178,other,What is the man wearing?,shorts,http://images.cocodataset.org/train2014/COCO_train2014_000000131339.jpg,0,0,0.43493637080870773,-0.048095703125,The,0
+179,yes/no,Is this a large house?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131190.jpg,0,0,0.3763918895160002,-1.1953125,It,0
+180,object identification,What is this person doing?,snowboarding,http://images.cocodataset.org/train2014/COCO_train2014_000000524551.jpg,0,0,0.43354190738272586,-0.1474609375,The,0
+181,counting,How many rolls of toilet paper are on the toilet tank?,2,http://images.cocodataset.org/train2014/COCO_train2014_000000262159.jpg,0,0,0.49460993423223837,-0.169921875,There,0
+182,yes/no,Is the woman by herself?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000000260.jpg,0,0,0.5413511175826253,-0.451171875,Yes,0
+183,other,What two vegetables can be seen on the pizza?,none,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.47034572038454103,-0.12890625,There,0
+184,yes/no,Was this photo taken recently?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000474858.jpg,0,0,0.2286063960954817,-0.9296875,I,0
+185,location,Where is the table lamp?,on table,http://images.cocodataset.org/train2014/COCO_train2014_000000448671.jpg,0,0,0.42544546528286015,-0.462890625,The,0
+186,yes/no,Does this look clean?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000546179.jpg,0,0,0.4844857173004505,-0.5,Yes,0
+187,counting,How many phones do you see?,1,http://images.cocodataset.org/train2014/COCO_train2014_000000393489.jpg,0,0,0.44809845837767387,-0.59765625,I,0
+188,yes/no,Are these people getting reading to go play sports?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.5037386835168498,-0.921875,Yes,0
+189,yes/no,Is the toaster on?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524471.jpg,0,0,0.47482846775780474,-0.60546875,Yes,0
+190,classification,What kind of food is shown?,hot dog,http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg,0,0,0.41387141429843466,-0.1201171875,The,0
+191,time-related,What game would you play when you saw this as a child?,tag,http://images.cocodataset.org/train2014/COCO_train2014_000000524375.jpg,0,0,0.3920827859972229,-1.0546875,When,0
+192,location,Where was this picture taken?,parking lot,http://images.cocodataset.org/train2014/COCO_train2014_000000393384.jpg,0,0,0.25504602884336663,-0.84765625,It,0
+193,yes/no,Are both giraffes standing?,no,http://images.cocodataset.org/train2014/COCO_train2014_000000000025.jpg,0,0,0.4607256117211695,-1.1171875,No,0
+194,other,What is the woman doing in this photo?,petting sheep,http://images.cocodataset.org/train2014/COCO_train2014_000000131197.jpg,0,0,0.4356251121838896,-0.3984375,The,0
+195,counting,How many of the four main individuals are wearing baseball caps?,0,http://images.cocodataset.org/train2014/COCO_train2014_000000131366.jpg,0,0,0.2465805778070713,-0.79296875,None,0
+196,object identification,What is this?,bear,http://images.cocodataset.org/train2014/COCO_train2014_000000137045.jpg,0,0,0.43425820681155664,-0.375,This,0
+197,yes/no,Is it a clear day?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524551.jpg,0,0,0.459974798715441,-0.0986328125,Yes,0
+198,yes/no,Is there a tent in the snow?,yes,http://images.cocodataset.org/train2014/COCO_train2014_000000524547.jpg,0,0,0.4732058719531919,-0.15625,Yes,0
+199,location,Where is the cupcake?,plate,http://images.cocodataset.org/train2014/COCO_train2014_000000393375.jpg,0,0,0.42631987741869726,-0.2470703125,The,0
