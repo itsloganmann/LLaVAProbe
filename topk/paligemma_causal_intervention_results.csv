@@ -1,0 +1,201 @@
+image_id,question_type,question,ground_truth,full_answer,full_correct,high_answer,high_correct,low_answer,low_correct,random_answer,random_correct
+0,yes/no,Is this breakfast?,no,no,True,no,True,no,True,no,True
+1,yes/no,Is this terminal safe at night?,yes,yes,True,yes,True,yes,True,yes,True
+2,yes/no,Is this person prone on his back or on his knees?,no,knees,False,knees,False,knees,False,knees,False
+3,yes/no,Are the drying the animal with a blow dryer?,yes,yes,True,yes,True,yes,True,yes,True
+4,yes/no,Is the man smiling?,no,no,True,no,True,no,True,no,True
+5,yes/no,Is the red stop sign on a wooden pole?,no,yes,False,no,True,no,True,no,True
+6,yes/no,Are all zebras facing the same way?,no,no,True,no,True,no,True,no,True
+7,yes/no,Is this a cow farm?,yes,no,False,no,False,yes,True,no,False
+8,counting,How many men are playing baseball?,5,4,False,2,False,4,False,4,False
+9,other,What is written on the street?,nothing,avenue,False,stop,False,w 14th st,False,unanswerable,False
+10,counting,How many trees are in this photo?,3,3,True,2,False,2,False,2,False
+11,other,What is in the picture?,clock,clock,True,clock,True,clock,True,clock,True
+12,yes/no,Is the room almost full?,no,no,True,no,True,no,True,no,True
+13,classification,What kind of suit is he wearing?,swim,swim,True,swim,True,swim,True,swim,True
+14,location,Where do you think all these are located?,restaurant,restaurant,True,restaurant,True,restaurant,True,restaurant,True
+15,counting,How many phones do you see?,1,1,True,1,True,1,True,1,True
+16,other,What power tool is present?,drill,drill,True,drill,True,drill,True,drill,True
+17,counting,How many glasses are there?,2,2,True,2,True,2,True,1,False
+18,yes/no,Is this an inside stadium?,yes,no,False,no,False,no,False,no,False
+19,color recognition,What color is the sky?,gray,gray,True,gray,True,gray,True,gray,True
+20,yes/no,Are these boys at home?,no,yes,False,yes,False,yes,False,yes,False
+21,other,What time is it?,1:50,1:15,False,2:30,False,1:55,False,1:50,True
+22,color recognition,What color is the plate?,white,white,True,white,True,white,True,white,True
+23,yes/no,Has someone started eating?,no,no,True,no,True,no,True,no,True
+24,other,What is the black thing he is wearing?,apron,apron,True,apron,True,apron,True,apron,True
+25,other,What is the name of the yellow fruit pictured?,banana,banana,True,banana,True,banana,True,banana,True
+26,other,What topping is on the hot dog?,onions,onions,True,mustard,False,bacon,False,mustard,False
+27,comparison,Which vehicle is the smallest?,car,car,True,car,True,car,True,car,True
+28,counting,How many colors are in the tile?,1,2,False,2,False,2,False,2,False
+29,reasoning,Why are there so many clothes on the bed?,laundry,laundry,True,sleeping,False,laundry,True,sleeping,False
+30,color recognition,What color are the chairs?,blue,blue,True,blue,True,blue,True,blue,True
+31,other,What is being held green?,light,stop light,True,sign,False,light,True,sign,False
+32,yes/no,Is this the latest make and model?,no,no,True,no,True,no,True,no,True
+33,yes/no,Are there 3 elephants?,yes,yes,True,yes,True,yes,True,no,False
+34,color recognition,What color are the girls earrings?,silver,silver,True,black,False,silver,True,silver,True
+35,other,What symbol sits atop the tower?,cross,cross,True,cross,True,cross,True,cross,True
+36,yes/no,The tablecloths are white?,yes,yes,True,yes,True,yes,True,yes,True
+37,yes/no,Is there snow?,yes,yes,True,yes,True,yes,True,yes,True
+38,counting,How many girls are visible?,2,1,False,1,False,1,False,1,False
+39,other,What's missing from this hot dog?,mustard,ketchup,False,mustard,True,mustard,True,mustard,True
+40,color recognition,What color horse is closer to the camera?,black,black,True,black,True,white,False,white,False
+41,other,How has the cheese been prepared?,melted,melted,True,grilled,False,melted,True,melted,True
+42,color recognition,What color is the players shirt?,orange,orange,True,red,False,orange,True,orange,True
+43,classification,What kind of passenger does the bus carry?,children,school,False,students,False,students,False,students,False
+44,other,What does the wall say on the far left?,nothing,nothing,True,nothing,True,nothing,True,nothing,True
+45,other,What is the green stuff?,broccoli,broccoli,True,broccoli,True,broccoli,True,broccoli,True
+46,location,Where is the light coming from?,window,window,True,window,True,window,True,window,True
+47,yes/no,Is there broccoli on a slice of pizza?,yes,no,False,no,False,no,False,no,False
+48,yes/no,Are there three sheep?,yes,yes,True,yes,True,yes,True,yes,True
+49,counting,How many TVs are on?,1,1,True,1,True,1,True,1,True
+50,yes/no,Are there clouds visible?,no,no,True,no,True,no,True,no,True
+51,counting,How many ski boards are in the picture?,5,5,True,5,True,5,True,5,True
+52,other,What is in the glass in the lower right?,wine,wine,True,liquid,False,wine,True,wine,True
+53,yes/no,Is the building a high rise?,no,no,True,no,True,no,True,no,True
+54,other,What is the person wearing?,skis,jacket,False,skis,True,jacket,False,jacket,False
+55,other,How big is the TV?,very big,unanswerable,False,55,False,unanswerable,False,unanswerable,False
+56,yes/no,Is this man swimming?,no,no,True,no,True,no,True,no,True
+57,object identification,What is this cake made with?,chocolate,chocolate,True,chocolate,True,chocolate,True,chocolate,True
+58,other,What silverware is on the table?,knife and fork,fork,False,knife,False,fork,False,knife,False
+59,counting,How many windows are there?,3,2,False,2,False,2,False,3,True
+60,other,What is the approximate time period of this photo?,1950s,1940s,False,1950s,True,1950s,True,1950s,True
+61,other,What is the man cutting?,cake,cake,True,cake,True,cake,True,cake,True
+62,yes/no,Is the toilet lid down?,yes,yes,True,yes,True,yes,True,no,False
+63,other,What mountain was this taken at?,lookout,aspen,False,aspen,False,mt. fuji,False,aspen,False
+64,yes/no,Is this in a desert?,yes,no,False,no,False,no,False,no,False
+65,yes/no,Is she wearing a bathing suit?,yes,yes,True,yes,True,yes,True,yes,True
+66,yes/no,Can you see the man's shadow?,yes,yes,True,yes,True,yes,True,yes,True
+67,counting,How many arrows can be seen?,1,1,True,1,True,2,False,2,False
+68,other,What are they drinking?,beer,beer,True,water,False,beer,True,soda,False
+69,yes/no,Does this cake look like it chocolate?,yes,yes,True,yes,True,yes,True,yes,True
+70,other,What is the yellow stuff in a bowl?,butter,butter,True,mustard,False,butter,True,mayonnaise,False
+71,yes/no,Does this pizza have a deep dish crust?,yes,yes,True,yes,True,yes,True,yes,True
+72,yes/no,Are there three birds in the picture?,yes,no,False,no,False,yes,True,no,False
+73,yes/no,Is the skier on the ground?,yes,yes,True,yes,True,yes,True,yes,True
+74,other,What are the two women carrying?,rackets,rackets,True,tennis rackets,True,tennis rackets,True,tennis rackets,True
+75,other,What do you use the stove for?,cooking,cook,False,cook,False,cook,False,cook,False
+76,yes/no,Is the oven on?,yes,yes,True,yes,True,yes,True,yes,True
+77,other,What does the man have on his face?,glasses,glasses,True,nothing,False,glasses,True,nothing,False
+78,yes/no,Are all of the birds in flight?,no,no,True,no,True,no,True,no,True
+79,other,What pattern does the woman have on?,polka dot,dots,False,none,False,dots,False,none,False
+80,yes/no,Can you see the sun in the picture?,yes,yes,True,yes,True,yes,True,yes,True
+81,other,What type of tree is the man standing next to?,elm,oak,False,oak,False,oak,False,oak,False
+82,other,What is the person holding?,phone,phone,True,phone,True,phone,True,phone,True
+83,other,What pattern is on the pants?,stripes,stripes,True,striped,False,striped,False,striped,False
+84,color recognition,What color is the jacket?,green,green,True,black,False,green,True,green,True
+85,yes/no,Are stains on the floor?,no,no,True,no,True,no,True,no,True
+86,time-related,What game would you play when you saw this as a child?,tag,sheep,False,catch,False,catch,False,catch,False
+87,yes/no,Do you like chocolate cake?,yes,yes,True,yes,True,yes,True,yes,True
+88,yes/no,Is this a brand new phone?,no,yes,False,yes,False,no,True,yes,False
+89,color recognition,What color is the plane?,red,red,True,red,True,red,True,red,True
+90,color recognition,What color is the board?,white,white,True,white,True,white,True,white,True
+91,yes/no,Is there a rock near the giraffe?,no,no,True,no,True,yes,False,yes,False
+92,yes/no,Is there a drink in this picture?,no,no,True,no,True,no,True,no,True
+93,other,Something new to wear with a men's shirt?,tie,tie,True,tie,True,tie,True,tie,True
+94,yes/no,Are these people getting reading to go play sports?,yes,yes,True,yes,True,yes,True,yes,True
+95,yes/no,Is the animal a mammal?,yes,yes,True,yes,True,yes,True,yes,True
+96,yes/no,Is there a baseball player holding a bat?,yes,yes,True,yes,True,yes,True,yes,True
+97,other,What are the colors of the countertop?,brown,brown,True,brown,True,brown,True,brown,True
+98,other,What shape are the windows on the side of the plane?,square,rectangle,False,square,True,square,True,square,True
+99,counting,How many pickle spears are there?,0,0,True,0,True,0,True,0,True
+100,yes/no,Are there tomatoes on the pizza?,yes,yes,True,yes,True,yes,True,yes,True
+101,color recognition,What color are the skis?,yellow,yellow,True,yellow,True,yellow,True,yellow,True
+102,location,Where is the table lamp?,on table,desk,False,behind man,False,desk,False,behind man,False
+103,other,What is on the ground?,snow,snow,True,snow,True,snow,True,snow,True
+104,yes/no,Is this an old building?,yes,yes,True,yes,True,no,False,no,False
+105,yes/no,Is the guy in the yellow shirt wearing a tie?,yes,no,False,no,False,no,False,no,False
+106,yes/no,Is this in the United States?,yes,yes,True,yes,True,yes,True,yes,True
+107,classification,What kind of potato are the fries?,sweet,sweet,True,fried,False,sweet,True,sweet,True
+108,other,What are the people doing in the street?,walking,walking,True,walking,True,walking,True,walking,True
+109,location,Where are the trucks?,dock,dock,True,dock,True,dock,True,dock,True
+110,yes/no,Would this be good for dessert?,no,no,True,no,True,no,True,no,True
+111,counting,How many black sheep are there?,10,2,False,2,False,3,False,1,False
+112,comparison,Which man is controlling the kite?,no,none,True,no kite,True,right,False,right,False
+113,counting,How many trees on the table?,3,3,True,2,False,3,True,2,False
+114,other,What item is folded up and sitting on the edge of the shower stall?,towel,towel,True,shower curtain,False,towel,True,towel,True
+115,yes/no,Is the light on?,no,yes,False,yes,False,yes,False,yes,False
+116,other,Number of animals?,3,3,True,4,False,4,False,3,True
+117,comparison,Which hand holds the umbrella?,right,right,True,right,True,right,True,right,True
+118,yes/no,Is that bacon from a delicatessen?,yes,no,False,no,False,no,False,no,False
+119,other,What is the woman wearing on her neck?,collar,collar,True,nothing,False,nothing,False,nothing,False
+120,counting,How many rocks?,2,0,False,0,False,0,False,0,False
+121,yes/no,Is there a shadow of a tree in the foreground?,no,no,True,no,True,yes,False,yes,False
+122,yes/no,Is the pizza on a baking tray?,yes,no,False,no,False,no,False,no,False
+123,other,Are they coworkers or best friends?,best friends,coworkers,False,coworkers,False,coworkers,False,coworkers,False
+124,other,What indicates that this is for a party?,many plates,beer,False,plates,False,plates,False,plates,False
+125,yes/no,Is the water calm?,yes,yes,True,yes,True,yes,True,yes,True
+126,yes/no,Is there a travel guide on the table?,yes,yes,True,yes,True,yes,True,yes,True
+127,yes/no,Are both giraffes standing?,no,no,True,yes,False,no,True,no,True
+128,counting,How many stripes are at the bottom of the picture?,5,5,True,6,False,5,True,5,True
+129,yes/no,Is a person wearing a hooded sweatshirt?,no,no,True,no,True,no,True,no,True
+130,yes/no,Are these the normal size pieces of pizza?,yes,no,False,yes,True,yes,True,yes,True
+131,counting,How many pigeons are there?,6,6,True,4,False,6,True,5,False
+132,other,How healthy does this meal look?,very,very,True,very,True,very,True,very,True
+133,person identification,Who is going to eat this pizza?,people,people,True,person,False,person,False,person,False
+134,yes/no,Is there a butter plate on the table?,yes,no,False,no,False,yes,True,yes,True
+135,other,What is the fruit?,banana,banana,True,banana,True,banana,True,banana,True
+136,other,What is mainly featured?,hot dog,hot dog,True,food,False,food,False,food,False
+137,other,What is the sign says?,stop,stop,True,s,False,stop,True,stop,True
+138,other,What is the dog riding on?,surfboard,surfboard,True,surfboard,True,surfboard,True,surfboard,True
+139,other,What logo is on the man's shirt?,nike,nike,True,dng,False,nike,True,nike,True
+140,other,How is the man sitting?,cross legged,cross legged,True,on ground,False,cross legged,True,on ground,False
+141,other,What is the fence made of?,metal,metal,True,metal,True,metal,True,metal,True
+142,yes/no,Is one of the trains going through a tunnel?,yes,yes,True,yes,True,yes,True,yes,True
+143,other,What fruit is present?,watermelon,watermelon,True,none,False,watermelon,True,banana,False
+144,counting,How many zebras are there?,2,2,True,2,True,3,False,2,True
+145,counting,How many striped objects are in the photo?,4,3,False,2,False,3,False,2,False
+146,counting,How many planes are in the picture?,2,2,True,2,True,3,False,2,True
+147,other,What print is this woman's dress?,dots,checkered,False,striped,False,checkered,False,polka dot,False
+148,counting,How many tennis players are in the photo?,1,1,True,1,True,1,True,1,True
+149,color recognition,What color is the bear?,black,black,True,black,True,black,True,black,True
+150,yes/no,Is an elephant walking down the street?,yes,yes,True,yes,True,yes,True,yes,True
+151,other,What is in gold at the top of the building?,clock,bell,False,clock,True,bell,False,bell,False
+152,classification,What kind of animal is on the beach?,horse,horse,True,dog,False,horse,True,horse,True
+153,yes/no,Is the dog wearing a collar?,yes,no,False,no,False,yes,True,no,False
+154,location,Where is number 8?,left,left,True,in goal,False,left,True,left,True
+155,yes/no,Are they drinking wine at the child's party?,yes,yes,True,no,False,no,False,no,False
+156,other,What is causing the smoke?,grill,grill,True,fire,False,grill,True,fire,False
+157,yes/no,Is the man in the forefront trying to get signal on a cell phone?,no,no,True,no,True,no,True,no,True
+158,other,What is the hog dog sitting on?,bun,napkin,False,napkin,False,napkin,False,napkin,False
+159,counting,How many horses are on the picture?,3,3,True,2,False,2,False,2,False
+160,yes/no,Is Cingular a sponsor of this field?,yes,yes,True,yes,True,yes,True,yes,True
+161,yes/no,Are there towels on the ground?,no,no,True,no,True,no,True,no,True
+162,yes/no,Is this person wearing a backpack?,yes,yes,True,no,False,yes,True,no,False
+163,yes/no,Is there a street light in the photo?,yes,yes,True,yes,True,yes,True,yes,True
+164,counting,How many animals are there?,3,3,True,3,True,5,False,3,True
+165,yes/no,Is this vehicle parked in a residential driveway?,yes,yes,True,yes,True,yes,True,yes,True
+166,other,"What three letter word, best describes the liquid container on the ground between the two people?",jug,can,False,bottle,False,can,False,bottle,False
+167,yes/no,Do you a mirror in the background?,no,no,True,no,True,no,True,no,True
+168,color recognition,What color is the persons headwear?,red,red,True,black,False,red,True,red,True
+169,other,What ethnicity is the man?,african american,black,False,white,False,black,False,black,False
+170,color recognition,What color is the girls hot dog?,red,red,True,yellow,False,red,True,yellow,False
+171,yes/no,Is this man reading a cell phone screen?,no,no,True,no,True,no,True,no,True
+172,other,Are the carrots diced or cut long ways?,long ways,cut,False,cut,False,cut,False,cut,False
+173,comparison,Which two are actually playing?,0,0,True,0,True,0,True,0,True
+174,yes/no,Are the mountains high?,yes,yes,True,yes,True,yes,True,yes,True
+175,color recognition,What color is the school bus?,blue yellow,blue,False,blue,False,blue,False,blue,False
+176,other,What are these people doing?,snowboarding,snowboarding,True,snowboarding,True,snowboarding,True,snowboarding,True
+177,other,Color is the goaltenders shirt?,white,white,True,white,True,white,True,white,True
+178,counting,How many tattoos can be seen on this man's body?,1,1,True,0,False,1,True,1,True
+179,yes/no,Would you get a ticket if you disobeyed this sign?,yes,yes,True,yes,True,yes,True,yes,True
+180,yes/no,Is the banana freshly peeled?,yes,yes,True,no,False,yes,True,yes,True
+181,yes/no,Are all the people looking at the same thing?,no,yes,False,no,True,no,True,no,True
+182,color recognition,What color is the knife handle?,silver,silver,True,silver,True,silver,True,silver,True
+183,yes/no,Does this breakfast dish primarily carbohydrates?,yes,yes,True,yes,True,yes,True,no,False
+184,counting,How many poles is the person holding?,2,2,True,2,True,2,True,2,True
+185,other,Urban or suburban?,urban,urban,True,urban,True,urban,True,urban,True
+186,color recognition,What color is the catcher's pants?,gray,gray,True,gray,True,gray,True,gray,True
+187,color recognition,What color are the stakes in the dirt?,yellow,yellow,True,brown,False,yellow,True,yellow,True
+188,location,Where is the shower located?,in bathroom,bathroom,False,bathroom,False,bathroom,False,bathroom,False
+189,yes/no,Does the boy have his head stuck in the net?,no,no,True,no,True,no,True,no,True
+190,reasoning,Why is the man cooking so many hot dogs?,party,party,True,party,True,party,True,party,True
+191,counting,How many kinds of meat products are here?,1,2,False,1,True,2,False,2,False
+192,yes/no,Is the toaster on?,yes,yes,True,yes,True,yes,True,yes,True
+193,other,What is the grate for?,toaster oven,cooking,False,cooking,False,cooking,False,cooking,False
+194,other,What does the sign with the white arrow say?,one way,one way,True,one way,True,one way,True,one way,True
+195,yes/no,Is there snow on the mountains?,yes,yes,True,yes,True,yes,True,yes,True
+196,color recognition,What color is the animal?,gray,gray,True,gray,True,gray,True,gray,True
+197,other,What time does the clock read?,12:55,3:00,False,3:05,False,3:00,False,3:00,False
+198,yes/no,Is the kite high in the air?,yes,yes,True,yes,True,yes,True,yes,True
+199,other,What are the vases sitting on?,table,table,True,table,True,table,True,table,True

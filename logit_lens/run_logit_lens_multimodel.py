@@ -477,11 +477,11 @@ class NeuronAnalyzer:
         # Check correctness
         is_correct = ground_truth.lower() in predicted_text or predicted_text in ground_truth.lower()
         
-        # Extract neuron activations
+        # Extract neuron activations (convert bfloat16 to float32 for numpy)
         neuron_acts = {}
         for layer_idx, acts in self.neuron_activations.items():
             if isinstance(layer_idx, int):
-                neuron_acts[layer_idx] = acts[0, -1, :].cpu().numpy()
+                neuron_acts[layer_idx] = acts[0, -1, :].float().cpu().numpy()
         
         return {
             'is_correct': is_correct,
