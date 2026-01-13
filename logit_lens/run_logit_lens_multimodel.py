@@ -709,7 +709,7 @@ def run_neuron_analysis(model_type: str, n_samples: int = 200):
             trust_remote_code=True
         )
         processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct", trust_remote_code=True)
-        n_layers = len(model.model.layers)
+        n_layers = len(model.model.language_model.layers)
         # Target key layers (similar to LLaVA analysis)
         target_layers = [n_layers - 10, n_layers - 7, n_layers - 4, n_layers - 3, n_layers - 2, n_layers - 1]
         target_layers = [l for l in target_layers if l >= 0]
