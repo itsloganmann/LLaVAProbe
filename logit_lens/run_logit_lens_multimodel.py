@@ -476,14 +476,12 @@ class NeuronAnalyzer:
         gt_tokens = self.processor.tokenizer.encode(ground_truth, add_special_tokens=False)
         gt_token_id = gt_tokens[0] if gt_tokens else 0
         
-        # Check correctness using margin (is GT token in top-5?)
-        top_k_ids = torch.topk(logits, k=5).indices.tolist()
-        is_correct = gt_token_id in top_k_ids
-        
-        # Also compute margin for debugging
+        # Compute margin: GT logit - max other logit
         gt_logit = logits[gt_token_id].item()
-        max_logit = logits.max().item()
-        margin = gt_logit - max_logit
+        other_logits = logits.clone()
+        other_logits[gt_token_id] = float('-inf')
+        max_other = other_logits.max().item()
+        margin = gt_logit - max_other
         
         predicted_id = logits.argmax().item()
         predicted_text = self.processor.tokenizer.decode([predicted_id]).strip().lower()
@@ -495,7 +493,7 @@ class NeuronAnalyzer:
                 neuron_acts[layer_idx] = acts[0, -1, :].float().cpu().numpy()
         
         return {
-            'is_correct': is_correct,
+            'margin': margin,
             'neuron_activations': neuron_acts,
             'predicted': predicted_text,
             'ground_truth': ground_truth
