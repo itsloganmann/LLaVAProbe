@@ -658,20 +658,26 @@ def run_causal_intervention(model_name, n_samples=200):
     # Statistical tests
     print(f"\nStatistical Significance (McNemar's test approximation via paired t-test):")
     
+    # Convert boolean arrays to int for statistical tests
+    full_int = np.array(results["full"]).astype(int)
+    high_int = np.array(results["high"]).astype(int)
+    low_int = np.array(results["low"]).astype(int)
+    random_int = np.array(results["random"]).astype(int)
+    
     # Full vs High
-    _, p_full_high = stats.ttest_rel(results["full"], results["high"])
+    _, p_full_high = stats.ttest_rel(full_int, high_int)
     print(f"  Full vs Mask HIGH:  p = {p_full_high:.2e}")
     
     # Full vs Low
-    _, p_full_low = stats.ttest_rel(results["full"], results["low"])
+    _, p_full_low = stats.ttest_rel(full_int, low_int)
     print(f"  Full vs Mask LOW:   p = {p_full_low:.2e}")
     
     # High vs Low
-    _, p_high_low = stats.ttest_rel(results["high"], results["low"])
+    _, p_high_low = stats.ttest_rel(high_int, low_int)
     print(f"  Mask HIGH vs LOW:   p = {p_high_low:.2e}")
     
     # Random vs High
-    _, p_random_high = stats.ttest_rel(results["random"], results["high"])
+    _, p_random_high = stats.ttest_rel(random_int, high_int)
     print(f"  Mask RANDOM vs HIGH: p = {p_random_high:.2e}")
     
     # Causal effect size
