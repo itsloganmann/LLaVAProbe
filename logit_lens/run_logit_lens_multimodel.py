@@ -753,14 +753,14 @@ def run_neuron_analysis(model_type: str, n_samples: int = 200):
     print("\nCollecting neuron activations...")
     
     all_activations = {l: [] for l in target_layers}
-    correctness = []
+    margins = []  # Use margins instead of binary correctness
     
     for sample in tqdm(samples, desc="Processing"):
         try:
             image = load_image(sample['image_url'])
             result = analyzer.analyze_sample(image, sample['question'], sample['ground_truth'])
             
-            correctness.append(result['is_correct'])
+            margins.append(result['margin'])
             for layer_idx, acts in result['neuron_activations'].items():
                 if layer_idx in all_activations:
                     all_activations[layer_idx].append(acts)
@@ -769,12 +769,18 @@ def run_neuron_analysis(model_type: str, n_samples: int = 200):
     
     analyzer.clear_hooks()
     
-    correctness = np.array(correctness)
+    margins = np.array(margins)
+    
+    # Convert margins to binary correctness using median split
+    # High margin = more "correct" behavior, low margin = less "correct"
+    median_margin = np.median(margins)
+    correctness = margins > median_margin
     n_correct = correctness.sum()
     n_incorrect = len(correctness) - n_correct
     
-    print(f"\nProcessed {len(correctness)} samples")
-    print(f"Correct: {n_correct}, Incorrect: {n_incorrect}")
+    print(f"\nProcessed {len(margins)} samples")
+    print(f"Margin range: [{margins.min():.2f}, {margins.max():.2f}], median: {median_margin:.2f}")
+    print(f"High-margin samples: {n_correct}, Low-margin samples: {n_incorrect}")
     
     # Analyze neurons at each layer
     print("\n" + "=" * 70)
@@ -846,16 +852,18 @@ def run_neuron_analysis(model_type: str, n_samples: int = 200):
         print(f"\nLayer {layer_idx}:")
         print(f"  Test Accuracy: {test_acc:.1%}")
         print(f"  Non-zero neurons: {n_nonzero} / {X.shape[1]} ({n_nonzero/X.shape[1]*100:.1f}%)")
-        print(f"  Top success neurons: {top_success[:3]}")
-        print(f"  Top failure neurons: {top_failure[:3]}")
+        print(f"  Top high-margin neurons: {top_success[:3]}")
+        print(f"  Top low-margin neurons: {top_failure[:3]}")
     
     # Compile final results
     final_results = {
         "model": model_type,
-        "n_samples": len(correctness),
-        "n_correct": int(n_correct),
-        "n_incorrect": int(n_incorrect),
-        "accuracy": float(n_correct / len(correctness)),
+        "n_samples": len(margins),
+        "n_high_margin": int(n_correct),
+        "n_low_margin": int(n_incorrect),
+        "margin_median": float(median_margin),
+        "margin_min": float(margins.min()),
+        "margin_max": float(margins.max()),
         "target_layers": target_layers,
         "layer_results": neuron_results,
         "timestamp": datetime.now().isoformat()
