@@ -44,18 +44,21 @@ from qwen_vl_utils import process_vision_info
 # Helper Functions (matching original LLaVA methodology)
 # ============================================================================
 
-def get_bsvalues_qwen(vector, model, final_var):
+def get_bsvalues_qwen(vector, model):
     """
     Convert a hidden state vector to logit space using RMSNorm + lm_head.
     Matches the original LLaVA methodology for Qwen2-VL.
     
+    Computes the variance from the vector itself (like original LLaVA code).
     Qwen2-VL path: model.model.language_model.norm, model.lm_head
     """
     device = next(model.parameters()).device
     dtype = next(model.parameters()).dtype
     
     vector = vector.to(device).to(dtype)
-    final_var = final_var.to(device).to(dtype)
+    
+    # Compute variance from this vector (like original LLaVA code)
+    final_var = vector.pow(2).mean(-1, keepdim=True)
     
     # RMS normalization: x * rsqrt(variance + eps)
     vector_scaled = vector * torch.rsqrt(final_var + 1e-6)
@@ -69,18 +72,21 @@ def get_bsvalues_qwen(vector, model, final_var):
     return logits
 
 
-def get_bsvalues_paligemma(vector, model, final_var):
+def get_bsvalues_paligemma(vector, model):
     """
     Convert a hidden state vector to logit space using RMSNorm + lm_head.
     Matches the original LLaVA methodology for PaliGemma.
     
+    Computes the variance from the vector itself.
     PaliGemma path: model.language_model.norm, model.lm_head
     """
     device = next(model.parameters()).device
     dtype = next(model.parameters()).dtype
     
     vector = vector.to(device).to(dtype)
-    final_var = final_var.to(device).to(dtype)
+    
+    # Compute variance from this vector
+    final_var = vector.pow(2).mean(-1, keepdim=True)
     
     # RMS normalization
     vector_scaled = vector * torch.rsqrt(final_var + 1e-6)
@@ -399,10 +405,6 @@ class Qwen2VLMechanism:
         layers = self.get_layers()
         num_layers = min(self.config["num_layers"], len(layers))
         
-        # Compute final_var from last layer output (for RMSNorm computation)
-        last_layer_output = hidden_states[-1][0]  # [seq_len, hidden]
-        final_var = last_layer_output[-1].pow(2).mean(-1, keepdim=True)
-        
         # ================================================================
         # STEP 1: Compute per-head Δ log P for head selection
         # ================================================================
@@ -441,14 +443,14 @@ class Qwen2VLMechanism:
             
             # Baseline: layer input at last position
             residual_last = layer_input[-1]
-            base_logits = get_bsvalues_qwen(residual_last, self.model, final_var)
+            base_logits = get_bsvalues_qwen(residual_last, self.model)
             base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
             # Compute Δ log P for each head (using last token position)
             for head_idx in range(self.num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
                 added = head_contrib + residual_last
-                added_logits = get_bsvalues_qwen(added, self.model, final_var)
+                added_logits = get_bsvalues_qwen(added, self.model)
                 added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
                 delta = (added_log_prob - base_log_prob).item()
                 all_head_increase.append((layer_idx, head_idx, delta))
@@ -514,7 +516,7 @@ class Qwen2VLMechanism:
             
             # Baseline for this layer
             residual_last = layer_input[-1]
-            base_logits = get_bsvalues_qwen(residual_last, self.model, final_var)
+            base_logits = get_bsvalues_qwen(residual_last, self.model)
             base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
             for head_idx in head_indices:
@@ -541,7 +543,7 @@ class Qwen2VLMechanism:
                     # Contribution from position p, weighted by attention
                     pos_contrib = attn_to_last[pos] * per_pos_hidden[pos]
                     added = pos_contrib + residual_last
-                    added_logits = get_bsvalues_qwen(added, self.model, final_var)
+                    added_logits = get_bsvalues_qwen(added, self.model)
                     added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
                     delta = (added_log_prob - base_log_prob).item()
                     per_pos_increase.append(delta)
@@ -678,10 +680,6 @@ class PaliGemmaMechanism:
         layers = self.get_layers()
         num_layers = min(self.config["num_layers"], len(layers))
         
-        # Compute final_var from last layer output
-        last_layer_output = hidden_states[-1][0]
-        final_var = last_layer_output[-1].pow(2).mean(-1, keepdim=True)
-        
         # ================================================================
         # STEP 1: Compute per-head Δ log P for head selection
         # ================================================================
@@ -720,14 +718,14 @@ class PaliGemmaMechanism:
             
             # Baseline
             residual_last = layer_input[-1]
-            base_logits = get_bsvalues_paligemma(residual_last, self.model, final_var)
+            base_logits = get_bsvalues_paligemma(residual_last, self.model)
             base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
             # Compute Δ log P for each head
             for head_idx in range(self.num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
                 added = head_contrib + residual_last
-                added_logits = get_bsvalues_paligemma(added, self.model, final_var)
+                added_logits = get_bsvalues_paligemma(added, self.model)
                 added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
                 delta = (added_log_prob - base_log_prob).item()
                 all_head_increase.append((layer_idx, head_idx, delta))
@@ -790,7 +788,7 @@ class PaliGemmaMechanism:
             
             # Baseline for this layer
             residual_last = layer_input[-1]
-            base_logits = get_bsvalues_paligemma(residual_last, self.model, final_var)
+            base_logits = get_bsvalues_paligemma(residual_last, self.model)
             base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
             for head_idx in head_indices:
@@ -807,7 +805,7 @@ class PaliGemmaMechanism:
                 for pos in range(cur_seq_len):
                     pos_contrib = attn_to_last[pos] * per_pos_hidden[pos]
                     added = pos_contrib + residual_last
-                    added_logits = get_bsvalues_paligemma(added, self.model, final_var)
+                    added_logits = get_bsvalues_paligemma(added, self.model)
                     added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
                     delta = (added_log_prob - base_log_prob).item()
                     per_pos_increase.append(delta)
