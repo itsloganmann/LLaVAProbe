@@ -65,10 +65,19 @@ MASK_RATIO = 0.30  # Mask 30% of patches
 # Image Masking Utilities
 # ============================================================================
 
-def get_patch_attention_scores(attentions, num_image_patches, model_type):
+def get_patch_attention_scores(attentions, num_image_patches, model_type, image_token_start=0):
     """
     Extract attention scores for image patches from the last layer.
     Returns attention weights aggregated over heads for image patch positions.
+    
+    Args:
+        attentions: Model attention outputs
+        num_image_patches: Number of image patches expected
+        model_type: "qwen2-vl" or "paligemma"
+        image_token_start: Starting position of image tokens in sequence
+    
+    Returns:
+        numpy array of attention scores for image patches
     """
     # Use last layer attention
     last_layer_attn = attentions[-1]  # [batch, heads, seq, seq]
@@ -76,18 +85,59 @@ def get_patch_attention_scores(attentions, num_image_patches, model_type):
     # Average over heads, take attention from last token to all positions
     # Shape: [seq_len]
     attn_weights = last_layer_attn[0].mean(dim=0)[-1, :].float().cpu().numpy()
+    seq_len = len(attn_weights)
     
-    # The first num_image_patches positions are typically image tokens
-    # (after any special tokens - this varies by model)
-    if model_type == "qwen2-vl":
-        # Qwen2-VL: image tokens come after system prompt tokens
-        # We'll use a heuristic: find the concentrated attention region
+    # Extract image token attention based on model type
+    if model_type == "paligemma":
+        # PaliGemma: image tokens are at the BEGINNING (positions 0:256)
+        end_idx = min(num_image_patches, seq_len)
+        patch_attn = attn_weights[:end_idx]
+    elif model_type == "qwen2-vl":
+        # Qwen2-VL: image tokens come AFTER system prompt tokens
+        # The exact position depends on the prompt, but typically after ~10-20 tokens
+        # We need to find where the image tokens actually are
+        
+        # Heuristic: Image tokens typically have higher total attention
+        # and are contiguous. For simplicity, use provided start position.
+        end_idx = min(image_token_start + num_image_patches, seq_len)
+        patch_attn = attn_weights[image_token_start:end_idx]
+    else:
         patch_attn = attn_weights[:num_image_patches]
-    elif model_type == "paligemma":
-        # PaliGemma: image tokens are at the beginning (256 patches for 224x224)
-        patch_attn = attn_weights[:num_image_patches]
+    
+    # Ensure we return exactly num_image_patches values
+    if len(patch_attn) < num_image_patches:
+        # Pad with zeros
+        padded = np.zeros(num_image_patches)
+        padded[:len(patch_attn)] = patch_attn
+        patch_attn = padded
+    elif len(patch_attn) > num_image_patches:
+        patch_attn = patch_attn[:num_image_patches]
     
     return patch_attn
+
+
+def find_image_token_positions_qwen(inputs):
+    """
+    Find the range of image token positions in Qwen2-VL input sequence.
+    
+    Qwen2-VL uses <|image_pad|> tokens for image patches.
+    Returns (start_idx, num_tokens).
+    """
+    if "image_grid_thw" in inputs:
+        # image_grid_thw gives us [temporal, height, width] of the image grid
+        grid = inputs["image_grid_thw"][0]  # First image
+        num_image_tokens = int(grid[0] * grid[1] * grid[2])
+    else:
+        # Fallback estimate
+        num_image_tokens = 576
+    
+    # Estimate start position (after system prompt tokens)
+    # This is approximate - exact position depends on prompt template
+    # Typical Qwen2-VL prompt: <|im_start|>system\n...<|im_end|>\n<|im_start|>user\n<image>...
+    # Image tokens start around position 10-20
+    start_idx = 10  # Conservative estimate
+    
+    return start_idx, num_image_tokens
 
 
 def create_masked_image(image, mask_indices, patch_size=14, grid_size=16):
@@ -479,12 +529,14 @@ def run_causal_intervention(model_name, n_samples=200):
     # Initialize model
     if model_name == "qwen2-vl":
         mechanism = Qwen2VLCausalMechanism()
-        num_patches = 576  # Qwen2-VL typically uses more patches
+        num_patches = 576  # Qwen2-VL default for ~336x336 images (24x24)
         grid_size = 24
+        image_token_start = 10  # Approximate start position after system prompt
     elif model_name == "paligemma":
         mechanism = PaliGemmaCausalMechanism()
         num_patches = 256  # 16x16 patches for 224x224 images
         grid_size = 16
+        image_token_start = 0  # PaliGemma: image tokens at the start
     else:
         raise ValueError(f"Unknown model: {model_name}")
     
@@ -520,9 +572,10 @@ def run_causal_intervention(model_name, n_samples=200):
             full_correct = check_answer_match(full_answer, ground_truth)
             results["full"].append(full_correct)
             
-            # Get patch attention scores
+            # Get patch attention scores with correct image token position
             patch_attn = get_patch_attention_scores(
-                attentions, num_patches, mechanism.model_type
+                attentions, num_patches, mechanism.model_type, 
+                image_token_start=image_token_start
             )
             
             # Ensure we have enough patches

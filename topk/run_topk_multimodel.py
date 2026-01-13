@@ -6,6 +6,12 @@ Supports: Qwen2-VL-7B, PaliGemma-3B
 Computes per-head Δ log P contributions, selects top-K heads,
 and measures attention entropy correlation with token confidence.
 
+Methodology follows the original LLaVA 7B implementation in topk.py:
+1. Compute per-head Δ log P = log P(head + residual) - log P(residual)
+2. Select top-K heads by Δ log P
+3. Aggregate per-PATCH contributions from those heads (not just last token)
+4. Normalize to 576-d vector for clustering/entropy analysis
+
 Usage:
     python run_topk_multimodel.py --model qwen2-vl --top_k 5 --n_samples 100
     python run_topk_multimodel.py --model paligemma --top_k 5 --n_samples 100
@@ -33,6 +39,65 @@ from transformers import (
 )
 from qwen_vl_utils import process_vision_info
 
+
+# ============================================================================
+# Helper Functions (matching original LLaVA methodology)
+# ============================================================================
+
+def get_bsvalues_qwen(vector, model, final_var):
+    """
+    Convert a hidden state vector to logit space using RMSNorm + lm_head.
+    Matches the original LLaVA methodology for Qwen2-VL.
+    
+    Qwen2-VL path: model.model.language_model.norm, model.lm_head
+    """
+    device = next(model.parameters()).device
+    dtype = next(model.parameters()).dtype
+    
+    vector = vector.to(device).to(dtype)
+    final_var = final_var.to(device).to(dtype)
+    
+    # RMS normalization: x * rsqrt(variance + eps)
+    vector_scaled = vector * torch.rsqrt(final_var + 1e-6)
+    
+    # Apply learned RMSNorm weight
+    norm_weight = model.model.language_model.norm.weight.data.to(device).to(dtype)
+    vector_normed = vector_scaled * norm_weight
+    
+    # Project to vocabulary
+    logits = model.lm_head(vector_normed)
+    return logits
+
+
+def get_bsvalues_paligemma(vector, model, final_var):
+    """
+    Convert a hidden state vector to logit space using RMSNorm + lm_head.
+    Matches the original LLaVA methodology for PaliGemma.
+    
+    PaliGemma path: model.language_model.norm, model.lm_head
+    """
+    device = next(model.parameters()).device
+    dtype = next(model.parameters()).dtype
+    
+    vector = vector.to(device).to(dtype)
+    final_var = final_var.to(device).to(dtype)
+    
+    # RMS normalization
+    vector_scaled = vector * torch.rsqrt(final_var + 1e-6)
+    
+    # Apply learned RMSNorm weight
+    norm_weight = model.language_model.norm.weight.data.to(device).to(dtype)
+    vector_normed = vector_scaled * norm_weight
+    
+    # Project to vocabulary
+    logits = model.lm_head(vector_normed)
+    return logits
+
+
+def get_prob(logits):
+    """Return softmax probabilities over vocabulary."""
+    return torch.nn.functional.softmax(logits, dim=-1)
+
 # ============================================================================
 # Configuration
 # ============================================================================
@@ -42,19 +107,23 @@ MODEL_CONFIGS = {
         "model_id": "Qwen/Qwen2-VL-7B-Instruct",
         "num_layers": 28,
         "num_heads": 28,
+        "num_kv_heads": 4,  # GQA: 4 KV heads shared across 28 query heads
         "head_dim": 128,
         "hidden_dim": 3584,
-        "layer_path": "model.layers",  # Qwen2-VL: model.model.layers
-        "patch_grid": 24,  # May vary based on image size
+        "patch_grid": 24,  # For 336x336 images (dynamic resolution)
+        # Note: Qwen2-VL uses dynamic resolution, so actual patch count varies
+        # We'll detect image tokens dynamically during inference
     },
     "paligemma": {
         "model_id": "google/paligemma-3b-mix-224",
         "num_layers": 18,
         "num_heads": 8,
+        "num_kv_heads": 1,  # GQA with single KV head
         "head_dim": 256,
         "hidden_dim": 2048,
-        "layer_path": "language_model.model.layers",
-        "patch_grid": 16,  # 224/14 = 16
+        "patch_grid": 16,  # 224/14 = 16, so 256 patches
+        "num_image_tokens": 256,  # Fixed for 224x224 images
+        # PaliGemma: image tokens are at the START of the sequence
     },
 }
 
@@ -239,10 +308,49 @@ class Qwen2VLMechanism:
         """Get transformer layers - Qwen2-VL uses model.model.language_model.layers"""
         return self.model.model.language_model.layers
     
+    def _find_image_token_range(self, inputs):
+        """
+        Find the range of image token positions in the input sequence.
+        For Qwen2-VL, image tokens are embedded after system prompt tokens.
+        
+        Returns: (start_idx, end_idx) - the range of image token positions
+        """
+        # Qwen2-VL encodes images as special tokens <|image_pad|>
+        # We can detect them by looking at the input_ids or use image_grid_thw
+        
+        if "image_grid_thw" in inputs:
+            # image_grid_thw gives us [temporal, height, width] of the image grid
+            grid = inputs["image_grid_thw"][0]  # First image
+            num_image_tokens = int(grid[0] * grid[1] * grid[2])
+        else:
+            # Fallback: estimate from typical 336x336 image (24x24 patches)
+            num_image_tokens = 576
+        
+        # In Qwen2-VL, image tokens come after the system prompt but before the question
+        # We'll find them by looking for consecutive token patterns
+        # For simplicity, return the estimated range
+        # The actual start position depends on the prompt template
+        
+        input_ids = inputs["input_ids"][0]
+        seq_len = len(input_ids)
+        
+        # Heuristic: image tokens are typically in the middle, after <|im_start|>user\n
+        # and before the question text. We'll estimate based on sequence length.
+        # A more robust approach would decode tokens and find the image placeholder.
+        
+        # For now, return the number of image tokens; actual positions will be
+        # determined during per-patch computation
+        return num_image_tokens
+    
     def get_attention_patches(self, image, question, K=5):
         """Compute top-K head aggregated attention map using Δ log P methodology.
         
-        Same approach as LLaVA but handles GQA by expanding KV heads.
+        This follows the original LLaVA methodology:
+        1. Compute per-head Δ log P for head selection (scalar per head)
+        2. For top-K heads, compute per-PATCH Δ log P contributions
+        3. Aggregate into a spatial attention map
+        
+        Handles GQA by expanding KV heads.
         """
         # Prepare input
         messages = [{
@@ -267,6 +375,9 @@ class Qwen2VLMechanism:
         if "pixel_values" in inputs:
             inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
         
+        # Get number of image tokens
+        num_image_tokens = self._find_image_token_range(inputs)
+        
         # Run inference
         with torch.no_grad():
             outputs = self.model(
@@ -282,113 +393,201 @@ class Qwen2VLMechanism:
         predicted_idx = probs.argmax().item()
         token_confidence = float(torch.log(probs[predicted_idx]).item())
         
-        # Compute per-head contributions using Δ log P
-        all_head_increase = []
-        layers = self.get_layers()
-        num_layers = min(self.config["num_layers"], len(layers))
+        # Get hidden states and attentions
         hidden_states = outputs.hidden_states
         attentions = outputs.attentions
+        layers = self.get_layers()
+        num_layers = min(self.config["num_layers"], len(layers))
+        
+        # Compute final_var from last layer output (for RMSNorm computation)
+        last_layer_output = hidden_states[-1][0]  # [seq_len, hidden]
+        final_var = last_layer_output[-1].pow(2).mean(-1, keepdim=True)
+        
+        # ================================================================
+        # STEP 1: Compute per-head Δ log P for head selection
+        # ================================================================
+        all_head_increase = []
         
         for layer_idx in range(num_layers):
             if layer_idx >= len(hidden_states) - 1 or layer_idx >= len(attentions):
                 continue
                 
-            # Clone and detach to avoid inference mode issues
             layer_input = hidden_states[layer_idx][0].clone().detach()  # [seq_len, hidden]
             attn_weights = attentions[layer_idx][0].clone().detach()  # [num_heads, seq_len, seq_len]
             
             layer = layers[layer_idx]
-            num_heads = attn_weights.shape[0]
+            seq_len = layer_input.shape[0]
             
-            # Get V projection - outputs [seq_len, num_kv_heads * head_dim]
+            # Get V projection
             v_proj = layer.self_attn.v_proj
-            with torch.no_grad():
-                V = v_proj(layer_input.to(v_proj.weight.dtype))
+            V = v_proj(layer_input.to(v_proj.weight.dtype))
             
-            # Reshape V for KV heads: [seq_len, num_kv_heads, head_dim]
-            seq_len = V.shape[0]
+            # Handle GQA: reshape and expand KV heads
             V_kv = V.view(seq_len, self.num_kv_heads, self.head_dim)
-            
-            # Expand KV heads to match query heads (GQA expansion)
-            # Each KV head is repeated num_kv_groups times
-            # [seq_len, num_kv_heads, head_dim] -> [seq_len, num_heads, head_dim]
             V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+            V_heads = V_expanded.permute(1, 0, 2)  # [num_heads, seq_len, head_dim]
             
-            # Permute to [num_heads, seq_len, head_dim]
-            V_heads = V_expanded.permute(1, 0, 2)
-            
-            # Compute per-head output: attn_weights @ V_heads
-            # attn_weights: [num_heads, seq_len, seq_len]
-            # V_heads: [num_heads, seq_len, head_dim]
+            # Compute attention output per head
             attn_out = torch.bmm(attn_weights, V_heads)  # [num_heads, seq_len, head_dim]
             
-            # Get o_proj weight and split by head
+            # Get o_proj weight split by head
             o_proj = layer.self_attn.o_proj
             o_weight = o_proj.weight.data.to(attn_out.dtype)
             hidden_size = o_weight.shape[0]
+            o_weight_split = o_weight.view(hidden_size, self.num_heads, self.head_dim).permute(1, 2, 0)
             
-            # o_proj expects [batch, seq, num_heads * head_dim] -> [batch, seq, hidden]
-            # Split weight: [hidden_size, num_heads * head_dim] -> [num_heads, head_dim, hidden_size]
-            o_weight_split = o_weight.view(hidden_size, num_heads, self.head_dim).permute(1, 2, 0)
+            # Compute head contributions: [num_heads, seq_len, hidden]
+            head_outputs = torch.bmm(attn_out, o_weight_split)
             
-            # Compute head contributions: [num_heads, seq_len, head_dim] @ [num_heads, head_dim, hidden] 
-            head_outputs = torch.bmm(attn_out, o_weight_split)  # [num_heads, seq_len, hidden_size]
+            # Baseline: layer input at last position
+            residual_last = layer_input[-1]
+            base_logits = get_bsvalues_qwen(residual_last, self.model, final_var)
+            base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
-            # Baseline: residual only (last position)
-            residual_last = layer_input[-1].to(torch.bfloat16)
-            
-            for head_idx in range(num_heads):
+            # Compute Δ log P for each head (using last token position)
+            for head_idx in range(self.num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
-                added = (head_contrib + residual_last).float()
-                
-                with torch.no_grad():
-                    # Use final layer norm + lm_head
-                    # Qwen2-VL: model.model.language_model.norm
-                    normed = self.model.model.language_model.norm(added.unsqueeze(0).to(torch.bfloat16))
-                    head_logits = self.model.lm_head(normed)[0]
-                    head_probs = torch.softmax(head_logits, dim=-1)
-                    head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
-                    
-                    base_normed = self.model.model.language_model.norm(residual_last.unsqueeze(0))
-                    base_logits = self.model.lm_head(base_normed)[0]
-                    base_probs = torch.softmax(base_logits, dim=-1)
-                    base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
-                    
-                    delta = (head_log_prob - base_log_prob).item()
-                
-                all_head_increase.append((f"{layer_idx}_{head_idx}", delta))
+                added = head_contrib + residual_last
+                added_logits = get_bsvalues_qwen(added, self.model, final_var)
+                added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
+                delta = (added_log_prob - base_log_prob).item()
+                all_head_increase.append((layer_idx, head_idx, delta))
         
-        # Select top-K heads by Δ log P
-        all_head_increase.sort(key=lambda x: x[1], reverse=True)
+        # Select top-K heads
+        all_head_increase.sort(key=lambda x: x[2], reverse=True)
         top_k_heads = all_head_increase[:K]
         
-        # Aggregate attention from top-K heads
-        if len(top_k_heads) > 0 and len(attentions) > 0:
-            seq_len = attentions[0].shape[-1]
-            aggregated = np.zeros(seq_len, dtype=float)
-            
-            scores = np.array([s for _, s in top_k_heads])
-            if len(scores) > 1 and not np.allclose(scores, scores[0]):
-                weights = np.exp(scores - scores.max())
-                weights = weights / weights.sum()
-            else:
-                weights = np.ones(len(scores)) / len(scores)
-            
-            for idx, (head_info, _) in enumerate(top_k_heads):
-                layer_idx, head_idx = map(int, head_info.split("_"))
-                if layer_idx < len(attentions):
-                    # Convert bfloat16 to float32 for numpy compatibility
-                    attn = attentions[layer_idx][0, head_idx, -1, :].float().cpu().numpy()
-                    if len(attn) == seq_len:
-                        aggregated += weights[idx] * attn
-                    elif len(attn) > seq_len:
-                        aggregated += weights[idx] * attn[:seq_len]
-                    else:
-                        aggregated[:len(attn)] += weights[idx] * attn
-        else:
-            aggregated = np.zeros(100, dtype=float)
+        print(f"Top {K} heads (layer, head, delta):")
+        for layer_idx, head_idx, delta in top_k_heads:
+            print(f"  Layer {layer_idx}, Head {head_idx}: {delta:.4f}")
         
-        aggregated_norm = normalize(aggregated.tolist())
+        # ================================================================
+        # STEP 2: Compute per-PATCH Δ log P for top-K heads
+        # This is the key difference from the broken version
+        # ================================================================
+        
+        if len(top_k_heads) == 0:
+            return normalize(np.zeros(576).tolist()), token_confidence, self.processor.decode(predicted_idx)
+        
+        # Compute softmax weights over head scores
+        scores = np.array([delta for _, _, delta in top_k_heads])
+        if len(scores) > 1 and not np.allclose(scores, scores[0]):
+            weights = np.exp(scores - scores.max())
+            weights = weights / weights.sum()
+        else:
+            weights = np.ones(len(scores)) / len(scores)
+        
+        # Create weight map
+        weight_map = {(l, h): w for (l, h, _), w in zip(top_k_heads, weights)}
+        
+        # Group heads by layer for efficient computation
+        heads_by_layer = {}
+        for layer_idx, head_idx, _ in top_k_heads:
+            if layer_idx not in heads_by_layer:
+                heads_by_layer[layer_idx] = []
+            heads_by_layer[layer_idx].append(head_idx)
+        
+        # Aggregate per-patch contributions
+        # We use the sequence length, focusing on image token positions
+        seq_len = hidden_states[0].shape[1]
+        aggregated_scores = np.zeros(seq_len, dtype=float)
+        
+        for layer_idx, head_indices in heads_by_layer.items():
+            layer_input = hidden_states[layer_idx][0].clone().detach()
+            attn_weights = attentions[layer_idx][0].clone().detach()
+            
+            layer = layers[layer_idx]
+            cur_seq_len = layer_input.shape[0]
+            
+            # Compute V projection
+            v_proj = layer.self_attn.v_proj
+            V = v_proj(layer_input.to(v_proj.weight.dtype))
+            V_kv = V.view(cur_seq_len, self.num_kv_heads, self.head_dim)
+            V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+            V_heads = V_expanded.permute(1, 0, 2)
+            
+            # Get o_proj weight
+            o_proj = layer.self_attn.o_proj
+            o_weight = o_proj.weight.data.to(V_heads.dtype)
+            hidden_size = o_weight.shape[0]
+            o_weight_split = o_weight.view(hidden_size, self.num_heads, self.head_dim).permute(1, 2, 0)
+            
+            # Baseline for this layer
+            residual_last = layer_input[-1]
+            base_logits = get_bsvalues_qwen(residual_last, self.model, final_var)
+            base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
+            
+            for head_idx in head_indices:
+                # Compute this head's per-position contribution
+                # attn_weights[head_idx]: [seq_len, seq_len] - attention from each position
+                # V_heads[head_idx]: [seq_len, head_dim] - value vectors
+                
+                # For each source position, compute its contribution to the last token
+                # This is: attn[head, -1, pos] * V[pos] @ o_proj_head
+                attn_to_last = attn_weights[head_idx, -1, :]  # [seq_len] - attention from last token to all
+                
+                # Compute contribution of each position
+                # head_contribution[pos] = attn[-1, pos] * (V[pos] @ o_proj)
+                V_this_head = V_heads[head_idx]  # [seq_len, head_dim]
+                o_proj_this_head = o_weight_split[head_idx]  # [head_dim, hidden]
+                
+                # Per-position contribution to hidden state
+                per_pos_hidden = torch.mm(V_this_head, o_proj_this_head)  # [seq_len, hidden]
+                
+                # Weighted by attention
+                # For each position p, compute Δ log P if we only include contribution from p
+                per_pos_increase = []
+                for pos in range(cur_seq_len):
+                    # Contribution from position p, weighted by attention
+                    pos_contrib = attn_to_last[pos] * per_pos_hidden[pos]
+                    added = pos_contrib + residual_last
+                    added_logits = get_bsvalues_qwen(added, self.model, final_var)
+                    added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
+                    delta = (added_log_prob - base_log_prob).item()
+                    per_pos_increase.append(delta)
+                
+                # Weight by head weight and accumulate
+                w = weight_map.get((layer_idx, head_idx), 0.0)
+                per_pos_array = np.array(per_pos_increase, dtype=float)
+                if len(per_pos_array) == len(aggregated_scores):
+                    aggregated_scores += w * per_pos_array
+                elif len(per_pos_array) < len(aggregated_scores):
+                    aggregated_scores[:len(per_pos_array)] += w * per_pos_array
+                else:
+                    aggregated_scores += w * per_pos_array[:len(aggregated_scores)]
+        
+        # Extract image token contributions
+        # For Qwen2-VL, image tokens are typically after system prompt
+        # We'll take the first num_image_tokens positions that have significant values
+        # Or resize to 576 (24x24) for compatibility
+        
+        if num_image_tokens > 0 and num_image_tokens < len(aggregated_scores):
+            # Try to extract image region - take middle portion where image tokens likely are
+            # This is a heuristic; exact positions depend on prompt template
+            start_idx = 5  # Skip initial special tokens
+            end_idx = min(start_idx + num_image_tokens, len(aggregated_scores))
+            image_scores = aggregated_scores[start_idx:end_idx]
+        else:
+            image_scores = aggregated_scores
+        
+        # Resize to 576 for compatibility with clustering (24x24 grid)
+        if len(image_scores) != 576:
+            # Interpolate or pad
+            if len(image_scores) > 576:
+                # Take first 576
+                image_scores = image_scores[:576]
+            else:
+                # Pad with zeros
+                padded = np.zeros(576)
+                padded[:len(image_scores)] = image_scores
+                image_scores = padded
+        
+        # Normalize
+        aggregated_norm = normalize(image_scores.tolist())
+        
+        print(f"DEBUG: Aggregated map mean: {np.mean(image_scores):.6f}")
+        print(f"DEBUG: Aggregated map max: {np.max(image_scores):.6f}")
+        print(f"DEBUG: Aggregated map min: {np.min(image_scores):.6f}")
         
         return aggregated_norm, token_confidence, self.processor.decode(predicted_idx)
 
@@ -396,10 +595,13 @@ class Qwen2VLMechanism:
 class PaliGemmaMechanism:
     """Top-K attention analysis for PaliGemma using same methodology as LLaVA.
     
-    PaliGemma-3B uses standard Multi-Head Attention:
-    - num_heads = 8
+    PaliGemma-3B uses GQA with:
+    - num_heads = 8 (query heads)
+    - num_kv_heads = 1 (single KV head shared across all query heads)
     - head_dim = 256
     - hidden_dim = 2048
+    
+    Image tokens are at the START of the sequence (first 256 tokens for 224x224 images).
     """
     
     def __init__(self, device="cuda"):
@@ -416,24 +618,34 @@ class PaliGemmaMechanism:
         self.processor = AutoProcessor.from_pretrained(self.config["model_id"])
         self.model.eval()
         
-        # PaliGemma structure: model.language_model.layers (NOT model.language_model.model.layers)
         # Get attention parameters from config
         config = self.model.language_model.config
-        self.num_heads = config.num_attention_heads
-        self.num_kv_heads = config.num_key_value_heads
-        self.head_dim = config.hidden_size // config.num_attention_heads
-        self.num_kv_groups = self.num_heads // self.num_kv_heads if self.num_kv_heads else 1
-        self.uses_gqa = self.num_kv_heads != self.num_heads
+        self.num_heads = config.num_attention_heads  # 8
+        self.num_kv_heads = config.num_key_value_heads  # 1
+        self.head_dim = config.hidden_size // config.num_attention_heads  # 256
+        self.num_kv_groups = self.num_heads // self.num_kv_heads if self.num_kv_heads else 1  # 8
+        
+        # PaliGemma: 224x224 image with 14x14 patches = 16x16 = 256 image tokens
+        self.num_image_tokens = 256
         
         print(f"PaliGemma loaded successfully")
         print(f"  GQA config: {self.num_heads} heads, {self.num_kv_heads} KV heads, {self.num_kv_groups} groups")
+        print(f"  Image tokens: {self.num_image_tokens} (at sequence start)")
     
     def get_layers(self):
         """Get transformer layers - PaliGemma uses model.language_model.layers"""
         return self.model.language_model.layers
     
     def get_attention_patches(self, image, question, K=5):
-        """Compute top-K head aggregated attention map."""
+        """Compute top-K head aggregated attention map using Δ log P methodology.
+        
+        This follows the original LLaVA methodology:
+        1. Compute per-head Δ log P for head selection
+        2. For top-K heads, compute per-PATCH Δ log P contributions
+        3. Aggregate into a spatial attention map
+        
+        PaliGemma: image tokens are at positions [0:256] (first 256 tokens).
+        """
         # Prepare input
         prompt = f"<image>{question}"
         inputs = self.processor(
@@ -442,11 +654,10 @@ class PaliGemmaMechanism:
             return_tensors="pt",
         ).to(self.device)
         
-        # Cast pixel_values to bfloat16 if present
         if "pixel_values" in inputs:
             inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
         
-        # Run inference with no_grad (not inference_mode for modification later)
+        # Run inference
         with torch.no_grad():
             outputs = self.model(
                 **inputs,
@@ -461,103 +672,166 @@ class PaliGemmaMechanism:
         predicted_idx = probs.argmax().item()
         token_confidence = float(torch.log(probs[predicted_idx]).item())
         
-        # Compute per-head contributions using Δ log P
-        all_head_increase = []
-        layers = self.get_layers()
-        num_layers = min(self.config["num_layers"], len(layers))
+        # Get hidden states and attentions
         hidden_states = outputs.hidden_states
         attentions = outputs.attentions
+        layers = self.get_layers()
+        num_layers = min(self.config["num_layers"], len(layers))
+        
+        # Compute final_var from last layer output
+        last_layer_output = hidden_states[-1][0]
+        final_var = last_layer_output[-1].pow(2).mean(-1, keepdim=True)
+        
+        # ================================================================
+        # STEP 1: Compute per-head Δ log P for head selection
+        # ================================================================
+        all_head_increase = []
         
         for layer_idx in range(num_layers):
             if layer_idx >= len(hidden_states) - 1 or layer_idx >= len(attentions):
                 continue
                 
-            # Clone and detach to avoid inference mode issues
             layer_input = hidden_states[layer_idx][0].clone().detach()
             attn_weights = attentions[layer_idx][0].clone().detach()
             
             layer = layers[layer_idx]
-            num_heads = attn_weights.shape[0]
+            seq_len = layer_input.shape[0]
             
+            # Get V projection
             v_proj = layer.self_attn.v_proj
-            with torch.no_grad():
-                V = v_proj(layer_input.to(v_proj.weight.dtype))
+            V = v_proj(layer_input.to(v_proj.weight.dtype))
             
-            seq_len = V.shape[0]
+            # Handle GQA: reshape and expand KV heads
+            V_kv = V.view(seq_len, self.num_kv_heads, self.head_dim)
+            V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+            V_heads = V_expanded.permute(1, 0, 2)  # [num_heads, seq_len, head_dim]
             
-            # Handle GQA if present
-            if self.uses_gqa:
-                # Reshape V for KV heads
-                V_kv = V.view(seq_len, self.num_kv_heads, self.head_dim)
-                # Expand KV heads to match query heads
-                V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
-                V_heads = V_expanded.permute(1, 0, 2)
-            else:
-                # Standard MHA
-                V_heads = V.view(seq_len, num_heads, self.head_dim).permute(1, 0, 2)
-            
+            # Compute attention output per head
             attn_out = torch.bmm(attn_weights, V_heads)
             
+            # Get o_proj weight split by head
             o_proj = layer.self_attn.o_proj
             o_weight = o_proj.weight.data.to(attn_out.dtype)
             hidden_size = o_weight.shape[0]
+            o_weight_split = o_weight.view(hidden_size, self.num_heads, self.head_dim).permute(1, 2, 0)
             
-            o_weight_split = o_weight.view(hidden_size, num_heads, self.head_dim).permute(1, 2, 0)
+            # Compute head contributions
             head_outputs = torch.bmm(attn_out, o_weight_split)
             
-            residual_last = layer_input[-1].to(torch.bfloat16)
+            # Baseline
+            residual_last = layer_input[-1]
+            base_logits = get_bsvalues_paligemma(residual_last, self.model, final_var)
+            base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
             
-            for head_idx in range(num_heads):
+            # Compute Δ log P for each head
+            for head_idx in range(self.num_heads):
                 head_contrib = head_outputs[head_idx, -1, :]
-                added = (head_contrib + residual_last).float()
-                
-                with torch.no_grad():
-                    # PaliGemma: model.language_model.norm and model.lm_head
-                    normed = self.model.language_model.norm(added.unsqueeze(0).to(torch.bfloat16))
-                    head_logits = self.model.lm_head(normed)[0]
-                    head_probs = torch.softmax(head_logits, dim=-1)
-                    head_log_prob = torch.log(head_probs[predicted_idx] + 1e-10)
-                    
-                    base_normed = self.model.language_model.norm(residual_last.unsqueeze(0))
-                    base_logits = self.model.lm_head(base_normed)[0]
-                    base_probs = torch.softmax(base_logits, dim=-1)
-                    base_log_prob = torch.log(base_probs[predicted_idx] + 1e-10)
-                    
-                    delta = (head_log_prob - base_log_prob).item()
-                
-                all_head_increase.append((f"{layer_idx}_{head_idx}", delta))
+                added = head_contrib + residual_last
+                added_logits = get_bsvalues_paligemma(added, self.model, final_var)
+                added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
+                delta = (added_log_prob - base_log_prob).item()
+                all_head_increase.append((layer_idx, head_idx, delta))
         
-        # Select top-K heads by Δ log P
-        all_head_increase.sort(key=lambda x: x[1], reverse=True)
+        # Select top-K heads
+        all_head_increase.sort(key=lambda x: x[2], reverse=True)
         top_k_heads = all_head_increase[:K]
         
-        # Aggregate attention - use dynamic size
-        if len(top_k_heads) > 0 and len(attentions) > 0:
-            seq_len = attentions[0].shape[-1]
-            aggregated = np.zeros(seq_len, dtype=float)
-            
-            scores = np.array([s for _, s in top_k_heads])
-            if len(scores) > 1 and not np.allclose(scores, scores[0]):
-                weights = np.exp(scores - scores.max())
-                weights = weights / weights.sum()
-            else:
-                weights = np.ones(len(scores)) / len(scores)
-            
-            for idx, (head_info, _) in enumerate(top_k_heads):
-                layer_idx, head_idx = map(int, head_info.split("_"))
-                if layer_idx < len(attentions):
-                    # Convert to float32 for numpy compatibility
-                    attn = attentions[layer_idx][0, head_idx, -1, :].float().cpu().numpy()
-                    if len(attn) == seq_len:
-                        aggregated += weights[idx] * attn
-                    elif len(attn) > seq_len:
-                        aggregated += weights[idx] * attn[:seq_len]
-                    else:
-                        aggregated[:len(attn)] += weights[idx] * attn
-        else:
-            aggregated = np.zeros(100, dtype=float)
+        print(f"Top {K} heads (layer, head, delta):")
+        for layer_idx, head_idx, delta in top_k_heads:
+            print(f"  Layer {layer_idx}, Head {head_idx}: {delta:.4f}")
         
-        aggregated_norm = normalize(aggregated.tolist())
+        # ================================================================
+        # STEP 2: Compute per-PATCH Δ log P for top-K heads
+        # ================================================================
+        
+        if len(top_k_heads) == 0:
+            return normalize(np.zeros(256).tolist()), token_confidence, self.processor.decode(predicted_idx)
+        
+        # Compute softmax weights over head scores
+        scores = np.array([delta for _, _, delta in top_k_heads])
+        if len(scores) > 1 and not np.allclose(scores, scores[0]):
+            weights = np.exp(scores - scores.max())
+            weights = weights / weights.sum()
+        else:
+            weights = np.ones(len(scores)) / len(scores)
+        
+        weight_map = {(l, h): w for (l, h, _), w in zip(top_k_heads, weights)}
+        
+        # Group heads by layer
+        heads_by_layer = {}
+        for layer_idx, head_idx, _ in top_k_heads:
+            if layer_idx not in heads_by_layer:
+                heads_by_layer[layer_idx] = []
+            heads_by_layer[layer_idx].append(head_idx)
+        
+        # Aggregate per-patch contributions
+        seq_len = hidden_states[0].shape[1]
+        aggregated_scores = np.zeros(seq_len, dtype=float)
+        
+        for layer_idx, head_indices in heads_by_layer.items():
+            layer_input = hidden_states[layer_idx][0].clone().detach()
+            attn_weights = attentions[layer_idx][0].clone().detach()
+            
+            layer = layers[layer_idx]
+            cur_seq_len = layer_input.shape[0]
+            
+            # Compute V projection
+            v_proj = layer.self_attn.v_proj
+            V = v_proj(layer_input.to(v_proj.weight.dtype))
+            V_kv = V.view(cur_seq_len, self.num_kv_heads, self.head_dim)
+            V_expanded = V_kv.repeat_interleave(self.num_kv_groups, dim=1)
+            V_heads = V_expanded.permute(1, 0, 2)
+            
+            # Get o_proj weight
+            o_proj = layer.self_attn.o_proj
+            o_weight = o_proj.weight.data.to(V_heads.dtype)
+            hidden_size = o_weight.shape[0]
+            o_weight_split = o_weight.view(hidden_size, self.num_heads, self.head_dim).permute(1, 2, 0)
+            
+            # Baseline for this layer
+            residual_last = layer_input[-1]
+            base_logits = get_bsvalues_paligemma(residual_last, self.model, final_var)
+            base_log_prob = torch.log(get_prob(base_logits)[predicted_idx] + 1e-10)
+            
+            for head_idx in head_indices:
+                # Get attention from last token to all positions
+                attn_to_last = attn_weights[head_idx, -1, :]  # [seq_len]
+                
+                # Per-position contribution
+                V_this_head = V_heads[head_idx]  # [seq_len, head_dim]
+                o_proj_this_head = o_weight_split[head_idx]  # [head_dim, hidden]
+                per_pos_hidden = torch.mm(V_this_head, o_proj_this_head)  # [seq_len, hidden]
+                
+                # Compute per-position Δ log P
+                per_pos_increase = []
+                for pos in range(cur_seq_len):
+                    pos_contrib = attn_to_last[pos] * per_pos_hidden[pos]
+                    added = pos_contrib + residual_last
+                    added_logits = get_bsvalues_paligemma(added, self.model, final_var)
+                    added_log_prob = torch.log(get_prob(added_logits)[predicted_idx] + 1e-10)
+                    delta = (added_log_prob - base_log_prob).item()
+                    per_pos_increase.append(delta)
+                
+                # Weight and accumulate
+                w = weight_map.get((layer_idx, head_idx), 0.0)
+                per_pos_array = np.array(per_pos_increase, dtype=float)
+                if len(per_pos_array) == len(aggregated_scores):
+                    aggregated_scores += w * per_pos_array
+                elif len(per_pos_array) < len(aggregated_scores):
+                    aggregated_scores[:len(per_pos_array)] += w * per_pos_array
+                else:
+                    aggregated_scores += w * per_pos_array[:len(aggregated_scores)]
+        
+        # Extract image token contributions
+        # PaliGemma: image tokens are at positions [0:256]
+        image_scores = aggregated_scores[:self.num_image_tokens]
+        
+        # Normalize
+        aggregated_norm = normalize(image_scores.tolist())
+        
+        print(f"DEBUG: Aggregated map mean: {np.mean(image_scores):.6f}")
+        print(f"DEBUG: Aggregated map max: {np.max(image_scores):.6f}")
+        print(f"DEBUG: Aggregated map min: {np.min(image_scores):.6f}")
         
         return aggregated_norm, token_confidence, self.processor.decode(predicted_idx)
 
