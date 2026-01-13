@@ -720,7 +720,7 @@ def run_causal_intervention(model_name, n_samples=200):
             "random_vs_high": float(p_random_high),
         },
         "causal_effect_size": causal_effect,
-        "supports_causal_hypothesis": high_acc < low_acc and p_high_low < 0.05,
+        "supports_causal_hypothesis": bool(high_acc < low_acc and p_high_low < 0.05),
     }
     
     summary_file = f"{model_name}_causal_intervention_summary.json"
