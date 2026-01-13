@@ -54,30 +54,41 @@ def main():
         with torch.no_grad():
             outputs = model(**inputs)
 
-        # Get prediction
+        # Get prediction logits
         logits = outputs.logits[0, -1, :]
-        predicted_id = logits.argmax().item()
-        predicted_text = processor.tokenizer.decode([predicted_id]).strip().lower()
         
-        # More flexible correctness check
-        gt_lower = ground_truth.lower().strip()
-        pred_lower = predicted_text.lower().strip()
+        # Get ground truth token ID
+        gt_tokens = processor.tokenizer.encode(ground_truth, add_special_tokens=False)
+        gt_token_id = gt_tokens[0] if gt_tokens else 0
+        gt_decoded = processor.tokenizer.decode([gt_token_id])
         
-        is_correct = (
-            gt_lower == pred_lower or
-            gt_lower in pred_lower or 
-            pred_lower in gt_lower or
-            gt_lower.startswith(pred_lower) or
-            pred_lower.startswith(gt_lower)
-        )
+        # Check top-5, top-10, top-20
+        top_5_ids = torch.topk(logits, k=5).indices.tolist()
+        top_10_ids = torch.topk(logits, k=10).indices.tolist()
+        top_20_ids = torch.topk(logits, k=20).indices.tolist()
         
-        if is_correct:
+        in_top5 = gt_token_id in top_5_ids
+        in_top10 = gt_token_id in top_10_ids
+        in_top20 = gt_token_id in top_20_ids
+        
+        # Decode top 5
+        top_5_decoded = [processor.tokenizer.decode([tid]) for tid in top_5_ids]
+        
+        # Get GT logit rank
+        gt_logit = logits[gt_token_id].item()
+        rank = (logits > gt_logit).sum().item() + 1
+        
+        if in_top5:
             correct += 1
         total += 1
         
-        print(f"Sample {i}: GT='{ground_truth}', Pred='{predicted_text}', Match={is_correct}")
+        print(f"Sample {i}: GT='{ground_truth}' (id={gt_token_id}, decoded='{gt_decoded}')")
+        print(f"  Top-5: {top_5_decoded}")
+        print(f"  In top-5: {in_top5}, top-10: {in_top10}, top-20: {in_top20}")
+        print(f"  GT rank: {rank}")
+        print()
     
-    print(f"\nCorrect: {correct}/{total} = {correct/total*100:.1f}%")
+    print(f"\nCorrect (top-5): {correct}/{total} = {correct/total*100:.1f}%")
 
 if __name__ == "__main__":
     main()
