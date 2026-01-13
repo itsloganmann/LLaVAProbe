@@ -469,13 +469,24 @@ class NeuronAnalyzer:
         with torch.no_grad():
             outputs = self.model(**inputs)
         
-        # Get prediction
+        # Get prediction logits
         logits = outputs.logits[0, -1, :]
+        
+        # Get ground truth token ID  
+        gt_tokens = self.processor.tokenizer.encode(ground_truth, add_special_tokens=False)
+        gt_token_id = gt_tokens[0] if gt_tokens else 0
+        
+        # Check correctness using margin (is GT token in top-5?)
+        top_k_ids = torch.topk(logits, k=5).indices.tolist()
+        is_correct = gt_token_id in top_k_ids
+        
+        # Also compute margin for debugging
+        gt_logit = logits[gt_token_id].item()
+        max_logit = logits.max().item()
+        margin = gt_logit - max_logit
+        
         predicted_id = logits.argmax().item()
         predicted_text = self.processor.tokenizer.decode([predicted_id]).strip().lower()
-        
-        # Check correctness
-        is_correct = ground_truth.lower() in predicted_text or predicted_text in ground_truth.lower()
         
         # Extract neuron activations (convert bfloat16 to float32 for numpy)
         neuron_acts = {}
