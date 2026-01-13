@@ -282,7 +282,8 @@ class PaliGemmaLogitLensAnalyzer:
         
     def _get_lm_head(self):
         """Get the language model head."""
-        return self.model.language_model.lm_head
+        # Note: PaliGemma has lm_head at model level, not language_model level
+        return self.model.lm_head
     
     def _get_norm(self):
         """Get the final layer norm."""
