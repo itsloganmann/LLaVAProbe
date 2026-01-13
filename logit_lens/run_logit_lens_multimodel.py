@@ -88,8 +88,9 @@ class Qwen2VLLogitLensAnalyzer:
         )
         self.model.eval()
         
-        # Get number of layers
-        self.n_layers = len(self.model.model.layers)
+        # Get number of layers - Qwen2-VL has model.model.language_model.layers
+        self.language_model = self.model.model.language_model
+        self.n_layers = len(self.language_model.layers)
         print(f"Qwen2-VL loaded. {self.n_layers} layers.")
         
     def _get_lm_head(self):
@@ -98,7 +99,7 @@ class Qwen2VLLogitLensAnalyzer:
     
     def _get_norm(self):
         """Get the final layer norm."""
-        return self.model.model.norm
+        return self.language_model.norm
     
     def _hook_residual(self, layer_idx: int):
         """Hook to capture residual stream after a layer."""
@@ -124,7 +125,7 @@ class Qwen2VLLogitLensAnalyzer:
         self.clear_hooks()
         
         for i in range(self.n_layers):
-            layer = self.model.model.layers[i]
+            layer = self.language_model.layers[i]
             
             # Hook after full layer (residual stream)
             h = layer.register_forward_hook(self._hook_residual(i))
@@ -416,7 +417,7 @@ class NeuronAnalyzer:
         
         # Get layers based on model type
         if model_type == "qwen2-vl":
-            self.layers = model.model.layers
+            self.layers = model.model.language_model.layers
         elif model_type == "paligemma":
             self.layers = model.language_model.layers
         
