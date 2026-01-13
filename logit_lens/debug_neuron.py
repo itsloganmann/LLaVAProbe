@@ -7,6 +7,7 @@ from PIL import Image
 import requests
 import json
 import os
+import sys
 
 def main():
     # Load model
@@ -21,60 +22,62 @@ def main():
     layers = model.model.language_model.layers
     print(f"Layers: {len(layers)}")
 
-    # Test hooks
-    neuron_activations = {}
+    # Load samples
+    records_path = "/home/ubuntu/LLaVAProbe/test_intervention_output/analysis_records.json"
+    with open(records_path, 'r') as f:
+        data = json.load(f)
+    samples = data.get("records", [])[:10]
+    print(f"Testing on {len(samples)} samples")
 
-    def hook_fn(layer_idx):
-        def hook(module, input, output):
-            print(f"Hook fired for layer {layer_idx}, shape: {output.shape}")
-            neuron_activations[layer_idx] = output.detach()
-        return hook
-
-    # Register hooks on target layers
-    target_layers = [18, 21, 24, 25, 26, 27]
-    hooks = []
-    for layer_idx in target_layers:
-        hook = layers[layer_idx].mlp.register_forward_hook(hook_fn(layer_idx))
-        hooks.append(hook)
-    print(f"Hooks registered on layers: {target_layers}")
-
-    # Load a test sample
+    # Test predictions
     from qwen_vl_utils import process_vision_info
     
-    url = "https://images.unsplash.com/photo-1533450718592-29d45635f0a9?w=200"
-    image = Image.open(requests.get(url, stream=True).raw).convert("RGB")
-    question = "What animal is in the image?"
-    ground_truth = "cat"
-
-    messages = [{"role": "user", "content": [{"type": "image", "image": image}, {"type": "text", "text": question}]}]
-    text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-    image_inputs, video_inputs = process_vision_info(messages)
-    inputs = processor(text=[text], images=image_inputs, videos=video_inputs, padding=True, return_tensors="pt").to(model.device)
-
-    print("Running forward pass...")
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    print(f"\nActivations collected: {list(neuron_activations.keys())}")
+    correct = 0
+    total = 0
     
-    for layer_idx in target_layers:
-        if layer_idx in neuron_activations:
-            act = neuron_activations[layer_idx]
-            print(f"Layer {layer_idx}: shape={act.shape}")
-            last_token_act = act[0, -1, :].cpu().numpy()
-            print(f"  Last token shape: {last_token_act.shape}")
+    for i, sample in enumerate(samples):
+        url = sample['image_url']
+        question = sample['question']
+        ground_truth = sample['ground_truth']
+        
+        try:
+            image = Image.open(requests.get(url, stream=True).raw).convert("RGB")
+        except Exception as e:
+            print(f"Sample {i}: Failed to load image: {e}")
+            continue
+            
+        messages = [{"role": "user", "content": [{"type": "image", "image": image}, {"type": "text", "text": question}]}]
+        text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        image_inputs, video_inputs = process_vision_info(messages)
+        inputs = processor(text=[text], images=image_inputs, videos=video_inputs, padding=True, return_tensors="pt").to(model.device)
+
+        with torch.no_grad():
+            outputs = model(**inputs)
+
+        # Get prediction
+        logits = outputs.logits[0, -1, :]
+        predicted_id = logits.argmax().item()
+        predicted_text = processor.tokenizer.decode([predicted_id]).strip().lower()
+        
+        # More flexible correctness check
+        gt_lower = ground_truth.lower().strip()
+        pred_lower = predicted_text.lower().strip()
+        
+        is_correct = (
+            gt_lower == pred_lower or
+            gt_lower in pred_lower or 
+            pred_lower in gt_lower or
+            gt_lower.startswith(pred_lower) or
+            pred_lower.startswith(gt_lower)
+        )
+        
+        if is_correct:
+            correct += 1
+        total += 1
+        
+        print(f"Sample {i}: GT='{ground_truth}', Pred='{predicted_text}', Match={is_correct}")
     
-    # Get prediction
-    logits = outputs.logits[0, -1, :]
-    predicted_id = logits.argmax().item()
-    predicted_text = processor.tokenizer.decode([predicted_id]).strip().lower()
-    print(f"\nPredicted: {predicted_text}")
-    print(f"Ground truth: {ground_truth}")
-    print(f"Is correct: {ground_truth in predicted_text or predicted_text in ground_truth}")
-    
-    # Clean up hooks
-    for hook in hooks:
-        hook.remove()
+    print(f"\nCorrect: {correct}/{total} = {correct/total*100:.1f}%")
 
 if __name__ == "__main__":
     main()
