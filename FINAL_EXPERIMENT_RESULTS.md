@@ -3,6 +3,7 @@
 ## Overview
 
 This report summarizes the results of three interpretability experiments conducted on two Vision-Language Models (VLMs):
+
 - **PaliGemma-3B** (Google)
 - **Qwen2-VL-7B-Instruct** (Alibaba)
 
@@ -13,20 +14,22 @@ All experiments used 100 samples from the VQAv2 dataset.
 ## 1. Top-K Attention Head Analysis
 
 ### Methodology
+
 For each sample, we identify the Top-5 attention heads that contribute most to predicting the correct answer token, measured by per-patch Δ log P (change in log probability when adding each head's contribution).
 
 ### Results
 
 #### PaliGemma-3B (18 layers, 8 heads per layer)
 
-| Metric | Value |
-|--------|-------|
-| Mean Attention Entropy | 0.3252 |
-| Mean Token Confidence | -0.5819 |
-| Pearson R (entropy vs confidence) | -0.2359 (p=0.0181)* |
-| R² | 0.0556 |
+| Metric                            | Value                |
+| --------------------------------- | -------------------- |
+| Mean Attention Entropy            | 0.3252               |
+| Mean Token Confidence             | -0.5819              |
+| Pearson R (entropy vs confidence) | -0.2359 (p=0.0181)\* |
+| R²                                | 0.0556               |
 
 **Top Attention Heads**: Layer 17 consistently dominates
+
 - Layer 17, Head 5: δ ≈ 13-17 (highest)
 - Layer 17, Heads 0-4: δ ≈ 6-10
 
@@ -41,14 +44,15 @@ For each sample, we identify the Top-5 attention heads that contribute most to p
 
 #### Qwen2-VL-7B (28 layers, 28 heads per layer with GQA)
 
-| Metric | Value |
-|--------|-------|
-| Mean Attention Entropy | 0.7260 |
-| Mean Token Confidence | -0.5742 |
+| Metric                            | Value             |
+| --------------------------------- | ----------------- |
+| Mean Attention Entropy            | 0.7260            |
+| Mean Token Confidence             | -0.5742           |
 | Pearson R (entropy vs confidence) | 0.0583 (p=0.5642) |
-| R² | 0.0034 |
+| R²                                | 0.0034            |
 
 **Top Attention Heads**: Layer 0 dominates (early layer focus)
+
 - Layer 0, Head 26: δ ≈ 8-9 (highest)
 - Layer 0, Heads 5, 15, 17, 18, 25: δ ≈ 4-6
 - Layer 6, Head 15: δ ≈ 5
@@ -63,6 +67,7 @@ For each sample, we identify the Top-5 attention heads that contribute most to p
 | color recognition | 10 | -0.0785 | 0.0062 |
 
 ### Key Findings
+
 1. **Different layer specialization**: PaliGemma concentrates visual processing in late layers (17/18), while Qwen2-VL uses early layers (0) more heavily
 2. **Attention entropy**: Qwen2-VL has higher entropy (0.73 vs 0.33), suggesting more distributed attention
 3. **Statistical significance**: PaliGemma shows significant negative correlation between entropy and confidence (p<0.05), Qwen2-VL does not
@@ -72,7 +77,9 @@ For each sample, we identify the Top-5 attention heads that contribute most to p
 ## 2. Causal Intervention Analysis
 
 ### Methodology
+
 Mask 30% of image patches based on attention scores and measure impact on accuracy:
+
 - **HIGH masking**: Mask top 30% attention regions (should hurt performance if attention is meaningful)
 - **LOW masking**: Mask bottom 30% attention regions (should preserve performance)
 - **RANDOM masking**: Mask random 30% (control condition)
@@ -81,17 +88,18 @@ Mask 30% of image patches based on attention scores and measure impact on accura
 
 #### PaliGemma-3B
 
-| Condition | Accuracy | Δ from Baseline |
-|-----------|----------|-----------------|
-| Full (baseline) | 73.00% | - |
-| Mask HIGH 30% | 65.00% | **-8.00%** |
-| Mask LOW 30% | 74.00% | +1.00% |
-| Mask RANDOM 30% | 70.00% | -3.00% |
+| Condition       | Accuracy | Δ from Baseline |
+| --------------- | -------- | --------------- |
+| Full (baseline) | 73.00%   | -               |
+| Mask HIGH 30%   | 65.00%   | **-8.00%**      |
+| Mask LOW 30%    | 74.00%   | +1.00%          |
+| Mask RANDOM 30% | 70.00%   | -3.00%          |
 
 **Statistical Significance:**
+
 - Full vs Mask HIGH: p = 0.059 (marginal)
 - Full vs Mask LOW: p = 0.783 (not significant)
-- **Mask HIGH vs LOW: p = 0.028*** (significant)
+- **Mask HIGH vs LOW: p = 0.028\*** (significant)
 
 **Causal Effect Size**: +9.00 percentage points (LOW - HIGH)
 
@@ -99,14 +107,15 @@ Mask 30% of image patches based on attention scores and measure impact on accura
 
 #### Qwen2-VL-7B
 
-| Condition | Accuracy | Δ from Baseline |
-|-----------|----------|-----------------|
-| Full (baseline) | 65.00% | - |
-| Mask HIGH 30% | 63.00% | -2.00% |
-| Mask LOW 30% | 65.00% | +0.00% |
-| Mask RANDOM 30% | 63.00% | -2.00% |
+| Condition       | Accuracy | Δ from Baseline |
+| --------------- | -------- | --------------- |
+| Full (baseline) | 65.00%   | -               |
+| Mask HIGH 30%   | 63.00%   | -2.00%          |
+| Mask LOW 30%    | 65.00%   | +0.00%          |
+| Mask RANDOM 30% | 63.00%   | -2.00%          |
 
 **Statistical Significance:**
+
 - Full vs Mask HIGH: p = 0.620 (not significant)
 - Full vs Mask LOW: p = 1.000 (not significant)
 - Mask HIGH vs LOW: p = 0.482 (not significant)
@@ -116,6 +125,7 @@ Mask 30% of image patches based on attention scores and measure impact on accura
 ❌ **DOES NOT SUPPORT CAUSAL HYPOTHESIS**: No significant difference between masking conditions
 
 ### Key Findings
+
 1. **PaliGemma shows causal attention**: Attention identifies task-relevant regions
 2. **Qwen2-VL attention is less localized**: May use different mechanisms for visual grounding
 3. **Architecture difference**: Qwen2-VL's dynamic resolution and native multimodal integration may lead to different attention patterns
@@ -125,19 +135,20 @@ Mask 30% of image patches based on attention scores and measure impact on accura
 ## 3. Logit Lens Analysis
 
 ### Methodology
+
 Apply logit lens to intermediate layer representations to track when visual information integrates with language predictions.
 
 ### Results
 
 #### PaliGemma-3B (18 layers)
 
-| Metric | Value |
-|--------|-------|
-| Accuracy WITH image | 100.0% |
-| Accuracy WITHOUT image | 0.0% |
+| Metric                   | Value                      |
+| ------------------------ | -------------------------- |
+| Accuracy WITH image      | 100.0%                     |
+| Accuracy WITHOUT image   | 0.0%                       |
 | Peak Visual Effect Layer | Layer 14 (Δmargin = 10.85) |
-| MLP Contribution | 51.7% |
-| Attention Contribution | 48.3% |
+| MLP Contribution         | 51.7%                      |
+| Attention Contribution   | 48.3%                      |
 
 **Neuron Analysis** (non-zero neurons < 1.2% per layer):
 | Layer | Test Accuracy | Non-zero Neurons |
@@ -150,15 +161,15 @@ Apply logit lens to intermediate layer representations to track when visual info
 
 #### Qwen2-VL-7B (28 layers)
 
-| Metric | Value |
-|--------|-------|
-| Accuracy WITH image | 0.0%* |
-| Accuracy WITHOUT image | 0.0%* |
+| Metric                   | Value                     |
+| ------------------------ | ------------------------- |
+| Accuracy WITH image      | 0.0%\*                    |
+| Accuracy WITHOUT image   | 0.0%\*                    |
 | Peak Visual Effect Layer | Layer 27 (Δmargin = 8.40) |
-| MLP Contribution | 68.2% |
-| Attention Contribution | 31.8% |
+| MLP Contribution         | 68.2%                     |
+| Attention Contribution   | 31.8%                     |
 
-*Note: Accuracy metrics reflect token-level prediction matching, which differs for Qwen2-VL's generation pattern.
+\*Note: Accuracy metrics reflect token-level prediction matching, which differs for Qwen2-VL's generation pattern.
 
 **Neuron Analysis** (non-zero neurons ~1.5% per layer):
 | Layer | Test Accuracy | Non-zero Neurons |
@@ -171,6 +182,7 @@ Apply logit lens to intermediate layer representations to track when visual info
 | 27 | 100.0% | 52/3584 (1.5%) |
 
 ### Key Findings
+
 1. **Visual integration layer**: PaliGemma peaks at Layer 14 (78% depth), Qwen2-VL at Layer 27 (96% depth)
 2. **MLP vs Attention**: Qwen2-VL relies more on MLP (68% vs 52%)
 3. **Sparse neuron activation**: Both models show <2% active neurons in late layers
@@ -180,14 +192,14 @@ Apply logit lens to intermediate layer representations to track when visual info
 
 ## Summary Table
 
-| Experiment | PaliGemma-3B | Qwen2-VL-7B |
-|------------|--------------|-------------|
-| **Top-K: Dominant Layer** | Layer 17 (final) | Layer 0 (first) |
-| **Top-K: Entropy** | 0.33 (focused) | 0.73 (distributed) |
-| **Causal: Effect Size** | +9.0 pp ✅ | +2.0 pp ❌ |
-| **Causal: Significance** | p=0.028* | p=0.482 |
-| **Logit Lens: Peak Layer** | Layer 14 (78%) | Layer 27 (96%) |
-| **Logit Lens: MLP %** | 51.7% | 68.2% |
+| Experiment                 | PaliGemma-3B     | Qwen2-VL-7B        |
+| -------------------------- | ---------------- | ------------------ |
+| **Top-K: Dominant Layer**  | Layer 17 (final) | Layer 0 (first)    |
+| **Top-K: Entropy**         | 0.33 (focused)   | 0.73 (distributed) |
+| **Causal: Effect Size**    | +9.0 pp ✅       | +2.0 pp ❌         |
+| **Causal: Significance**   | p=0.028\*        | p=0.482            |
+| **Logit Lens: Peak Layer** | Layer 14 (78%)   | Layer 27 (96%)     |
+| **Logit Lens: MLP %**      | 51.7%            | 68.2%              |
 
 ---
 

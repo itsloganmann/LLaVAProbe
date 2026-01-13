@@ -1,0 +1,184 @@
+{
+  "model": "paligemma",
+  "n_samples": 100,
+  "n_high_margin": 27,
+  "n_low_margin": 73,
+  "margin_median": 2.8125,
+  "margin_min": 0.25,
+  "margin_max": 4.9375,
+  "target_layers": [
+    10,
+    13,
+    15,
+    16,
+    17
+  ],
+  "layer_results": {
+    "10": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "n_nonzero_neurons": 23,
+      "total_neurons": 2048,
+      "sparsity_percent": 1.123046875,
+      "top_success_neurons": [
+        1793,
+        1985,
+        1328,
+        1450,
+        1611
+      ],
+      "top_failure_neurons": [
+        229,
+        1716,
+        882,
+        387,
+        1762
+      ],
+      "top_diff_neurons": [
+        674,
+        50,
+        448,
+        985,
+        48,
+        1385,
+        1526,
+        935,
+        2019,
+        1191
+      ]
+    },
+    "13": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "n_nonzero_neurons": 24,
+      "total_neurons": 2048,
+      "sparsity_percent": 1.171875,
+      "top_success_neurons": [
+        736,
+        1803,
+        2025,
+        836,
+        869
+      ],
+      "top_failure_neurons": [
+        439,
+        975,
+        215,
+        1627,
+        808
+      ],
+      "top_diff_neurons": [
+        50,
+        282,
+        1545,
+        1724,
+        1696,
+        803,
+        1421,
+        215,
+        741,
+        847
+      ]
+    },
+    "15": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "n_nonzero_neurons": 21,
+      "total_neurons": 2048,
+      "sparsity_percent": 1.025390625,
+      "top_success_neurons": [
+        91,
+        705,
+        1472,
+        416,
+        1789
+      ],
+      "top_failure_neurons": [
+        1219,
+        1588,
+        846,
+        782,
+        968
+      ],
+      "top_diff_neurons": [
+        50,
+        1577,
+        674,
+        995,
+        1959,
+        1897,
+        1100,
+        371,
+        1958,
+        1275
+      ]
+    },
+    "16": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "n_nonzero_neurons": 22,
+      "total_neurons": 2048,
+      "sparsity_percent": 1.07421875,
+      "top_success_neurons": [
+        1255,
+        1586,
+        416,
+        1355,
+        773
+      ],
+      "top_failure_neurons": [
+        479,
+        450,
+        757,
+        1422,
+        1697
+      ],
+      "top_diff_neurons": [
+        50,
+        1959,
+        1577,
+        674,
+        927,
+        964,
+        1645,
+        1232,
+        1713,
+        617
+      ]
+    },
+    "17": {
+      "train_accuracy": 1.0,
+      "test_accuracy": 1.0,
+      "n_nonzero_neurons": 19,
+      "total_neurons": 2048,
+      "sparsity_percent": 0.927734375,
+      "top_success_neurons": [
+        740,
+        188,
+        339,
+        829,
+        399
+      ],
+      "top_failure_neurons": [
+        820,
+        1050,
+        242,
+        707,
+        625
+      ],
+      "top_diff_neurons": [
+        927,
+        1163,
+        1499,
+        1576,
+        1288,
+        724,
+        480,
+        1573,
+        1796,
+        1097
+      ]
+    }
+  },
+  "timestamp": "2026-01-13T05:27:43.185163"
+}
