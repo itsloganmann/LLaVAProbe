@@ -89,13 +89,14 @@ class Qwen3VLRunner:
                 attn_implementation="eager"
             )
         else:
-            # Use float16 instead of bfloat16 for better GPU compatibility
+            # Use float32 for better numerical stability
             self.model = Qwen2VLForConditionalGeneration.from_pretrained(
                 model_id,
-                torch_dtype=torch.float16 if device == "cuda" else torch.float32,
+                torch_dtype=torch.float32,  # Use float32 for stability
                 trust_remote_code=True,
-                attn_implementation="eager"
-            ).to(device)
+                attn_implementation="eager",
+                device_map=device
+            )
         
         self.model.eval()
         print(f"✅ Qwen3-VL model loaded on {device}")
@@ -142,16 +143,23 @@ class Qwen3VLRunner:
             videos=video_inputs,
             padding=True,
             return_tensors="pt",
-        ).to(self.device)
+        )
         
-        # Generate with attention output
+        # Move inputs to device manually to ensure correct dtype
+        inputs = {k: v.to(self.device) if isinstance(v, torch.Tensor) else v 
+                  for k, v in inputs.items()}
+        
+        # Generate with attention output (use greedy decoding to avoid probability issues)
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
                 max_new_tokens=50,
+                do_sample=False,  # Use greedy decoding instead of sampling
                 output_attentions=True,
                 output_scores=True,
                 return_dict_in_generate=True,
+                temperature=None,  # Disable temperature
+                top_p=None,  # Disable top_p sampling
             )
         
         # Get generated tokens
