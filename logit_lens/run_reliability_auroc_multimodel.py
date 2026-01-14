@@ -343,8 +343,8 @@ def main():
     print("RELIABILITY AUROC ANALYSIS FOR PALIGEMMA AND QWEN2-VL")
     print("=" * 70)
 
-    # Load samples
-    samples = load_vqa_samples(n_samples=200)
+    # Load samples - use all 1000 from results.csv
+    samples = load_vqa_samples(n_samples=1000)
 
     if len(samples) == 0:
         print("ERROR: No samples loaded!")
