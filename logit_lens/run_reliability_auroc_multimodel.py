@@ -29,10 +29,10 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 def load_vqa_samples(n_samples=1000):
     """Load VQA samples from results.csv."""
     import csv
-    
+
     results_file = os.path.join(os.path.dirname(SCRIPT_DIR), 'results.csv')
     print(f"Loading samples from {results_file}...")
-    
+
     samples = []
     with open(results_file, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
