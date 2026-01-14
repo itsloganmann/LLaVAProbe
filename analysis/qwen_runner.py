@@ -89,9 +89,10 @@ class Qwen3VLRunner:
                 attn_implementation="eager"
             )
         else:
+            # Use float16 instead of bfloat16 for better GPU compatibility
             self.model = Qwen2VLForConditionalGeneration.from_pretrained(
                 model_id,
-                torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32,
+                torch_dtype=torch.float16 if device == "cuda" else torch.float32,
                 trust_remote_code=True,
                 attn_implementation="eager"
             ).to(device)
