@@ -1,0 +1,24 @@
+{
+  "model": "paligemma",
+  "n_samples": 1000,
+  "mask_ratio": 0.3,
+  "accuracy": {
+    "full": 75.4,
+    "mask_high": 64.1,
+    "mask_low": 70.5,
+    "mask_random": 68.0
+  },
+  "delta_from_baseline": {
+    "mask_high": -11.300000000000011,
+    "mask_low": -4.900000000000006,
+    "mask_random": -7.400000000000006
+  },
+  "p_values": {
+    "full_vs_high": 2.89878763947953e-17,
+    "full_vs_low": 6.441759413133312e-06,
+    "high_vs_low": 2.7335293521375305e-06,
+    "random_vs_high": 0.0018222060903896346
+  },
+  "causal_effect_size": 6.400000000000006,
+  "supports_causal_hypothesis": true
+}

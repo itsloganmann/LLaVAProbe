@@ -1,0 +1,26 @@
+{
+  "paligemma": {
+    "model": "PaliGemma-3B",
+    "n_samples": 1000,
+    "accuracy": 0.786,
+    "n_correct": 786,
+    "n_incorrect": 214,
+    "spatial_attention_auroc": 0.5,
+    "margin_auroc": 0.8337286865948492,
+    "combined_auroc_test": 0.7376853813559323,
+    "combined_auroc_full": 0.9436458110389765,
+    "test_accuracy": 0.7333333333333333
+  },
+  "qwen2vl": {
+    "model": "Qwen2-VL-7B",
+    "n_samples": 1000,
+    "accuracy": 0.288,
+    "n_correct": 288,
+    "n_incorrect": 712,
+    "spatial_attention_auroc": 0.5,
+    "margin_auroc": 0.6298474563046191,
+    "combined_auroc_test": 0.9709302325581395,
+    "combined_auroc_full": 0.9934115558676654,
+    "test_accuracy": 0.9233333333333333
+  }
+}

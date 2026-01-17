@@ -1,0 +1,24 @@
+{
+  "model": "qwen2-vl",
+  "n_samples": 1000,
+  "mask_ratio": 0.3,
+  "accuracy": {
+    "full": 68.1,
+    "mask_high": 56.7,
+    "mask_low": 56.3,
+    "mask_random": 58.2
+  },
+  "delta_from_baseline": {
+    "mask_high": -11.399999999999991,
+    "mask_low": -11.799999999999997,
+    "mask_random": -9.899999999999991
+  },
+  "p_values": {
+    "full_vs_high": 4.238470511197552e-14,
+    "full_vs_low": 2.15254548900025e-15,
+    "high_vs_low": 0.7644864923922206,
+    "random_vs_high": 0.17984313165457533
+  },
+  "causal_effect_size": -0.4000000000000057,
+  "supports_causal_hypothesis": false
+}

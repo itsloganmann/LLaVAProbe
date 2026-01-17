@@ -1,0 +1,202 @@
+{
+  "n_samples": 1000,
+  "ablation_results": {
+    "baseline": {
+      "overall_accuracy": 0.321,
+      "accuracy_by_type": {
+        "object identification": 0.08333333333333333,
+        "other": 0.08,
+        "color recognition": 0.021505376344086023,
+        "yes/no": 0.72544080604534,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.2857142857142857,
+        "person identification": 0.3333333333333333,
+        "time-related": 0.0
+      },
+      "n_correct": 321,
+      "n_total": 1000,
+      "config": {}
+    },
+    "neuron_1512_L31": {
+      "overall_accuracy": 0.321,
+      "accuracy_by_type": {
+        "object identification": 0.08333333333333333,
+        "other": 0.08,
+        "color recognition": 0.021505376344086023,
+        "yes/no": 0.72544080604534,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.2857142857142857,
+        "person identification": 0.3333333333333333,
+        "time-related": 0.0
+      },
+      "n_correct": 321,
+      "n_total": 1000,
+      "config": {
+        "31": [
+          1512
+        ]
+      }
+    },
+    "neuron_1512_all": {
+      "overall_accuracy": 0.32,
+      "accuracy_by_type": {
+        "object identification": 0.08333333333333333,
+        "other": 0.08,
+        "color recognition": 0.021505376344086023,
+        "yes/no": 0.7229219143576826,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.2857142857142857,
+        "person identification": 0.3333333333333333,
+        "time-related": 0.0
+      },
+      "n_correct": 320,
+      "n_total": 1000,
+      "config": {
+        "17": [
+          1512
+        ],
+        "21": [
+          1512
+        ],
+        "27": [
+          1512
+        ],
+        "30": [
+          1512
+        ],
+        "31": [
+          1512
+        ]
+      }
+    },
+    "top5_L31": {
+      "overall_accuracy": 0.317,
+      "accuracy_by_type": {
+        "object identification": 0.08333333333333333,
+        "other": 0.07,
+        "color recognition": 0.0,
+        "yes/no": 0.7229219143576826,
+        "counting": 0.017699115044247787,
+        "location": 0.0,
+        "reasoning": 0.125,
+        "classification": 0.04,
+        "comparison": 0.14285714285714285,
+        "person identification": 0.3333333333333333,
+        "time-related": 0.0
+      },
+      "n_correct": 317,
+      "n_total": 1000,
+      "config": {
+        "31": [
+          1512,
+          1360,
+          1573,
+          3556,
+          2298
+        ]
+      }
+    },
+    "random_5_L31": {
+      "overall_accuracy": 0.321,
+      "accuracy_by_type": {
+        "object identification": 0.08333333333333333,
+        "other": 0.08,
+        "color recognition": 0.021505376344086023,
+        "yes/no": 0.72544080604534,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.2857142857142857,
+        "person identification": 0.3333333333333333,
+        "time-related": 0.0
+      },
+      "n_correct": 321,
+      "n_total": 1000,
+      "config": {
+        "31": [
+          100,
+          500,
+          1000,
+          2000,
+          3000
+        ]
+      }
+    }
+  },
+  "impact_analysis": {
+    "neuron_1512_L31": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0,
+        "color recognition": 0.0,
+        "yes/no": 0.0,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.0,
+        "person identification": 0.0,
+        "time-related": 0.0
+      }
+    },
+    "neuron_1512_all": {
+      "overall_drop": 0.0010000000000000009,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0,
+        "color recognition": 0.0,
+        "yes/no": 0.0025188916876573986,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.0,
+        "person identification": 0.0,
+        "time-related": 0.0
+      }
+    },
+    "top5_L31": {
+      "overall_drop": 0.0040000000000000036,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.009999999999999995,
+        "color recognition": 0.021505376344086023,
+        "yes/no": 0.0025188916876573986,
+        "counting": -0.017699115044247787,
+        "location": 0.0,
+        "reasoning": -0.125,
+        "classification": -0.04,
+        "comparison": 0.14285714285714285,
+        "person identification": 0.0,
+        "time-related": 0.0
+      }
+    },
+    "random_5_L31": {
+      "overall_drop": 0.0,
+      "drops_by_type": {
+        "object identification": 0.0,
+        "other": 0.0,
+        "color recognition": 0.0,
+        "yes/no": 0.0,
+        "counting": 0.0,
+        "location": 0.0,
+        "reasoning": 0.0,
+        "classification": 0.0,
+        "comparison": 0.0,
+        "person identification": 0.0,
+        "time-related": 0.0
+      }
+    }
+  }
+}
