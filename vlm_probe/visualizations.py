@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional, Tuple
 import os
 
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
@@ -18,6 +19,8 @@ from PIL import Image
 
 
 # Custom colormap for attention visualization
+# Color progression: dark blue → blue → cyan → yellow → red → white
+# This creates a perceptually distinct gradient that highlights attention intensity
 ATTENTION_CMAP = LinearSegmentedColormap.from_list(
     "attention",
     ["#000033", "#0000FF", "#00FFFF", "#FFFF00", "#FF0000", "#FFFFFF"]
@@ -46,8 +49,6 @@ def plot_attention_heatmap(
     Returns:
         Matplotlib figure.
     """
-    import cv2
-    
     fig, axes = plt.subplots(1, 3, figsize=figsize)
     
     img_array = np.array(image)
@@ -285,8 +286,6 @@ def plot_cross_model_comparison(
     Returns:
         Matplotlib figure.
     """
-    import cv2
-    
     fig = plt.figure(figsize=figsize)
     gs = gridspec.GridSpec(3, 4, figure=fig, height_ratios=[1, 1, 0.3])
     

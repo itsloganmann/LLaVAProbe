@@ -54,6 +54,9 @@ class QwenVLRunner:
         device: Optional[str] = None,
         torch_dtype: torch.dtype = torch.bfloat16,
         use_flash_attention: bool = True,
+        num_image_tokens: int = 256,
+        num_system_tokens: int = 10,
+        attention_grid_size: int = 24,
     ) -> None:
         """
         Initialize the Qwen-VL runner.
@@ -65,12 +68,18 @@ class QwenVLRunner:
             device: Device to use. Defaults to "cuda" if available.
             torch_dtype: Data type for model. bfloat16 recommended for A100.
             use_flash_attention: Use Flash Attention 2 for efficiency.
+            num_image_tokens: Expected number of image tokens (256-1024 depending on resolution).
+            num_system_tokens: Number of system/prompt tokens before image tokens.
+            attention_grid_size: Target size for attention map visualization grid.
         """
         from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
         
         self.model_id = model_id
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.torch_dtype = torch_dtype
+        self.num_image_tokens = num_image_tokens
+        self.num_system_tokens = num_system_tokens
+        self.attention_grid_size = attention_grid_size
         
         print(f"Loading {model_id} on {self.device}...")
         print(f"CUDA available: {torch.cuda.is_available()}")
@@ -266,10 +275,6 @@ class QwenVLRunner:
         layer_contributions = {}
         head_contributions = {}
         
-        # Qwen-VL uses dynamic resolution, estimate image tokens
-        # Typically around 256-1024 tokens depending on image size
-        num_image_tokens = 256  # Conservative estimate
-        
         all_image_attention = []
         
         for layer_idx, layer_attn in enumerate(attentions):
@@ -287,8 +292,8 @@ class QwenVLRunner:
                 
                 # Extract attention to image tokens (approximate region)
                 # Image tokens typically come after system tokens
-                start_idx = 10  # Skip system tokens
-                end_idx = min(start_idx + num_image_tokens, len(head_attn))
+                start_idx = self.num_system_tokens
+                end_idx = min(start_idx + self.num_image_tokens, len(head_attn))
                 
                 if end_idx > start_idx:
                     image_attn = head_attn[start_idx:end_idx]
@@ -320,8 +325,8 @@ class QwenVLRunner:
         
         # Aggregate attention across all heads (weighted by contribution)
         if all_image_attention:
-            # Resize all to common size
-            target_size = 24  # Standard grid
+            # Resize all to common size for aggregation
+            target_size = self.attention_grid_size
             resized = []
             for attn in all_image_attention:
                 from scipy.ndimage import zoom
@@ -335,7 +340,7 @@ class QwenVLRunner:
             else:
                 aggregated = np.zeros((target_size, target_size))
         else:
-            aggregated = np.zeros((24, 24))
+            aggregated = np.zeros((self.attention_grid_size, self.attention_grid_size))
         
         return attention_maps, aggregated, layer_contributions, head_contributions
     

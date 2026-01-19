@@ -78,10 +78,26 @@ class VLMAnalyzer:
         qwen_runner: Optional[QwenVLRunner] = None,
         paligemma_runner: Optional[PaliGemmaRunner] = None,
         output_dir: str = "vlm_analysis_outputs",
+        sparsity_threshold_factor: float = 0.1,
+        layer_emergence_threshold: float = 0.25,
     ):
+        """
+        Initialize the VLM Analyzer.
+        
+        Args:
+            qwen_runner: Initialized QwenVLRunner instance.
+            paligemma_runner: Initialized PaliGemmaRunner instance.
+            output_dir: Directory for saving outputs.
+            sparsity_threshold_factor: Factor for sparsity calculation (default 0.1 means
+                patches with attention < 10% of uniform baseline are considered sparse).
+            layer_emergence_threshold: Cumulative contribution threshold for detecting
+                layer emergence (default 0.25 means first layer contributing to 25% total).
+        """
         self.qwen = qwen_runner
         self.paligemma = paligemma_runner
         self.output_dir = output_dir
+        self.sparsity_threshold_factor = sparsity_threshold_factor
+        self.layer_emergence_threshold = layer_emergence_threshold
         os.makedirs(output_dir, exist_ok=True)
         
         self.comparisons: List[CrossModelComparison] = []
@@ -105,8 +121,9 @@ class VLMAnalyzer:
         normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0
         
         # Sparsity (fraction of very low attention)
+        # Patches with attention below threshold_factor * uniform baseline are sparse
         threshold = 1.0 / len(flat)  # Uniform baseline
-        sparsity = np.mean(flat_norm < threshold * 0.1)
+        sparsity = np.mean(flat_norm < threshold * self.sparsity_threshold_factor)
         
         # Top-k concentration
         k = min(10, len(flat))
@@ -124,14 +141,14 @@ class VLMAnalyzer:
         else:
             spatial_coherence = 0.0
         
-        # Layer emergence (first layer with significant contribution)
+        # Layer emergence (first layer where cumulative contribution exceeds threshold)
         sorted_layers = sorted(layer_contributions.items(), key=lambda x: x[1], reverse=True)
         total_contribution = sum(layer_contributions.values())
         cumulative = 0
         layer_emergence = 0
         for layer, contrib in sorted(layer_contributions.items()):
             cumulative += contrib
-            if cumulative > total_contribution * 0.25:  # 25% threshold
+            if cumulative > total_contribution * self.layer_emergence_threshold:
                 layer_emergence = layer
                 break
         
