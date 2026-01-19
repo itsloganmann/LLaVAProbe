@@ -164,7 +164,7 @@ class Qwen3VLRunner:
         
         # Get generated tokens
         generated_ids = outputs.sequences[0]
-        input_len = inputs.input_ids.shape[1]
+        input_len = inputs['input_ids'].shape[1]
         predicted_token_ids = generated_ids[input_len:].tolist()
         
         # Decode answer
