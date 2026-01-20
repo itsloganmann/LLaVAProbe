@@ -244,12 +244,22 @@ for mod in modules_to_remove:
     if mod in sys.modules:
         del sys.modules[mod]
 
+# Ensure REPO_DIR is on the path
 if REPO_DIR not in sys.path:
     sys.path.insert(0, REPO_DIR)
-analysis_path = os.path.join(REPO_DIR, "analysis")
-if analysis_path not in sys.path:
-    sys.path.insert(0, analysis_path)
 
+# Verify the file exists
+analysis_path = os.path.join(REPO_DIR, "analysis")
+runner_file = os.path.join(analysis_path, "paligemma_runner.py")
+if not os.path.exists(runner_file):
+    print(f"   ❌ ERROR: {runner_file} not found!", flush=True)
+    print(f"   REPO_DIR: {REPO_DIR}", flush=True)
+    print(f"   Files in analysis/: {os.listdir(analysis_path) if os.path.exists(analysis_path) else 'directory not found'}", flush=True)
+    raise FileNotFoundError(f"paligemma_runner.py not found at {runner_file}")
+
+print(f"   ✅ Found paligemma_runner.py", flush=True)
+
+# Import using absolute import from repo root
 from analysis.paligemma_runner import PaliGemmaRunner
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
