@@ -87,18 +87,37 @@ OUTPUT_BASE_DIR = "/content/drive/MyDrive/paligemma_ablation_runs"
 os.chdir("/content")
 if os.path.exists(REPO_DIR):
     try:
-        subprocess.check_call(["git", "-C", REPO_DIR, "pull"])
-        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH])
+        subprocess.check_call(["git", "-C", REPO_DIR, "pull"], 
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except:
+        print("   🔄 Removing old repo and recloning...", flush=True)
         shutil.rmtree(REPO_DIR)
-        subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR])
-        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH])
+        subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 else:
-    subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR])
-    subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH])
+    subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-sys.path.append(REPO_DIR)
+# Verify repo was cloned correctly
+if not os.path.exists(REPO_DIR):
+    raise RuntimeError(f"Failed to clone repo to {REPO_DIR}")
+
+# Add to path and change directory
+sys.path.insert(0, REPO_DIR)
 os.chdir(REPO_DIR)
+
+# Verify analysis directory exists
+analysis_dir = os.path.join(REPO_DIR, "analysis")
+if not os.path.exists(analysis_dir):
+    raise RuntimeError(f"Analysis directory not found at {analysis_dir}")
+
+print(f"   ✅ Repo cloned and checked out to {BRANCH}", flush=True)
 
 # Install dependencies
 print("   📦 Installing dependencies...", flush=True)
