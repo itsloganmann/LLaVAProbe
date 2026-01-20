@@ -36,7 +36,7 @@ print("⚙️ SETTING UP ENVIRONMENT...", flush=True)
 # Fix numpy BEFORE any numpy imports
 print("   🔧 Fixing numpy compatibility...", flush=True)
 
-# Uninstall problematic numpy
+# Uninstall problematic numpy completely
 try:
     subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "numpy"], 
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -44,19 +44,32 @@ except:
     pass
 
 # Clear numpy from modules if already imported
-modules_to_clear = [k for k in list(sys.modules.keys()) if 'numpy' in k.lower()]
+modules_to_clear = [k for k in list(sys.modules.keys()) if 'numpy' in k.lower() or 'scipy' in k.lower() or 'pandas' in k.lower()]
 for mod in modules_to_clear:
     try:
         del sys.modules[mod]
     except:
         pass
 
-# Install numpy 1.26.4
-subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4", "--quiet", "--force-reinstall", "--no-deps", "--break-system-packages"])
+# Install numpy 1.26.4 WITH dependencies (not --no-deps, as that might cause issues)
+subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4", "--quiet", "--force-reinstall", "--break-system-packages"])
 
-# Verify numpy works
+# Test numpy import
 import numpy as np
 print(f"   ✅ numpy {np.__version__} installed", flush=True)
+
+# Test that numpy works properly
+try:
+    test_arr = np.array([1, 2, 3])
+    test_mean = np.mean(test_arr)
+    print(f"   ✅ numpy operations verified", flush=True)
+except Exception as e:
+    print(f"   ⚠️  numpy test failed: {e} - reinstalling...", flush=True)
+    subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "numpy"], 
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4", "--quiet", "--force-reinstall", "--break-system-packages"])
+    import numpy as np
+    print(f"   ✅ numpy {np.__version__} reinstalled", flush=True)
 
 # Install pandas (uses the fixed numpy)
 subprocess.check_call([sys.executable, "-m", "pip", "install", "pandas", "--quiet", "--break-system-packages"])
