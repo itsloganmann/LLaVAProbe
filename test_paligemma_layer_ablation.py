@@ -77,47 +77,70 @@ import pandas as pd
 print(f"   ✅ pandas installed", flush=True)
 
 # ==============================================================================
-# CLONE REPO
+# CLONE REPO - MUST HAPPEN BEFORE ANYTHING ELSE
 # ==============================================================================
+print("\n📥 CLONING REPOSITORY...", flush=True)
 REPO_URL = "https://github.com/itsloganmann/LLaVAProbe.git"
 BRANCH = "paligemma-vision-cutoff-colab"
 REPO_DIR = "/content/LLaVAProbe"
 OUTPUT_BASE_DIR = "/content/drive/MyDrive/paligemma_ablation_runs"
 
 os.chdir("/content")
+
+# Remove old repo if it exists
 if os.path.exists(REPO_DIR):
+    print(f"   🗑️  Removing existing repo...", flush=True)
     try:
-        subprocess.check_call(["git", "-C", REPO_DIR, "pull"], 
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except:
-        print("   🔄 Removing old repo and recloning...", flush=True)
         shutil.rmtree(REPO_DIR)
-        subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR],
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-else:
-    subprocess.check_call(["git", "clone", REPO_URL, REPO_DIR],
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    subprocess.check_call(["git", "-C", REPO_DIR, "checkout", BRANCH],
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"   ⚠️  Could not remove old repo: {e}", flush=True)
+
+# Clone fresh
+print(f"   ⬇️  Cloning {REPO_URL}...", flush=True)
+result = subprocess.run(["git", "clone", REPO_URL, REPO_DIR], 
+                       capture_output=True, text=True)
+if result.returncode != 0:
+    print(f"   ❌ Git clone failed: {result.stderr}", flush=True)
+    raise RuntimeError(f"Failed to clone repo: {result.stderr}")
+
+# Checkout branch
+print(f"   🔀 Checking out branch {BRANCH}...", flush=True)
+result = subprocess.run(["git", "-C", REPO_DIR, "checkout", BRANCH],
+                       capture_output=True, text=True)
+if result.returncode != 0:
+    print(f"   ⚠️  Branch checkout failed: {result.stderr}", flush=True)
+    print(f"   Trying to fetch and checkout...", flush=True)
+    subprocess.run(["git", "-C", REPO_DIR, "fetch", "origin"], 
+                   capture_output=True)
+    result = subprocess.run(["git", "-C", REPO_DIR, "checkout", BRANCH],
+                           capture_output=True, text=True)
+    if result.returncode != 0:
+        raise RuntimeError(f"Failed to checkout branch {BRANCH}: {result.stderr}")
 
 # Verify repo was cloned correctly
 if not os.path.exists(REPO_DIR):
     raise RuntimeError(f"Failed to clone repo to {REPO_DIR}")
 
+# Verify analysis directory exists
+analysis_dir = os.path.join(REPO_DIR, "analysis")
+if not os.path.exists(analysis_dir):
+    print(f"   ❌ Analysis directory not found!", flush=True)
+    print(f"   Contents of {REPO_DIR}: {os.listdir(REPO_DIR)}", flush=True)
+    raise RuntimeError(f"Analysis directory not found at {analysis_dir}")
+
+# Verify the runner file exists
+runner_file = os.path.join(analysis_dir, "paligemma_runner.py")
+if not os.path.exists(runner_file):
+    print(f"   ❌ paligemma_runner.py not found!", flush=True)
+    print(f"   Contents of {analysis_dir}: {os.listdir(analysis_dir)}", flush=True)
+    raise RuntimeError(f"paligemma_runner.py not found at {runner_file}")
+
 # Add to path and change directory
 sys.path.insert(0, REPO_DIR)
 os.chdir(REPO_DIR)
 
-# Verify analysis directory exists
-analysis_dir = os.path.join(REPO_DIR, "analysis")
-if not os.path.exists(analysis_dir):
-    raise RuntimeError(f"Analysis directory not found at {analysis_dir}")
-
 print(f"   ✅ Repo cloned and checked out to {BRANCH}", flush=True)
+print(f"   ✅ Found paligemma_runner.py", flush=True)
 
 # Install dependencies
 print("   📦 Installing dependencies...", flush=True)
