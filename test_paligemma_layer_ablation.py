@@ -217,6 +217,27 @@ print(f"   Testing {len(ABLATION_CONFIGS)} configurations", flush=True)
 # ==============================================================================
 print(f"\n🔧 LOADING PALIGEMMA MODEL...", flush=True)
 
+# Final numpy check before importing analysis modules
+print("   🔧 Ensuring numpy is properly configured...", flush=True)
+try:
+    # Re-verify numpy works
+    test_arr = np.array([1, 2, 3])
+    test_result = np.mean(test_arr)
+except Exception as e:
+    print(f"   ⚠️  numpy issue detected: {e} - reinstalling...", flush=True)
+    # Clear and reinstall
+    modules_to_clear = [k for k in list(sys.modules.keys()) if 'numpy' in k.lower()]
+    for mod in modules_to_clear:
+        try:
+            del sys.modules[mod]
+        except:
+            pass
+    subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "numpy"], 
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4", "--quiet", "--force-reinstall", "--break-system-packages"])
+    import numpy as np
+    print(f"   ✅ numpy {np.__version__} reinstalled", flush=True)
+
 # Clear analysis modules
 modules_to_remove = [k for k in sys.modules.keys() if 'paligemma' in k.lower() or 'analysis' in k.lower()]
 for mod in modules_to_remove:
