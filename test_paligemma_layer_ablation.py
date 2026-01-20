@@ -58,8 +58,10 @@ subprocess.check_call([sys.executable, "-m", "pip", "install", "numpy==1.26.4", 
 import numpy as np
 print(f"   ✅ numpy {np.__version__} installed", flush=True)
 
-# Now import pandas (uses the fixed numpy)
+# Install pandas (uses the fixed numpy)
+subprocess.check_call([sys.executable, "-m", "pip", "install", "pandas", "--quiet", "--break-system-packages"])
 import pandas as pd
+print(f"   ✅ pandas installed", flush=True)
 
 # ==============================================================================
 # CLONE REPO
