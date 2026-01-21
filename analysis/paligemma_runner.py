@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import enum
 from dataclasses import dataclass
-from typing import List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple, cast
 
 import numpy as np
 import torch
 from PIL import Image
 from transformers import AutoProcessor, PaliGemmaForConditionalGeneration
+from transformers.generation.utils import GenerateDecoderOnlyOutput
 
 from .config import AnalysisConfig
 from .metrics import ConfidenceMetrics, compute_confidence_metrics
@@ -48,7 +49,7 @@ class PaliGemmaRunner:
 
     def __init__(
         self,
-        model_id: str = "google/paligemma2-3b-pt-224",
+        model_id: str = "google/paligemma-3b-pt-224",
         device: str = "cuda",
         quantization: Optional[str] = None,
         config: Optional[AnalysisConfig] = None,
@@ -95,6 +96,67 @@ class PaliGemmaRunner:
         
         self.model.eval()
         print(f"✅ PaliGemma 2 model loaded on {device}")
+        
+        # Get model config info
+        gemma_config = self.model.language_model.model.config
+        self.num_layers = gemma_config.num_hidden_layers
+        self.num_heads = gemma_config.num_attention_heads
+        self.head_dim = gemma_config.hidden_size // self.num_heads
+
+        # Initialize vision cutoff state
+        if not hasattr(self.model.language_model, "vision_cutoff"):
+            self.model.language_model.vision_cutoff = {
+                "enabled": False,
+                "mode": "early_cut",
+                "cutoff_layer": None,
+                "disabled_layers": set(),
+                "image_token_range": None,
+            }
+            self.model.language_model.model.vision_cutoff = self.model.language_model.vision_cutoff
+
+    def set_vision_cutoff(self, mode: str, cutoff_layer: int) -> None:
+        """Configure vision cutoff ablation for the model.
+        
+        Args:
+            mode: "early_cut" (disable vision in layers > cutoff_layer) or 
+                  "late_only" (disable vision in layers < cutoff_layer)
+            cutoff_layer: Layer index for cutoff boundary
+        """
+        state = self.model.language_model.vision_cutoff
+        state["enabled"] = True
+        state["mode"] = mode
+        state["cutoff_layer"] = cutoff_layer
+        
+        if mode == "early_cut":
+            # Disable vision in layers > cutoff_layer
+            state["disabled_layers"] = set(range(cutoff_layer + 1, self.num_layers))
+        elif mode == "late_only":
+            # Disable vision in layers < cutoff_layer
+            state["disabled_layers"] = set(range(0, cutoff_layer))
+        else:
+            raise ValueError(f"Unknown mode: {mode}")
+
+    def _get_image_token_positions(self, inputs: Dict[str, torch.Tensor]) -> Optional[Tuple[int, int]]:
+        """Identify image token positions in the input sequence.
+        
+        Returns:
+            Tuple of (start_idx, end_idx) for image tokens, or None if not found.
+            In PaliGemma, image tokens are typically the first 256 tokens.
+        """
+        # PaliGemma typically has 256 image tokens (for 224x224 input)
+        # They appear at the beginning of the sequence after processing
+        if "input_ids" not in inputs:
+            return None
+        
+        input_ids = inputs["input_ids"]
+        seq_len = input_ids.shape[1]
+        
+        # For PaliGemma, image tokens are typically the first 256 positions
+        num_image_tokens = 256
+        
+        if seq_len > num_image_tokens:
+            return (0, num_image_tokens)
+        return None
 
     @torch.inference_mode()
     def run(
@@ -120,17 +182,62 @@ class PaliGemmaRunner:
             images=image,
             return_tensors="pt",
             padding=True
-        ).to(self.device)
+        )
+        inputs = {k: v.to(self.device) for k, v in inputs.items()}
+        
+        # Identify image token positions
+        image_token_range = self._get_image_token_positions(inputs)
+        
+        # Store image token range in cutoff state for hooks to use
+        if hasattr(self.model.language_model, "vision_cutoff"):
+            self.model.language_model.vision_cutoff["image_token_range"] = image_token_range
+        
+        # Set up vision cutoff hooks if enabled
+        hooks = []
+        if hasattr(self.model.language_model, "vision_cutoff"):
+            cutoff_state = self.model.language_model.vision_cutoff
+            if cutoff_state.get("enabled") and cutoff_state.get("disabled_layers") and image_token_range:
+                # Register forward hooks on disabled layers to zero vision features
+                # This prevents later layers from accessing image information
+                img_start, img_end = image_token_range
+                
+                def make_layer_hook(layer_idx):
+                    def hook(module, input, output):
+                        # Output is typically a tuple (hidden_states, ...)
+                        if isinstance(output, tuple):
+                            hidden_states = output[0].clone()  # Clone to avoid in-place modification issues
+                            # Zero out image token positions in disabled layers
+                            if hidden_states.shape[1] > img_end:
+                                hidden_states[:, img_start:img_end] = 0.0
+                            return (hidden_states,) + output[1:]
+                        return output
+                    return hook
+                
+                # Register hooks on disabled layers
+                for layer_idx in cutoff_state["disabled_layers"]:
+                    if layer_idx < len(self.model.language_model.model.layers):
+                        hook = self.model.language_model.model.layers[layer_idx].register_forward_hook(
+                            make_layer_hook(layer_idx)
+                        )
+                        hooks.append(hook)
         
         # Generate with attention output
-        with torch.no_grad():
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=50,
-                output_attentions=True,
-                output_scores=True,
-                return_dict_in_generate=True,
-            )
+        try:
+            with torch.no_grad():
+                outputs = cast(
+                    GenerateDecoderOnlyOutput,
+                    self.model.generate(
+                        **inputs,
+                        max_new_tokens=50,
+                        output_attentions=True,
+                        output_scores=True,
+                        return_dict_in_generate=True,
+                    )
+                )
+        finally:
+            # Clean up hooks after generation
+            for hook in hooks:
+                hook.remove()
         
         # Get generated tokens
         generated_ids = outputs.sequences[0]
@@ -190,13 +297,41 @@ class PaliGemmaRunner:
             entropy_config=self._config.entropy,
         )
         
+        # Re-register hooks for attention extraction (since we removed them after generation)
+        hooks_attention = []
+        if hasattr(self.model.language_model, "vision_cutoff"):
+            cutoff_state = self.model.language_model.vision_cutoff
+            if cutoff_state.get("enabled") and cutoff_state.get("disabled_layers") and image_token_range:
+                img_start, img_end = image_token_range
+                
+                def make_layer_hook(layer_idx):
+                    def hook(module, input, output):
+                        if isinstance(output, tuple):
+                            hidden_states = output[0].clone()
+                            if hidden_states.shape[1] > img_end:
+                                hidden_states[:, img_start:img_end] = 0.0
+                            return (hidden_states,) + output[1:] if len(output) > 1 else (hidden_states,)
+                        return output
+                    return hook
+                
+                for layer_idx in cutoff_state["disabled_layers"]:
+                    if layer_idx < len(self.model.language_model.model.layers):
+                        hook = self.model.language_model.model.layers[layer_idx].register_forward_hook(
+                            make_layer_hook(layer_idx)
+                        )
+                        hooks_attention.append(hook)
+        
         # Run forward pass with attention tracking
-        forward_outputs = self.model(
-            **inputs,
-            output_hidden_states=True,
-            output_attentions=True,
-            return_dict=True,
-        )
+        try:
+            forward_outputs = self.model(
+                **inputs,
+                output_hidden_states=True,
+                output_attentions=True,
+                return_dict=True,
+            )
+        finally:
+            for hook in hooks_attention:
+                hook.remove()
         
         # Extract layer attentions
         if hasattr(forward_outputs, 'attentions') and forward_outputs.attentions:
