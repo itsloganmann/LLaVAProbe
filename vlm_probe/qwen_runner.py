@@ -72,7 +72,7 @@ class QwenVLRunner:
             num_system_tokens: Number of system/prompt tokens before image tokens.
             attention_grid_size: Target size for attention map visualization grid.
         """
-        from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
+        from transformers import AutoModelForVision2Seq, AutoProcessor
         
         self.model_id = model_id
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -88,9 +88,10 @@ class QwenVLRunner:
             print(f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
         
         # Load model with optimizations for A100
+        # Use AutoModelForVision2Seq to auto-detect correct class (Qwen2VL vs Qwen2_5_VL)
         attn_impl = "flash_attention_2" if use_flash_attention else "eager"
         
-        self.model = Qwen2VLForConditionalGeneration.from_pretrained(
+        self.model = AutoModelForVision2Seq.from_pretrained(
             model_id,
             torch_dtype=torch_dtype,
             device_map="auto",
