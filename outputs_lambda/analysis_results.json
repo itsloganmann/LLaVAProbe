@@ -1,0 +1,1016 @@
+{
+  "comparisons": [
+    {
+      "question": "What is this photo taken looking through?",
+      "qwen_answer": "This photo appears to be taken looking through a protective netting, likely at a baseball game. The netting is commonly used in baseball stadiums to protect spectators from foul balls and other flying objects.",
+      "paligemma_answer": "net",
+      "ground_truth": "net",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7131476998329163,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this man riding on?",
+      "qwen_answer": "The man in the picture is riding on a skateboard.",
+      "paligemma_answer": "skateboard",
+      "ground_truth": "skateboard",
+      "qwen_confidence": 0.9583333333333334,
+      "paligemma_confidence": 0.9895651340484619,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this person doing?",
+      "qwen_answer": "The person in the picture appears to be cross-country skiing. They are standing on skis and holding ski poles, which are typical for cross-country skiing. The snowy environment and the person's attire also suggest that they are engaged in winter sports activities.",
+      "paligemma_answer": "skiing",
+      "ground_truth": "skiing",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7532962063948313,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this?",
+      "qwen_answer": "This is an image of a black bear. The bear appears to be resting in a grassy area, with its tongue slightly sticking out. The background suggests it might be in a natural or semi-natural environment, possibly a wildlife reserve or sanctuary.",
+      "paligemma_answer": "photo",
+      "ground_truth": "bear",
+      "qwen_confidence": 0.9901960784313726,
+      "paligemma_confidence": 0.48176681995391846,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this device?",
+      "qwen_answer": "This image shows a kitchen area with a refrigerator as the central appliance. The refrigerator appears to be a standard two-door model, likely a top-freezer type, which is common in many homes. The surrounding area includes wooden cabinets, a countertop, and a tiled floor. The wall on the right side of the image has a red paint finish, while the rest of the walls appear to be painted light blue. There are also some items on the counter, such as a bottle and what looks like a container or jar.",
+      "paligemma_answer": "refrigerator",
+      "ground_truth": "refrigerator",
+      "qwen_confidence": 0.9952830188679245,
+      "paligemma_confidence": 0.8220053712526957,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this animal?",
+      "qwen_answer": "This animal is an elephant, specifically an African elephant (Loxodonta africana). The presence of tusks and the overall body shape are characteristic features of this species. The setting appears to be a savanna or grassland habitat, which is typical for African elephants in their natural environment.",
+      "paligemma_answer": "elephant",
+      "ground_truth": "elephant",
+      "qwen_confidence": 0.9916666666666667,
+      "paligemma_confidence": 0.9477549493312836,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this person wearing on head?",
+      "qwen_answer": "The person in the picture is wearing a helmet or a cap on their head. It appears to be a light-colored, possibly white, protective headgear that was commonly used for safety during motorcycle riding in the early 20th century.",
+      "paligemma_answer": "helmet",
+      "ground_truth": "hat",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6714877933263779,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this man laying on?",
+      "qwen_answer": "The man in the picture appears to be lying on a surfboard while surfing. The motion and the splash of water around him suggest he is riding a wave.",
+      "paligemma_answer": "surfboard",
+      "ground_truth": "surfboard",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7621682385603586,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this person holding?",
+      "qwen_answer": "The person is holding a hot dog in a bun. The hot dog appears to have some toppings, possibly including relish or a similar condiment. There is also a cup of popcorn and a napkin on the table in front of them.",
+      "paligemma_answer": "hot dog",
+      "ground_truth": "hot dog",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7652300794919332,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this person standing on?",
+      "qwen_answer": "The person in the image appears to be standing on a sandy beach. There are several kitesurfing boards and equipment around, suggesting that they might be preparing for or taking a break from kite surfing. The ocean waves can also be seen in the background, further indicating that this is a beach setting.",
+      "paligemma_answer": "surfboard",
+      "ground_truth": "sand",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.8584063053131104,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this cake made with?",
+      "qwen_answer": "The image shows a slice of chocolate cake on a plate, which suggests that the cake is likely made with chocolate as its primary ingredient. The presence of what appears to be chocolate chips or chunks on top indicates that these could be added for texture and flavor. However, without more specific information about the recipe, it's not possible to determine all the ingredients used in the cake. Common ingredients in chocolate cakes include flour, sugar, cocoa powder, eggs, butter, and sometimes milk or cream. Additional ingredients like vanilla extract, baking powder, and salt are also commonly used.",
+      "paligemma_answer": "chocolate",
+      "ground_truth": "chocolate",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6013299077749252,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is this person doing?",
+      "qwen_answer": "The person in the image appears to be snowboarding. They are performing a jump or trick off a ramp, which is a common activity in snowboarding competitions and freestyle events. The setting suggests it could be part of a snowboarding event or competition, as there are spectators and banners visible in the background.",
+      "paligemma_answer": "snowboarding",
+      "ground_truth": "snowboarding",
+      "qwen_confidence": 0.9841269841269841,
+      "paligemma_confidence": 0.7008251746495565,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What position is this man playing?",
+      "qwen_answer": "The man in the picture is playing the position of a pitcher in baseball. He is on the pitcher's mound, wearing a glove and preparing to throw the ball towards home plate. The posture and focus suggest he is in the middle of his pitching motion.",
+      "paligemma_answer": "pitcher",
+      "ground_truth": "pitcher",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.9894445141156515,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the person doing?",
+      "qwen_answer": "The person in the image appears to be skiing down a snowy slope. They are wearing winter gear, including a helmet and goggles, and are using ski poles for balance and control. The posture suggests they are navigating through the snow with skill, possibly engaging in off-piste or backcountry skiing.",
+      "paligemma_answer": "skiing",
+      "ground_truth": "skiing",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.9299495021502177,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is in the person's hand?",
+      "qwen_answer": "The person in the image is holding a white frisbee in their hand.",
+      "paligemma_answer": "frisbee",
+      "ground_truth": "frisbee",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.9445156653722128,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is the dog looking at a tennis ball or frisbee?",
+      "qwen_answer": "The dog appears to be looking at a frisbee, as it is positioned in front of someone holding a white frisbee, and its attention seems directed towards that object.",
+      "paligemma_answer": "frisbee",
+      "ground_truth": "frisbee",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7256693889697393,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the white streak?",
+      "qwen_answer": "The white streak in the image appears to be a contrail, which is a trail of water vapor left behind by an airplane as it flies through the atmosphere. Contrails are typically formed when the exhaust from an aircraft's engines condenses into ice crystals at high altitudes, especially on cold days or in regions with high humidity. The presence of a contrail suggests that there was an airplane flying overhead during the time this photo was taken.",
+      "paligemma_answer": "airplane",
+      "ground_truth": "contrail",
+      "qwen_confidence": 0.9887640449438202,
+      "paligemma_confidence": 0.6011863276362419,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the child doing?",
+      "qwen_answer": "The child in the image appears to be brushing their teeth with an electric toothbrush.",
+      "paligemma_answer": "brushing her teeth",
+      "ground_truth": "brushing teeth",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7870785593986511,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the business man doing in the picture?",
+      "qwen_answer": "The businessman in the picture appears to be standing and looking off to the side with a serious or contemplative expression. He is dressed in formal attire, including a suit, tie, and glasses, which suggests he might be attending a professional event or meeting. The background shows other people, indicating that this could be a public or semi-public setting, such as a conference, a public gathering, or a street scene. His posture and expression do not suggest active engagement in conversation or interaction at the moment the photo was taken.",
+      "paligemma_answer": "walking",
+      "ground_truth": "frowning",
+      "qwen_confidence": 0.9904761904761905,
+      "paligemma_confidence": 0.7736203968524933,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the man riding on?",
+      "qwen_answer": "The man in the image is riding a dirt bike, which is designed for off-road use and is commonly used in motocross and enduro sports. The bike appears to be a motocross model, given its design and the rider's attire, which includes protective gear suitable for such activities.",
+      "paligemma_answer": "track",
+      "ground_truth": "motorcycle",
+      "qwen_confidence": 0.9898491316154355,
+      "paligemma_confidence": 0.7972538769245148,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is on the pillow?",
+      "qwen_answer": "The pillow in the image has a decorative pattern, possibly floral or geometric, and appears to be part of the room's bedding set. There is also a small green tag attached to one of the pillows, which might indicate it is a guest pillow or part of a hotel setup.",
+      "paligemma_answer": "diamonds",
+      "ground_truth": "gray",
+      "qwen_confidence": 0.9912280701754386,
+      "paligemma_confidence": 0.53519506752491,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is sitting on the bench?",
+      "qwen_answer": "There is a handbag sitting on the bench in front of the bed.",
+      "paligemma_answer": "shoes",
+      "ground_truth": "purse",
+      "qwen_confidence": 0.96875,
+      "paligemma_confidence": 0.588629774749279,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the man doing?",
+      "qwen_answer": "The man in the image appears to be cross-country skiing. He is standing on skis and holding ski poles, which are typical for this winter sport. The snowy landscape and his attire also suggest that he is engaging in outdoor winter activities.",
+      "paligemma_answer": "skis",
+      "ground_truth": "skiing",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6997472494840622,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the person wearing?",
+      "qwen_answer": "The person in the image appears to be dressed for cold weather and skiing. They are wearing:\n\n- A blue jacket, which provides warmth.\n- Black pants, suitable for outdoor activities like skiing.\n- Ski boots, which are essential for securing the skis to their feet.\n- Ski poles, used for balance and propulsion while skiing.\n\nThe clothing suggests they are prepared for a winter activity, likely cross-country skiing given the equipment and environment.",
+      "paligemma_answer": "skis",
+      "ground_truth": "skis",
+      "qwen_confidence": 0.9775280898876404,
+      "paligemma_confidence": 0.8608039021492004,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is she holding?",
+      "qwen_answer": "She is holding ski poles, which are used for balance and propulsion while skiing.",
+      "paligemma_answer": "skis",
+      "ground_truth": "poles",
+      "qwen_confidence": 0.9705882352941176,
+      "paligemma_confidence": 0.8767531514167786,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the dog riding on?",
+      "qwen_answer": "The dog in the picture is riding on a surfboard, which is floating on the water.",
+      "paligemma_answer": "surfboard",
+      "ground_truth": "surfboard",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.8607485890388489,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is in the water?",
+      "qwen_answer": "In the water, there is a dog sitting on top of a surfboard. The surfboard appears to be floating on calm waves near the shore.",
+      "paligemma_answer": "shark",
+      "ground_truth": "dog",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6417389661073685,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What does the green light, on the TV, indicate?",
+      "qwen_answer": "The green light on the TV in this image is likely indicating that the projector or screen is powered on and functioning. It's common for projection screens to have lights that illuminate when they are turned on, which helps to ensure visibility of the projected content in a darkened room. The green color could be a design choice by the manufacturer or simply a standard color used for such indicators.",
+      "paligemma_answer": "power",
+      "ground_truth": "on",
+      "qwen_confidence": 0.9805194805194806,
+      "paligemma_confidence": 0.40979351103305817,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What room of the house is this?",
+      "qwen_answer": "This image appears to be taken in a conference room, meeting room, or a similar space designed for presentations and meetings. The presence of a large projection screen displaying a webpage, along with a laptop on a table, suggests that it's set up for a presentation or training session. The room also has a desk and chairs, which are typical features of such spaces.",
+      "paligemma_answer": "conference",
+      "ground_truth": "office",
+      "qwen_confidence": 0.9932432432432432,
+      "paligemma_confidence": 0.822426050901413,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the size of the TV?",
+      "qwen_answer": "The image shows a large screen, but it's not possible to determine its exact size from this photo alone. The screen appears to be mounted on a wall and is displaying a webpage, which suggests it could be a projector screen or a large monitor. Without additional context or reference objects for scale, an accurate measurement cannot be provided.",
+      "paligemma_answer": "large",
+      "ground_truth": "large",
+      "qwen_confidence": 0.9925373134328358,
+      "paligemma_confidence": 0.6227623522281647,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "How big is the TV?",
+      "qwen_answer": "The TV in the image appears to be a projector screen, not a traditional television. It is quite large, likely spanning the width of the wall it's mounted on. The exact size cannot be determined from this photo alone without additional context or reference points for scale. However, based on its appearance and the room setting, it seems to be a professional-grade projector screen used for presentations or meetings.",
+      "paligemma_answer": "big",
+      "ground_truth": "very big",
+      "qwen_confidence": 0.9875,
+      "paligemma_confidence": 0.5827651619911194,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What companion object to the TV can be seen in the bottom right of the picture?",
+      "qwen_answer": "In the bottom right of the picture, there is a laptop on a table. This appears to be a companion device to the projected screen, likely used for presenting or controlling the content being displayed on the projector.",
+      "paligemma_answer": "computer",
+      "ground_truth": "laptop",
+      "qwen_confidence": 0.9883720930232558,
+      "paligemma_confidence": 0.6802770495414734,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the small computer on the left called?",
+      "qwen_answer": "The small computer on the left appears to be a laptop. It is placed on a table and is likely being used as a secondary display or for additional computing tasks during the presentation shown on the larger screen.",
+      "paligemma_answer": "laptop",
+      "ground_truth": "laptop",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.8196469843387604,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is above the TV?",
+      "qwen_answer": "The image shows a projection screen displaying a webpage, likely from an Outlook Web App, as indicated by the text on the screen. Above the projection screen, there appears to be a ceiling with some lighting fixtures and possibly a vent or speaker. The exact details of what is directly above the screen cannot be determined due to the angle and lighting in the photo.",
+      "paligemma_answer": "screen",
+      "ground_truth": "vent",
+      "qwen_confidence": 0.9861111111111112,
+      "paligemma_confidence": 0.508700892329216,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is on the display?",
+      "qwen_answer": "The display in the image shows a webpage from Microsoft Outlook Web App, which is an online email and calendar service provided by Microsoft. The page appears to be part of a presentation or a demonstration, as it is projected onto a screen in what looks like a conference room or meeting space.",
+      "paligemma_answer": "computer",
+      "ground_truth": "document",
+      "qwen_confidence": 0.9913793103448276,
+      "paligemma_confidence": 0.5015192702412605,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is it a monitor or a screen projection?",
+      "qwen_answer": "The image shows a large screen displaying content, which appears to be projected onto the wall rather than being a physical monitor. This is indicated by the visible edges of the screen and the way the content is displayed across the entire surface, which is typical for a projector setup in a presentation room. The presence of a laptop on the table suggests that the content might be being projected from this device, but the display itself is not a physical monitor but rather a projection screen.",
+      "paligemma_answer": "screen",
+      "ground_truth": "screen projection",
+      "qwen_confidence": 0.9893617021276596,
+      "paligemma_confidence": 0.5959699153900146,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is on the TV screen?",
+      "qwen_answer": "The TV screen appears to be displaying a webpage from Microsoft Outlook Web App, as indicated by the text and layout visible on the screen. The page seems to be part of an email or webmail interface.",
+      "paligemma_answer": "person",
+      "ground_truth": "computer",
+      "qwen_confidence": 0.9880952380952381,
+      "paligemma_confidence": 0.32042855210602283,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the title of the presentation in the picture?",
+      "qwen_answer": "The image shows a projected screen with a webpage displayed, but there is no visible title or heading on the presentation itself. The webpage appears to be an Outlook Web App page, as indicated by the text \"Outlook Web App\" and the Microsoft logo. However, this does not seem to be part of a formal presentation but rather a screenshot of a web application being used.",
+      "paligemma_answer": "person",
+      "ground_truth": "outlook web app",
+      "qwen_confidence": 0.9868421052631579,
+      "paligemma_confidence": 0.5439322963356972,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the man playing?",
+      "qwen_answer": "The man appears to be playing a video game using a Nintendo Wii controller, as indicated by the shape and design of the controller he is holding. The Wii is known for its motion-sensing technology, which allows players to interact with games through physical movements.",
+      "paligemma_answer": "game",
+      "ground_truth": "wii",
+      "qwen_confidence": 0.9903846153846154,
+      "paligemma_confidence": 0.5711062774062157,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What does the man have on his face?",
+      "qwen_answer": "The man in the image appears to be wearing glasses on his face.",
+      "paligemma_answer": "glasses",
+      "ground_truth": "glasses",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.8904232978820801,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is in front of the giraffes?",
+      "qwen_answer": "In front of the giraffes, there is a fallen tree trunk lying on the ground.",
+      "paligemma_answer": "tree",
+      "ground_truth": "tree",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7690301537513733,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What do these giraffes have in common?",
+      "qwen_answer": "The giraffes in the image share several common characteristics:\n\n1. **Physical Features**: Both giraffes have long necks, which is a distinctive feature of their species. This adaptation allows them to reach leaves and vegetation that other herbivores cannot access.\n\n2. **Patterned Coats**: They both display the characteristic reticulated pattern on their coats, which is unique to each individual and helps with camouflage in their natural habitat.\n\n3. **Environment**: Both giraffes appear to be in a zoo or a controlled environment, as indicated by the presence of man-made structures like logs and fences.\n\n4. **Behavior**:",
+      "paligemma_answer": "very tall necks",
+      "ground_truth": "eating",
+      "qwen_confidence": 0.9921875,
+      "paligemma_confidence": 0.31957199797034264,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the giraffe standing behind?",
+      "qwen_answer": "The giraffe is standing behind a fallen log in the image.",
+      "paligemma_answer": "tree",
+      "ground_truth": "tree",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.9472229182720184,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is on the ground next to the giraffe on the right?",
+      "qwen_answer": "On the ground next to the giraffe on the right, there is a log.",
+      "paligemma_answer": "tree",
+      "ground_truth": "log",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.4452206492424011,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "How is the man sitting?",
+      "qwen_answer": "The man in the picture is sitting on the ground with his legs crossed and his hands resting on his knees. He appears to be wearing a red jacket, a dark shirt, and dark pants.",
+      "paligemma_answer": "leaning",
+      "ground_truth": "cross legged",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5552780330181122,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What does the word in the upper-left corner, behind the window, translate to in English?",
+      "qwen_answer": "The word \"AUTOMATIQUE\" in the upper-left corner of the image translates to \"automatic\" in English. This suggests that the window is likely part of an ATM (Automated Teller Machine) or some other automated service.",
+      "paligemma_answer": "homeless",
+      "ground_truth": "automatic",
+      "qwen_confidence": 0.9897959183673469,
+      "paligemma_confidence": 0.73373082280159,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What type of watercraft is that?",
+      "qwen_answer": "The image shows a small motorized boat, likely a pontoon or inflatable raft, with several people on board. The boat appears to be designed for recreational use and is being used in a river or calm water setting. The presence of a person standing on the side of the boat suggests it might be a party barge or a similar type of vessel used for leisure activities such as sightseeing, social gatherings, or water sports.",
+      "paligemma_answer": "motor",
+      "ground_truth": "raft",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5351165384054184,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the vase sitting on?",
+      "qwen_answer": "The vase is sitting on a white surface, which appears to be a railing or ledge. The background suggests an outdoor setting with greenery and sunlight.",
+      "paligemma_answer": "railing",
+      "ground_truth": "railing",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7624841332435608,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is the sun to the right or left of this flower?",
+      "qwen_answer": "The sun appears to be to the left of the flower in the image. This can be inferred from the shadow cast by the vase and flowers, which is falling towards the right side of the image. The light source (the sun) is therefore likely positioned to the left of the flower arrangement.",
+      "paligemma_answer": "right",
+      "ground_truth": "left",
+      "qwen_confidence": 0.9833333333333333,
+      "paligemma_confidence": 0.989863932132721,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the zebra eating?",
+      "qwen_answer": "The zebra in the foreground appears to be eating or nibbling on some vegetation, possibly leaves or grass, from the bush in front of it. The other zebra in the background seems to be grazing on the ground.",
+      "paligemma_answer": "bush",
+      "ground_truth": "grass",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6087217032909393,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the tree covered with?",
+      "qwen_answer": "The tree in the image appears to be covered with a protective netting, likely to prevent animals from damaging it or to keep certain areas of the tree safe for the zebras to graze on. This type of netting is commonly used in zoos and wildlife reserves to protect trees and plants from being eaten by herbivores.",
+      "paligemma_answer": "ivy",
+      "ground_truth": "wire",
+      "qwen_confidence": 0.9926470588235294,
+      "paligemma_confidence": 0.7040951400995255,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the animal eating?",
+      "qwen_answer": "The zebra in the picture appears to be grazing on grass. Zebras are herbivores and primarily eat grass, which they graze on by using their teeth to strip off the grass blades. The greenery in the image suggests that the zebra is in a grassy area, likely a savanna or a similar habitat where zebras are commonly found.",
+      "paligemma_answer": "grass",
+      "ground_truth": "grass",
+      "qwen_confidence": 0.9781188787640752,
+      "paligemma_confidence": 0.9880542457103729,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "How old is animal?",
+      "qwen_answer": "The image shows a zebra, which is an adult. The size and proportions of the zebra suggest it is fully grown, but without more context or specific details about its physical characteristics, it's not possible to determine its exact age. Zebras typically reach full maturity around 3-4 years of age, but they can live for up to 20 years in the wild. If you have any additional information or a clearer view of the zebra's features, such as its teeth or ossicones (the horn-like structures on its head), that could help estimate its age more accurately.",
+      "paligemma_answer": "young",
+      "ground_truth": "10 years",
+      "qwen_confidence": 0.9754098360655737,
+      "paligemma_confidence": 0.8549106121063232,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the man holding?",
+      "qwen_answer": "The man appears to be holding a knife, likely preparing to cut a cake.",
+      "paligemma_answer": "cake",
+      "ground_truth": "knife",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7680430114269257,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the man cutting?",
+      "qwen_answer": "The man appears to be cutting a cake, as he is holding a knife and standing next to a decorated cake on a table.",
+      "paligemma_answer": "cake",
+      "ground_truth": "cake",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7278914004564285,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the fruit?",
+      "qwen_answer": "The fruit in the image appears to be banana slices. They are caramelized and arranged around a chocolate dessert, which could be a chocolate cake or mousse. The caramelized bananas add a sweet and sticky element to the dish, complementing the rich chocolate flavor.",
+      "paligemma_answer": "dessert",
+      "ground_truth": "banana",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.651785671710968,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the name of the type of person that would make this food?",
+      "qwen_answer": "The dish in the picture appears to be a chocolate souffl\u00e9 with bananas and caramel sauce, often served as a dessert. The preparation of such a dish typically requires a skilled chef or a baker who has experience in creating rich, indulgent desserts. This could be someone who works in a fine dining restaurant, a high-end bakery, or a professional chef who specializes in creating gourmet desserts. The presentation and the use of high-quality ingredients suggest that the person responsible for this dish likely has a strong background in culinary arts and a keen eye for detail.",
+      "paligemma_answer": "dish",
+      "ground_truth": "chef",
+      "qwen_confidence": 0.9684684684684685,
+      "paligemma_confidence": 0.6160501092672348,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What type of ice cream is on the plate?",
+      "qwen_answer": "The image shows a dessert that includes what appears to be a chocolate mousse or cake with caramelized bananas and a sauce, possibly a caramel or butterscotch sauce. There is also a scoop of vanilla ice cream in the background, which is partially visible. The ice cream is not directly on top of the main dessert but seems to be part of the overall presentation.",
+      "paligemma_answer": "chocolate",
+      "ground_truth": "vanilla",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5567043572664261,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is this an indoor or outdoor photo?",
+      "qwen_answer": "This is an outdoor photo. The image shows a beach scene with people flying kites, palm trees, and buildings in the background. The presence of sand, the sky, and the overall natural and urban elements indicate that it is an outdoor setting.",
+      "paligemma_answer": "outdoor",
+      "ground_truth": "outdoor",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7986214756965637,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What's missing from this hot dog?",
+      "qwen_answer": "This hot dog appears to be missing a condiment, such as ketchup, mustard, or relish, which are commonly added to enhance its flavor and texture. Additionally, it may lack toppings like onions, pickles, or cheese. The bun looks plain without any visible seasonings or additional ingredients.",
+      "paligemma_answer": "sauce",
+      "ground_truth": "mustard",
+      "qwen_confidence": 0.9919354838709677,
+      "paligemma_confidence": 0.6475696861743927,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the hog dog sitting on?",
+      "qwen_answer": "The hot dog appears to be sitting on a piece of white paper, which is likely a napkin or a wrapper typically used for holding food items like hot dogs.",
+      "paligemma_answer": "bread",
+      "ground_truth": "bun",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7815316319465637,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the sky full of?",
+      "qwen_answer": "The sky in the image appears to be filled with clouds, suggesting overcast weather conditions. There are no visible signs of rain or sunlight breaking through the cloud cover.",
+      "paligemma_answer": "cranes",
+      "ground_truth": "clouds",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6194027860959371,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the color of the carpet?",
+      "qwen_answer": "The carpet in the image appears to be a patterned design with shades of brown, beige, and possibly some red tones. It has a traditional or vintage look, with a mix of geometric and floral patterns.",
+      "paligemma_answer": "red",
+      "ground_truth": "brown",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.7311298698186874,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What shape are the windows on the side of the plane?",
+      "qwen_answer": "The windows on the side of the plane appear to be rectangular in shape, with a consistent size and spacing along the fuselage.",
+      "paligemma_answer": "round",
+      "ground_truth": "square",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5657775104045868,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the website on the sign?",
+      "qwen_answer": "The website on the sign is \"wmata.com.\"",
+      "paligemma_answer": "person",
+      "ground_truth": "wmatacom",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5573027580976486,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the bear called?",
+      "qwen_answer": "The bear in the picture appears to be a stuffed teddy bear. Teddy bears are typically made of plush material and are often used as toys or decorative items. The specific name for this particular bear cannot be determined from the image alone, as it does not provide any identifying information such as a tag or label. However, it is commonly referred to as a \"teddy bear\" due to its shape and design.",
+      "paligemma_answer": "person",
+      "ground_truth": "teddy",
+      "qwen_confidence": 0.9940476190476191,
+      "paligemma_confidence": 0.8624272346496582,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What type of tree is the man standing next to?",
+      "qwen_answer": "It's difficult to determine the exact type of tree the man is standing next to based on this image alone, as there isn't enough detail visible in the photo. However, it appears to be a small deciduous tree with a relatively thin trunk and sparse foliage, which could suggest it might be an urban street tree like a Norway maple or a similar species commonly found in city environments. For a more accurate identification, a closer look at the leaves, bark, and overall structure would be necessary.",
+      "paligemma_answer": "oak",
+      "ground_truth": "elm",
+      "qwen_confidence": 0.99,
+      "paligemma_confidence": 0.5809566527605057,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What pattern is on the pants?",
+      "qwen_answer": "The pants in the image have a pinstripe pattern, which consists of thin vertical lines running down the length of the fabric. This type of pattern is commonly associated with baseball uniforms and other sports attire.",
+      "paligemma_answer": "striped",
+      "ground_truth": "stripes",
+      "qwen_confidence": 0.9880952380952381,
+      "paligemma_confidence": 0.8959634900093079,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What sport is this person playing?",
+      "qwen_answer": "The person in the picture is playing baseball. This can be identified by the batter holding a baseball bat, the catcher wearing protective gear, and the setting of a baseball field with spectators in the background.",
+      "paligemma_answer": "baseball",
+      "ground_truth": "baseball",
+      "qwen_confidence": 0.9878048780487805,
+      "paligemma_confidence": 0.9967480301856995,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the position of the player behind the batter called?",
+      "qwen_answer": "The player positioned behind the batter in baseball is called the catcher. The catcher's role includes receiving pitches thrown by the pitcher, signaling the type and location of the next pitch to the pitcher, and fielding bunts or ground balls hit toward home plate.",
+      "paligemma_answer": "catcher",
+      "ground_truth": "catcher",
+      "qwen_confidence": 0.9711538461538461,
+      "paligemma_confidence": 0.9648357927799225,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What are they drinking?",
+      "qwen_answer": "The image shows several bottles on the table, which appear to be beer bottles based on their shape and labels. However, without a clear view of the labels or any visible branding, it's not possible to definitively identify the specific type of beer. The bottles seem to have green labels, which could suggest a particular brand, but this is speculative.",
+      "paligemma_answer": "water",
+      "ground_truth": "beer",
+      "qwen_confidence": 0.9647887323943662,
+      "paligemma_confidence": 0.7326628863811493,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What brand of beer is visible?",
+      "qwen_answer": "The image shows a group of people playing a video game, and there are several bottles on the table in front of them. The label on one of the bottles appears to be partially visible, but it's not clear enough to identify the specific brand of beer. The label seems to have some green and white colors, which might suggest a particular brand, but without a clearer view or more distinct details, it's not possible to accurately determine the brand.",
+      "paligemma_answer": "person",
+      "ground_truth": "sierra nevada",
+      "qwen_confidence": 0.9945054945054945,
+      "paligemma_confidence": 0.75749072432518,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What logo is on the man's shirt?",
+      "qwen_answer": "The man in the image is wearing a shirt with the \"LIVESTRONG\" logo, which is associated with the Livestrong Foundation, an organization that supports cancer research and patient services. The logo also includes the Nike swoosh, indicating a partnership between Nike and the Livestrong Foundation.",
+      "paligemma_answer": "person",
+      "ground_truth": "nike",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5298854373395443,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What direction is the bird looking?",
+      "qwen_answer": "The bird in the image appears to be facing towards the left side of the frame, with its head turned slightly as if it's observing something off-camera in that direction.",
+      "paligemma_answer": "back",
+      "ground_truth": "right",
+      "qwen_confidence": 0.9857142857142858,
+      "paligemma_confidence": 0.6232791244983673,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What time of day is it?",
+      "qwen_answer": "The image shows elephants near a body of water, and the lighting suggests it could be midday or early afternoon. The shadows are relatively short, which often indicates that the sun is high in the sky during these times. However, without more specific information such as the position of the sun or the length of the shadows, it's not possible to determine the exact time with certainty.",
+      "paligemma_answer": "morning",
+      "ground_truth": "morning",
+      "qwen_confidence": 0.9935064935064936,
+      "paligemma_confidence": 0.7039832919836044,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What type of plane is this?",
+      "qwen_answer": "The aircraft in the image appears to be a Piper PA-28, commonly known as the Cherokee. This is a popular single-engine, four-seat aircraft used for general aviation purposes such as personal transportation, flight training, and recreational flying. The specific model shown here seems to be a Piper PA-28-161, which is a variant with a more powerful engine compared to earlier models. The red and white color scheme is also characteristic of Piper aircraft.",
+      "paligemma_answer": "light",
+      "ground_truth": "propeller",
+      "qwen_confidence": 0.9771929825607099,
+      "paligemma_confidence": 0.6612233519554138,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is in the picture?",
+      "qwen_answer": "The image shows an outdoor clock mounted on a pole, with the brand \"Rolex\" prominently displayed on its face. The clock is located near a tree and appears to be situated in a public area, possibly a street or plaza. There are cars parked nearby, and the background includes trees, buildings, and a clear sky. The setting suggests it could be part of a town square or a similar communal space.",
+      "paligemma_answer": "clock",
+      "ground_truth": "clock",
+      "qwen_confidence": 0.9821428571428571,
+      "paligemma_confidence": 0.9337844848632812,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What time is the clock showing?",
+      "qwen_answer": "The clock in the image shows approximately 10:35.",
+      "paligemma_answer": "right",
+      "ground_truth": "6:10",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.38139284402132034,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What are the vases sitting on?",
+      "qwen_answer": "The vases and decorative items are sitting on a wooden surface, which appears to be a shelf or a table. The surface is dark brown in color, likely made of wood, and has a polished finish.",
+      "paligemma_answer": "table",
+      "ground_truth": "table",
+      "qwen_confidence": 0.9883720930232558,
+      "paligemma_confidence": 0.6606225520372391,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the table made of?",
+      "qwen_answer": "The table in the image appears to be made of wood. The dark brown color and the visible grain pattern suggest it is likely a wooden table, possibly mahogany or a similar type of wood.",
+      "paligemma_answer": "wood",
+      "ground_truth": "wood",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6444720476865768,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the green stuff on this pizza?",
+      "qwen_answer": "The green stuff on the pizza appears to be broccoli rabe, also known as rapini or broccoli raab. It has a slightly bitter taste and is often used in Italian cuisine. The pizza looks like it has a thin crust and is topped with tomato sauce, cheese, and the broccoli rabe.",
+      "paligemma_answer": "asparagus",
+      "ground_truth": "spinach",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.8061819225549698,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is it thick or thin crust?",
+      "qwen_answer": "The pizza in the picture has a thick crust. The crust appears to be well-baked with a golden-brown color, and it looks substantial in thickness compared to a thin-crust pizza.",
+      "paligemma_answer": "thin",
+      "ground_truth": "thick",
+      "qwen_confidence": 0.9875,
+      "paligemma_confidence": 0.9116316139698029,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the orange thing?",
+      "qwen_answer": "The orange object in the picture appears to be a small, orange-colored bag or pouch with a logo on it. It looks like it might be a reusable shopping bag or a similar type of bag, possibly from a store or brand that uses this color and design for its packaging. The logo suggests it could be branded merchandise.",
+      "paligemma_answer": "banana",
+      "ground_truth": "bag",
+      "qwen_confidence": 0.9924242424242424,
+      "paligemma_confidence": 0.841067910194397,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Is this train headed towards or from the orange building?",
+      "qwen_answer": "The train in the image appears to be heading towards the orange building, as it is moving along the tracks that lead closer to the building rather than away from it. The direction of travel can be inferred by observing the alignment of the train with the tracks and its proximity to the building.",
+      "paligemma_answer": "headed",
+      "ground_truth": "from",
+      "qwen_confidence": 0.9913793103448276,
+      "paligemma_confidence": 0.7199150323867798,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the giraffe eating?",
+      "qwen_answer": "The giraffes in the image appear to be reaching up towards the branches of a tree, likely to eat leaves or other vegetation. Giraffes are known for their long necks and tongues, which they use to reach high into trees to feed on leaves, flowers, and fruits. The specific type of vegetation they are eating cannot be determined from this image alone without more context.",
+      "paligemma_answer": "grass",
+      "ground_truth": "leaves",
+      "qwen_confidence": 0.9935897435897436,
+      "paligemma_confidence": 0.5670969039201736,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is on the woman's neck?",
+      "qwen_answer": "The woman is wearing a necklace with a pendant around her neck.",
+      "paligemma_answer": "chain",
+      "ground_truth": "necklace",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.6084005683660507,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What item is folded up and sitting on the edge of the shower stall?",
+      "qwen_answer": "The item that appears to be folded up and sitting on the edge of the shower stall is a towel.",
+      "paligemma_answer": "towel",
+      "ground_truth": "towel",
+      "qwen_confidence": 0.9772727272727273,
+      "paligemma_confidence": 0.7859151264031728,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What pattern is on the shower curtain?",
+      "qwen_answer": "The shower curtain in the image appears to be plain and does not have any distinct pattern. It looks like a solid color, possibly gray or beige, with no visible designs or motifs.",
+      "paligemma_answer": "striped",
+      "ground_truth": "solid",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.9130072593688965,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What are the colors of the countertop?",
+      "qwen_answer": "The countertop in the image is primarily a light brown or tan color with a smooth finish.",
+      "paligemma_answer": "gray and brown",
+      "ground_truth": "brown",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.5778606683015823,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the person on the right called?",
+      "qwen_answer": "The person on the right appears to be a tennis umpire or official. They are seated on a high chair, which is typical for officials in professional tennis matches to ensure they have a clear view of the court and can make calls accurately. The presence of the \"Wilson\" logo suggests this is likely a professional match sponsored by Wilson, a well-known tennis equipment manufacturer.",
+      "paligemma_answer": "player",
+      "ground_truth": "referee",
+      "qwen_confidence": 0.99,
+      "paligemma_confidence": 0.5308150127530098,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What time does the clock say?",
+      "qwen_answer": "The clock in the picture shows the time as approximately 10:10. The hands of the clock are positioned such that the hour hand is just past the 10 and the minute hand is pointing at the 2, which represents 10 minutes past the hour.",
+      "paligemma_answer": "now",
+      "ground_truth": "8:00",
+      "qwen_confidence": 0.9913793103448276,
+      "paligemma_confidence": 0.534476350992918,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the last letter over the plane?",
+      "qwen_answer": "The last letter on the tail of the plane in the image is \"E\".",
+      "paligemma_answer": "e",
+      "ground_truth": "e",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.666234701871872,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the number on the mailbox?",
+      "qwen_answer": "The number on the mailbox is 24.",
+      "paligemma_answer": "9",
+      "ground_truth": "24",
+      "qwen_confidence": 1.0,
+      "paligemma_confidence": 0.3269054479897022,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What are the animals doing?",
+      "qwen_answer": "The animals in the picture appear to be grazing on the grassy hillside. They are scattered across the field, with some standing and others lying down, all engaged in feeding on the vegetation. The presence of a person in the background suggests that they might be herding or tending to these animals.",
+      "paligemma_answer": "grazing",
+      "ground_truth": "grazing",
+      "qwen_confidence": 0.999709899387052,
+      "paligemma_confidence": 0.9809261560440063,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What breed of livestock is shown?",
+      "qwen_answer": "The image shows a group of sheep grazing in a field. The specific breed of the sheep cannot be determined with certainty from this image alone, as there are many breeds of sheep that can appear similar in terms of size and coat color. However, the sheep in the image seem to have a medium-length wool coat, which could suggest they are a breed like the Suffolk, Dorset, or Hampshire. These breeds are known for their hardiness and are often used for both meat production and wool. Without more detailed information or a closer view, it's not possible to accurately identify the breed.",
+      "paligemma_answer": "sheep",
+      "ground_truth": "sheep",
+      "qwen_confidence": 0.9831932773109243,
+      "paligemma_confidence": 0.9556655883789062,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What language is the sign written in?",
+      "qwen_answer": "The sign appears to be written in Turkish. The words \"Ey\u00fcp Sultan\" and \"Fatih\" are Turkish names, and the overall structure of the sign is consistent with Turkish road signs.",
+      "paligemma_answer": "human",
+      "ground_truth": "spanish",
+      "qwen_confidence": 0.9875,
+      "paligemma_confidence": 0.8779477179050446,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "How has the cheese been prepared?",
+      "qwen_answer": "The cheese in the image appears to be melted and served in a small ramekin alongside the hot dog. It looks like it could be a type of mayonnaise-based sauce, possibly a variation of tartar sauce or a similar condiment, which is often served with hot dogs. The cheese itself isn't visible on the hot dog; instead, it seems to be part of the sauce.",
+      "paligemma_answer": "baked",
+      "ground_truth": "melted",
+      "qwen_confidence": 0.9938271604938271,
+      "paligemma_confidence": 0.8775381743907928,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What is the cutting board used for in this scene?",
+      "qwen_answer": "The image shows a plate with food, including what appears to be a hot dog topped with onions and peppers, sweet potato fries, and a small ramekin of what looks like mayonnaise or a similar condiment. The cutting board itself is not visible in the image; it seems that the food is directly placed on a white plate. Therefore, there is no cutting board being used in this scene.",
+      "paligemma_answer": "cutting",
+      "ground_truth": "plate",
+      "qwen_confidence": 0.9879518072289156,
+      "paligemma_confidence": 0.544023260474205,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "Of what meal is this kind of food typical?",
+      "qwen_answer": "The meal in the picture appears to be a hot dog served with sweet potato fries and a side of mayonnaise or mustard. This type of food is typically associated with casual dining, fast food, or American-style comfort food. It's common in restaurants, diners, and casual eateries where people might order a hot dog as a quick and satisfying meal. The inclusion of sweet potato fries adds a twist to the classic hot dog experience, making it more appealing for those who prefer healthier or alternative options.",
+      "paligemma_answer": "lunch",
+      "ground_truth": "lunch",
+      "qwen_confidence": 0.9805825242718447,
+      "paligemma_confidence": 0.731911838054657,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    },
+    {
+      "question": "What type of food is shown?",
+      "qwen_answer": "The image shows a plate with a hot dog in a bun, topped with grilled onions and possibly some peppers or other vegetables. Accompanying the hot dog are sweet potato fries garnished with herbs, and there is a small ramekin of what appears to be mayonnaise or a similar condiment. This meal seems to be a combination of a classic hot dog and a side of roasted sweet potato fries, often served as a casual dining option.",
+      "paligemma_answer": "hot dog",
+      "ground_truth": "hot dog",
+      "qwen_confidence": 0.9945652173913043,
+      "paligemma_confidence": 0.7396400968233744,
+      "attention_correlation": 0.0,
+      "answer_agreement": false
+    }
+  ],
+  "insights": [
+    {
+      "title": "Cross-Architecture Confidence Calibration",
+      "description": "Qwen average confidence: 0.992, PaliGemma: 0.712. This calibration difference has implications for uncertainty quantification in VLM deployment.",
+      "evidence": {
+        "qwen_confidence": 0.9921123227431081,
+        "paligemma_confidence": 0.7121107066857318,
+        "gap": 0.2800016160573763
+      },
+      "significance": 0.7
+    }
+  ]
+}
