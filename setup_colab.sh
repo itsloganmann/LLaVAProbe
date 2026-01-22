@@ -52,6 +52,9 @@ pip install flash-attn --no-build-isolation
 # HuggingFace Hub for model downloads
 pip install "huggingface_hub>=0.20.0"
 
+# Jinja2 - need >=3.1.0 for transformers chat templates
+pip install "jinja2>=3.1.0"
+
 echo ""
 echo "=========================================="
 echo "Setup complete!"
