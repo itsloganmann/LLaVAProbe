@@ -281,9 +281,19 @@ class QwenVLRunner:
         for layer_idx, layer_attn in enumerate(attentions):
             if layer_attn is None:
                 continue
-                
-            # layer_attn shape: (batch, num_heads, seq_len, seq_len)
-            layer_attn = layer_attn[0]  # Remove batch dim
+            
+            # Handle case where layer_attn might be a tuple or have unexpected structure
+            try:
+                # layer_attn shape: (batch, num_heads, seq_len, seq_len)
+                if isinstance(layer_attn, tuple):
+                    layer_attn = layer_attn[0]
+                if layer_attn is None:
+                    continue
+                layer_attn = layer_attn[0]  # Remove batch dim
+                if layer_attn is None or not hasattr(layer_attn, 'shape'):
+                    continue
+            except (IndexError, TypeError, AttributeError):
+                continue
             
             layer_score = 0.0
             
